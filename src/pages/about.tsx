@@ -1,7 +1,12 @@
-import { Title } from '../styles/page.styles';
-
-const About = () => {
-  return <Title>About</Title>;
+const AboutPage = () => {
+  return (
+    <section>
+      <h1>О нас</h1>
+      <div>
+        <p>Нет авторов</p>
+      </div>
+    </section>
+  );
 };
 
-export default About;
+export default AboutPage;

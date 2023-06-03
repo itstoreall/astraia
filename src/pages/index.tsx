@@ -1,6 +1,17 @@
-import { ContentBlock, Page, Title } from '@/styles/page.styles';
-import Head from 'next/head';
+// import Head from 'next/head';
+import Layout from '../components/Layout';
 
+const Home = () => {
+  return (
+    // <Layout>
+    <h1>Home index</h1>
+    // </Layout>
+  );
+};
+
+export default Home;
+
+/*
 export default function Home() {
   return (
     <>
@@ -12,15 +23,15 @@ export default function Home() {
       </Head>
       <header>Header</header>
       <main>
-        <Page>
-          <Title>Home</Title>
-          <ContentBlock>
+        <section>
+          <h1>Home</h1>
+          <div>
             Loading
-            {/* {articles?.length > 0 ? <ArticleList /> : <p>Loading...</p>} */}
-          </ContentBlock>
-        </Page>
-        <Title>index/main</Title>
+          </div>
+        </section>
       </main>
+      <footer>Footer</footer>
     </>
   );
 }
+*/
