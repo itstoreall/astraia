@@ -1,4 +1,4 @@
-import { Page, Title, ContentBlock } from '../page.styles';
+import { Page, Title, ContentBlock } from '../../styles/page.styles';
 
 const Articles = () => {
   return (

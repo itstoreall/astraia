@@ -1,5 +1,7 @@
+import { Title } from '../styles/page.styles';
+
 const About = () => {
-  return <p>About</p>;
+  return <Title>About</Title>;
 };
 
 export default About;
