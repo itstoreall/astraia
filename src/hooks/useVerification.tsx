@@ -24,8 +24,11 @@ const useVerification = () => {
     variables: token as OperationVariables,
   });
 
+  console.log('data:', data);
+  console.log('data?.isAdmin || null:', data?.isAdmin || null);
+
   return {
-    isAdmin: data?.isAdmin,
+    isAdmin: data?.isAdmin || null,
     loading,
     token: token?.token || null,
   };
