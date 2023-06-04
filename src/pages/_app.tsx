@@ -1,6 +1,6 @@
 import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
-
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Layout from '../components/Layout';
 import AdminPage from './admin';
@@ -13,9 +13,30 @@ import AboutPage from './about';
 import ContactsPage from './contacts';
 import NotFoundPage from './404';
 import AddPage from './admin/add';
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { GlobalContext } from '@/context/GlobalContext';
+import useVerification from '@/hooks/useVerification';
+import { IAccess } from '@/interfaces';
 
 const App = ({ Component, pageProps }: AppProps) => {
+  const [access, setAccess] = useState<IAccess | null>(null);
+  const [articles, setArticles] = useState<any[]>([]);
+  const [themeMode, setThemeMode] = useState<string>('light');
+
   const router = useRouter();
+
+  // const currentUrl =
+  //   process.env.NODE_ENV === 'production'
+  //     ? 'https://magic-api-vercel.vercel.app/'
+  //     : 'http://localhost:8822/';
+
+  const serverSwitch = 'https://magic-api-vercel.vercel.app/';
+  // const serverSwitch = currentUrl;
+
+  const client = new ApolloClient({
+    uri: serverSwitch,
+    cache: new InMemoryCache(),
+  });
 
   const getPageComponent = () => {
     const { pathname } = router;
@@ -59,7 +80,22 @@ const App = ({ Component, pageProps }: AppProps) => {
     }
   };
 
-  return <Layout>{getPageComponent()}</Layout>;
+  return (
+    <GlobalContext.Provider
+      value={{
+        articles,
+        setArticles,
+        access,
+        setAccess,
+        themeMode,
+        setThemeMode,
+      }}
+    >
+      <ApolloProvider client={client}>
+        <Layout>{getPageComponent()}</Layout>
+      </ApolloProvider>
+    </GlobalContext.Provider>
+  );
 };
 
 export default App;

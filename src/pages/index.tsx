@@ -1,11 +1,16 @@
 // import Head from 'next/head';
-import Layout from '../components/Layout';
 
 const Home = () => {
   return (
-    // <Layout>
-    <h1>Home index</h1>
-    // </Layout>
+    <>
+      {/* <Head>
+        <title>Astraia</title>
+        <meta name='description' content='Astraia - духовное саморазвитие' />
+        <meta name='viewport' content='width=device-width, initial-scale=1' />
+        <link rel='icon' href='/favicon.ico' />
+      </Head> */}
+      <h1>Home index</h1>
+    </>
   );
 };
 

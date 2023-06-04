@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import s from './admin.module.scss';
+import Link from 'next/link';
 
 const Login = () => {
   return (
@@ -11,6 +12,7 @@ const Login = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <p className={s.title}>Login</p>
+      <Link href={'/'}>to Home</Link>
     </>
   );
 };
