@@ -1,73 +1,69 @@
+import s from './Navigation.module.scss';
 import { useGlobalContext } from '@/context/GlobalContext';
-// import { NavItem, NavList, NavTag } from './Navigation.styles';
-// import { HeaderNav } from '../Header/Header.styles';
-// import { FooterNav } from '../Footer/Footer.styles';
+import Link from 'next/link';
 
 const Navigation = ({ element }: { element: string }) => {
-  const { access } = useGlobalContext();
+  const { access, theme } = useGlobalContext();
 
+  console.log('Nav theme:', theme);
   console.log('Nav access:', access);
+  console.log('Nav element:', element);
 
   return (
-    <nav>
-      <p>Nav</p>
-      {/* <NavList element={element}>
+    <nav className={`${s.navigation}`}>
+      <ul className={s.list}>
         {element === 'header' && (
           <>
-            {memoizedData?.isAdmin && (
-              <NavItem element={element}>
-                <HeaderNav
-                  to='/admin/dashboard/articles'
-                  element={element}
-                  admin={'admin'}
-                >
+            {access?.isAdmin && (
+              <li className={s.item}>
+                <Link className={s.button} href='/admin/dashboard/articles'>
                   Редактор
-                </HeaderNav>
-              </NavItem>
+                </Link>
+              </li>
             )}
           </>
         )}
-        <NavItem element={element}>
+        <li className={s.item}>
           {element === 'header' ? (
-            <HeaderNav to='/articles' element={element}>
+            <Link className={`${s.button} ${s[theme]}`} href='/articles'>
               Статьи
-            </HeaderNav>
+            </Link>
           ) : (
-            <FooterNav to='/articles' element={element}>
+            <Link className={`${s.button} ${s[theme]}`} href='/articles'>
               Статьи
-            </FooterNav>
+            </Link>
           )}
-        </NavItem>
-        <NavItem element={element}>
+        </li>
+        <li className={s.item}>
           {element === 'header' ? (
-            <HeaderNav to='/about' element={element}>
+            <Link className={`${s.button} ${s[theme]}`} href='/about'>
               О нас
-            </HeaderNav>
+            </Link>
           ) : (
-            <FooterNav to='/about' element={element}>
+            <Link className={`${s.button} ${s[theme]}`} href='/about'>
               О нас
-            </FooterNav>
+            </Link>
           )}
-        </NavItem>
-        <NavItem element={element}>
+        </li>
+        <li className={s.item}>
           {element === 'header' ? (
-            <HeaderNav to='/contacts' element={element}>
+            <Link className={`${s.button} ${s[theme]}`} href='/contacts'>
               Контакты
-            </HeaderNav>
+            </Link>
           ) : (
-            <FooterNav to='/contacts' element={element}>
+            <Link className={`${s.button} ${s[theme]}`} href='/contacts'>
               Контакты
-            </FooterNav>
+            </Link>
           )}
-        </NavItem>
+        </li>
         {element === 'footer' && (
-          <NavItem element={element}>
-            <FooterNav to='/admin' element={element}>
+          <li className={s.item}>
+            <Link className={`${s.button} ${s[theme]}`} href='/admin'>
               Админ
-            </FooterNav>
-          </NavItem>
+            </Link>
+          </li>
         )}
-      </NavList> */}
+      </ul>
     </nav>
   );
 };

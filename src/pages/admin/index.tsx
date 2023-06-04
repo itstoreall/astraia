@@ -23,8 +23,6 @@ const Admin = () => {
     !loading ? (!isAdmin ? redirect() : !access && enter()) : null;
   }, [isAdmin, loading, access, setAccess, redirect, enter]);
 
-  // console.log(1, 'Admin access:', access);
-
   const logOut = () => {
     localStorage.removeItem(adm);
     redirect();
@@ -33,7 +31,7 @@ const Admin = () => {
   return (
     <section>
       <h1>{'Admin'}</h1>
-      {!loading ? (
+      {!loading && isAdmin ? (
         <>
           <div>
             <p>admin content</p>

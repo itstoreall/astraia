@@ -1,7 +1,9 @@
-import '@/styles/globals.css';
+import '@/styles/global.scss';
+import { useEffect, useState } from 'react';
 import type { AppProps } from 'next/app';
-import { useState } from 'react';
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { useRouter } from 'next/router';
+import { IAccess } from '@/interfaces';
 import Layout from '../components/Layout';
 import AdminPage from './admin';
 import Login from './admin/login';
@@ -11,17 +13,28 @@ import EditPage from './articles/[id]/edit';
 import DeletePage from './articles/[id]/delete';
 import AboutPage from './about';
 import ContactsPage from './contacts';
-import NotFoundPage from './404';
 import AddPage from './admin/add';
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import NotFoundPage from './404';
 import { GlobalContext } from '@/context/GlobalContext';
-// import useVerification from '@/hooks/useVerification';
-import { IAccess } from '@/interfaces';
 
 const App = ({ Component, pageProps }: AppProps) => {
   const [access, setAccess] = useState<IAccess | null>(null);
   const [articles, setArticles] = useState<any[]>([]);
-  const [themeMode, setThemeMode] = useState<string>('light');
+  const [theme, setTheme] = useState<string>('light');
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      setTheme(savedTheme);
+    }
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  // --------
 
   const router = useRouter();
 
@@ -87,8 +100,8 @@ const App = ({ Component, pageProps }: AppProps) => {
         setArticles,
         access,
         setAccess,
-        themeMode,
-        setThemeMode,
+        theme,
+        setTheme,
       }}
     >
       <ApolloProvider client={client}>

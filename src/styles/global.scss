@@ -1,0 +1,65 @@
+@import '../theme/index.scss';
+
+body {
+  margin: 0;
+  height: 100%;
+
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  transition: background-color 0.4s ease;
+}
+
+* {
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+img {
+  display: block;
+}
+
+main {
+  flex: 1;
+}
+
+footer {
+  flex-shrink: 0;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+[data-theme='light'] {
+  background-color: $dark;
+  transition: $s04;
+  color: $light;
+
+  a {
+    color: $light;
+  }
+}
+
+[data-theme='dark'] {
+  background-color: $light;
+  transition: $s04;
+  color: $dark;
+
+  a {
+    color: $dark;
+  }
+}

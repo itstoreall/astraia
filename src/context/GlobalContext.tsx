@@ -6,8 +6,8 @@ export const GlobalContext = createContext<GlobalContent>({
   setArticles: () => {},
   access: null,
   setAccess: () => null,
-  themeMode: 'light',
-  setThemeMode: () => 'light',
+  theme: 'light',
+  setTheme: () => 'light',
 });
 
 export const useGlobalContext = () => useContext(GlobalContext);

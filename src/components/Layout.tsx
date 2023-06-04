@@ -1,4 +1,5 @@
 import { IChld } from '@/interfaces';
+import s from './Layout.module.scss';
 import useVerification from '@/hooks/useVerification';
 import Header from './Header';
 import Main from './Main/';
@@ -19,7 +20,7 @@ const Layout = ({ children }: IChld) => {
   // console.log(1, 'Layout', verified);
 
   return (
-    <div>
+    <div className={s.wrapper}>
       <Header />
       <Main>{children}</Main>
       <Footer />
