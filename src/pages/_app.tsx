@@ -15,7 +15,7 @@ import NotFoundPage from './404';
 import AddPage from './admin/add';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { GlobalContext } from '@/context/GlobalContext';
-import useVerification from '@/hooks/useVerification';
+// import useVerification from '@/hooks/useVerification';
 import { IAccess } from '@/interfaces';
 
 const App = ({ Component, pageProps }: AppProps) => {

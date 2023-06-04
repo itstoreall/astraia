@@ -1,16 +1,16 @@
 import { ReactNode } from 'react';
 
 export interface IAccess {
-  token: string | null;
-  loading: boolean;
   isAdmin: boolean;
+  loading: boolean;
+  token?: string | null;
 }
 
 export type GlobalContent = {
   articles: any[];
   setArticles: (articles: any[]) => void;
   access: IAccess | null;
-  setAccess: (access: IAccess) => void;
+  setAccess: (access: IAccess | null) => void;
   themeMode: string;
   setThemeMode: (theme: string) => void;
 };

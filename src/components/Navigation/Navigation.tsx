@@ -1,12 +1,12 @@
-// import { useGlobalContext } from '@/context/GlobalContext';
+import { useGlobalContext } from '@/context/GlobalContext';
 // import { NavItem, NavList, NavTag } from './Navigation.styles';
 // import { HeaderNav } from '../Header/Header.styles';
 // import { FooterNav } from '../Footer/Footer.styles';
 
 const Navigation = ({ element }: { element: string }) => {
-  // const { access } = useGlobalContext();
+  const { access } = useGlobalContext();
 
-  // console.log('Nav access:', access);
+  console.log('Nav access:', access);
 
   return (
     <nav>
