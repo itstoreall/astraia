@@ -1,7 +1,82 @@
+@import '../theme/index.scss';
+
+// ------- display
+
+@mixin display($display: block) {
+  display: $display;
+}
+
+@mixin flex() {
+  display: flex;
+}
+
+@mixin flexX($X: center) {
+  display: flex;
+  justify-content: $X;
+}
+
+@mixin flexY($Y: center) {
+  display: flex;
+  align-items: $Y;
+}
+
+@mixin flexXY($X: center, $Y: center) {
+  display: flex;
+  justify-content: $X;
+  align-items: $Y;
+}
+
+@mixin flexDirection($direction: row) {
+  display: flex;
+  flex-direction: $direction;
+}
+
+@mixin flexDirectionY($direction: row, $Y: flex-start) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $Y;
+}
+
+@mixin flexDirectionX($direction: row, $X: start) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $X;
+}
+
+@mixin flexWrap($wrap: wrap) {
+  display: flex;
+  flex-wrap: $wrap;
+}
+
+// ------- padding
+
+@mixin padding($padding: 0) {
+  padding: $padding;
+}
+
+// ------- width / height
+
+@mixin width($width: auto) {
+  width: $width;
+}
+
+@mixin height($height: auto) {
+  height: $height;
+}
+
+@mixin widthHeight($width: auto, $height: auto) {
+  width: $width;
+  height: $height;
+}
+
+// ------- transition
+
 @mixin transition($tsn) {
   -webkit-transition: $tsn;
   transition: $tsn;
 }
+
+// ------- theme
 
 @mixin themeHandler() {
   &.dark {
@@ -15,4 +90,32 @@
 
     @content;
   }
+}
+
+// ------- @media
+
+@mixin minWidth($width) {
+  @media screen and (min-width: $width) {
+    @content;
+  }
+}
+
+@mixin maxWidth($width) {
+  @media screen and (max-width: $width) {
+    @content;
+  }
+}
+
+@mixin widthRange($minWidth, $maxWidth) {
+  @media screen and (min-width: $minWidth) and (max-width: $maxWidth) {
+    @content;
+  }
+}
+
+// ------- crumbs
+
+@mixin crumbs() {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--crumbs);
 }

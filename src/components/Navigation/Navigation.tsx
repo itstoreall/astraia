@@ -1,22 +1,22 @@
+import Link from 'next/link';
 import s from './Navigation.module.scss';
 import { useGlobalContext } from '@/context/GlobalContext';
-import Link from 'next/link';
 
-const Navigation = ({ element }: { element: string }) => {
+const Navigation = ({ parent }: { parent: string }) => {
   const { access, theme } = useGlobalContext();
 
-  console.log('Nav theme:', theme);
-  console.log('Nav access:', access);
-  console.log('Nav element:', element);
+  // console.log('Nav theme:', theme);
+  // console.log('Nav access:', access);
+  // console.log('Nav parent:', parent);
 
   return (
     <nav className={`${s.navigation}`}>
       <ul className={s.list}>
-        {element === 'header' && (
+        {parent === 'header' && (
           <>
             {access?.isAdmin && (
               <li className={s.item}>
-                <Link className={s.button} href='/admin/dashboard/articles'>
+                <Link className={s.button} href='/admin/dashboard'>
                   Редактор
                 </Link>
               </li>
@@ -24,57 +24,30 @@ const Navigation = ({ element }: { element: string }) => {
           </>
         )}
         <li className={s.item}>
-          {element === 'header' ? (
-            <Link
-              className={`${s.button} ${s.header} ${s[theme]}`}
-              href='/articles'
-            >
-              Статьи
-            </Link>
-          ) : (
-            <Link
-              className={`${s.button} ${s.footer} ${s[theme]}`}
-              href='/articles'
-            >
-              Статьи
-            </Link>
-          )}
+          <Link
+            className={`${s.button} ${s[parent]} ${s[theme]}`}
+            href='/articles'
+          >
+            Статьи
+          </Link>
         </li>
         <li className={s.item}>
-          {element === 'header' ? (
-            <Link
-              className={`${s.button} ${s.header} ${s[theme]}`}
-              href='/about'
-            >
-              О нас
-            </Link>
-          ) : (
-            <Link
-              className={`${s.button} ${s.footer} ${s[theme]}`}
-              href='/about'
-            >
-              О нас
-            </Link>
-          )}
+          <Link
+            className={`${s.button} ${s[parent]} ${s[theme]}`}
+            href='/about'
+          >
+            О нас
+          </Link>
         </li>
         <li className={s.item}>
-          {element === 'header' ? (
-            <Link
-              className={`${s.button} ${s.header} ${s[theme]}`}
-              href='/contacts'
-            >
-              Контакты
-            </Link>
-          ) : (
-            <Link
-              className={`${s.button} ${s.footer} ${s[theme]}`}
-              href='/contacts'
-            >
-              Контакты
-            </Link>
-          )}
+          <Link
+            className={`${s.button} ${s[parent]} ${s[theme]}`}
+            href='/contacts'
+          >
+            Контакты
+          </Link>
         </li>
-        {element === 'footer' && (
+        {parent === 'footer' && (
           <li className={s.item}>
             <Link
               className={`${s.button} ${s.footer} ${s[theme]}`}

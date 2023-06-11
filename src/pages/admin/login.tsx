@@ -5,7 +5,7 @@ import router from 'next/router';
 import UPDATE_ADMIN from '@/gql/updateAdmin';
 import { MAGIC_ACCESS } from '@/constants';
 import Link from 'next/link';
-// import s from './admin.module.scss';
+import s from '../page.module.scss';
 
 const adm = MAGIC_ACCESS;
 
@@ -56,8 +56,7 @@ const Login = () => {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <p>Login</p>
-      <Link href={'/'}>to Home</Link>
+      <h2 className={s.title}>Login</h2>
 
       <form onSubmit={handleSubmit}>
         <input

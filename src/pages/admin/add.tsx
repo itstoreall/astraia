@@ -1,10 +1,9 @@
+import s from '../page.module.scss';
+
 const AddPage = () => {
   return (
     <section>
-      <h1>Add</h1>
-      <div>
-        <p>add</p>
-      </div>
+      <h2 className={s.title}>Добавить</h2>
     </section>
   );
 };

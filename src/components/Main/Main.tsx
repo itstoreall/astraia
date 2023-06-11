@@ -5,7 +5,7 @@ import Container from '../Container';
 const Main = ({ children }: IChld) => {
   return (
     <main className={`${s.main}`}>
-      <Container element={'main'}>{children}</Container>
+      <Container parent={'main'}>{children}</Container>
     </main>
   );
 };

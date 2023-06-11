@@ -10,14 +10,14 @@ const Header = () => {
 
   return (
     <header className={`${s.header} ${theme === 'light' ? s.light : s.dark}`}>
-      <Container element={'header'}>
+      <Container parent={'header'}>
         <div className={s.content}>
           <Link href={'/'}>
             <h1 className={s.logo}>Astraia</h1>
           </Link>
 
           <div className={s.menu}>
-            <Navigation element={'header'} />
+            <Navigation parent={'header'} />
             <ThemeToggle />
           </div>
         </div>

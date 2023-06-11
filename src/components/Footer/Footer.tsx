@@ -9,9 +9,9 @@ const Footer = () => {
 
   return (
     <footer>
-      <Container element={'footer'}>
+      <Container parent={'footer'}>
         <div className={`${s.content} ${s[theme]}`}>
-          <Navigation element={'footer'} />
+          <Navigation parent={'footer'} />
           <Copyright />
         </div>
       </Container>

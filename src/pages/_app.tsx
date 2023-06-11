@@ -6,7 +6,8 @@ import { useRouter } from 'next/router';
 import { IAccess } from '@/interfaces';
 import Layout from '../components/Layout';
 import AdminPage from './admin';
-import Login from './admin/login';
+import LoginPage from './admin/login';
+import DashboardPage from './admin/dashboard';
 import ArticlesPage from './articles';
 import ArticlePage from './articles/[id]';
 import EditPage from './articles/[id]/edit';
@@ -21,8 +22,6 @@ const App = ({ Component, pageProps }: AppProps) => {
   const [access, setAccess] = useState<IAccess | null>(null);
   const [articles, setArticles] = useState<any[]>([]);
   const [theme, setTheme] = useState<string>('light');
-
-  console.log('theme app', theme);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
@@ -66,25 +65,25 @@ const App = ({ Component, pageProps }: AppProps) => {
         return <AdminPage />;
 
       case '/admin/login':
-        return <Login />;
+        return <LoginPage />;
 
-      case '/admin/add':
+      case '/admin/dashboard':
+        return <DashboardPage />;
+
+      case '/admin/dashboard/add':
         return <AddPage />;
+
+      case '/admin/dashboard/edit':
+        return <EditPage />;
+
+      case '/articles/dashboard/delete':
+        return <DeletePage />;
 
       case '/articles':
         return <ArticlesPage />;
 
       case '/articles/[id]':
         return <ArticlePage />;
-
-      case '/articles/[id]/edit':
-        return <EditPage />;
-
-      case '/articles/[id]/delete':
-        return <DeletePage />;
-
-      case '//add':
-        return <DeletePage />;
 
       case '/about':
         return <AboutPage />;

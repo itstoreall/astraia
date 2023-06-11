@@ -16,7 +16,7 @@ export type GlobalContent = {
 };
 
 export interface IContainerProps {
-  element: string;
+  parent: string;
   children: ReactNode;
 }
 

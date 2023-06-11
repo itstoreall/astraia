@@ -11,16 +11,24 @@ const Admin = () => {
   const { access, setAccess } = useGlobalContext();
 
   const redirect = useCallback(() => {
+    console.log(1);
     setAccess(null);
     router.push('/admin/login');
   }, [setAccess]);
 
   const enter = useCallback(() => {
+    console.log(2);
     setAccess({ isAdmin, loading });
+    router.push('/admin/dashboard');
   }, [setAccess, isAdmin, loading]);
 
+  const toDash = useCallback(() => {
+    console.log(3);
+    router.push('/admin/dashboard');
+  }, []);
+
   useEffect(() => {
-    !loading ? (!isAdmin ? redirect() : !access && enter()) : null;
+    !loading ? (!isAdmin ? redirect() : !access ? enter() : toDash()) : null;
   }, [isAdmin, loading, access, setAccess, redirect, enter]);
 
   const logOut = () => {

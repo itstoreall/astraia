@@ -2,12 +2,12 @@
 import { IContainerProps } from '@/interfaces';
 import s from './Container.module.scss';
 
-const Container = ({ element, children }: IContainerProps) => {
+const Container = ({ parent, children }: IContainerProps) => {
   // const { access } = useGlobalContext();
 
   // console.log('access --- !!!! --->', access);
 
-  return <div className={`${s.container} ${s[element]}`}>{children}</div>;
+  return <div className={`${s.container} ${s[parent]}`}>{children}</div>;
 };
 
 export default Container;

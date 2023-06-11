@@ -1,0 +1,10 @@
+@import '../theme/index.scss';
+@import '../styles/_mixins.scss';
+
+.page {
+  @include themeHandler() {
+    .title {
+      @include crumbs();
+    }
+  }
+}

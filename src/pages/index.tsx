@@ -1,6 +1,10 @@
 import Head from 'next/head';
+import s from './page.module.scss';
+import { useGlobalContext } from '@/context/GlobalContext';
 
 const Home = () => {
+  const { theme } = useGlobalContext();
+
   return (
     <>
       <Head>
@@ -9,7 +13,10 @@ const Home = () => {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <h1>Home index</h1>
+
+      <section className={`${s.page} ${s[theme]}`}>
+        <h2 className={s.titleHome}>Духовное саморазвитие</h2>
+      </section>
     </>
   );
 };

@@ -1,0 +1,27 @@
+@import '../../theme/index.scss';
+@import '../../styles/_mixins.scss';
+
+.crumbs {
+  @include themeHandler() {
+    .crumbsList {
+      display: flex;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+
+      .crumbsItem {
+        display: flex;
+
+        .slash {
+          padding: 0 10px;
+          @include crumbs();
+        }
+
+        .title {
+          display: block;
+          @include crumbs();
+        }
+      }
+    }
+  }
+}
