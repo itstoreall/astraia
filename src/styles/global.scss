@@ -45,21 +45,21 @@ code {
 }
 
 [data-theme='light'] {
-  background-color: $dark;
-  transition: $s04;
-  color: $light;
-
-  a {
-    color: $light;
-  }
-}
-
-[data-theme='dark'] {
   background-color: $light;
   transition: $s04;
   color: $dark;
 
   a {
     color: $dark;
+  }
+}
+
+[data-theme='dark'] {
+  background-color: $dark;
+  transition: $s04;
+  color: $light;
+
+  a {
+    color: $light;
   }
 }

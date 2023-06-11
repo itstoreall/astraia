@@ -25,40 +25,61 @@ const Navigation = ({ element }: { element: string }) => {
         )}
         <li className={s.item}>
           {element === 'header' ? (
-            <Link className={`${s.button} ${s[theme]}`} href='/articles'>
+            <Link
+              className={`${s.button} ${s.header} ${s[theme]}`}
+              href='/articles'
+            >
               Статьи
             </Link>
           ) : (
-            <Link className={`${s.button} ${s[theme]}`} href='/articles'>
+            <Link
+              className={`${s.button} ${s.footer} ${s[theme]}`}
+              href='/articles'
+            >
               Статьи
             </Link>
           )}
         </li>
         <li className={s.item}>
           {element === 'header' ? (
-            <Link className={`${s.button} ${s[theme]}`} href='/about'>
+            <Link
+              className={`${s.button} ${s.header} ${s[theme]}`}
+              href='/about'
+            >
               О нас
             </Link>
           ) : (
-            <Link className={`${s.button} ${s[theme]}`} href='/about'>
+            <Link
+              className={`${s.button} ${s.footer} ${s[theme]}`}
+              href='/about'
+            >
               О нас
             </Link>
           )}
         </li>
         <li className={s.item}>
           {element === 'header' ? (
-            <Link className={`${s.button} ${s[theme]}`} href='/contacts'>
+            <Link
+              className={`${s.button} ${s.header} ${s[theme]}`}
+              href='/contacts'
+            >
               Контакты
             </Link>
           ) : (
-            <Link className={`${s.button} ${s[theme]}`} href='/contacts'>
+            <Link
+              className={`${s.button} ${s.footer} ${s[theme]}`}
+              href='/contacts'
+            >
               Контакты
             </Link>
           )}
         </li>
         {element === 'footer' && (
           <li className={s.item}>
-            <Link className={`${s.button} ${s[theme]}`} href='/admin'>
+            <Link
+              className={`${s.button} ${s.footer} ${s[theme]}`}
+              href='/admin'
+            >
               Админ
             </Link>
           </li>

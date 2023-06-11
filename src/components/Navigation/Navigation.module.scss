@@ -1,7 +1,7 @@
 @import '../../theme';
+@import '../../styles/_mixins.scss';
 
 .navigation {
-  // background-color: teal;
   margin-right: 40px;
 
   .list {
@@ -20,21 +20,21 @@
         align-items: center;
         padding: 20px 25px;
         font-weight: 500;
-        -webkit-transition: 0.4s;
-        transition: 0.4s;
+        @include transition($s04);
 
-        &.dark {
-          @include theme('light');
-
-          &:hover {
-            background-color: var(--background-hover);
+        &.header {
+          @include themeHandler() {
+            &:hover {
+              background-color: var(--background-hover);
+            }
           }
         }
-        &.light {
-          @include theme('dark');
 
-          &:hover {
-            background-color: var(--background-hover);
+        &.footer {
+          @include themeHandler() {
+            &:hover {
+              color: var(--button);
+            }
           }
         }
       }

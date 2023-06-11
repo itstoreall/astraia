@@ -4,9 +4,7 @@ import { useGlobalContext } from '../../context/GlobalContext';
 const ThemeToggle = () => {
   const { theme, setTheme } = useGlobalContext();
 
-  const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
-  };
+  const toggleTheme = () => setTheme(theme === 'light' ? 'dark' : 'light');
 
   return (
     <label className={`${s.switchButton} ${s[theme]}`}>

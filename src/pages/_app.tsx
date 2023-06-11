@@ -22,16 +22,20 @@ const App = ({ Component, pageProps }: AppProps) => {
   const [articles, setArticles] = useState<any[]>([]);
   const [theme, setTheme] = useState<string>('light');
 
+  console.log('theme app', theme);
+
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) {
-      setTheme(savedTheme);
+      theme !== savedTheme && setTheme(savedTheme);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
+    console.log('theme app useEffect', theme);
     localStorage.setItem('theme', theme);
+    document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
 
   // --------

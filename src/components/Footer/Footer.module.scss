@@ -1,3 +1,33 @@
+@import '../../theme/index.scss';
+@import '../../styles/_mixins.scss';
+
 .content {
-  background-color: grey;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px 20px 30px;
+  margin-top: -99px;
+
+  @include themeHandler() {
+    .copyrightBlock {
+      font-size: 15px;
+
+      .copyright {
+        display: flex;
+
+        .logoLink {
+          color: inherit;
+          // @include transition($s04);
+
+          &:hover {
+            color: var(--button);
+          }
+        }
+
+        .copyrightIcon {
+          margin: 0 5px;
+        }
+      }
+    }
+  }
 }

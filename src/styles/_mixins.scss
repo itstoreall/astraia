@@ -1,0 +1,18 @@
+@mixin transition($tsn) {
+  -webkit-transition: $tsn;
+  transition: $tsn;
+}
+
+@mixin themeHandler() {
+  &.dark {
+    @include theme('light');
+
+    @content;
+  }
+
+  &.light {
+    @include theme('dark');
+
+    @content;
+  }
+}

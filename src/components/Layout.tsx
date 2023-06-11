@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { IChld } from '@/interfaces';
 import s from './Layout.module.scss';
 import useVerification from '@/hooks/useVerification';
@@ -10,6 +11,8 @@ import Footer from './Footer';
 // !access?.loading ? children : 'Loading (layout)...';
 
 const Layout = ({ children }: IChld) => {
+  const [loading, setLoading] = useState(true);
+  useEffect(() => setLoading(false), []);
   // const verified = useVerification();
   // const { access, setAccess } = useGlobalContext();
 
@@ -20,11 +23,15 @@ const Layout = ({ children }: IChld) => {
   // console.log(1, 'Layout', verified);
 
   return (
-    <div className={s.wrapper}>
-      <Header />
-      <Main>{children}</Main>
-      <Footer />
-    </div>
+    <>
+      {!loading && (
+        <div className={s.wrapper}>
+          <Header />
+          <Main>{children}</Main>
+          <Footer />
+        </div>
+      )}
+    </>
   );
 };
 

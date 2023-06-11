@@ -1,4 +1,5 @@
 @import '../../theme';
+@import '../../styles/_mixins.scss';
 
 .switchButton {
   position: relative;
@@ -6,31 +7,9 @@
   width: 60px;
   height: 34px;
 
-  &.dark {
-    @include theme('light');
-
+  @include themeHandler() {
     span {
       background-color: var(--button);
-
-      &:hover {
-        background-color: var(--button-hover);
-      }
-
-      &:before {
-        background-color: var(--secondary-background);
-      }
-    }
-  }
-
-  &.light {
-    @include theme('dark');
-
-    span {
-      background-color: var(--button);
-
-      &:hover {
-        background-color: var(--button-hover);
-      }
 
       &:before {
         background-color: var(--secondary-background);
@@ -51,8 +30,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    // transition: $s04;
-    transition: $cubic;
+    @include transition($s04);
     border-radius: 34px;
   }
 
@@ -63,8 +41,7 @@
     width: 26px;
     left: 4px;
     bottom: 4px;
-    // transition: $s04;
-    transition: $cubic;
+    @include transition($s04);
     border-radius: 50%;
   }
 

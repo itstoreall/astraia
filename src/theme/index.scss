@@ -13,7 +13,7 @@ $contrstDark: #96abad;
 $contrstDarkHover: #7ba2a6;
 
 @mixin theme($theme) {
-  @if $theme == light {
+  @if $theme == dark {
     --background: #{$light};
     --background-blur: #{$lightBlur};
     --background-hover: #{$lightHover};
@@ -26,7 +26,7 @@ $contrstDarkHover: #7ba2a6;
     --button-hover: #{$contrstLightHover};
   }
 
-  @if $theme == dark {
+  @if $theme == light {
     --background: #{$dark};
     --background-blur: #{$darkBlur};
     --background-hover: #{$darkHover};
