@@ -1,6 +1,3 @@
-$cubic: cubic-bezier(0.68, -0.55, 0.27, 01.55) 330ms;
-$s04: 0.4s;
-
 $light: #f6f0e7;
 $dark: #1f232c;
 $lightBlur: #f7f1e9cc;
@@ -8,9 +5,9 @@ $darkBlur: #1f232ccc;
 $lightHover: #e5dfd7;
 $darkHover: #2f3441;
 $contrstLight: #e36858;
-$contrstLightHover: #de5252;
+$contrstLightHover: #de4444;
 $contrstDark: #96abad;
-$contrstDarkHover: #7ba2a6;
+$contrstDarkHover: #66a5ac;
 $crumbs: rgba(133, 133, 133, 0.666);
 
 @mixin theme($theme) {

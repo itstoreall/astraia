@@ -1,4 +1,5 @@
 @import '../../theme/index.scss';
+@import '../../styles/vars.scss';
 @import '../../styles/_mixins.scss';
 
 .header {
@@ -7,26 +8,85 @@
   width: 100%;
   backdrop-filter: blur(130px);
   // background-color: var(--background-blur);
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
+  // -webkit-transition: 0.4s;
+  // transition: 0.4s;
+  // @include transition($s04);
 
   .content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 40px 0 25px;
+    padding: 0 15px 0 25px;
     margin: 0 auto;
+
+    @include minWidth($tablet) {
+      padding: 0 40px 0 25px;
+    }
 
     .logo {
       font-size: 20px;
       color: inherit;
-      // color: $text;
       @include transition($s04);
     }
 
     .menu {
-      display: flex;
-      align-items: center;
+      .burger {
+        padding: 20px 20px 19px;
+        font-size: 0;
+        @include transition($s04);
+        cursor: pointer;
+
+        @include minWidth($tablet) {
+          display: none;
+        }
+      }
+      // @include themeHandler() {
+
+      // }
+      .mobStyle {
+        @include maxWidth($tablet - 1) {
+          position: fixed;
+          padding: 20% 0 0;
+          display: flex;
+          justify-content: center;
+          width: 100%;
+          height: 100vh;
+          top: 59px;
+          right: 0;
+
+          @include themeHandler() {
+            background-color: var(--background);
+          }
+        }
+
+        @include minWidth($tablet) {
+          display: none;
+        }
+
+        .menuContent {
+          width: 60%;
+          // background-color: pink;
+
+          > label {
+            margin-bottom: 40px;
+            margin-left: 25px;
+          }
+        }
+      }
+
+      .descStyle {
+        @include maxWidth($tablet - 1) {
+          display: none;
+        }
+
+        display: flex;
+        align-items: center;
+        // display: none;
+        // position: absolute;
+        // top: 0;
+        // right: 0;
+        // background-color: pink;
+      }
     }
   }
 }

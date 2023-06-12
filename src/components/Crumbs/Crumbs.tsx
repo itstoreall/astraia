@@ -15,11 +15,16 @@ const Crumbs = ({ routes, children }: any) => {
         </li>
 
         <>
-          {routes.map((route: string) => {
+          {routes.map((route: string, idx: number) => {
+            const withoutLink = () => routes?.length === idx - 1;
             return (
               <li key={route} className={s.crumbsItem}>
                 <span className={s.slash}>/</span>
-                <Link href={`/${route}`}>{children}</Link>
+                {withoutLink() ? (
+                  <Link href={`/${route}`}>{children}</Link>
+                ) : (
+                  children
+                )}
               </li>
             );
           })}

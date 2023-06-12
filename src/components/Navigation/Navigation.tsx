@@ -2,7 +2,15 @@ import Link from 'next/link';
 import s from './Navigation.module.scss';
 import { useGlobalContext } from '@/context/GlobalContext';
 
-const Navigation = ({ parent }: { parent: string }) => {
+const Navigation = ({
+  parent,
+  mobile,
+  setIsOpenMenu,
+}: {
+  parent: string;
+  mobile?: string;
+  setIsOpenMenu?: (b: boolean) => void;
+}) => {
   const { access, theme } = useGlobalContext();
 
   // console.log('Nav theme:', theme);
@@ -10,13 +18,17 @@ const Navigation = ({ parent }: { parent: string }) => {
   // console.log('Nav parent:', parent);
 
   return (
-    <nav className={`${s.navigation}`}>
+    <nav className={`${s.navigation} ${mobile ? s[mobile] : {}}`}>
       <ul className={s.list}>
         {parent === 'header' && (
           <>
             {access?.isAdmin && (
               <li className={s.item}>
-                <Link className={s.button} href='/admin/dashboard'>
+                <Link
+                  className={`${s.button} ${s[parent]} ${s[theme]} ${s.admin}`}
+                  href='/admin/dashboard'
+                  onClick={() => setIsOpenMenu && setIsOpenMenu(false)}
+                >
                   Редактор
                 </Link>
               </li>
@@ -27,6 +39,7 @@ const Navigation = ({ parent }: { parent: string }) => {
           <Link
             className={`${s.button} ${s[parent]} ${s[theme]}`}
             href='/articles'
+            onClick={() => setIsOpenMenu && setIsOpenMenu(false)}
           >
             Статьи
           </Link>
@@ -35,6 +48,7 @@ const Navigation = ({ parent }: { parent: string }) => {
           <Link
             className={`${s.button} ${s[parent]} ${s[theme]}`}
             href='/about'
+            onClick={() => setIsOpenMenu && setIsOpenMenu(false)}
           >
             О нас
           </Link>
@@ -43,6 +57,7 @@ const Navigation = ({ parent }: { parent: string }) => {
           <Link
             className={`${s.button} ${s[parent]} ${s[theme]}`}
             href='/contacts'
+            onClick={() => setIsOpenMenu && setIsOpenMenu(false)}
           >
             Контакты
           </Link>
