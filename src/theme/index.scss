@@ -8,7 +8,7 @@ $contrstLight: #e36858;
 $contrstLightHover: #de4444;
 $contrstDark: #96abad;
 $contrstDarkHover: #66a5ac;
-$crumbs: rgba(133, 133, 133, 0.666);
+$middleGrey: rgba(133, 133, 133, 0.666);
 
 @mixin theme($theme) {
   @if $theme == dark {
@@ -22,7 +22,7 @@ $crumbs: rgba(133, 133, 133, 0.666);
     --text-invert: #{$light};
     --button: #{$contrstLight};
     --button-hover: #{$contrstLightHover};
-    --crumbs: #{$crumbs};
+    --middleGrey: #{$middleGrey};
   }
 
   @if $theme == light {
@@ -36,6 +36,6 @@ $crumbs: rgba(133, 133, 133, 0.666);
     --text-invert: #{$dark};
     --button: #{$contrstDark};
     --button-hover: #{$contrstDarkHover};
-    --crumbs: #{$crumbs};
+    --middleGrey: #{$middleGrey};
   }
 }

@@ -69,6 +69,12 @@
   height: $height;
 }
 
+// ------- Font
+
+@mixin fontSize($size) {
+  font-size: $size;
+}
+
 // ------- transition
 
 @mixin transition($tsn) {
@@ -117,5 +123,5 @@
 @mixin crumbs() {
   font-size: 14px;
   font-weight: 400;
-  color: var(--crumbs);
+  color: var(--middleGrey);
 }

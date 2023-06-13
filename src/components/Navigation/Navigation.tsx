@@ -18,12 +18,12 @@ const Navigation = ({
   // console.log('Nav parent:', parent);
 
   return (
-    <nav className={`${s.navigation} ${mobile ? s[mobile] : {}}`}>
+    <nav className={`${s.navigation} ${s[parent]} ${mobile ? s[mobile] : {}}`}>
       <ul className={s.list}>
         {parent === 'header' && (
           <>
             {access?.isAdmin && (
-              <li className={s.item}>
+              <li className={`${s.item} ${s[parent]}`}>
                 <Link
                   className={`${s.button} ${s[parent]} ${s[theme]} ${s.admin}`}
                   href='/admin/dashboard'
@@ -35,7 +35,7 @@ const Navigation = ({
             )}
           </>
         )}
-        <li className={s.item}>
+        <li className={`${s.item} ${s[parent]}`}>
           <Link
             className={`${s.button} ${s[parent]} ${s[theme]}`}
             href='/articles'
@@ -44,7 +44,7 @@ const Navigation = ({
             Статьи
           </Link>
         </li>
-        <li className={s.item}>
+        <li className={`${s.item} ${s[parent]}`}>
           <Link
             className={`${s.button} ${s[parent]} ${s[theme]}`}
             href='/about'
@@ -53,7 +53,7 @@ const Navigation = ({
             О нас
           </Link>
         </li>
-        <li className={s.item}>
+        <li className={`${s.item} ${s[parent]}`}>
           <Link
             className={`${s.button} ${s[parent]} ${s[theme]}`}
             href='/contacts'
@@ -63,7 +63,7 @@ const Navigation = ({
           </Link>
         </li>
         {parent === 'footer' && (
-          <li className={s.item}>
+          <li className={`${s.item} ${s[parent]}`}>
             <Link
               className={`${s.button} ${s.footer} ${s[theme]}`}
               href='/admin'

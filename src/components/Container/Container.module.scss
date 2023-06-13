@@ -7,20 +7,20 @@
 
   &.main {
     padding: 0 30px;
-    background-color: skyblue;
+    // background-color: skyblue;
 
     @include minWidth($mobile) {
-      background-color: palevioletred;
+      // background-color: palevioletred;
       max-width: $mobile + 70;
     }
 
     @include minWidth($tablet) {
-      background-color: teal;
+      // background-color: teal;
       max-width: $tablet;
     }
 
     @include minWidth($desktop) {
-      background-color: tomato;
+      // background-color: tomato;
       max-width: $desktop;
     }
   }

@@ -3,40 +3,31 @@
 @import '../../styles/_mixins.scss';
 
 .navigation {
-  margin-right: 25px;
-
-  &.mobile {
-    margin-right: 0;
-
-    .list {
-      .item {
-        font-size: 26px;
-
-        &:not(:last-child) {
-          margin-right: 0;
-          margin-bottom: 10px;
-        }
-      }
-    }
-  }
-
   .list {
     list-style: none;
     margin: 0;
     padding: 0;
 
-    @include minWidth($tablet) {
+    @include minWidth($tablet - 249) {
       display: flex;
+
+      justify-content: center;
+      // @include maxWidth($tablet - 1) {
+      // }
     }
 
     .item {
-      &:not(:last-child) {
-        margin-right: 3px;
+      &.header {
+        &:not(:last-child) {
+          @include minWidth($tablet) {
+            margin-right: 3px;
+          }
+        }
       }
 
       .button {
-        padding: 20px 25px;
         font-weight: 500;
+        padding: 20px 25px;
         @include transition($s04);
 
         &.header {
@@ -48,6 +39,11 @@
         }
 
         &.footer {
+          @include maxWidth($tablet - 250) {
+            @include fontSize(22px);
+            padding: 5px 25px;
+          }
+
           @include themeHandler() {
             &:hover {
               color: var(--button);
@@ -55,6 +51,45 @@
           }
         }
       }
+    }
+  }
+
+  &.header {
+    margin-right: 25px;
+
+    &.mobile {
+      margin-right: 0;
+
+      .list {
+        display: block;
+        .item {
+          @include fontSize(26px);
+
+          &:not(:last-child) {
+            margin-bottom: 10px;
+          }
+        }
+      }
+    }
+  }
+
+  &.footer {
+    margin-bottom: 20px;
+
+    @include maxWidth($tablet - 250) {
+      margin-bottom: 100px;
+
+      .list {
+        .item {
+          &:not(:last-child) {
+            margin-bottom: 30px;
+          }
+        }
+      }
+    }
+
+    @include minWidth($tablet) {
+      margin-bottom: 0;
     }
   }
 }

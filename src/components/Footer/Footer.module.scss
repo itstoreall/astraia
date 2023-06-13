@@ -1,19 +1,29 @@
 @import '../../theme/index.scss';
+@import '../../styles/vars.scss';
 @import '../../styles/_mixins.scss';
 
 .content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 50px 20px 30px;
-  margin-top: -99px;
+  padding: 30px 0 30px;
+
+  @include maxWidth($tablet - 250) {
+    margin: 0 auto;
+    @include width(155px);
+  }
+
+  @include minWidth($tablet) {
+    @include flexXY(space-between, center);
+    @include padding(20px 50px 20px 30px);
+    margin-top: -99px;
+  }
 
   @include themeHandler() {
     .copyrightBlock {
       font-size: 15px;
+      color: var(--middleGrey);
 
       .copyright {
         display: flex;
+        justify-content: center;
 
         .logoLink {
           color: inherit;
