@@ -11,19 +11,19 @@ const Admin = () => {
   const { access, setAccess } = useGlobalContext();
 
   const redirect = useCallback(() => {
-    console.log(1);
+    console.log(1, 'redirect');
     setAccess(null);
     router.push('/admin/login');
   }, [setAccess]);
 
   const enter = useCallback(() => {
-    console.log(2);
+    console.log(2, 'enter');
     setAccess({ isAdmin, loading });
     router.push('/admin/dashboard');
   }, [setAccess, isAdmin, loading]);
 
   const toDash = useCallback(() => {
-    console.log(3);
+    console.log(3, 'toDash');
     router.push('/admin/dashboard');
   }, []);
 

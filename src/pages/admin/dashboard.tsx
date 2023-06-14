@@ -8,10 +8,9 @@ import { MAGIC_ACCESS } from '@/constants';
 const adm = MAGIC_ACCESS;
 
 const Dashboard = () => {
-  const { theme, access, setAccess } = useGlobalContext();
+  const { theme, setAccess } = useGlobalContext();
 
   const redirect = useCallback(() => {
-    console.log(1);
     setAccess(null);
     router.push('/admin/login');
   }, [setAccess]);

@@ -17,6 +17,37 @@ import ContactsPage from './contacts';
 import AddPage from './admin/add';
 import NotFoundPage from './404';
 import { GlobalContext } from '@/context/GlobalContext';
+import GET_ARTICLES from '@/gql/getArticles';
+
+// export async function getStaticProps() {
+//   try {
+//     const client = new ApolloClient({
+//       uri: 'https://magic-api-vercel.vercel.app/', // Replace with your GraphQL endpoint
+//       cache: new InMemoryCache(),
+//     });
+
+//     const { data } = await client.query({
+//       query: GET_ARTICLES,
+//     });
+
+//     const articles = data.articles;
+
+//     console.log('articles 222 --==-->', articles);
+
+//     return {
+//       props: {
+//         articles2: articles,
+//       },
+//     };
+//   } catch (error) {
+//     console.error('Error fetching articles:', error);
+//     return {
+//       props: {
+//         articles: [], // or provide a default value
+//       },
+//     };
+//   }
+// }
 
 const App = ({ Component, pageProps }: AppProps) => {
   const [access, setAccess] = useState<IAccess | null>(null);
@@ -32,7 +63,6 @@ const App = ({ Component, pageProps }: AppProps) => {
   }, []);
 
   useEffect(() => {
-    console.log('theme app useEffect', theme);
     localStorage.setItem('theme', theme);
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
@@ -80,7 +110,7 @@ const App = ({ Component, pageProps }: AppProps) => {
         return <DeletePage />;
 
       case '/articles':
-        return <ArticlesPage />;
+        return <ArticlesPage articles={pageProps.articles} />;
 
       case '/articles/[id]':
         return <ArticlePage />;
