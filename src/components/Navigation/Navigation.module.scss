@@ -36,7 +36,7 @@
 
         &.footer {
           @include maxWidth($tablet - 250) {
-            @include fontSize(22px);
+            @include fontSize(20px);
             @include padding(5px 25px);
           }
 
@@ -50,6 +50,8 @@
     }
   }
 
+  // ----------------- Nav header
+
   &.header {
     margin-right: 25px;
 
@@ -60,10 +62,14 @@
         @include display(block);
 
         .item {
-          @include fontSize(26px);
+          @include fontSize(24px);
 
           &:not(:last-child) {
             margin-bottom: 10px;
+          }
+
+          .button {
+            @include padding(15px 25px);
           }
         }
 
@@ -83,16 +89,18 @@
     }
   }
 
+  // ----------------- Nav footer
+
   &.footer {
     margin-bottom: 20px;
 
     @include maxWidth($tablet - 250) {
-      margin-bottom: 100px;
+      margin-bottom: 80px;
 
       .list {
         .item {
           &:not(:last-child) {
-            margin-bottom: 30px;
+            margin-bottom: 20px;
           }
         }
       }
