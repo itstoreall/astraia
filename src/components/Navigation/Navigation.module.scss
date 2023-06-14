@@ -4,16 +4,12 @@
 
 .navigation {
   .list {
-    list-style: none;
+    @include padding(0);
     margin: 0;
-    padding: 0;
+    list-style: none;
 
     @include minWidth($tablet - 249) {
-      display: flex;
-
-      justify-content: center;
-      // @include maxWidth($tablet - 1) {
-      // }
+      @include flexX(center);
     }
 
     .item {
@@ -26,8 +22,8 @@
       }
 
       .button {
+        @include padding(20px 25px);
         font-weight: 500;
-        padding: 20px 25px;
         @include transition($s04);
 
         &.header {
@@ -41,7 +37,7 @@
         &.footer {
           @include maxWidth($tablet - 250) {
             @include fontSize(22px);
-            padding: 5px 25px;
+            @include padding(5px 25px);
           }
 
           @include themeHandler() {
@@ -61,12 +57,26 @@
       margin-right: 0;
 
       .list {
-        display: block;
+        @include display(block);
+
         .item {
           @include fontSize(26px);
 
           &:not(:last-child) {
             margin-bottom: 10px;
+          }
+        }
+
+        &.landscape {
+          @include flex();
+          @include flexWrap(wrap);
+
+          .item {
+            @include fontSize(18px);
+
+            &:not(:last-child) {
+              margin-bottom: 0;
+            }
           }
         }
       }

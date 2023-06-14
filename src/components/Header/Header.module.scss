@@ -62,6 +62,19 @@
             margin-left: 25px;
           }
         }
+
+        &.landscape {
+          @include padding(15vh 0 0);
+          // background-color: teal;
+
+          .menuContent {
+            max-width: 100%;
+
+            > label {
+              margin-bottom: 20px;
+            }
+          }
+        }
       }
 
       .descStyle {

@@ -3,32 +3,18 @@ import Link from 'next/link';
 import s from './Header.module.scss';
 import { useGlobalContext } from '@/context/GlobalContext';
 import { contrstLight, contrstDark } from '@/theme/vars';
-import isTablet from '@/utils/isTablet';
 import BurgerIcon from '@/assets/icons/Burger';
 import CloseIcon from '@/assets/icons/Close';
 import Container from '../Container/Container';
 import Navigation from '../Navigation';
 import ThemeToggle from '../ThemeToggle';
+import useViewport from '@/hooks/useViewport';
 
 const Header = () => {
   const { theme } = useGlobalContext();
-  const [viewport, setViewport] = useState<string>('');
   const [isOpenMenu, setIsOpenMenu] = useState<boolean>(false);
 
-  // console.log('isOpenMenu', isOpenMenu);
-  // console.log('viewport', viewport);
-
-  useEffect(() => {
-    const handleResize = () => setViewport(isTablet() ? 'tablet' : 'else');
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  useEffect(() => {
-    isOpenMenu && setIsOpenMenu(!isOpenMenu);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [viewport]);
+  const { landscape } = useViewport(isOpenMenu, setIsOpenMenu);
 
   useEffect(() => {
     if (isOpenMenu) {
@@ -63,7 +49,7 @@ const Header = () => {
             </button>
 
             {isOpenMenu && (
-              <div className={`${s.mobStyle} ${s[theme]}`}>
+              <div className={`${s.mobStyle} ${s[theme]} ${s[landscape]}`}>
                 <div className={s.menuContent}>
                   <ThemeToggle />
                   <Navigation

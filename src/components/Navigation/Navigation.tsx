@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import s from './Navigation.module.scss';
 import { useGlobalContext } from '@/context/GlobalContext';
+import useViewport from '@/hooks/useViewport';
 
 const Navigation = ({
   parent,
@@ -12,14 +13,11 @@ const Navigation = ({
   setIsOpenMenu?: (b: boolean) => void;
 }) => {
   const { access, theme } = useGlobalContext();
-
-  // console.log('Nav theme:', theme);
-  // console.log('Nav access:', access);
-  // console.log('Nav parent:', parent);
+  const { landscape } = useViewport();
 
   return (
     <nav className={`${s.navigation} ${s[parent]} ${mobile ? s[mobile] : {}}`}>
-      <ul className={s.list}>
+      <ul className={`${s.list} ${s[landscape]}`}>
         {parent === 'header' && (
           <>
             {access?.isAdmin && (
