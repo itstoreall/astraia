@@ -5,31 +5,28 @@ import Crumbs from '@/components/Crumbs/Crumbs';
 import Head from 'next/head';
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 import GET_ARTICLES from '@/gql/getArticles';
+import Link from 'next/link';
 
 export const getStaticProps = async () => {
-  try {
-    const client = new ApolloClient({
-      uri: 'https://magic-api-vercel.vercel.app/',
-      cache: new InMemoryCache(),
-    });
+  const client = new ApolloClient({
+    uri: 'https://magic-api-vercel.vercel.app/',
+    cache: new InMemoryCache(),
+  });
 
-    const { data } = await client.query({
-      query: GET_ARTICLES,
-    });
+  const { data } = await client.query({
+    query: GET_ARTICLES,
+  });
 
-    if (!data)
-      return {
-        notFound: true,
-      };
-
+  if (!data)
     return {
-      props: {
-        articles: data.articles,
-      },
+      notFound: true,
     };
-  } catch (error) {
-    console.error('Error fetching articles:', error);
-  }
+
+  return {
+    props: {
+      articles: data.articles,
+    },
+  };
 };
 
 const Articles = ({ articles }: { articles: any[] }) => {
@@ -57,7 +54,9 @@ const Articles = ({ articles }: { articles: any[] }) => {
             articles?.map((el: any) => {
               return (
                 <li key={el.id}>
-                  <p>{el.id}</p>
+                  <Link href={`/articles/${el.id}`}>
+                    <p>{el.id}</p>
+                  </Link>
                 </li>
               );
             })}

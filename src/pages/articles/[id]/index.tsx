@@ -3,10 +3,6 @@ import GET_ARTICLES from '@/gql/getArticles';
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 
 export const getStaticPaths = async () => {
-  // const { id } = context.params;
-
-  // console.log('id -->', id);
-
   const client = new ApolloClient({
     uri: 'https://magic-api-vercel.vercel.app/',
     cache: new InMemoryCache(),
@@ -32,16 +28,6 @@ export const getStaticPaths = async () => {
     paths,
     fallback: false,
   };
-
-  // console.log('data==>', data.getArticleById);
-
-  // return {
-  //   props: {
-  //     article: data.getArticleById,
-  //     // article: 44,
-  //     // articles: data.articles,
-  //   },
-  // };
 };
 
 export const getStaticProps = async (context: any) => {
@@ -70,8 +56,6 @@ export const getStaticProps = async (context: any) => {
   return {
     props: {
       article: data.getArticleById,
-      // article: 44,
-      // articles: data.articles,
     },
   };
 };
