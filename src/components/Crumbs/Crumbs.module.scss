@@ -17,9 +17,18 @@
           @include crumbs();
         }
 
-        .title {
+        .crumb {
           display: block;
           @include crumbs();
+        }
+
+        h2 {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          width: 160px;
+          -webkit-text-overflow: ellipsis;
+          -ms-text-overflow: ellipsis;
         }
       }
     }

@@ -1,3 +1,7 @@
+import s from '../../page.module.scss';
+import Crumbs from '@/components/Crumbs/Crumbs';
+import Image from 'next/image';
+import { useGlobalContext } from '@/context/GlobalContext';
 import GET_ARTICLE_BY_ID from '@/gql/getArticleById';
 import GET_ARTICLES from '@/gql/getArticles';
 import { ApolloClient, InMemoryCache } from '@apollo/client';
@@ -33,8 +37,6 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (context: any) => {
   const { id } = context.params;
 
-  console.log('id -->', id);
-
   const client = new ApolloClient({
     uri: 'https://magic-api-vercel.vercel.app/',
     cache: new InMemoryCache(),
@@ -42,7 +44,7 @@ export const getStaticProps = async (context: any) => {
 
   const { data } = await client.query({
     query: GET_ARTICLE_BY_ID,
-    variables: { id: '647222a65a36cd74af4e1d77' },
+    variables: { id },
   });
 
   if (!data || !data.getArticleById) {
@@ -51,8 +53,6 @@ export const getStaticProps = async (context: any) => {
     };
   }
 
-  console.log('data==>', data.getArticleById);
-
   return {
     props: {
       article: data.getArticleById,
@@ -60,8 +60,31 @@ export const getStaticProps = async (context: any) => {
   };
 };
 
-const Article = () => {
-  return <p>Article</p>;
+const Article = ({ article }: any) => {
+  const { theme } = useGlobalContext();
+  console.log('... article .....>', article);
+
+  // return <p>{`Article: ${article.id}`}</p>;
+
+  return (
+    <section className={`${s.page} ${s[theme]}`}>
+      <Crumbs routes={['articles', 'id']}>
+        <h2 className={s.title}>{article.title}</h2>
+      </Crumbs>
+      <article className={s.article}>
+        <div className={s.thumb}>
+          <Image
+            className={s.image}
+            src={article.image}
+            alt={article.title}
+            width={900}
+            height={400}
+          />
+        </div>
+        <p>{article.text}</p>
+      </article>
+    </section>
+  );
 };
 
 export default Article;

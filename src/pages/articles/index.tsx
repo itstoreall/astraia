@@ -6,6 +6,7 @@ import Head from 'next/head';
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 import GET_ARTICLES from '@/gql/getArticles';
 import Link from 'next/link';
+import { useEffect } from 'react';
 
 export const getStaticProps = async () => {
   const client = new ApolloClient({
@@ -30,11 +31,17 @@ export const getStaticProps = async () => {
 };
 
 const Articles = ({ articles }: { articles: any[] }) => {
-  const { theme } = useGlobalContext();
+  const { theme, isLoading, setIsLoading } = useGlobalContext();
 
-  if (!articles) {
-    return <p>Loading...</p>;
-  }
+  // useEffect(() => {
+  //   isLoading && setIsLoading(false);
+  // }, []);
+
+  // if (!articles) {
+  //   return <p>Loading...</p>;
+  // }
+
+  console.log('isLoading', isLoading);
 
   return (
     <>

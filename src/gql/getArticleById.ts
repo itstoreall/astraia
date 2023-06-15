@@ -4,11 +4,11 @@ const GET_ARTICLE_BY_ID = gql`
   query GetArticleById($id: ID!) {
     getArticleById(ID: $id) {
       id
-      #title
+      title
       #description
-      #text
+      text
       #author
-      #image
+      image
     }
   }
 `;

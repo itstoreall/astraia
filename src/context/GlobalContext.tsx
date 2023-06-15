@@ -8,6 +8,8 @@ export const GlobalContext = createContext<GlobalContent>({
   setAccess: () => null,
   theme: 'light',
   setTheme: () => 'light',
+  isLoading: false,
+  setIsLoading: () => false,
 });
 
 export const useGlobalContext = () => useContext(GlobalContext);

@@ -12,7 +12,7 @@ const Navigation = ({
   mobile?: string;
   setIsOpenMenu?: (b: boolean) => void;
 }) => {
-  const { access, theme } = useGlobalContext();
+  const { access, theme, setIsLoading } = useGlobalContext();
   const { landscape } = useViewport();
 
   return (
@@ -37,7 +37,10 @@ const Navigation = ({
           <Link
             className={`${s.button} ${s[parent]} ${s[theme]}`}
             href='/articles'
-            onClick={() => setIsOpenMenu && setIsOpenMenu(false)}
+            onClick={() => {
+              setIsLoading(true);
+              setIsOpenMenu && setIsOpenMenu(false);
+            }}
           >
             Статьи
           </Link>

@@ -13,6 +13,8 @@ export type GlobalContent = {
   setAccess: (access: IAccess | null) => void;
   theme: string;
   setTheme: (theme: string) => void;
+  isLoading: boolean;
+  setIsLoading: (b: boolean) => void;
 };
 
 export interface IContainerProps {

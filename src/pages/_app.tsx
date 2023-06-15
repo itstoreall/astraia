@@ -17,11 +17,14 @@ import ContactsPage from './contacts';
 import AddPage from './admin/add';
 import NotFoundPage from './404';
 import { GlobalContext } from '@/context/GlobalContext';
+import Spinner from '@/components/Spinner/Spinner';
+import SpinnerW from '@/components/Spinner/Spinner';
 
 const App = ({ Component, pageProps }: AppProps) => {
   const [access, setAccess] = useState<IAccess | null>(null);
   const [articles, setArticles] = useState<any[]>([]);
   const [theme, setTheme] = useState<string>('light');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
@@ -37,6 +40,8 @@ const App = ({ Component, pageProps }: AppProps) => {
   }, [theme]);
 
   // --------
+
+  // console.log('isLoading', isLoading);
 
   const router = useRouter();
 
@@ -79,10 +84,11 @@ const App = ({ Component, pageProps }: AppProps) => {
         return <DeletePage />;
 
       case '/articles':
+        isLoading && setIsLoading(false);
         return <ArticlesPage articles={pageProps.articles} />;
 
       case '/articles/[id]':
-        return <ArticlePage />;
+        return <ArticlePage article={pageProps.article} />;
 
       case '/about':
         return <AboutPage />;
@@ -95,6 +101,8 @@ const App = ({ Component, pageProps }: AppProps) => {
     }
   };
 
+  // isLoading && setIsLoading(false);
+
   return (
     <GlobalContext.Provider
       value={{
@@ -104,10 +112,19 @@ const App = ({ Component, pageProps }: AppProps) => {
         setAccess,
         theme,
         setTheme,
+        isLoading,
+        setIsLoading,
       }}
     >
       <ApolloProvider client={client}>
-        <Layout>{getPageComponent()}</Layout>
+        <Layout>
+          {
+            <>
+              {getPageComponent()}
+              {isLoading && <SpinnerW />}
+            </>
+          }
+        </Layout>
       </ApolloProvider>
     </GlobalContext.Provider>
   );
