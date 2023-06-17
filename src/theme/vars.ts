@@ -8,4 +8,6 @@ export const contrstLight = '#e36858';
 export const contrstLightHover = '#de4444';
 export const contrstDark = '#96abad';
 export const contrstDarkHover = '#66a5ac';
-export const crumbs = 'rgba(133, 133, 133, 0.666)';
+export const middleGrey = 'rgba(133, 133, 133, 0.666)';
+export const middleGreyHover = 'rgba(133, 133, 133, 0.865)';
+export const colorWhite = '#ffffff';

@@ -6,6 +6,7 @@ import UPDATE_ADMIN from '@/gql/updateAdmin';
 import { MAGIC_ACCESS } from '@/constants';
 import Link from 'next/link';
 import s from '../page.module.scss';
+import Button from '@/components/Button';
 
 const adm = MAGIC_ACCESS;
 
@@ -73,9 +74,9 @@ const Login = () => {
           name='password'
           placeholder='Password'
         />
-        <button type='submit' disabled={updateLoading}>
+        <Button type={'submit'} disabled={updateLoading}>
           Submit
-        </button>
+        </Button>
         {updateError && (
           <p>{updateError.message} Check your login and password</p>
         )}

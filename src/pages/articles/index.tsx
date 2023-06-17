@@ -31,17 +31,7 @@ export const getStaticProps = async () => {
 };
 
 const Articles = ({ articles }: { articles: any[] }) => {
-  const { theme, isLoading, setIsLoading } = useGlobalContext();
-
-  // useEffect(() => {
-  //   isLoading && setIsLoading(false);
-  // }, []);
-
-  // if (!articles) {
-  //   return <p>Loading...</p>;
-  // }
-
-  console.log('isLoading', isLoading);
+  const { theme } = useGlobalContext();
 
   return (
     <>
@@ -68,8 +58,6 @@ const Articles = ({ articles }: { articles: any[] }) => {
               );
             })}
         </ul>
-
-        {/* <div>{articles?.length > 0 ? <ArticleList /> : <p>Loading...</p>}</div> */}
       </section>
     </>
   );

@@ -14,11 +14,10 @@ import EditPage from './articles/[id]/edit';
 import DeletePage from './articles/[id]/delete';
 import AboutPage from './about';
 import ContactsPage from './contacts';
-import AddPage from './admin/add';
+import AddPage from './admin/dashboard/add';
 import NotFoundPage from './404';
 import { GlobalContext } from '@/context/GlobalContext';
 import Spinner from '@/components/Spinner/Spinner';
-import SpinnerW from '@/components/Spinner/Spinner';
 
 const App = ({ Component, pageProps }: AppProps) => {
   const [access, setAccess] = useState<IAccess | null>(null);
@@ -118,12 +117,8 @@ const App = ({ Component, pageProps }: AppProps) => {
     >
       <ApolloProvider client={client}>
         <Layout>
-          {
-            <>
-              {getPageComponent()}
-              {isLoading && <SpinnerW />}
-            </>
-          }
+          {getPageComponent()}
+          {isLoading && <Spinner />}
         </Layout>
       </ApolloProvider>
     </GlobalContext.Provider>

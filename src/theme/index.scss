@@ -9,6 +9,8 @@ $contrstLightHover: #de4444;
 $contrstDark: #96abad;
 $contrstDarkHover: #66a5ac;
 $middleGrey: rgba(133, 133, 133, 0.666);
+$middleGreyHover: rgba(133, 133, 133, 0.865);
+$colorWhite: #ffffff;
 
 @mixin theme($theme) {
   @if $theme == dark {

@@ -1,9 +1,10 @@
 import { useCallback } from 'react';
 import router from 'next/router';
-import s from '../page.module.scss';
+import s from '../../page.module.scss';
 import { useGlobalContext } from '@/context/GlobalContext';
 import Crumbs from '@/components/Crumbs/Crumbs';
 import { MAGIC_ACCESS } from '@/constants';
+import Button from '@/components/Button';
 
 const adm = MAGIC_ACCESS;
 
@@ -25,7 +26,13 @@ const Dashboard = () => {
       <Crumbs routes={['dashboard']}>
         <h2 className={s.title}>Редактор</h2>
       </Crumbs>
-      <button onClick={logOut}>Log out</button>
+      <Button
+        fn={logOut}
+        // style={{ backgroundColor: 'teal' }}
+        // hover={{ backgroundColor: 'tomato' }}
+      >
+        Log out
+      </Button>
     </section>
   );
 };
