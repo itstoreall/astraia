@@ -5,12 +5,12 @@ const GET_ARTICLES = gql`
     articles {
       id
       title
-      #description
-      #text
-      #author
+      description
+      text
+      author
       #image
-      #views
-      #tags
+      views
+      tags
     }
   }
 `;

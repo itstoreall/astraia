@@ -1,21 +1,15 @@
-import { useGlobalContext } from '@/context/GlobalContext';
+import { IArticle } from '@/interfaces';
+import Link from 'next/link';
 
-// export const getStaticProps = async () => {
-//   //
-// };
-
-const ArticleList = () => {
-  const { articles } = useGlobalContext();
-  // const { pathname } = useLocation();
-
-  // console.log('articles -->', articles);
-
+const ArticleList = ({ articles }: { articles: IArticle[] }) => {
   return (
     <ul>
       {articles?.map((el: any) => {
         return (
           <li key={el.id}>
-            <p>{el.id}</p>
+            <Link href={`/articles/${el.id}`}>
+              <p>{el.id}</p>
+            </Link>
           </li>
         );
       })}

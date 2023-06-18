@@ -1,7 +1,8 @@
+import { IArticle } from '@/interfaces';
 import s from '../page.module.scss';
 import { useGlobalContext } from '@/context/GlobalContext';
 import Crumbs from '@/components/Crumbs/Crumbs';
-// import ArticleList from '@/components/Articles/List';
+import ArticleList from '@/components/Articles/List';
 import Head from 'next/head';
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 import GET_ARTICLES from '@/gql/getArticles';
@@ -30,34 +31,26 @@ export const getStaticProps = async () => {
   };
 };
 
-const Articles = ({ articles }: { articles: any[] }) => {
+const Articles = ({ articles }: { articles: IArticle[] }) => {
   const { theme } = useGlobalContext();
+
+  console.log('articles', articles[0]);
 
   return (
     <>
       <Head>
-        <title>Articles</title>
-        <meta name='description' content='Авторизация' />
+        <title>Статьи</title>
+        <meta name='description' content='Статьи из тонкого мира' />
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
+
       <section className={`${s.page} ${s[theme]}`}>
         <Crumbs routes={['articles']}>
           <h2 className={s.title}>Статьи</h2>
         </Crumbs>
 
-        <ul>
-          {articles &&
-            articles?.map((el: any) => {
-              return (
-                <li key={el.id}>
-                  <Link href={`/articles/${el.id}`}>
-                    <p>{el.id}</p>
-                  </Link>
-                </li>
-              );
-            })}
-        </ul>
+        {articles ? <ArticleList articles={articles} /> : <p>No articles!</p>}
       </section>
     </>
   );

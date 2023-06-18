@@ -6,6 +6,17 @@ export interface IAccess {
   token?: string | null;
 }
 
+export interface IArticle {
+  id: string;
+  title: string;
+  description: string;
+  text: string;
+  author: string;
+  image: string;
+  views: string | null;
+  tags: string[];
+}
+
 export type GlobalContent = {
   articles: any[];
   setArticles: (articles: any[]) => void;
