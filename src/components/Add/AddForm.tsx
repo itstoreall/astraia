@@ -6,6 +6,7 @@ import ADD_ARTICLE from '@/gql/addArticle';
 import GET_ARTICLES from '@/gql/getArticles';
 import base64Converter from '../../utils/uploadImageHandler';
 import useProportion from '@/hooks/useProportion';
+import Button from '../Button/Button';
 // import { useGlobalContext } from '../../../context/GlobalContext';
 // import base64Converter from '../../../utils/base64Converter';
 // import DragAndDrop from './UploadImage/ImageUploader';
@@ -140,9 +141,12 @@ const AddForm = () => {
               accept='.jpg, .jpeg, .png'
               onChange={base64Converter(setImageData)}
             />
-            <button type='submit' disabled={loading}>
+            <Button type='submit' disabled={loading}>
               Submit
-            </button>
+            </Button>
+            {/* <button type='submit' disabled={loading}>
+              Submit
+            </button> */}
             {error && <p>Error: {error.message}</p>}
           </form>
         </>

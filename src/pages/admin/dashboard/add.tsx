@@ -8,6 +8,7 @@ import GET_ARTICLE_BY_ID from '@/gql/getArticleById';
 import GET_ARTICLES from '@/gql/getArticles';
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 import AddForm from '@/components/Add/AddForm';
+import ArticleEditor from '@/components/Add/ArticleEditor';
 
 const AddPage = () => {
   const { theme } = useGlobalContext();
@@ -18,6 +19,7 @@ const AddPage = () => {
         <h2 className={s.title}>{'Добавление'}</h2>
       </Crumbs>
       <AddForm />
+      <ArticleEditor />
     </section>
   );
 };

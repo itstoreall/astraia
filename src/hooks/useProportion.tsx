@@ -26,7 +26,6 @@ const useProportion: UseProportion = (w, h, max) => {
 
   useEffect(() => {
     const handleResize = () => {
-      console.log(111);
       const newSize = calculateSize(w, h, max);
       setProportionalSize(newSize);
     };
