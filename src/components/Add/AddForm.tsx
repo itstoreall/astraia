@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useMutation, useQuery } from '@apollo/client';
 import Image from 'next/image';
+import s from './Add.module.scss';
 // import { useNavigate } from 'react-router-dom';
 import ADD_ARTICLE from '@/gql/addArticle';
 import GET_ARTICLES from '@/gql/getArticles';
@@ -88,7 +89,7 @@ const AddForm = () => {
   };
 
   return (
-    <>
+    <div className={s.addFormWrap}>
       {isArticle ? (
         <p>{'Article was created'}</p>
       ) : (
@@ -97,17 +98,26 @@ const AddForm = () => {
       {!isArticle && (
         <>
           {imageData && (
-            <div>
-              <h3>Uploaded Image:</h3>
+            <div className={s.thumb}>
               <Image
                 src={imageData}
                 alt='Uploaded'
                 width={width}
-                height={height} // Adjust the height as needed
+                height={height}
               />
             </div>
           )}
-          <form onSubmit={handleSubmit}>
+          <form className={s.addForm} onSubmit={handleSubmit}>
+            <label>
+              Choose File
+              <input
+                className={s.fileInput}
+                type='file'
+                accept='.jpg, .jpeg, .png'
+                onChange={base64Converter(setImageData)}
+              />
+            </label>
+
             <input
               type='text'
               value={title}
@@ -136,22 +146,14 @@ const AddForm = () => {
               name='author'
               placeholder='Author'
             />
-            <input
-              type='file'
-              accept='.jpg, .jpeg, .png'
-              onChange={base64Converter(setImageData)}
-            />
             <Button type='submit' disabled={loading}>
               Submit
             </Button>
-            {/* <button type='submit' disabled={loading}>
-              Submit
-            </button> */}
             {error && <p>Error: {error.message}</p>}
           </form>
         </>
       )}
-    </>
+    </div>
   );
 };
 

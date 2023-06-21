@@ -1,4 +1,5 @@
-import { ReactElement, ReactNode } from 'react';
+import { ChangeEvent, ReactElement, ReactNode } from 'react';
+import { IArticleElement } from '@/interfaces';
 
 export type Button = (props: {
   type?: 'button' | 'submit' | 'reset';
@@ -8,3 +9,15 @@ export type Button = (props: {
   disabled?: boolean;
   children: ReactNode;
 }) => ReactElement;
+
+// ----------------- Add article
+
+export type MoveElement = (
+  array: IArticleElement[],
+  fromIndex: number,
+  toIndex: number
+) => void;
+
+export type ChangeTextareaValue = (
+  event: ChangeEvent<HTMLTextAreaElement>
+) => void;

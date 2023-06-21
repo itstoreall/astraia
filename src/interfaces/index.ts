@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { Dispatch, ReactNode, SetStateAction } from 'react';
 
 export interface IAccess {
   isAdmin: boolean;
@@ -39,15 +39,27 @@ export interface IChld {
 
 // ----------------- Themes
 
-export interface Theme {
-  background: string;
-  backgroundBlur: string;
-  backgroundHover: string;
-  secondaryBackground: string;
-  contrastBackground: string;
-  contrastBackgroundHover: string;
+// export interface ITheme {
+//   background: string;
+//   backgroundBlur: string;
+//   backgroundHover: string;
+//   secondaryBackground: string;
+//   contrastBackground: string;
+//   contrastBackgroundHover: string;
+//   text: string;
+//   textInvert: string;
+//   button: string;
+//   buttonHover: string;
+// }
+
+// ----------------- Add article
+
+export interface IArticleElement {
+  name: string;
   text: string;
-  textInvert: string;
-  button: string;
-  buttonHover: string;
+}
+
+export interface IAddArticleContext {
+  articleElements: IArticleElement[];
+  setArticleElements: Dispatch<SetStateAction<IArticleElement[]>>;
 }

@@ -2,14 +2,5 @@
 @import '../../theme/index.scss';
 
 .button {
-  @include padding(5px 12px);
-
-  color: $colorWhite;
-  background-color: $middleGrey;
-  border-radius: 4px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: $middleGreyHover;
-  }
+  @include buttonStyle();
 }

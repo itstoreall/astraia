@@ -118,10 +118,24 @@
   }
 }
 
-// ------- crumbs
+// ------- Custom
 
 @mixin crumbs() {
   font-size: 14px;
   font-weight: 400;
   color: var(--middleGrey);
+}
+
+@mixin buttonStyle() {
+  @include padding(5px 12px);
+  @include fontSize(14px);
+  color: $colorWhite;
+  background-color: $middleGrey;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    background-color: $middleGreyHover;
+  }
 }
