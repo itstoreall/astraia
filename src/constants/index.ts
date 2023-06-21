@@ -1,1 +1,2 @@
-export const MAGIC_ACCESS = 'magic_access';
+export const ASTRAIA_ACCESS = 'astraia_access';
+export const ARTICLE_ELEMENTS = 'article_elements';

@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 // import { useRouter } from 'next/router';
 import { useQuery, OperationVariables } from '@apollo/client';
-import { MAGIC_ACCESS } from '@/constants';
+import { ASTRAIA_ACCESS } from '@/constants';
 import IS_ADMIN from '../gql/isAdmin';
 
-const adm = MAGIC_ACCESS;
+const adm = ASTRAIA_ACCESS;
 
 const useVerification = () => {
   const [token, setToken] = useState<{ token: string } | null>(null);

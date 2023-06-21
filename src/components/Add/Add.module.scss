@@ -13,10 +13,6 @@
     align-items: flex-start;
     background-color: teal;
 
-    // Custom styles for the file input
-    // input[type='file'] {
-
-    // Customize the appearance of the label/button
     label {
       @include buttonStyle();
 

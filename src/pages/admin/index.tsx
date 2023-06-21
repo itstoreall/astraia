@@ -2,9 +2,9 @@ import { useCallback, useEffect } from 'react';
 import router from 'next/router';
 import useVerification from '@/hooks/useVerification';
 import { useGlobalContext } from '@/context/GlobalContext';
-import { MAGIC_ACCESS } from '@/constants';
+import { ASTRAIA_ACCESS } from '@/constants';
 
-const adm = MAGIC_ACCESS;
+const adm = ASTRAIA_ACCESS;
 
 const Admin = () => {
   const { isAdmin, loading } = useVerification();
@@ -29,6 +29,7 @@ const Admin = () => {
 
   useEffect(() => {
     !loading ? (!isAdmin ? redirect() : !access ? enter() : toDash()) : null;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAdmin, loading, access, setAccess, redirect, enter]);
 
   const logOut = () => {
@@ -47,7 +48,7 @@ const Admin = () => {
           <button onClick={logOut}>Log out</button>
         </>
       ) : (
-        'Verification (admin)...'
+        'Authentication (admin)...'
       )}
     </section>
   );

@@ -3,12 +3,12 @@ import Head from 'next/head';
 import { useMutation } from '@apollo/client';
 import router from 'next/router';
 import UPDATE_ADMIN from '@/gql/updateAdmin';
-import { MAGIC_ACCESS } from '@/constants';
-import Link from 'next/link';
+import { ASTRAIA_ACCESS } from '@/constants';
+// import Link from 'next/link';
 import s from '../page.module.scss';
 import Button from '@/components/Button';
 
-const adm = MAGIC_ACCESS;
+const adm = ASTRAIA_ACCESS;
 
 const Login = () => {
   const [login, setLogin] = useState<string>('');
