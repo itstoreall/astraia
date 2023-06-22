@@ -5,9 +5,9 @@ const GET_ARTICLE_BY_ID = gql`
     getArticleById(ID: $id) {
       id
       title
-      #description
+      description
       text
-      #author
+      author
       image
     }
   }

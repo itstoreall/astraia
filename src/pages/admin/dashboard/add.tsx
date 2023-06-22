@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { FormEvent, useCallback, useEffect, useState } from 'react';
 import router from 'next/router';
 import Image from 'next/image';
 import { IArticleElement } from '@/interfaces';
@@ -13,21 +13,137 @@ import Crumbs from '@/components/Crumbs/Crumbs';
 import AddForm from '@/components/Add/AddForm';
 import ArticleEditor from '@/components/Add/ArticleEditor';
 import useIsAdmin from '@/hooks/useIsAdmin';
+import { useMutation, useQuery } from '@apollo/client';
+import ADD_ARTICLE from '@/gql/addArticle';
+import GET_ARTICLES from '@/gql/getArticles';
+import Button from '@/components/Button';
+import useProportion from '@/hooks/useProportion';
 
 const AddPage = () => {
   useIsAdmin('/admin');
+  const [isArticle, setIsArticle] = useState<boolean>(false);
+  const [imageData, setImageData] = useState<string>('');
+  const [title, setTitle] = useState<string>('');
+  const [description, setDescription] = useState<string>('');
+  const [author, setAuthor] = useState<string>('');
+  // const [tags, setTags] = useState<string[]>(['magic']);
 
+  // ---
+
+  const [textareaValue, setTextareaValue] = useState('');
+  const [editIndex, setEditIndex] = useState<number | null>(null);
+  const [isDisplayArticle, setIsDisplayArticle] = useState<boolean>(false);
   const [articleElements, setArticleElements] = useState<IArticleElement[]>([]);
 
   const { theme, access } = useGlobalContext();
+  const { width, height } = useProportion(900, 450, 300);
+  const [addArticle, { loading, error }] = useMutation(ADD_ARTICLE);
+  const { refetch: getArticles } = useQuery(GET_ARTICLES);
+
+  const clearStates = () => {
+    setImageData('');
+    setTitle('');
+    setDescription('');
+    setAuthor('');
+    setEditIndex(null);
+    setTextareaValue('');
+    setArticleElements([]);
+  };
+
+  const updateArticles = async () => {
+    const updatedArticles = await getArticles();
+
+    const { articles } = updatedArticles.data;
+
+    // articles && setArticles(articles);
+    const id = articles[articles?.length - 1].id;
+    // navigate(`/admin/dashboard/articles/${id}`);
+  };
+
+  const handleSubmit = async () => {
+    // event.preventDefault();
+
+    const text = JSON.stringify({ articleElements });
+
+    const articleInput = {
+      image: imageData,
+      title: title,
+      description: description,
+      author: author,
+      text: text,
+      tags: ['magic'],
+    };
+
+    // console.log('articleInput --->', articleInput);
+
+    try {
+      const { data } = await addArticle({ variables: { input: articleInput } });
+
+      const { title } = data.addArticle;
+
+      // console.log('addArticle:', title);
+
+      if (title) {
+        setIsArticle(true);
+        clearStates();
+        updateArticles();
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const convertToArticle = () => {
+    return (
+      <>
+        {imageData && (
+          <div className={s.thumb}>
+            <Image
+              src={imageData}
+              alt='Uploaded'
+              width={width}
+              height={height}
+            />
+          </div>
+        )}
+        <p>{title}</p>
+        <p>{description}</p>
+        <p>{author}</p>
+        {articleElements.map((paragraph, index) =>
+          paragraph.name === 'title' ? (
+            <h2 key={index}>{paragraph.text}</h2>
+          ) : (
+            <p key={index}>{paragraph.text}</p>
+          )
+        )}
+      </>
+    );
+  };
 
   return (
     <>
       {access ? (
         <AddArticleContext.Provider
           value={{
+            isArticle,
+            setIsArticle,
+            imageData,
+            setImageData,
+            title,
+            setTitle,
+            description,
+            setDescription,
+            author,
+            setAuthor,
+            textareaValue,
+            setTextareaValue,
+            editIndex,
+            setEditIndex,
+            isDisplayArticle,
+            setIsDisplayArticle,
             articleElements,
             setArticleElements,
+            handleSubmit,
           }}
         >
           <section className={`${s.page} ${s[theme]}`}>
@@ -36,8 +152,29 @@ const AddPage = () => {
             </Crumbs>
 
             <article className={s.article}>
-              <AddForm />
-              <ArticleEditor />
+              {!isDisplayArticle ? (
+                <div className={s.addFormWrap}>
+                  <AddForm />
+                  <ArticleEditor />
+                  <Button
+                    type='button'
+                    fn={() => handleSubmit()}
+                    disabled={loading}
+                  >
+                    Submit
+                  </Button>
+                  {error && <p>Error: {error.message}</p>}
+                </div>
+              ) : (
+                <div>
+                  <h2>Предпросмотр статьи</h2>
+                  {convertToArticle()}
+                </div>
+              )}
+
+              <Button fn={() => setIsDisplayArticle(!isDisplayArticle)}>
+                {isDisplayArticle ? 'Редактор' : 'Предпросмотр'}
+              </Button>
             </article>
           </section>
         </AddArticleContext.Provider>

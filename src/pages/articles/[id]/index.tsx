@@ -1,11 +1,12 @@
-import s from '../../page.module.scss';
-import Crumbs from '@/components/Crumbs/Crumbs';
 import Image from 'next/image';
 // import { useRouter } from 'next/router';
+import { ApolloClient, InMemoryCache } from '@apollo/client';
+import { IArticleElement } from '@/interfaces';
 import { useGlobalContext } from '@/context/GlobalContext';
+import s from '../../page.module.scss';
+import Crumbs from '@/components/Crumbs/Crumbs';
 import GET_ARTICLE_BY_ID from '@/gql/getArticleById';
 import GET_ARTICLES from '@/gql/getArticles';
-import { ApolloClient, InMemoryCache } from '@apollo/client';
 
 export const getStaticPaths = async () => {
   const client = new ApolloClient({
@@ -26,8 +27,6 @@ export const getStaticPaths = async () => {
   const paths = data.articles.map(({ id }: any) => ({
     params: { id },
   }));
-
-  // console.log('paths', paths);
 
   return {
     paths,
@@ -64,6 +63,21 @@ export const getStaticProps = async (context: any) => {
 const Article = ({ article }: any) => {
   const { theme } = useGlobalContext();
 
+  const articleText = JSON.parse(article?.text).articleElements;
+
+  const convertToArticle = () =>
+    articleText ? (
+      articleText?.map((paragraph: IArticleElement, index: number) =>
+        paragraph.name === 'title' ? (
+          <h2 key={index}>{paragraph.text}</h2>
+        ) : (
+          <p key={index}>{paragraph.text}</p>
+        )
+      )
+    ) : (
+      <p>Error: elements of the article are missing!</p>
+    );
+
   return (
     <section className={`${s.page} ${s[theme]}`}>
       <Crumbs routes={['articles', 'id']}>
@@ -80,7 +94,10 @@ const Article = ({ article }: any) => {
             height={400}
           />
         </div>
-        <p>{article.text}</p>
+        <p>{article?.title}</p>
+        <p>{article?.description}</p>
+        <p>{article?.author}</p>
+        <div>{convertToArticle()}</div>
       </article>
     </section>
   );

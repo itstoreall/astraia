@@ -8,42 +8,59 @@ import GET_ARTICLES from '@/gql/getArticles';
 import base64Converter from '../../utils/uploadImageHandler';
 import useProportion from '@/hooks/useProportion';
 import Button from '../Button/Button';
+import { useAddArticleContext } from '@/context/AddArticleContext';
 // import { useGlobalContext } from '../../../context/GlobalContext';
 // import base64Converter from '../../../utils/base64Converter';
 // import DragAndDrop from './UploadImage/ImageUploader';
 
 const AddForm = () => {
-  const [addArticle, { loading, error }] = useMutation(ADD_ARTICLE);
-  const { refetch: getArticles } = useQuery(GET_ARTICLES);
+  const {
+    isArticle,
+    setIsArticle,
+    imageData,
+    setImageData,
+    title,
+    setTitle,
+    description,
+    setDescription,
+    author,
+    setAuthor,
+    // articleElements,
+    // setArticleElements,
+    handleSubmit,
+  } = useAddArticleContext();
+
+  // const [addArticle, { loading, error }] = useMutation(ADD_ARTICLE);
+  // const { refetch: getArticles } = useQuery(GET_ARTICLES);
   const { width, height } = useProportion(900, 450, 300);
   // const { setArticles } = useGlobalContext();
   // const navigate = useNavigate();
 
-  const [isArticle, setIsArticle] = useState<boolean>(false);
-  const [title, setTitle] = useState<string>('');
-  const [description, setDescription] = useState<string>('');
-  const [text, setText] = useState<string>('');
-  const [author, setAuthor] = useState<string>('');
-  // const [tags, setTags] = useState<string[]>(['magic']);
-  const [imageData, setImageData] = useState<string>('');
+  // const [isArticle, setIsArticle] = useState<boolean>(false);
+  // const [title, setTitle] = useState<string>('');
+  // const [description, setDescription] = useState<string>('');
+  // const [text, setText] = useState<string>('');
+  // const [author, setAuthor] = useState<string>('');
+  // // const [tags, setTags] = useState<string[]>(['magic']);
+  // const [imageData, setImageData] = useState<string>('');
 
-  const clearStates = () => {
-    setTitle('');
-    setDescription('');
-    setText('');
-    setAuthor('');
-    setImageData('');
-  };
+  // const clearStates = () => {
+  //   setTitle('');
+  //   setDescription('');
+  //   setText('');
+  //   setAuthor('');
+  //   setImageData('');
+  // };
 
-  const updateArticles = async () => {
-    const updatedArticles = await getArticles();
+  // const updateArticles = async () => {
+  //   const updatedArticles = await getArticles();
 
-    const { articles } = updatedArticles.data;
+  //   const { articles } = updatedArticles.data;
 
-    // articles && setArticles(articles);
-    const id = articles[articles?.length - 1].id;
-    // navigate(`/admin/dashboard/articles/${id}`);
-  };
+  //   // articles && setArticles(articles);
+  //   const id = articles[articles?.length - 1].id;
+  //   // navigate(`/admin/dashboard/articles/${id}`);
+  // };
 
   const handleInput = (event: any) => {
     isArticle && setIsArticle(false);
@@ -51,42 +68,42 @@ const AddForm = () => {
 
     name === 'title' && setTitle(value);
     name === 'description' && setDescription(value);
-    name === 'text' && setText(value);
+    // name === 'text' && setText(value);
     name === 'author' && setAuthor(value);
 
     console.log(`input ${name} value:`, value);
   };
 
-  const handleSubmit = async (event: any) => {
-    event.preventDefault();
+  // const handleSubmit = async (event: any) => {
+  //   event.preventDefault();
 
-    const articleInput = {
-      title: title,
-      description: description,
-      text: text,
-      author: author,
-      image: imageData,
-      tags: ['magic'],
-    };
+  //   const articleInput = {
+  //     title: title,
+  //     description: description,
+  //     text: text,
+  //     author: author,
+  //     image: imageData,
+  //     tags: ['magic'],
+  //   };
 
-    // console.log('articleInput --->', articleInput);
+  //   // console.log('articleInput --->', articleInput);
 
-    try {
-      const { data } = await addArticle({ variables: { input: articleInput } });
+  //   try {
+  //     const { data } = await addArticle({ variables: { input: articleInput } });
 
-      const { title } = data.addArticle;
+  //     const { title } = data.addArticle;
 
-      // console.log('addArticle:', title);
+  //     // console.log('addArticle:', title);
 
-      if (title) {
-        setIsArticle(true);
-        clearStates();
-        updateArticles();
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  };
+  //     if (title) {
+  //       setIsArticle(true);
+  //       clearStates();
+  //       updateArticles();
+  //     }
+  //   } catch (e) {
+  //     console.error(e);
+  //   }
+  // };
 
   return (
     <div className={s.addFormWrap}>
@@ -132,13 +149,13 @@ const AddForm = () => {
               name='description'
               placeholder='Description'
             />
-            <input
+            {/* <input
               type='text'
               value={text}
               onChange={e => handleInput(e)}
               name='text'
               placeholder='Article text'
-            />
+            /> */}
             <input
               type='text'
               value={author}
@@ -146,10 +163,10 @@ const AddForm = () => {
               name='author'
               placeholder='Author'
             />
-            <Button type='submit' disabled={loading}>
+            {/* <Button type='submit' disabled={loading}>
               Submit
             </Button>
-            {error && <p>Error: {error.message}</p>}
+            {error && <p>Error: {error.message}</p>} */}
           </form>
         </>
       )}

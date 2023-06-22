@@ -10,12 +10,21 @@ const art = ARTICLE_ELEMENTS;
 
 const ArticleEditor = () => {
   const [element, setElement] = useState<string>('');
-  const [textareaValue, setTextareaValue] = useState('');
-  const [editIndex, setEditIndex] = useState<number | null>(null);
-  const [isDisplayArticle, setIsDisplayArticle] = useState<boolean>(false);
+  // const [textareaValue, setTextareaValue] = useState('');
+  // const [editIndex, setEditIndex] = useState<number | null>(null);
+  // const [isDisplayArticle, setIsDisplayArticle] = useState<boolean>(false);
 
   const { width } = useProportion(900, 1, 900);
-  const { articleElements, setArticleElements } = useAddArticleContext();
+  const {
+    textareaValue,
+    setTextareaValue,
+    editIndex,
+    setEditIndex,
+    isDisplayArticle,
+    setIsDisplayArticle,
+    articleElements,
+    setArticleElements,
+  } = useAddArticleContext();
 
   useEffect(() => {
     const lsElements = JSON.parse(localStorage.getItem(art) || 'null');
@@ -182,9 +191,9 @@ const ArticleEditor = () => {
         </div>
       )}
 
-      <Button fn={() => setIsDisplayArticle(!isDisplayArticle)}>
+      {/* <Button fn={() => setIsDisplayArticle(!isDisplayArticle)}>
         {isDisplayArticle ? 'Редактор' : 'Предпросмотр'}
-      </Button>
+      </Button> */}
     </div>
   );
 };

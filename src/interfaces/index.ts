@@ -1,4 +1,4 @@
-import { Dispatch, ReactNode, SetStateAction } from 'react';
+import { Dispatch, FormEvent, ReactNode, SetStateAction } from 'react';
 
 export interface IAccess {
   isAdmin: boolean;
@@ -60,6 +60,23 @@ export interface IArticleElement {
 }
 
 export interface IAddArticleContext {
+  isArticle: boolean;
+  setIsArticle: (b: boolean) => void;
+  imageData: string;
+  setImageData: (s: string) => void;
+  title: string;
+  setTitle: (s: string) => void;
+  description: string;
+  setDescription: (s: string) => void;
+  author: string;
+  setAuthor: (s: string) => void;
+  textareaValue: string;
+  setTextareaValue: (s: string) => void;
+  editIndex: number | null;
+  setEditIndex: (n: number | null) => void;
+  isDisplayArticle: boolean;
+  setIsDisplayArticle: (b: boolean) => void;
   articleElements: IArticleElement[];
   setArticleElements: Dispatch<SetStateAction<IArticleElement[]>>;
+  handleSubmit: (e: FormEvent<HTMLFormElement>) => void;
 }

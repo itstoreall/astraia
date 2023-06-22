@@ -34,7 +34,7 @@ export const getStaticProps = async () => {
 const Articles = ({ articles }: { articles: IArticle[] }) => {
   const { theme } = useGlobalContext();
 
-  console.log('articles', articles[0]);
+  console.log('articles', articles);
 
   return (
     <>
