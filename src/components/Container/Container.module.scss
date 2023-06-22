@@ -5,38 +5,38 @@
   margin: 0 auto;
   max-width: $max;
 
-  @include minWidth($mobile) {
-    background-color: palevioletred;
-    max-width: $mobile;
-  }
-
-  @include minWidth($tablet) {
-    // background-color: teal;
-    max-width: $tablet;
-  }
-
-  @include minWidth($desktop) {
-    // background-color: tomato;
-    max-width: $desktop;
-  }
-
-  // &.main {
-  //   padding: 0 30px;
-  //   background-color: skyblue;
-
-  //   @include minWidth($mobile) {
-  //     background-color: palevioletred;
-  //     max-width: $mobile;
-  //   }
-
-  //   @include minWidth($tablet) {
-  //     // background-color: teal;
-  //     max-width: $tablet;
-  //   }
-
-  //   @include minWidth($desktop) {
-  //     // background-color: tomato;
-  //     max-width: $desktop;
-  //   }
+  // @include minWidth($mobile) {
+  //   background-color: palevioletred;
+  //   max-width: $mobile;
   // }
+
+  // @include minWidth($tablet) {
+  //   // background-color: teal;
+  //   max-width: $tablet;
+  // }
+
+  // @include minWidth($desktop) {
+  //   // background-color: tomato;
+  //   max-width: $desktop;
+  // }
+
+  &.main {
+    // padding: 0 30px;
+    background-color: skyblue;
+
+    @include minWidth($mobile) {
+      background-color: palevioletred;
+      max-width: $mobile;
+    }
+
+    @include minWidth($tablet) {
+      // background-color: teal;
+      max-width: $tablet;
+    }
+
+    @include minWidth($desktop) {
+      // background-color: tomato;
+      max-width: $desktop;
+    }
+  }
 }
