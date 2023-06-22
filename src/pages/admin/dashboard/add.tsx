@@ -6,7 +6,7 @@ import { useGlobalContext } from '@/context/GlobalContext';
 import { AddArticleContext } from '@/context/AddArticleContext';
 import useVerification from '@/hooks/useVerification';
 import s from '../../page.module.scss';
-import Crumbs from '@/components/Crumbs/Crumbs';
+import Crumbs from '@/components/Crumbs';
 // import GET_ARTICLE_BY_ID from '@/gql/getArticleById';
 // import GET_ARTICLES from '@/gql/getArticles';
 // import { ApolloClient, InMemoryCache } from '@apollo/client';

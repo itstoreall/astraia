@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import s from './Header.module.scss';
 import { useGlobalContext } from '@/context/GlobalContext';
-import { contrstLight, contrstDark } from '@/theme/vars';
+import { contrstLight, contrstDark } from '@/theme';
 import BurgerIcon from '@/assets/icons/Burger';
 import CloseIcon from '@/assets/icons/Close';
 import Container from '../Container/Container';

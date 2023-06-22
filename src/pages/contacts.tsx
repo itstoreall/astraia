@@ -1,6 +1,6 @@
 import s from './page.module.scss';
 import { useGlobalContext } from '@/context/GlobalContext';
-import Crumbs from '@/components/Crumbs/Crumbs';
+import Crumbs from '@/components/Crumbs';
 
 const Contacts = () => {
   const { theme } = useGlobalContext();

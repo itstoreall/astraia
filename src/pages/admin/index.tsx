@@ -3,6 +3,8 @@ import router from 'next/router';
 import useVerification from '@/hooks/useVerification';
 import { useGlobalContext } from '@/context/GlobalContext';
 import { ASTRAIA_ACCESS } from '@/constants';
+import s from '../page.module.scss';
+import Crumbs from '@/components/Crumbs';
 
 const adm = ASTRAIA_ACCESS;
 
@@ -39,12 +41,16 @@ const Admin = () => {
 
   return (
     <section>
-      <h1>{'Admin'}</h1>
+      {/* <h1>{'Admin'}</h1> */}
+      <Crumbs routes={['admin']}>
+        <h2 className={s.title}>admin</h2>
+      </Crumbs>
+
       {!loading && isAdmin ? (
         <>
-          <div>
+          {/* <div>
             <p>admin content</p>
-          </div>
+          </div> */}
           <button onClick={logOut}>Log out</button>
         </>
       ) : (

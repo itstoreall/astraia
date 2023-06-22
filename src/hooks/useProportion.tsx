@@ -36,7 +36,7 @@ const useProportion: UseProportion = (w, h, max) => {
 
     return () => window.removeEventListener('resize', handleResize);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [max]);
 
   return { width: proportionalSize.width, height: proportionalSize.height };
 };

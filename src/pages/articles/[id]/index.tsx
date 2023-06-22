@@ -4,7 +4,7 @@ import { ApolloClient, InMemoryCache } from '@apollo/client';
 import { IArticleElement } from '@/interfaces';
 import { useGlobalContext } from '@/context/GlobalContext';
 import s from '../../page.module.scss';
-import Crumbs from '@/components/Crumbs/Crumbs';
+import Crumbs from '@/components/Crumbs';
 import GET_ARTICLE_BY_ID from '@/gql/getArticleById';
 import GET_ARTICLES from '@/gql/getArticles';
 

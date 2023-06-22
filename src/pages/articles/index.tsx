@@ -1,13 +1,12 @@
 import { IArticle } from '@/interfaces';
 import s from '../page.module.scss';
 import { useGlobalContext } from '@/context/GlobalContext';
-import Crumbs from '@/components/Crumbs/Crumbs';
+import Crumbs from '@/components/Crumbs';
 import ArticleList from '@/components/Articles/List';
 import Head from 'next/head';
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 import GET_ARTICLES from '@/gql/getArticles';
-import Link from 'next/link';
-import { useEffect } from 'react';
+// import Link from 'next/link';
 
 export const getStaticProps = async () => {
   const client = new ApolloClient({

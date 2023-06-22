@@ -21,9 +21,9 @@ import Spinner from '@/components/Spinner/Spinner';
 
 const App = ({ Component, pageProps }: AppProps) => {
   const [access, setAccess] = useState<IAccess | null>(null);
-  const [articles, setArticles] = useState<any[]>([]);
   const [theme, setTheme] = useState<string>('light');
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [articles, setArticles] = useState<any[]>([]);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
@@ -58,6 +58,8 @@ const App = ({ Component, pageProps }: AppProps) => {
   });
 
   const getPageComponent = () => {
+    // !isLoading && setIsLoading(true);
+
     const { pathname } = router;
 
     switch (pathname) {
@@ -83,7 +85,6 @@ const App = ({ Component, pageProps }: AppProps) => {
         return <DeletePage />;
 
       case '/articles':
-        isLoading && setIsLoading(false);
         return <ArticlesPage articles={pageProps.articles} />;
 
       case '/articles/[id]':
@@ -118,7 +119,7 @@ const App = ({ Component, pageProps }: AppProps) => {
       <ApolloProvider client={client}>
         <Layout>
           {getPageComponent()}
-          {isLoading && <Spinner />}
+          {/* {isLoading && <Spinner />} */}
         </Layout>
       </ApolloProvider>
     </GlobalContext.Provider>

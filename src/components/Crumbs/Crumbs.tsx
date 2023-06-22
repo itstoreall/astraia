@@ -6,6 +6,8 @@ import cfg from '@/configs/routes';
 const Crumbs = ({ routes, children }: any) => {
   const { theme } = useGlobalContext();
 
+  const isAdminPage = () => children.props.children === 'admin';
+
   return (
     <div className={`${s.crumbs} ${s[theme]}`}>
       <ul className={s.crumbsList}>
@@ -33,18 +35,27 @@ const Crumbs = ({ routes, children }: any) => {
             return (
               <li key={route} className={s.crumbsItem}>
                 <span className={s.slash}>/</span>
-                {withoutLink() ? (
-                  <>
-                    <Link href={`/${route}`}>
-                      {idx === 0 ? (
-                        <span className={s.crumb}>{`${secondCrumb}  `}</span>
-                      ) : (
-                        <>{children}</>
-                      )}
-                    </Link>
-                  </>
+
+                {isAdminPage() ? (
+                  <span className={s.crumb}>{'Админ'}</span>
                 ) : (
-                  <>{children}</>
+                  <>
+                    {withoutLink() ? (
+                      <>
+                        <Link href={`/${route}`}>
+                          {idx === 0 ? (
+                            <span
+                              className={s.crumb}
+                            >{`${secondCrumb}  `}</span>
+                          ) : (
+                            <>{children}</>
+                          )}
+                        </Link>
+                      </>
+                    ) : (
+                      <>{children}</>
+                    )}
+                  </>
                 )}
               </li>
             );

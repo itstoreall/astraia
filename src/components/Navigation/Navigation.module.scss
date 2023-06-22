@@ -25,6 +25,7 @@
         @include padding(20px 25px);
         font-weight: 500;
         @include transition($s04);
+        cursor: pointer;
 
         &.header {
           @include themeHandler() {

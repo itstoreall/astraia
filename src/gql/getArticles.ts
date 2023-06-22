@@ -8,7 +8,7 @@ const GET_ARTICLES = gql`
       description
       text
       author
-      #image
+      image
       views
       tags
     }

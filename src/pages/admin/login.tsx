@@ -7,12 +7,16 @@ import { ASTRAIA_ACCESS } from '@/constants';
 // import Link from 'next/link';
 import s from '../page.module.scss';
 import Button from '@/components/Button';
+import { useGlobalContext } from '@/context/GlobalContext';
+import Crumbs from '@/components/Crumbs';
 
 const adm = ASTRAIA_ACCESS;
 
 const Login = () => {
   const [login, setLogin] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+
+  const { theme } = useGlobalContext();
 
   const [updateAdmin, { loading: updateLoading, error: updateError }] =
     useMutation(UPDATE_ADMIN);
@@ -57,6 +61,11 @@ const Login = () => {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
+      <section className={`${s.page} ${s[theme]}`}>
+        <Crumbs routes={['contacts']}>
+          <h2 className={s.title}>Login</h2>
+        </Crumbs>
+      </section>
       <h2 className={s.title}>Login</h2>
 
       <form onSubmit={handleSubmit}>
