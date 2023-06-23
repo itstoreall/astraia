@@ -29,7 +29,7 @@ const Crumbs = ({ routes, children }: any) => {
                 : routes[0] === 'contacts'
                 ? 'Контакты'
                 : routes[0] === 'admin'
-                ? 'Редактор'
+                ? 'Дашборд'
                 : 'null';
 
             return (

@@ -65,31 +65,33 @@ const Login = () => {
         <Crumbs routes={['contacts']}>
           <h2 className={s.title}>Login</h2>
         </Crumbs>
-      </section>
-      <h2 className={s.title}>Login</h2>
+        <article className={s.article}>
+          <span className={s.subTitle}>Вход</span>
 
-      <form onSubmit={handleSubmit}>
-        <input
-          type='text'
-          value={login}
-          onChange={e => handleInput(e)}
-          name='login'
-          placeholder='Login'
-        />
-        <input
-          type='text'
-          value={password}
-          onChange={e => handleInput(e)}
-          name='password'
-          placeholder='Password'
-        />
-        <Button type={'submit'} disabled={updateLoading}>
-          Submit
-        </Button>
-        {updateError && (
-          <p>{updateError.message} Check your login and password</p>
-        )}
-      </form>
+          <form onSubmit={handleSubmit}>
+            <input
+              type='text'
+              value={login}
+              onChange={e => handleInput(e)}
+              name='login'
+              placeholder='Login'
+            />
+            <input
+              type='text'
+              value={password}
+              onChange={e => handleInput(e)}
+              name='password'
+              placeholder='Password'
+            />
+            <Button type={'submit'} disabled={updateLoading}>
+              Submit
+            </Button>
+            {updateError && (
+              <p>{updateError.message} Check your login and password</p>
+            )}
+          </form>
+        </article>
+      </section>
     </>
   );
 };

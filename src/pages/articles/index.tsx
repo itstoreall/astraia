@@ -48,8 +48,9 @@ const Articles = ({ articles }: { articles: IArticle[] }) => {
         <Crumbs routes={['articles']}>
           <h2 className={s.title}>Статьи</h2>
         </Crumbs>
-
-        {articles ? <ArticleList articles={articles} /> : <p>No articles!</p>}
+        <article className={s.article}>
+          {articles ? <ArticleList articles={articles} /> : <p>No articles!</p>}
+        </article>
       </section>
     </>
   );

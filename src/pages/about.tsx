@@ -10,6 +10,7 @@ const AboutPage = () => {
       <Crumbs routes={['about']}>
         <h2 className={s.title}>О нас</h2>
       </Crumbs>
+      <article className={s.article}>.article</article>
     </section>
   );
 };

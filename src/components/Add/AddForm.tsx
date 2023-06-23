@@ -149,13 +149,6 @@ const AddForm = () => {
               name='description'
               placeholder='Description'
             />
-            {/* <input
-              type='text'
-              value={text}
-              onChange={e => handleInput(e)}
-              name='text'
-              placeholder='Article text'
-            /> */}
             <input
               type='text'
               value={author}
@@ -163,10 +156,6 @@ const AddForm = () => {
               name='author'
               placeholder='Author'
             />
-            {/* <Button type='submit' disabled={loading}>
-              Submit
-            </Button>
-            {error && <p>Error: {error.message}</p>} */}
           </form>
         </>
       )}

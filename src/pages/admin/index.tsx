@@ -10,7 +10,7 @@ const adm = ASTRAIA_ACCESS;
 
 const Admin = () => {
   const { isAdmin, loading } = useVerification();
-  const { access, setAccess } = useGlobalContext();
+  const { access, setAccess, theme } = useGlobalContext();
 
   const redirect = useCallback(() => {
     console.log(1, 'redirect');
@@ -40,22 +40,22 @@ const Admin = () => {
   };
 
   return (
-    <section>
-      {/* <h1>{'Admin'}</h1> */}
+    <section className={`${s.page} ${s[theme]}`}>
       <Crumbs routes={['admin']}>
         <h2 className={s.title}>admin</h2>
       </Crumbs>
-
-      {!loading && isAdmin ? (
-        <>
-          {/* <div>
+      <article className={s.article}>
+        {!loading && isAdmin ? (
+          <>
+            {/* <div>
             <p>admin content</p>
           </div> */}
-          <button onClick={logOut}>Log out</button>
-        </>
-      ) : (
-        'Authentication (admin)...'
-      )}
+            <button onClick={logOut}>Log out</button>
+          </>
+        ) : (
+          'Authentication (admin)...'
+        )}
+      </article>
     </section>
   );
 };

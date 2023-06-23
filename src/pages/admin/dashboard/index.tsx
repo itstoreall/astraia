@@ -27,7 +27,7 @@ const Dashboard = () => {
   return (
     <section className={`${s.page} ${s[theme]}`}>
       <Crumbs routes={['dashboard']}>
-        <h2 className={s.title}>Редактор</h2>
+        <h2 className={s.title}>Дашборд</h2>
       </Crumbs>
 
       <article className={s.article}>

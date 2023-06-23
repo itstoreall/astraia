@@ -10,6 +10,7 @@ const Contacts = () => {
       <Crumbs routes={['contacts']}>
         <h2 className={s.title}>Контакты</h2>
       </Crumbs>
+      <div className={s.article}>.article</div>
     </section>
   );
 };
