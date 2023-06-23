@@ -147,8 +147,8 @@ const AddPage = () => {
           }}
         >
           <section className={`${s.page} ${s[theme]}`}>
-            <Crumbs routes={['admin', 'add']}>
-              <h2 className={s.title}>{'Добавление'}</h2>
+            <Crumbs routes={['dashboard', 'add']}>
+              <h2 className={s.title}>{'Новая статья'}</h2>
             </Crumbs>
 
             <article className={s.article}>

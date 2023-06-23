@@ -12,7 +12,7 @@ import Crumbs from '@/components/Crumbs';
 
 const adm = ASTRAIA_ACCESS;
 
-const Login = () => {
+const LoginPage = () => {
   const [login, setLogin] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
@@ -96,4 +96,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginPage;

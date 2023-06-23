@@ -7,7 +7,7 @@ const Delete = () => {
 
   return (
     <section className={`${s.page} ${s[theme]}`}>
-      <Crumbs routes={['admin', 'delete']}>
+      <Crumbs routes={['dashboard', 'delete']}>
         <h2 className={s.title}>Удаление</h2>
       </Crumbs>
       <article className={s.article}>.article</article>

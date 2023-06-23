@@ -1,14 +1,17 @@
 import { IArticle } from '@/interfaces';
 import Link from 'next/link';
+import s from './List.module.scss';
 
 const ArticleList = ({ articles }: { articles: IArticle[] }) => {
   return (
-    <ul>
-      {articles?.map((el: any) => {
+    <ul className={s.list}>
+      {articles?.map((el: IArticle) => {
         return (
-          <li key={el.id}>
-            <Link href={`/articles/${el.id}`}>
-              <p>{el.id}</p>
+          <li key={el.id} className={s.item}>
+            <Link className={s.cardLink} href={`/articles/${el.id}`}>
+              <div className={s.card}>
+                <p>{el.id}</p>
+              </div>
             </Link>
           </li>
         );

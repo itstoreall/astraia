@@ -1,0 +1,38 @@
+@import '../../styles/mixins';
+
+.dashboardWrap {
+  .heading {
+    @include marginB(30px);
+    @include padding(5px);
+
+    border: 1px solid $middleGrey;
+    border-radius: 6px;
+  }
+
+  .list {
+    list-style: none;
+    @include padding(0);
+    @include margin(0);
+    background-color: pink;
+
+    .item {
+      &:not(:last-child) {
+        margin-bottom: 10px;
+      }
+
+      background-color: skyblue;
+
+      .cardLink {
+        background-color: teal;
+
+        .card {
+          background-color: palevioletred;
+        }
+
+        p {
+          color: black;
+        }
+      }
+    }
+  }
+}

@@ -54,6 +54,36 @@
   padding: $padding;
 }
 
+@mixin paddingT($pt: 0) {
+  padding-top: $pt;
+}
+
+@mixin paddingR($pr: 0) {
+  padding-right: $pr;
+}
+
+@mixin paddingB($pb: 0) {
+  padding-bottom: $pb;
+}
+
+@mixin paddingL($pl: 0) {
+  padding-left: $pl;
+}
+
+// ------- margin
+
+@mixin margin($margin: 0) {
+  margin: $margin;
+}
+
+@mixin marginR($mr: 0) {
+  margin-right: $mr;
+}
+
+@mixin marginB($mb: 0) {
+  margin-bottom: $mb;
+}
+
 // ------- width / height
 
 @mixin width($width: auto) {

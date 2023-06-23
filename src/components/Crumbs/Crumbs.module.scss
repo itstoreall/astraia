@@ -1,4 +1,5 @@
 @import '../../theme/index.scss';
+@import '../../styles/vars.scss';
 @import '../../styles/_mixins.scss';
 
 .crumbs {
@@ -10,7 +11,9 @@
       list-style: none;
 
       .crumbsItem {
+        position: relative;
         display: flex;
+        cursor: default;
 
         .slash {
           padding: 0 10px;
@@ -23,14 +26,48 @@
         }
 
         h2 {
+          max-width: 130px;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
-          width: 160px;
           -webkit-text-overflow: ellipsis;
           -ms-text-overflow: ellipsis;
+
+          @include minWidth($mobile) {
+            max-width: 200px;
+            // background-color: teal;
+          }
+
+          @include minWidth($tablet) {
+            max-width: 450px;
+            // background-color: teal;
+          }
+
+          @include minWidth($desktop) {
+            // width: auto;
+            max-width: 650px;
+            // background-color: palevioletred;
+          }
         }
       }
     }
+
+    .tooltip {
+      position: absolute;
+      top: -50%;
+      left: 22px;
+      display: none;
+      padding: 5px;
+      @include fontSize(11px);
+      background-color: $colorWhite;
+      border-radius: 4px;
+      pointer-events: none;
+    }
+
+    /* Tooltip
+    .crumbsItem h2[data-tooltip]:hover + .tooltip {
+      display: block;
+    }
+    // */
   }
 }

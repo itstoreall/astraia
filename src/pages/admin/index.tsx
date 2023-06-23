@@ -8,7 +8,7 @@ import Crumbs from '@/components/Crumbs';
 
 const adm = ASTRAIA_ACCESS;
 
-const Admin = () => {
+const AdminPage = () => {
   const { isAdmin, loading } = useVerification();
   const { access, setAccess, theme } = useGlobalContext();
 
@@ -60,4 +60,4 @@ const Admin = () => {
   );
 };
 
-export default Admin;
+export default AdminPage;

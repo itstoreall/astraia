@@ -3,10 +3,13 @@ import Image from 'next/image';
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 import { IArticleElement } from '@/interfaces';
 import { useGlobalContext } from '@/context/GlobalContext';
+import { MOBILE, TABLET, DESKTOP } from '@/styles/vars';
 import s from '../../page.module.scss';
 import Crumbs from '@/components/Crumbs';
 import GET_ARTICLE_BY_ID from '@/gql/getArticleById';
 import GET_ARTICLES from '@/gql/getArticles';
+import useViewport from '@/hooks/useViewport';
+import useProportion from '@/hooks/useProportion';
 
 export const getStaticPaths = async () => {
   const client = new ApolloClient({
@@ -62,6 +65,12 @@ export const getStaticProps = async (context: any) => {
 
 const Article = ({ article }: any) => {
   const { theme } = useGlobalContext();
+  const { viewport } = useViewport();
+  const { width, height } = useProportion(
+    2,
+    1,
+    viewport === 'mobile' ? MOBILE : viewport === 'tablet' ? TABLET : DESKTOP
+  );
 
   const articleText = JSON.parse(article?.text).articleElements;
 
@@ -81,7 +90,9 @@ const Article = ({ article }: any) => {
   return (
     <section className={`${s.page} ${s[theme]}`}>
       <Crumbs routes={['articles', 'id']}>
-        <h2 className={s.title}>{article.title}</h2>
+        <h2 className={s.title} data-tooltip>
+          {article.title}
+        </h2>
       </Crumbs>
 
       <article className={s.article}>
@@ -90,10 +101,19 @@ const Article = ({ article }: any) => {
             className={s.image}
             src={article.image}
             alt={article.title}
+            width={width}
+            height={height}
+          />
+        </div>
+        {/* <div className={s.thumb}>
+          <Image
+            className={s.image}
+            src={article.image}
+            alt={article.title}
             width={900}
             height={400}
           />
-        </div>
+        </div> */}
         <p>{article?.title}</p>
         <p>{article?.description}</p>
         <p>{article?.author}</p>

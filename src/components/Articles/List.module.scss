@@ -1,0 +1,28 @@
+@import '../../styles/mixins';
+
+.list {
+  list-style: none;
+  @include padding(0);
+  @include margin(0);
+  background-color: pink;
+
+  .item {
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+
+    background-color: skyblue;
+
+    .cardLink {
+      background-color: teal;
+
+      .card {
+        background-color: palevioletred;
+      }
+
+      p {
+        color: black;
+      }
+    }
+  }
+}

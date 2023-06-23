@@ -6,7 +6,9 @@ import cfg from '@/configs/routes';
 const Crumbs = ({ routes, children }: any) => {
   const { theme } = useGlobalContext();
 
-  const isAdminPage = () => children.props.children === 'admin';
+  const childText = children.props.children;
+
+  const isAdminPage = () => childText === 'admin';
 
   return (
     <div className={`${s.crumbs} ${s[theme]}`}>
@@ -28,7 +30,7 @@ const Crumbs = ({ routes, children }: any) => {
                 ? 'О нас'
                 : routes[0] === 'contacts'
                 ? 'Контакты'
-                : routes[0] === 'admin'
+                : routes[0] === 'dashboard'
                 ? 'Дашборд'
                 : 'null';
 
@@ -42,7 +44,11 @@ const Crumbs = ({ routes, children }: any) => {
                   <>
                     {withoutLink() ? (
                       <>
-                        <Link href={`/${route}`}>
+                        <Link
+                          href={`/${
+                            route === 'dashboard' ? `admin/${route}` : route
+                          }`}
+                        >
                           {idx === 0 ? (
                             <span
                               className={s.crumb}
@@ -53,7 +59,10 @@ const Crumbs = ({ routes, children }: any) => {
                         </Link>
                       </>
                     ) : (
-                      <>{children}</>
+                      <>
+                        {children}
+                        <div className={s.tooltip}>{childText}</div>
+                      </>
                     )}
                   </>
                 )}

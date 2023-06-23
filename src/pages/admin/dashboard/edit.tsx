@@ -7,7 +7,7 @@ const Edit = () => {
 
   return (
     <section className={`${s.page} ${s[theme]}`}>
-      <Crumbs routes={['admin', 'edit']}>
+      <Crumbs routes={['dashboard', 'edit']}>
         <h2 className={s.title}>Редактирование</h2>
       </Crumbs>
       <article className={s.article}>.article</article>
