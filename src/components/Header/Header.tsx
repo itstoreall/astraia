@@ -14,7 +14,7 @@ const Header = () => {
   const { theme } = useGlobalContext();
   const [isOpenMenu, setIsOpenMenu] = useState<boolean>(false);
 
-  const { landscape } = useViewport(isOpenMenu, setIsOpenMenu);
+  const { landscape, viewport } = useViewport(isOpenMenu, setIsOpenMenu);
 
   useEffect(() => {
     if (isOpenMenu) {
@@ -28,6 +28,9 @@ const Header = () => {
 
   return (
     <header className={`${s.header} ${theme === 'light' ? s.light : s.dark}`}>
+      <p>{landscape}</p>
+      <p>{viewport}</p>
+      <p>{isOpenMenu}</p>
       <Container parent={'header'}>
         <div className={s.content}>
           <Link href={'/'}>
