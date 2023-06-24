@@ -69,8 +69,8 @@ const Dashboard = () => {
                             <div className={`${s.info} ${s.author}`}>
                               <span className={s.infoTitle}>{'Автор'}</span>
                               <span className={s.infoText}>
-                                {'23423123123123131312344555'}
                                 {/* {article.author} */}
+                                {'21234123412341234123412412341'}
                               </span>
                             </div>
                           </div>
