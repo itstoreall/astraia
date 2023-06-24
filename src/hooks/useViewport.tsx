@@ -18,13 +18,20 @@ const useViewport = (isValue?: boolean, setIsValue?: (b: boolean) => void) => {
         : 'mobile'
       : 'undefined';
 
+  const handleResize = () => {
+    setViewport(getViewportSize());
+    setLandscape(isLandscape() ? 'landscape' : 'portrait');
+    // setInnerWidth(window.innerWidth);
+    // setInnerHeight(window.innerHeight);
+  };
+
   useEffect(() => {
-    const handleResize = () => {
-      setViewport(getViewportSize());
-      setLandscape(isLandscape() ? 'landscape' : 'portrait');
-      // setInnerWidth(window.innerWidth);
-      // setInnerHeight(window.innerHeight);
-    };
+    // const handleResize = () => {
+    //   setViewport(getViewportSize());
+    //   setLandscape(isLandscape() ? 'landscape' : 'portrait');
+    //   // setInnerWidth(window.innerWidth);
+    //   // setInnerHeight(window.innerHeight);
+    // };
 
     handleResize();
 
@@ -35,6 +42,7 @@ const useViewport = (isValue?: boolean, setIsValue?: (b: boolean) => void) => {
 
   useEffect(() => {
     if (setIsValue) isValue && setIsValue(!isValue);
+    // handleResize();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [viewport]);
 
