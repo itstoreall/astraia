@@ -24,8 +24,6 @@ const Header = () => {
     }
   }, [isOpenMenu]);
 
-  console.log('landscape', landscape);
-
   return (
     <header className={`${s.header} ${theme === 'light' ? s.light : s.dark}`}>
       <p>{landscape}</p>
