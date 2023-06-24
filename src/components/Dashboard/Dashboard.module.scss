@@ -38,7 +38,7 @@
           @include flexX(space-between);
           @include padding(5px 10px 5px 5px);
           border: 1px solid $middleGrey;
-          border-radius: 4px;
+          border-radius: 6px;
           @include transition($s04);
           overflow: hidden;
 
