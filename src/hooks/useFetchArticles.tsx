@@ -4,7 +4,7 @@ import GET_ARTICLES from '@/gql/getArticles';
 
 const useFetchArticles = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [articles, setArticles] = useState([]);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -13,17 +13,17 @@ const useFetchArticles = () => {
         cache: new InMemoryCache(),
       });
 
-      const { data, loading } = await client.query({
+      const { data: _data, loading } = await client.query({
         query: GET_ARTICLES,
       });
 
-      if (!data)
+      if (!_data)
         return {
           notFound: true,
         };
 
-      if (data && data.articles) {
-        setArticles(data.articles);
+      if (_data && _data?.articles) {
+        setData(_data.articles);
       }
 
       setIsLoading(false);
@@ -32,7 +32,7 @@ const useFetchArticles = () => {
     fetchData();
   }, []);
 
-  return { isLoading, articles };
+  return { isLoading, data };
 };
 
 export default useFetchArticles;

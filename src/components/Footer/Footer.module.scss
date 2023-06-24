@@ -5,10 +5,10 @@
 .content {
   padding: 30px 0 30px;
 
-  @include maxWidth($tablet - 250) {
-    margin: 0 auto;
-    @include width(155px);
-  }
+  // @include maxWidth($tablet - 250) {
+  //   margin: 0 auto;
+  //   @include width(155px);
+  // }
 
   @include minWidth($tablet) {
     @include flexXY(space-between, center);

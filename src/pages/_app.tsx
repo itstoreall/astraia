@@ -10,14 +10,15 @@ import LoginPage from './admin/login';
 import DashboardPage from './admin/dashboard';
 import ArticlesPage from './articles';
 import ArticlePage from './articles/[id]';
-import EditPage from './admin/dashboard/edit';
+import EditPage from './admin/dashboard/[id]';
+// import EditPage from './admin/dashboard/edit';
 import DeletePage from './admin/dashboard/delete';
 import AboutPage from './about';
 import ContactsPage from './contacts';
 import AddPage from './admin/dashboard/add';
 import NotFoundPage from './404';
 import { GlobalContext } from '@/context/GlobalContext';
-import Spinner from '@/components/Spinner/Spinner';
+// import Spinner from '@/components/Spinner/Spinner';
 
 const App = ({ Component, pageProps }: AppProps) => {
   const [access, setAccess] = useState<IAccess | null>(null);
@@ -78,8 +79,11 @@ const App = ({ Component, pageProps }: AppProps) => {
       case '/admin/dashboard/add':
         return <AddPage />;
 
-      case '/admin/dashboard/edit':
+      case '/admin/dashboard/[id]':
         return <EditPage />;
+
+      // case '/admin/dashboard/edit':
+      //   return <EditPage />;
 
       case '/admin/dashboard/delete':
         return <DeletePage />;

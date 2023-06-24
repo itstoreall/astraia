@@ -8,10 +8,6 @@
     margin: 0;
     list-style: none;
 
-    @include minWidth($tablet - 249) {
-      @include flexX(center);
-    }
-
     .item {
       &.header {
         &:not(:last-child) {
@@ -22,12 +18,14 @@
       }
 
       .button {
-        @include padding(20px 25px);
         font-weight: 500;
+        white-space: nowrap;
         @include transition($s04);
         cursor: pointer;
 
         &.header {
+          @include padding(20px 25px);
+
           @include themeHandler() {
             &:hover {
               background-color: var(--background-hover);
@@ -36,9 +34,11 @@
         }
 
         &.footer {
-          @include maxWidth($tablet - 250) {
-            @include fontSize(20px);
-            @include padding(5px 25px);
+          @include padding(15px 12px);
+          @include margin(0 3px);
+
+          @include minWidth($tablet) {
+            @include padding(20px 25px);
           }
 
           @include themeHandler() {
@@ -55,6 +55,12 @@
 
   &.header {
     margin-right: 25px;
+
+    .list {
+      @include minWidth($tablet - 249) {
+        @include flexX(center);
+      }
+    }
 
     &.mobile {
       margin-right: 0;
@@ -93,22 +99,25 @@
   // ----------------- Nav footer
 
   &.footer {
-    margin-bottom: 20px;
-
-    @include maxWidth($tablet - 250) {
-      margin-bottom: 80px;
-
-      .list {
-        .item {
-          &:not(:last-child) {
-            margin-bottom: 20px;
-          }
-        }
-      }
+    @include maxWidth($tablet - 1) {
+      margin-bottom: 20px;
     }
 
-    @include minWidth($tablet) {
-      margin-bottom: 0;
+    .list {
+      @include maxWidth($mobile - 41) {
+        margin: 0 auto;
+        width: 135px;
+      }
+
+      @include minWidth($mobile - 40) {
+        @include flexX(center);
+      }
+
+      .item {
+        @include maxWidth($tablet) {
+          @include fontSize(16px);
+        }
+      }
     }
   }
 }
