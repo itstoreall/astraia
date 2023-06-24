@@ -35,7 +35,7 @@ const DashboardPage = () => {
       </Crumbs>
 
       <article className={s.article}>
-        {isAdmin ? <Dashboard /> : 'Authentication (dashboard)...'}
+        {isAdmin ? <Dashboard /> : 'Аутентификация (дашборд)...'}
       </article>
     </section>
   );

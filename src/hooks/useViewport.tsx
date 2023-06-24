@@ -42,37 +42,3 @@ const useViewport = (isValue?: boolean, setIsValue?: (b: boolean) => void) => {
 };
 
 export default useViewport;
-
-/*
-import { TABLET, DESKTOP } from '@/styles/vars';
-import { useEffect, useState } from 'react';
-
-const getViewportSize = () =>
-  typeof window !== 'undefined'
-    ? window.innerWidth > DESKTOP - 1
-      ? 'desktop'
-      : window.innerWidth > TABLET - 1
-      ? 'tablet'
-      : 'mobile'
-    : 'undefined';
-
-const useViewport = () => {
-  const [viewport, setViewport] = useState<string>('');
-
-  useEffect(() => {
-    const handleResize = () => {
-      setViewport(getViewportSize());
-    };
-
-    handleResize();
-
-    window.addEventListener('resize', handleResize);
-
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  return { viewport };
-};
-
-export default useViewport;
-*/

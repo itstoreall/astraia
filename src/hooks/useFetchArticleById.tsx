@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { ApolloClient, InMemoryCache } from '@apollo/client';
-import GET_ARTICLES from '@/gql/getArticles';
+import GET_ARTICLE_BY_ID from '@/gql/getArticleById';
 
-const useFetchArticles = () => {
+const useFetchArticleById = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState([]);
 
@@ -14,7 +14,7 @@ const useFetchArticles = () => {
       });
 
       const { data: _data } = await client.query({
-        query: GET_ARTICLES,
+        query: GET_ARTICLE_BY_ID,
       });
 
       if (!_data)
@@ -35,4 +35,4 @@ const useFetchArticles = () => {
   return { isLoading, data };
 };
 
-export default useFetchArticles;
+export default useFetchArticleById;

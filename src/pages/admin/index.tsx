@@ -53,7 +53,7 @@ const AdminPage = () => {
             <button onClick={logOut}>Log out</button>
           </>
         ) : (
-          'Authentication (admin)...'
+          'Аутентификация (админ)...'
         )}
       </article>
     </section>

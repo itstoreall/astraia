@@ -2,27 +2,30 @@ import router from 'next/router';
 import Link from 'next/link';
 import Image from 'next/image';
 import { IArticle } from '@/interfaces';
-// import { useGlobalContext } from '@/context/GlobalContext';
+import { useGlobalContext } from '@/context/GlobalContext';
 import useFetchArticles from '@/hooks/useFetchArticles';
 import s from './Dashboard.module.scss';
 import Button from '../Button';
 import useViewport from '@/hooks/useViewport';
 import useProportion from '@/hooks/useProportion';
+import { useEffect } from 'react';
 // import useIsAdmin from '@/hooks/useIsAdmin';
 
 const Dashboard = () => {
-  // const { articles, setArticles } = useGlobalContext();
+  const { setArticles, theme } = useGlobalContext();
   const { isLoading, data } = useFetchArticles();
   const { viewport } = useViewport();
   const { width, height } = useProportion(
     2,
     1,
-    viewport === 'mobile' ? 200 : viewport === 'tablet' ? 300 : 400
+    viewport === 'mobile' ? 160 : viewport === 'tablet' ? 160 : 160
     // viewport === 'mobile' ? 390 : viewport === 'tablet' ? 300 : 400
   );
 
-  console.log('isLoading', isLoading);
-  console.log('data', data);
+  useEffect(() => {
+    setArticles(data);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data]);
 
   return (
     <div className={s.dashboardWrap}>
@@ -47,7 +50,7 @@ const Dashboard = () => {
                       className={s.cardLink}
                       href={`/admin/dashboard/${article.id}`}
                     >
-                      <div className={s.card}>
+                      <div className={`${s.card} ${s[theme]}`}>
                         <div className={s.thumb}>
                           <Image
                             src={article.image}
@@ -66,7 +69,8 @@ const Dashboard = () => {
                             <div className={`${s.info} ${s.author}`}>
                               <span className={s.infoTitle}>{'Автор'}</span>
                               <span className={s.infoText}>
-                                {article.author}
+                                {'23423123123123131312344555'}
+                                {/* {article.author} */}
                               </span>
                             </div>
                           </div>

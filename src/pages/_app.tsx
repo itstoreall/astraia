@@ -82,9 +82,6 @@ const App = ({ Component, pageProps }: AppProps) => {
       case '/admin/dashboard/[id]':
         return <EditPage />;
 
-      // case '/admin/dashboard/edit':
-      //   return <EditPage />;
-
       case '/admin/dashboard/delete':
         return <DeletePage />;
 

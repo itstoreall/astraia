@@ -21,22 +21,26 @@
   // }
 
   &.main {
-    // padding: 0 30px;
-    // background-color: skyblue;
+    // padding: 0 10px;
+    // // background-color: skyblue;
+    // @include padding(0 10px);
+    @include padding(0 15px);
 
     @include minWidth($mobile) {
       // background-color: palevioletred;
-      max-width: $mobile;
+      max-width: $mobile - 30;
     }
 
     @include minWidth($tablet) {
+      @include padding(0 20px);
       // background-color: teal;
-      max-width: $tablet;
+      max-width: $tablet - 40;
     }
 
     @include minWidth($desktop) {
+      @include padding(0 30px);
       // background-color: tomato;
-      max-width: $desktop;
+      max-width: $desktop - 60;
     }
   }
 }

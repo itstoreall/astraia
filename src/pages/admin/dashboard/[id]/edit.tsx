@@ -1,0 +1,33 @@
+import Crumbs from '@/components/Crumbs';
+import s from '../../../page.module.scss';
+import { useGlobalContext } from '@/context/GlobalContext';
+// import router from 'next/router';
+import { useRouter } from 'next/router';
+import { IArticle } from '@/interfaces';
+import { useEffect, useState } from 'react';
+
+const Edit = () => {
+  const [article, setArticle] = useState<IArticle | null>(null);
+  const { theme, articles } = useGlobalContext();
+
+  const router = useRouter();
+
+  useEffect(() => {
+    const _article = articles.find(article => router.query.id === article.id);
+    _article ? setArticle(_article) : router.push('/admin/dashboard');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return (
+    <section className={`${s.page} ${s[theme]}`}>
+      <Crumbs routes={['dashboard', 'edit']}>
+        <h2 className={s.title}>Редактирование</h2>
+      </Crumbs>
+      <article className={s.article}>
+        {article ? <p>{article.id}</p> : <p>No</p>}
+      </article>
+    </section>
+  );
+};
+
+export default Edit;
