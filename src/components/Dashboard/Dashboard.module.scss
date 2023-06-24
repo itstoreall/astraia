@@ -42,12 +42,13 @@
 
       .cardLink {
         .card {
-          @include flex();
-          @include padding(5px);
+          @include flexX(space-between);
+          @include padding(5px 10px 5px 5px);
           // background-color: palevioletred;
           border: 1px solid $middleGrey;
           border-radius: 4px;
           @include transition($s04);
+          overflow: hidden;
 
           &:hover {
             @include themeHandler() {
@@ -58,41 +59,44 @@
           .thumb {
             @include flexX(center);
             // margin-right: 10px;
-            max-width: 85px;
-            // @include width(110px);
+            // max-width: 85px;
+            @include width(85px);
             // @include height(80px);
             overflow: hidden;
             border-radius: 3px;
 
             @include minWidth($desktop) {
-              max-width: 120px;
+              // max-width: 120px;
+              @include width(140px);
             }
           }
 
           .metaWrap {
-            // @include width(200px);
-            @include paddingL(10px);
+            @include width(245px);
+            // @include paddingL(10px);
 
             // background-color: pink;
 
-            // @include minWidth($tablet) {
-            //   @include width(235px);
-            // }
+            @include minWidth($tablet) {
+              // @include width(230px);
+            }
 
-            // @include minWidth($desktop) {
-            //   @include width(265px);
-            // }
+            @include minWidth($desktop) {
+              @include width(270px);
+            }
 
             .metaTitle {
+              display: block;
               @include padding(5px 0 0 0);
               @include marginB(10px);
+              // @include width(265px);
               @include fontSize(16px);
               font-weight: 600;
-              display: -webkit-box;
-              -webkit-line-clamp: 1;
-              -webkit-box-orient: vertical;
-              // white-space: nowrap;
+              // display: -webkit-box;
+              // -webkit-line-clamp: 1;
+              // -webkit-box-orient: vertical;
               overflow: hidden;
+              white-space: nowrap;
               text-overflow: ellipsis;
               -webkit-text-overflow: ellipsis;
               -ms-text-overflow: ellipsis;
@@ -100,47 +104,60 @@
               // @include themeHandler() {
               //   color: var(--text);
               // }
+              // color: red;
+
+              @include minWidth($desktop) {
+                // @include width(240px);
+              }
             }
 
             .infoWrap {
-              @include flex();
+              @include flexX(space-between);
 
               .info {
                 @include flexDirection(column);
                 @include fontSize(13px);
                 // color: $middleGrey;
+                overflow: hidden;
 
                 &:nth-child(1) {
-                  @include paddingR(12px);
-                  border-right: 1px solid $middleGrey;
+                  // @include paddingR(12px);
+                  // @include width(85px);
+                  background-color: teal;
 
                   @include minWidth($desktop) {
-                    @include paddingR(15px);
+                    // @include paddingR(15px);
                   }
                 }
 
                 &:nth-child(2) {
-                  @include paddingL(12px);
+                  @include paddingL(10px);
+                  @include width(145px);
+
+                  // background-color: skyblue;
+                  border-left: 1px solid $middleGrey;
 
                   @include minWidth($desktop) {
-                    @include paddingL(15px);
+                    // @include paddingL(15px);
+                    @include width(170px);
                   }
 
                   .infoText {
                     overflow: hidden;
+                    white-space: nowrap;
                     text-overflow: ellipsis;
                     -webkit-text-overflow: ellipsis;
                     -ms-text-overflow: ellipsis;
 
-                    @include width(145px);
+                    // @include width(145px);
 
                     // @include minWidth($tablet) {
                     //   // @include width(135px);
                     // }
 
-                    @include minWidth($desktop) {
-                      @include width(185px);
-                    }
+                    // @include minWidth($desktop) {
+                    //   @include width(185px);
+                    // }
                   }
                 }
 
