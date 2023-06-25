@@ -1,10 +1,11 @@
 import { FormEvent, useCallback, useEffect, useState } from 'react';
-import router from 'next/router';
-import Image from 'next/image';
+import { useMutation, useQuery } from '@apollo/client';
+// import router from 'next/router';
+// import Image from 'next/image';
 import { IArticleElement } from '@/interfaces';
 import { useGlobalContext } from '@/context/GlobalContext';
 import { AddArticleContext } from '@/context/AddArticleContext';
-import useVerification from '@/hooks/useVerification';
+// import useVerification from '@/hooks/useVerification';
 import s from '../../page.module.scss';
 import Crumbs from '@/components/Crumbs';
 // import GET_ARTICLE_BY_ID from '@/gql/getArticleById';
@@ -13,11 +14,11 @@ import Crumbs from '@/components/Crumbs';
 import AddForm from '@/components/Add/AddForm';
 import ArticleEditor from '@/components/Add/ArticleEditor';
 import useIsAdmin from '@/hooks/useIsAdmin';
-import { useMutation, useQuery } from '@apollo/client';
 import ADD_ARTICLE from '@/gql/addArticle';
 import GET_ARTICLES from '@/gql/getArticles';
+import ArticleDetails from '@/components/ArticleDetails';
 import Button from '@/components/Button';
-import useProportion from '@/hooks/useProportion';
+// import useProportion from '@/hooks/useProportion';
 
 const AddPage = () => {
   useIsAdmin('/admin');
@@ -25,7 +26,7 @@ const AddPage = () => {
   const [imageData, setImageData] = useState<string>('');
   const [title, setTitle] = useState<string>('');
   const [description, setDescription] = useState<string>('');
-  const [author, setAuthor] = useState<string>('');
+  const [author, setAuthor] = useState<string>('Mila');
   // const [tags, setTags] = useState<string[]>(['magic']);
 
   // ---
@@ -36,7 +37,7 @@ const AddPage = () => {
   const [articleElements, setArticleElements] = useState<IArticleElement[]>([]);
 
   const { theme, access } = useGlobalContext();
-  const { width, height } = useProportion(900, 450, 300);
+  // const { width, height } = useProportion(900, 450, 300);
   const [addArticle, { loading, error }] = useMutation(ADD_ARTICLE);
   const { refetch: getArticles } = useQuery(GET_ARTICLES);
 
@@ -69,7 +70,7 @@ const AddPage = () => {
       image: imageData,
       title: title,
       description: description,
-      author: author,
+      author: 'Mila',
       text: text,
       tags: ['magic'],
     };
@@ -93,32 +94,32 @@ const AddPage = () => {
     }
   };
 
-  const convertToArticle = () => {
-    return (
-      <>
-        {imageData && (
-          <div className={s.thumb}>
-            <Image
-              src={imageData}
-              alt='Uploaded'
-              width={width}
-              height={height}
-            />
-          </div>
-        )}
-        <p>{title}</p>
-        <p>{description}</p>
-        <p>{author}</p>
-        {articleElements.map((paragraph, index) =>
-          paragraph.name === 'title' ? (
-            <h2 key={index}>{paragraph.text}</h2>
-          ) : (
-            <p key={index}>{paragraph.text}</p>
-          )
-        )}
-      </>
-    );
-  };
+  // const ArticleDetails = () => {
+  //   return (
+  //     <>
+  //       {imageData && (
+  //         <div className={s.thumb}>
+  //           <Image
+  //             src={imageData}
+  //             alt='Uploaded'
+  //             width={width}
+  //             height={height}
+  //           />
+  //         </div>
+  //       )}
+  //       <p>{title}</p>
+  //       <p>{description}</p>
+  //       <p>{author}</p>
+  //       {articleElements.map((paragraph, index) =>
+  //         paragraph.name === 'title' ? (
+  //           <h2 key={index}>{paragraph.text}</h2>
+  //         ) : (
+  //           <p key={index}>{paragraph.text}</p>
+  //         )
+  //       )}
+  //     </>
+  //   );
+  // };
 
   return (
     <>
@@ -167,8 +168,14 @@ const AddPage = () => {
                 </div>
               ) : (
                 <div>
-                  <h2>Предпросмотр статьи</h2>
-                  {convertToArticle()}
+                  <span>Предпросмотр статьи</span>
+                  <ArticleDetails
+                    imageData={imageData}
+                    title={title}
+                    description={description}
+                    author={author}
+                    articleElements={articleElements}
+                  />
                 </div>
               )}
 

@@ -88,18 +88,19 @@
                 overflow: hidden;
 
                 &:nth-child(1) {
-                  @include width(100px);
+                  min-width: 70px;
                   @include paddingR(20px);
                   // background-color: teal;
                 }
 
                 &:nth-child(2) {
                   @include paddingL(10px);
-                  // @include width(145px);
+                  min-width: 137px;
                   border-left: 1px solid $middleGrey;
+                  // background-color: pink;
 
                   @include minWidth($desktop) {
-                    // @include width(170px);
+                    @include width(150px);
                   }
 
                   .infoText {

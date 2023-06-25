@@ -23,8 +23,8 @@ const AddForm = () => {
     setTitle,
     description,
     setDescription,
-    author,
-    setAuthor,
+    // author,
+    // setAuthor,
     // articleElements,
     // setArticleElements,
     handleSubmit,
@@ -69,7 +69,7 @@ const AddForm = () => {
     name === 'title' && setTitle(value);
     name === 'description' && setDescription(value);
     // name === 'text' && setText(value);
-    name === 'author' && setAuthor(value);
+    // name === 'author' && setAuthor(value);
 
     console.log(`input ${name} value:`, value);
   };
@@ -148,13 +148,6 @@ const AddForm = () => {
               onChange={e => handleInput(e)}
               name='description'
               placeholder='Description'
-            />
-            <input
-              type='text'
-              value={author}
-              onChange={e => handleInput(e)}
-              name='author'
-              placeholder='Author'
             />
           </form>
         </>
