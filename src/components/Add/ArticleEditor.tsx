@@ -20,8 +20,8 @@ const ArticleEditor = () => {
     setTextareaValue,
     editIndex,
     setEditIndex,
-    isDisplayArticle,
-    setIsDisplayArticle,
+    // isDisplayArticle,
+    // setIsDisplayArticle,
     articleElements,
     setArticleElements,
   } = useAddArticleContext();
@@ -126,70 +126,66 @@ const ArticleEditor = () => {
 
   return (
     <div>
-      {!isDisplayArticle ? (
+      {/* {!isDisplayArticle ? ( */}
+      <div>
+        <h2>Редактор статьи</h2>
+        {element && (
+          <>
+            <textarea
+              style={{
+                width: setTextareaSize().width,
+                height: setTextareaSize().height,
+              }}
+              value={textareaValue}
+              onChange={changeTextareaValue}
+              placeholder={element === 'title' ? 'Подзаголовок' : 'Параграф...'}
+              // rows={getTextAreaRows(textareaValue)}
+            />
+
+            <Button
+              fn={() => addElement(element === 'title' ? 'title' : 'paragraph')}
+            >
+              {editIndex !== null ? 'Сохронить' : 'Добавить'}
+            </Button>
+            <Button fn={() => cleanStates()}>{'Отменить'}</Button>
+          </>
+        )}
+
+        {!element && (
+          <>
+            <Button fn={() => setElement('title')}>
+              Добавить подзаголовок
+            </Button>
+            <Button fn={() => setElement('text')}>Добавить параграф</Button>
+          </>
+        )}
+
         <div>
-          <h2>Редактор статьи</h2>
-          {element && (
-            <>
-              <textarea
-                style={{
-                  width: setTextareaSize().width,
-                  height: setTextareaSize().height,
-                }}
-                value={textareaValue}
-                onChange={changeTextareaValue}
-                placeholder={
-                  element === 'title' ? 'Подзаголовок' : 'Параграф...'
-                }
-                // rows={getTextAreaRows(textareaValue)}
-              />
-
-              <Button
-                fn={() =>
-                  addElement(element === 'title' ? 'title' : 'paragraph')
-                }
-              >
-                {editIndex !== null ? 'Сохронить' : 'Добавить'}
+          {articleElements.map((element, index) => (
+            <div key={index}>
+              {element.name === 'title' ? (
+                <h2>{element.text}</h2>
+              ) : (
+                <p>{element.text}</p>
+              )}
+              <Button fn={() => editElement(index, element.name)}>
+                Редактировать
               </Button>
-              <Button fn={() => cleanStates()}>{'Отменить'}</Button>
-            </>
-          )}
-
-          {!element && (
-            <>
-              <Button fn={() => setElement('title')}>
-                Добавить подзаголовок
-              </Button>
-              <Button fn={() => setElement('text')}>Добавить параграф</Button>
-            </>
-          )}
-
-          <div>
-            {articleElements.map((element, index) => (
-              <div key={index}>
-                {element.name === 'title' ? (
-                  <h2>{element.text}</h2>
-                ) : (
-                  <p>{element.text}</p>
-                )}
-                <Button fn={() => editElement(index, element.name)}>
-                  Редактировать
-                </Button>
-                <Button fn={() => deleteElement(index)}>Удалить</Button>
-                {index !== 0 && <Button fn={() => moveUp(index)}>Выше</Button>}
-                {index !== articleElements.length - 1 && (
-                  <Button fn={() => moveDown(index)}>Ниже</Button>
-                )}
-              </div>
-            ))}
-          </div>
+              <Button fn={() => deleteElement(index)}>Удалить</Button>
+              {index !== 0 && <Button fn={() => moveUp(index)}>Выше</Button>}
+              {index !== articleElements.length - 1 && (
+                <Button fn={() => moveDown(index)}>Ниже</Button>
+              )}
+            </div>
+          ))}
         </div>
-      ) : (
+      </div>
+      {/* ) : (
         <div>
           <h2>Предпросмотр статьи</h2>
           {convertToArticle()}
         </div>
-      )}
+      )} */}
 
       {/* <Button fn={() => setIsDisplayArticle(!isDisplayArticle)}>
         {isDisplayArticle ? 'Редактор' : 'Предпросмотр'}

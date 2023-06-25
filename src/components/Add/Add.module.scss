@@ -14,31 +14,33 @@
     }
 
     .headerFields {
-      // @include flexDirectionY(column, flex-start);
-      display: inline-flex;
+      @include display(inline-flex);
       flex-direction: column;
       align-items: flex-start;
       @include padding(20px 0);
-      // background-color: teal;
       width: 100%;
+
+      // background-color: teal;
 
       .field {
         @include padding(10px);
-        width: 100%;
         margin-bottom: 20px;
+        width: 100%;
         max-width: calc(100% - 20px);
         font-family: Arial, sans-serif;
         @include fontSize(16px);
+        color: var(--text);
         background-color: transparent;
         border: none;
-        // background-color: pink;
-        color: var(--text);
         @include transition($s04);
         outline: none;
+
+        // background-color: pink;
 
         &.title {
           width: 100%;
           border-bottom: 1px solid $middleGrey;
+          border-radius: 0;
         }
 
         &.description {

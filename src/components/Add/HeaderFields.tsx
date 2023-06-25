@@ -1,7 +1,11 @@
+import { useEffect } from 'react';
+import { ARTICLE_HEADER_FIELDS } from '@/constants';
 import { useAddArticleContext } from '@/context/AddArticleContext';
 import { useGlobalContext } from '@/context/GlobalContext';
 import s from './Add.module.scss';
 // import useViewport from '@/hooks/useViewport';
+
+const fls = ARTICLE_HEADER_FIELDS;
 
 const HeaderFields = () => {
   const {
@@ -16,6 +20,21 @@ const HeaderFields = () => {
   // const { viewport}=useViewport()
 
   // const { width, height } = useProportion(900, 450, 300);
+
+  useEffect(() => {
+    const lsFields = JSON.parse(localStorage.getItem(fls) || 'null');
+    if (lsFields) {
+      setTitle(lsFields.title);
+      setDescription(lsFields.description);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (title?.length || description?.length) {
+      localStorage.setItem(fls, JSON.stringify({ title, description }));
+    } else localStorage.removeItem(fls);
+  }, [title, description]);
 
   const handleInput = (event: any) => {
     isArticle && setIsArticle(false);
