@@ -1,4 +1,12 @@
-.title {
-  font-size: 48px;
-  color: teal;
+@import '../../styles/mixins';
+@import '../../styles/vars.scss';
+
+.addArticleWrap {
+  @include padding(20px);
+  border: 1px solid $middleGrey;
+  border-radius: 6px;
+
+  .addArticle {
+    // background-color: pink;
+  }
 }

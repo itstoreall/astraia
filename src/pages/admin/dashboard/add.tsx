@@ -6,12 +6,14 @@ import { IArticleElement } from '@/interfaces';
 import { useGlobalContext } from '@/context/GlobalContext';
 import { AddArticleContext } from '@/context/AddArticleContext';
 // import useVerification from '@/hooks/useVerification';
-import s from '../../page.module.scss';
+import styles from '../../page.module.scss';
+import s from '../admin.module.scss';
 import Crumbs from '@/components/Crumbs';
 // import GET_ARTICLE_BY_ID from '@/gql/getArticleById';
 // import GET_ARTICLES from '@/gql/getArticles';
 // import { ApolloClient, InMemoryCache } from '@apollo/client';
-import AddForm from '@/components/Add/AddForm';
+import ImageUploader from '@/components/Add/ImageUploader';
+import HeaderFields from '@/components/Add/HeaderFields';
 import ArticleEditor from '@/components/Add/ArticleEditor';
 import useIsAdmin from '@/hooks/useIsAdmin';
 import ADD_ARTICLE from '@/gql/addArticle';
@@ -94,33 +96,6 @@ const AddPage = () => {
     }
   };
 
-  // const ArticleDetails = () => {
-  //   return (
-  //     <>
-  //       {imageData && (
-  //         <div className={s.thumb}>
-  //           <Image
-  //             src={imageData}
-  //             alt='Uploaded'
-  //             width={width}
-  //             height={height}
-  //           />
-  //         </div>
-  //       )}
-  //       <p>{title}</p>
-  //       <p>{description}</p>
-  //       <p>{author}</p>
-  //       {articleElements.map((paragraph, index) =>
-  //         paragraph.name === 'title' ? (
-  //           <h2 key={index}>{paragraph.text}</h2>
-  //         ) : (
-  //           <p key={index}>{paragraph.text}</p>
-  //         )
-  //       )}
-  //     </>
-  //   );
-  // };
-
   return (
     <>
       {access ? (
@@ -147,41 +122,46 @@ const AddPage = () => {
             handleSubmit,
           }}
         >
-          <section className={`${s.page} ${s[theme]}`}>
+          <section className={`${styles.page} ${styles[theme]}`}>
             <Crumbs routes={['dashboard', 'add']}>
-              <h2 className={s.title}>{'Новая статья'}</h2>
+              <h2 className={styles.title}>{'Новая статья'}</h2>
             </Crumbs>
 
-            <article className={s.article}>
-              {!isDisplayArticle ? (
-                <div className={s.addFormWrap}>
-                  <AddForm />
-                  <ArticleEditor />
-                  <Button
-                    type='button'
-                    fn={() => handleSubmit()}
-                    disabled={loading}
-                  >
-                    Submit
-                  </Button>
-                  {error && <p>Error: {error.message}</p>}
-                </div>
-              ) : (
-                <div>
-                  <span>Предпросмотр статьи</span>
-                  <ArticleDetails
-                    imageData={imageData}
-                    title={title}
-                    description={description}
-                    author={author}
-                    articleElements={articleElements}
-                  />
-                </div>
-              )}
+            <article className={styles.article}>
+              <div className={s.addArticleWrap}>
+                {!isDisplayArticle ? (
+                  <div className={s.addArticle}>
+                    <HeaderFields />
+                    <ImageUploader />
+                    <ArticleEditor />
 
-              <Button fn={() => setIsDisplayArticle(!isDisplayArticle)}>
-                {isDisplayArticle ? 'Редактор' : 'Предпросмотр'}
-              </Button>
+                    <Button
+                      type='button'
+                      fn={() => handleSubmit()}
+                      disabled={loading}
+                    >
+                      Сохранить статью
+                    </Button>
+
+                    {error && <p>Error: {error.message}</p>}
+                  </div>
+                ) : (
+                  <div>
+                    <span>Предпросмотр статьи</span>
+                    <ArticleDetails
+                      imageData={imageData}
+                      title={title}
+                      description={description}
+                      author={author}
+                      articleElements={articleElements}
+                    />
+                  </div>
+                )}
+
+                <Button fn={() => setIsDisplayArticle(!isDisplayArticle)}>
+                  {isDisplayArticle ? 'Редактор' : 'Предпросмотр'}
+                </Button>
+              </div>
             </article>
           </section>
         </AddArticleContext.Provider>
