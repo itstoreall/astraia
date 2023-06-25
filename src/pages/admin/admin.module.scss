@@ -2,9 +2,13 @@
 @import '../../styles/vars.scss';
 
 .addArticleWrap {
-  @include padding(20px);
+  @include padding(15px);
   border: 1px solid $middleGrey;
   border-radius: 6px;
+
+  @include minWidth($tablet) {
+    @include padding(20px);
+  }
 
   .addArticle {
     // background-color: pink;

@@ -11,6 +11,7 @@ $contrstDarkHover: #66a5ac;
 $middleGrey: rgba(133, 133, 133, 0.666);
 $middleGreyHover: rgba(133, 133, 133, 0.865);
 $colorWhite: #ffffff;
+$colorGreen: teal;
 
 @mixin theme($theme) {
   @if $theme == dark {
@@ -25,6 +26,7 @@ $colorWhite: #ffffff;
     --button: #{$contrstLight};
     --button-hover: #{$contrstLightHover};
     --middleGrey: #{$middleGrey};
+    --inputFocus: #{$colorGreen};
   }
 
   @if $theme == light {
@@ -39,5 +41,6 @@ $colorWhite: #ffffff;
     --button: #{$contrstDark};
     --button-hover: #{$contrstDarkHover};
     --middleGrey: #{$middleGrey};
+    --inputFocus: #{$colorGreen};
   }
 }

@@ -1,6 +1,7 @@
 import { useAddArticleContext } from '@/context/AddArticleContext';
-import s from './Add.module.scss';
 import { useGlobalContext } from '@/context/GlobalContext';
+import s from './Add.module.scss';
+// import useViewport from '@/hooks/useViewport';
 
 const HeaderFields = () => {
   const {
@@ -12,6 +13,7 @@ const HeaderFields = () => {
     setDescription,
   } = useAddArticleContext();
   const { theme } = useGlobalContext();
+  // const { viewport}=useViewport()
 
   // const { width, height } = useProportion(900, 450, 300);
 
@@ -28,9 +30,11 @@ const HeaderFields = () => {
   return (
     <div className={`${s.headerFieldsWrap} ${s[theme]}`}>
       {isArticle ? (
-        <p>{'Статья успешно создана!'}</p>
+        <p className={`${s.infoText}`}>{'Статья успешно создана!'}</p>
       ) : (
-        <p>{'Заполните все поля и добавьте изображение'}</p>
+        <p className={`${s.infoText}`}>
+          {'Заполните все поля и добавьте изображение'}
+        </p>
       )}
       {!isArticle && (
         <div className={`${s.headerFields}`}>
@@ -40,14 +44,15 @@ const HeaderFields = () => {
             value={title}
             onChange={e => handleInput(e)}
             name='title'
-            placeholder='Title'
+            placeholder='Название статьи'
           />
           <textarea
             className={`${s.field} ${s.description}`}
+            maxLength={525}
             value={description}
             onChange={e => handleInput(e)}
             name='description'
-            placeholder='Description'
+            placeholder='Краткое описание'
           />
         </div>
       )}
