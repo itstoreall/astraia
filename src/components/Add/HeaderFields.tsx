@@ -15,6 +15,8 @@ const HeaderFields = () => {
     setTitle,
     description,
     setDescription,
+    submitError,
+    setSubmitError,
   } = useAddArticleContext();
   const { theme } = useGlobalContext();
   // const { viewport}=useViewport()
@@ -37,6 +39,8 @@ const HeaderFields = () => {
   }, [title, description]);
 
   const handleInput = (event: any) => {
+    submitError && setSubmitError('');
+
     isArticle && setIsArticle(false);
     const { name, value } = event.target;
 
@@ -47,7 +51,7 @@ const HeaderFields = () => {
   };
 
   return (
-    <div className={`${s.headerFieldsWrap} ${s[theme]}`}>
+    <div className={`${s.fieldsWrap} ${s[theme]}`}>
       {isArticle ? (
         <p className={`${s.infoText}`}>{'Статья успешно создана!'}</p>
       ) : (
@@ -56,9 +60,9 @@ const HeaderFields = () => {
         </p>
       )}
       {!isArticle && (
-        <div className={`${s.headerFields}`}>
+        <div className={`${s.fields}`}>
           <input
-            className={`${s.field} ${s.title}`}
+            className={`${s.field} ${s.input}`}
             type='text'
             value={title}
             onChange={e => handleInput(e)}
@@ -66,7 +70,7 @@ const HeaderFields = () => {
             placeholder='Название статьи'
           />
           <textarea
-            className={`${s.field} ${s.description}`}
+            className={`${s.field} ${s.textarea}`}
             maxLength={525}
             value={description}
             onChange={e => handleInput(e)}

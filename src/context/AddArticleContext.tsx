@@ -21,6 +21,8 @@ export const AddArticleContext = createContext<IAddArticleContext>({
   articleElements: [],
   setArticleElements: () => {},
   handleSubmit: () => {},
+  submitError: '',
+  setSubmitError: () => '',
 });
 
 export const useAddArticleContext = () => useContext(AddArticleContext);

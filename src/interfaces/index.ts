@@ -79,4 +79,6 @@ export interface IAddArticleContext {
   articleElements: IArticleElement[];
   setArticleElements: Dispatch<SetStateAction<IArticleElement[]>>;
   handleSubmit: (e: FormEvent<HTMLFormElement>) => void;
+  submitError: string;
+  setSubmitError: (s: string) => void;
 }

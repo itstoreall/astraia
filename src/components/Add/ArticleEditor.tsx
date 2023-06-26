@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
-import { ChangeTextareaValue, MoveElement } from '@/types';
+import { ChangeInputValue, ChangeTextareaValue, MoveElement } from '@/types';
 // import { IArticleElement } from '@/interfaces';
 import { ARTICLE_ELEMENTS } from '@/constants';
+import { useGlobalContext } from '@/context/GlobalContext';
 import useProportion from '@/hooks/useProportion';
+import s from './Add.module.scss';
 import Button from '../Button';
 import { useAddArticleContext } from '@/context/AddArticleContext';
 
@@ -10,9 +12,12 @@ const art = ARTICLE_ELEMENTS;
 
 const ArticleEditor = () => {
   const [element, setElement] = useState<string>('');
+  const [action, setAction] = useState<string | null>(null);
   // const [textareaValue, setTextareaValue] = useState('');
   // const [editIndex, setEditIndex] = useState<number | null>(null);
   // const [isDisplayArticle, setIsDisplayArticle] = useState<boolean>(false);
+
+  const { theme } = useGlobalContext();
 
   const { width } = useProportion(900, 1, 900);
   const {
@@ -24,6 +29,8 @@ const ArticleEditor = () => {
     // setIsDisplayArticle,
     articleElements,
     setArticleElements,
+    submitError,
+    setSubmitError,
   } = useAddArticleContext();
 
   useEffect(() => {
@@ -39,15 +46,25 @@ const ArticleEditor = () => {
   }, [articleElements]);
 
   const cleanStates = () => {
+    setAction(null);
     setEditIndex(null);
     setElement('');
     setTextareaValue('');
+    submitError && setSubmitError('');
   };
 
-  const changeTextareaValue: ChangeTextareaValue = event =>
+  const changeInputValue: ChangeInputValue = event => {
     setTextareaValue(event.target.value);
+    submitError && setSubmitError('');
+  };
+
+  const changeTextareaValue: ChangeTextareaValue = event => {
+    setTextareaValue(event.target.value);
+    submitError && setSubmitError('');
+  };
 
   const addElement = (name: string) => {
+    setAction('add');
     if (textareaValue.trim() !== '') {
       if (editIndex !== null) {
         setArticleElements(prevElements => {
@@ -69,10 +86,17 @@ const ArticleEditor = () => {
   };
 
   const editElement = (idx: number, element: string) => {
+    setAction('edit');
     setElement(element);
     setEditIndex(idx);
     setTextareaValue(articleElements[idx].text);
   };
+
+  // const editElement = (idx: number, element: string) => {
+  //   setElement(element);
+  //   setEditIndex(idx);
+  //   setTextareaValue(articleElements[idx].text);
+  // };
 
   const deleteElement = (index: number) => {
     setArticleElements(prevElements => {
@@ -110,57 +134,171 @@ const ArticleEditor = () => {
     }
   };
 
-  const convertToArticle = () =>
-    articleElements.map((paragraph, index) =>
-      paragraph.name === 'title' ? (
-        <h2 key={index}>{paragraph.text}</h2>
-      ) : (
-        <p key={index}>{paragraph.text}</p>
-      )
-    );
+  // const convertToArticle = () =>
+  //   articleElements.map((paragraph, index) =>
+  //     paragraph.name === 'title' ? (
+  //       <h2 key={index}>{paragraph.text}</h2>
+  //     ) : (
+  //       <p key={index}>{paragraph.text}</p>
+  //     )
+  //   );
 
-  const setTextareaSize = () => {
-    const textareaWidth = width - 120;
-    return { width: textareaWidth, height: 250 };
-  };
+  // const setTextareaSize = () => {
+  //   const textareaWidth = width - 120;
+  //   return { width: textareaWidth, height: 250 };
+  // };
+
+  console.log('');
+  console.log('action', action);
+  console.log('editIndex', editIndex);
+  console.log('element', element);
 
   return (
-    <div>
+    <div className={`${s.fieldsWrap} ${s[theme]}`}>
       {/* {!isDisplayArticle ? ( */}
-      <div>
-        <h2>Редактор статьи</h2>
-        {element && (
+      <div className={`${s.fields}`}>
+        <p className={`${s.infoText}`}>{'Редактор статьи'}</p>
+
+        <div className={`${s.rawContent}`}>
+          {articleElements.map((el, index) => (
+            <div key={index}>
+              {el.name === 'title' ? (
+                <>
+                  {!action ? (
+                    <h2>{el.text}</h2>
+                  ) : (
+                    action === 'edit' &&
+                    editIndex === index &&
+                    element === 'title' && (
+                      <>
+                        <input
+                          className={`${s.field} ${s.input}`}
+                          type='text'
+                          value={textareaValue}
+                          onChange={changeInputValue}
+                          name='title'
+                          placeholder={'Заголовок'}
+                        />
+                        <div className={`${s.buttonWrap}`}>
+                          <Button fn={() => addElement('title')}>
+                            {editIndex !== null ? 'Сохронить' : 'Добавить'}
+                          </Button>
+                          <Button fn={() => cleanStates()}>{'Отменить'}</Button>
+                        </div>
+                      </>
+                    )
+                  )}
+                </>
+              ) : (
+                <>
+                  {!action ? (
+                    <p>{el.text}</p>
+                  ) : (
+                    action === 'edit' &&
+                    editIndex === index &&
+                    element === 'paragraph' && (
+                      <>
+                        <textarea
+                          className={`${s.field} ${s.textarea}`}
+                          value={textareaValue}
+                          onChange={changeTextareaValue}
+                          placeholder={'Параграф...'}
+                          // rows={getTextAreaRows(textareaValue)}
+                        />
+                        <div className={`${s.buttonWrap}`}>
+                          <Button fn={() => addElement('paragraph')}>
+                            {editIndex !== null ? 'Сохронить' : 'Добавить'}
+                          </Button>
+                          <Button fn={() => cleanStates()}>{'Отменить'}</Button>
+                        </div>
+                      </>
+                    )
+                  )}
+                </>
+              )}
+
+              <div className={`${s.buttonWrap}`}>
+                <Button fn={() => editElement(index, el.name)}>
+                  Редактировать
+                </Button>
+
+                <Button fn={() => deleteElement(index)}>Удалить</Button>
+                {index !== 0 && <Button fn={() => moveUp(index)}>Выше</Button>}
+                {index !== articleElements.length - 1 && (
+                  <Button fn={() => moveDown(index)}>Ниже</Button>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {element && action === 'add' && (
           <>
-            <textarea
-              style={{
-                width: setTextareaSize().width,
-                height: setTextareaSize().height,
-              }}
+            {element === 'title' ? (
+              <input
+                className={`${s.field} ${s.input}`}
+                type='text'
+                value={textareaValue}
+                onChange={changeInputValue}
+                name='title'
+                placeholder={'Заголовок'}
+              />
+            ) : (
+              <textarea
+                className={`${s.field} ${s.textarea}`}
+                value={textareaValue}
+                onChange={changeTextareaValue}
+                placeholder={'Параграф...'}
+                // rows={getTextAreaRows(textareaValue)}
+              />
+            )}
+            {/* <textarea
+              className={`${s.field} ${s.textarea}`}
+              // style={{
+              //   width: setTextareaSize().width,
+              //   height: setTextareaSize().height,
+              // }}
               value={textareaValue}
               onChange={changeTextareaValue}
               placeholder={element === 'title' ? 'Подзаголовок' : 'Параграф...'}
               // rows={getTextAreaRows(textareaValue)}
-            />
+            /> */}
 
-            <Button
-              fn={() => addElement(element === 'title' ? 'title' : 'paragraph')}
-            >
-              {editIndex !== null ? 'Сохронить' : 'Добавить'}
-            </Button>
-            <Button fn={() => cleanStates()}>{'Отменить'}</Button>
+            <div className={`${s.buttonWrap}`}>
+              <Button
+                fn={() =>
+                  addElement(element === 'title' ? 'title' : 'paragraph')
+                }
+              >
+                {editIndex !== null ? 'Сохронить' : 'Добавить'}
+              </Button>
+              <Button fn={() => cleanStates()}>{'Отменить'}</Button>
+            </div>
           </>
         )}
 
         {!element && (
-          <>
-            <Button fn={() => setElement('title')}>
+          <div className={`${s.buttonWrap}`}>
+            <Button
+              fn={() => {
+                setElement('title');
+                setAction('add');
+              }}
+            >
               Добавить подзаголовок
             </Button>
-            <Button fn={() => setElement('text')}>Добавить параграф</Button>
-          </>
+            <Button
+              fn={() => {
+                setElement('text');
+                setAction('add');
+              }}
+            >
+              Добавить параграф
+            </Button>
+          </div>
         )}
 
-        <div>
+        {/* <div>
           {articleElements.map((element, index) => (
             <div key={index}>
               {element.name === 'title' ? (
@@ -178,7 +316,7 @@ const ArticleEditor = () => {
               )}
             </div>
           ))}
-        </div>
+        </div> */}
       </div>
       {/* ) : (
         <div>

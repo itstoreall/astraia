@@ -30,6 +30,7 @@ const AddPage = () => {
   const [description, setDescription] = useState<string>('');
   const [author, setAuthor] = useState<string>('Mila');
   // const [tags, setTags] = useState<string[]>(['magic']);
+  const [submitError, setSubmitError] = useState<string>('');
 
   // ---
 
@@ -66,35 +67,53 @@ const AddPage = () => {
   const handleSubmit = async () => {
     // event.preventDefault();
 
-    const text = JSON.stringify({ articleElements });
+    // const text = JSON.stringify({ articleElements });
 
     const articleInput = {
       image: imageData,
       title: title,
       description: description,
       author: 'Mila',
-      text: text,
+      text: articleElements,
+      // text: text,
       tags: ['magic'],
     };
 
     // console.log('articleInput --->', articleInput);
 
-    try {
-      const { data } = await addArticle({ variables: { input: articleInput } });
+    let isSubmitError: boolean = false;
 
-      const { title } = data.addArticle;
+    console.log(
+      'articleInput',
+      Object.values(articleInput).find((el, idx) => {
+        console.log('el', idx, el, !el.length);
+        if (!el.length) isSubmitError = true;
+      })
+    );
 
-      // console.log('addArticle:', title);
+    if (isSubmitError)
+      return setSubmitError('Проверьте правильность заполнения');
 
-      if (title) {
-        setIsArticle(true);
-        clearStates();
-        updateArticles();
-      }
-    } catch (e) {
-      console.error(e);
-    }
+    console.log('isSubmitError =', isSubmitError);
+
+    // try {
+    //   const { data } = await addArticle({ variables: { input: articleInput } });
+
+    //   const { title } = data.addArticle;
+
+    //   // console.log('addArticle:', title);
+
+    //   if (title) {
+    //     setIsArticle(true);
+    //     clearStates();
+    //     updateArticles();
+    //   }
+    // } catch (e) {
+    //   console.error(e);
+    // }
   };
+
+  console.log('submitError add', submitError);
 
   return (
     <>
@@ -120,6 +139,8 @@ const AddPage = () => {
             articleElements,
             setArticleElements,
             handleSubmit,
+            submitError,
+            setSubmitError,
           }}
         >
           <section className={`${styles.page} ${styles[theme]}`}>
@@ -139,10 +160,13 @@ const AddPage = () => {
                       type='button'
                       fn={() => handleSubmit()}
                       disabled={loading}
+                      // style={{ backgroundColor: 'teal' }}
+                      // hover={{ backgroundColor: 'tomato' }}
                     >
                       Сохранить статью
                     </Button>
 
+                    {submitError && <p>{submitError}</p>}
                     {error && <p>Error: {error.message}</p>}
                   </div>
                 ) : (

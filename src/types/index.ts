@@ -18,6 +18,8 @@ export type MoveElement = (
   toIndex: number
 ) => void;
 
+export type ChangeInputValue = (event: ChangeEvent<HTMLInputElement>) => void;
+
 export type ChangeTextareaValue = (
   event: ChangeEvent<HTMLTextAreaElement>
 ) => void;
