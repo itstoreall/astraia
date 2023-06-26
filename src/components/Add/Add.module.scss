@@ -83,12 +83,57 @@
   }
 
   @include themeHandler() {
-    .rawContent {
-      // background-color: pink;
+    .fildList {
+      list-style: none;
+      @include padding(0);
+      @include margin(0);
+      @include marginB(20px);
+      width: 100%;
 
-      .buttonWrap {
-        // background-color: skyblue;
+      .fildItem {
+        position: relative;
+        @include flexXY(space-between, center);
+
+        .elementTitle {
+          width: 90%;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          -webkit-text-overflow: ellipsis;
+          -ms-text-overflow: ellipsis;
+          background-color: skyblue;
+        }
+
+        .elementText {
+          width: 90%;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          -webkit-text-overflow: ellipsis;
+          -ms-text-overflow: ellipsis;
+          background-color: skyblue;
+        }
       }
+    }
+
+    .buttonWrap {
+      &.editMenu {
+        position: absolute;
+        right: 30px;
+        display: flex;
+        flex-direction: column;
+        background-color: green;
+        z-index: 2;
+        cursor: pointer;
+      }
+    }
+
+    .editMenuButton {
+      @include flexXY(flex-end, center);
+      // @include marginB(10px);
+      @include widthHeight(30px, 30px);
+      background-color: red;
+      cursor: pointer;
     }
 
     .fields {

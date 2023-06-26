@@ -7,7 +7,7 @@
   top: 0;
   @include width(100%);
   backdrop-filter: blur(130px);
-  z-index: 2;
+  z-index: 10;
 
   .content {
     @include flexXY(space-between, center);

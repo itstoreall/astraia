@@ -3,23 +3,27 @@ import { ChangeInputValue, ChangeTextareaValue, MoveElement } from '@/types';
 // import { IArticleElement } from '@/interfaces';
 import { ARTICLE_ELEMENTS } from '@/constants';
 import { useGlobalContext } from '@/context/GlobalContext';
+import { useAddArticleContext } from '@/context/AddArticleContext';
 import useProportion from '@/hooks/useProportion';
+import useViewport from '@/hooks/useViewport';
 import s from './Add.module.scss';
 import Button from '../Button';
-import { useAddArticleContext } from '@/context/AddArticleContext';
+import DotsHorizontal from '@/assets/icons/DotsHorizontal';
+import DotsVertical from '@/assets/icons/DotsVertical';
 
 const art = ARTICLE_ELEMENTS;
 
 const ArticleEditor = () => {
   const [element, setElement] = useState<string>('');
   const [action, setAction] = useState<string | null>(null);
+  const [isOpenEditMenu, setIsOpenEditMenu] = useState<boolean>(false);
   // const [textareaValue, setTextareaValue] = useState('');
   // const [editIndex, setEditIndex] = useState<number | null>(null);
   // const [isDisplayArticle, setIsDisplayArticle] = useState<boolean>(false);
 
   const { theme } = useGlobalContext();
-
-  const { width } = useProportion(900, 1, 900);
+  // const { width } = useProportion(900, 1, 900);
+  const { viewport } = useViewport();
   const {
     textareaValue,
     setTextareaValue,
@@ -64,7 +68,9 @@ const ArticleEditor = () => {
   };
 
   const addElement = (name: string) => {
+    setIsOpenEditMenu(false);
     setAction('add');
+
     if (textareaValue.trim() !== '') {
       if (editIndex !== null) {
         setArticleElements(prevElements => {
@@ -86,6 +92,7 @@ const ArticleEditor = () => {
   };
 
   const editElement = (idx: number, element: string) => {
+    setIsOpenEditMenu(false);
     setAction('edit');
     setElement(element);
     setEditIndex(idx);
@@ -99,6 +106,8 @@ const ArticleEditor = () => {
   // };
 
   const deleteElement = (index: number) => {
+    setIsOpenEditMenu(false);
+
     setArticleElements(prevElements => {
       const updatedParagraphs = [...prevElements];
       updatedParagraphs.splice(index, 1);
@@ -115,6 +124,8 @@ const ArticleEditor = () => {
   };
 
   const moveUp = (index: number) => {
+    setIsOpenEditMenu(false);
+
     if (index > 0) {
       setArticleElements(prevElements => {
         const updatedParagraphs = [...prevElements];
@@ -125,6 +136,8 @@ const ArticleEditor = () => {
   };
 
   const moveDown = (index: number) => {
+    setIsOpenEditMenu(false);
+
     if (index < articleElements.length - 1) {
       setArticleElements(prevElements => {
         const updatedParagraphs = [...prevElements];
@@ -152,6 +165,8 @@ const ArticleEditor = () => {
   console.log('action', action);
   console.log('editIndex', editIndex);
   console.log('element', element);
+  console.log('isOpenEditMenu', isOpenEditMenu);
+  // console.log('viewport', viewport);
 
   return (
     <div className={`${s.fieldsWrap} ${s[theme]}`}>
@@ -159,78 +174,98 @@ const ArticleEditor = () => {
       <div className={`${s.fields}`}>
         <p className={`${s.infoText}`}>{'Редактор статьи'}</p>
 
-        <div className={`${s.rawContent}`}>
+        <ul className={`${s.fildList}`}>
           {articleElements.map((el, index) => (
-            <div key={index}>
+            <li key={index} className={s.fildItem}>
               {el.name === 'title' ? (
                 <>
-                  {!action ? (
-                    <h2>{el.text}</h2>
+                  {/* <h2 className={s.elementTitle}>{el.text}</h2> */}
+                  {/* {action !== 'edit' ? (
+                    <h2 className={s.elementTitle}>{el.text}</h2>
+                  ) : ( */}
+                  {action === 'edit' &&
+                  editIndex === index &&
+                  element === 'title' ? (
+                    <>
+                      <input
+                        className={`${s.field} ${s.input}`}
+                        type='text'
+                        value={textareaValue}
+                        onChange={changeInputValue}
+                        name='title'
+                        placeholder={'Заголовок'}
+                      />
+                      <div className={`${s.buttonWrap}`}>
+                        <Button fn={() => addElement('title')}>
+                          {editIndex !== null ? 'Сохронить' : 'Добавить'}
+                        </Button>
+                        <Button fn={() => cleanStates()}>{'Отменить'}</Button>
+                      </div>
+                    </>
                   ) : (
-                    action === 'edit' &&
-                    editIndex === index &&
-                    element === 'title' && (
-                      <>
-                        <input
-                          className={`${s.field} ${s.input}`}
-                          type='text'
-                          value={textareaValue}
-                          onChange={changeInputValue}
-                          name='title'
-                          placeholder={'Заголовок'}
-                        />
-                        <div className={`${s.buttonWrap}`}>
-                          <Button fn={() => addElement('title')}>
-                            {editIndex !== null ? 'Сохронить' : 'Добавить'}
-                          </Button>
-                          <Button fn={() => cleanStates()}>{'Отменить'}</Button>
-                        </div>
-                      </>
-                    )
+                    <h2 className={s.elementTitle}>{el.text}</h2>
                   )}
                 </>
               ) : (
                 <>
-                  {!action ? (
-                    <p>{el.text}</p>
+                  {action === 'edit' &&
+                  editIndex === index &&
+                  element === 'paragraph' ? (
+                    <>
+                      <textarea
+                        className={`${s.field} ${s.textarea}`}
+                        value={textareaValue}
+                        onChange={changeTextareaValue}
+                        placeholder={'Параграф...'}
+                        // rows={getTextAreaRows(textareaValue)}
+                      />
+                      <div className={`${s.buttonWrap}`}>
+                        <Button fn={() => addElement('paragraph')}>
+                          {editIndex !== null ? 'Сохронить' : 'Добавить'}
+                        </Button>
+                        <Button fn={() => cleanStates()}>{'Отменить'}</Button>
+                      </div>
+                    </>
                   ) : (
-                    action === 'edit' &&
-                    editIndex === index &&
-                    element === 'paragraph' && (
-                      <>
-                        <textarea
-                          className={`${s.field} ${s.textarea}`}
-                          value={textareaValue}
-                          onChange={changeTextareaValue}
-                          placeholder={'Параграф...'}
-                          // rows={getTextAreaRows(textareaValue)}
-                        />
-                        <div className={`${s.buttonWrap}`}>
-                          <Button fn={() => addElement('paragraph')}>
-                            {editIndex !== null ? 'Сохронить' : 'Добавить'}
-                          </Button>
-                          <Button fn={() => cleanStates()}>{'Отменить'}</Button>
-                        </div>
-                      </>
-                    )
+                    <p className={s.elementText}>{el.text}</p>
                   )}
                 </>
               )}
 
-              <div className={`${s.buttonWrap}`}>
-                <Button fn={() => editElement(index, el.name)}>
-                  Редактировать
-                </Button>
+              {isOpenEditMenu && index === editIndex && (
+                <div className={`${s.buttonWrap} ${s.editMenu}`}>
+                  <Button fn={() => editElement(index, el.name)}>
+                    Редактировать
+                  </Button>
 
-                <Button fn={() => deleteElement(index)}>Удалить</Button>
-                {index !== 0 && <Button fn={() => moveUp(index)}>Выше</Button>}
-                {index !== articleElements.length - 1 && (
-                  <Button fn={() => moveDown(index)}>Ниже</Button>
+                  <Button fn={() => deleteElement(index)}>Удалить</Button>
+                  {index !== 0 && (
+                    <Button fn={() => moveUp(index)}>Выше</Button>
+                  )}
+                  {index !== articleElements.length - 1 && (
+                    <Button fn={() => moveDown(index)}>Ниже</Button>
+                  )}
+                </div>
+              )}
+
+              <div
+                className={`${s.editMenuButton}`}
+                onClick={() => {
+                  setEditIndex(index);
+                  setIsOpenEditMenu(!isOpenEditMenu);
+                }}
+                // onMouseEnter={() => setIsOpenEditMenu(true)}
+                // onMouseLeave={() => setIsOpenEditMenu(false)}
+              >
+                {viewport === 'mobile' ? (
+                  <DotsVertical fill={'white'} />
+                ) : (
+                  <DotsHorizontal fill={'white'} />
                 )}
               </div>
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
 
         {element && action === 'add' && (
           <>
@@ -252,17 +287,6 @@ const ArticleEditor = () => {
                 // rows={getTextAreaRows(textareaValue)}
               />
             )}
-            {/* <textarea
-              className={`${s.field} ${s.textarea}`}
-              // style={{
-              //   width: setTextareaSize().width,
-              //   height: setTextareaSize().height,
-              // }}
-              value={textareaValue}
-              onChange={changeTextareaValue}
-              placeholder={element === 'title' ? 'Подзаголовок' : 'Параграф...'}
-              // rows={getTextAreaRows(textareaValue)}
-            /> */}
 
             <div className={`${s.buttonWrap}`}>
               <Button
@@ -285,7 +309,7 @@ const ArticleEditor = () => {
                 setAction('add');
               }}
             >
-              Добавить подзаголовок
+              Добавить заголовок
             </Button>
             <Button
               fn={() => {
