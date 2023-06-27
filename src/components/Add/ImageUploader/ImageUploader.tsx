@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import useProportion from '@/hooks/useProportion';
 import { useAddArticleContext } from '@/context/AddArticleContext';
-import s from './Add.module.scss';
-import base64Converter from '../../utils/uploadImageHandler';
+import s from './ImageUploader.module.scss';
+import base64Converter from '../../../utils/uploadImageHandler';
 import { useEffect } from 'react';
 
 const ImageUploader = () => {

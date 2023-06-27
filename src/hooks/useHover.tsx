@@ -19,7 +19,7 @@ const useHover: UseHover = (style, hover) => {
 
   if (!style && !hover)
     return { isHovered, mouseEnter: null, mouseLeave: null, styles: null };
-  console.log('==>', style, hover);
+
   if (style && !hover)
     return { isHovered, mouseEnter: null, mouseLeave: null, styles: style };
 

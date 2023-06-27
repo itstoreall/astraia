@@ -1,0 +1,69 @@
+@import '../../../styles/vars.scss';
+@import '../../../styles/_mixins.scss';
+
+.headerFields {
+  @include marginB(20px);
+
+  .infoText {
+    @include marginB(15px);
+    @include fontSize(16px);
+    font-weight: 600;
+    color: $middleGrey;
+
+    // @include minWidth($tablet) {
+    //   @include fontSize(18px);
+    // }
+  }
+
+  .fields {
+    @include display(inline-flex);
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+
+    .field {
+      @include padding(10px);
+      width: 100%;
+      font-family: Arial, sans-serif;
+      @include fontSize(16px);
+      color: var(--text);
+      background-color: transparent;
+      border: none;
+      @include transition($s04);
+      outline: none;
+
+      &.input {
+        max-width: calc(100% - 20px);
+        margin-bottom: 20px;
+        width: 100%;
+        border-bottom: 1px solid $middleGrey;
+        border-radius: 0;
+      }
+
+      &.textarea {
+        max-width: calc(100% - 22px);
+        height: 300px;
+        border: 1px solid $middleGrey;
+        border-radius: 6px;
+        resize: none;
+
+        @include minWidth($tablet) {
+          height: 150px;
+        }
+
+        @include minWidth($desktop) {
+          height: 120px;
+        }
+      }
+
+      &:focus {
+        border-color: var(--inputFocus);
+
+        &::placeholder {
+          @include transition($s04);
+          color: transparent;
+        }
+      }
+    }
+  }
+}

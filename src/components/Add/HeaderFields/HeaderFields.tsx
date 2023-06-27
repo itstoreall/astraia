@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { ARTICLE_HEADER_FIELDS } from '@/constants';
 import { useAddArticleContext } from '@/context/AddArticleContext';
 import { useGlobalContext } from '@/context/GlobalContext';
-import s from './Add.module.scss';
+import s from './HeaderFields.module.scss';
 // import useViewport from '@/hooks/useViewport';
 
 const fls = ARTICLE_HEADER_FIELDS;
@@ -51,7 +51,7 @@ const HeaderFields = () => {
   };
 
   return (
-    <div className={`${s.fieldsWrap} ${s[theme]}`}>
+    <div className={`${s.headerFields}`}>
       {isArticle ? (
         <p className={`${s.infoText}`}>{'Статья успешно создана!'}</p>
       ) : (
@@ -59,6 +59,7 @@ const HeaderFields = () => {
           {'Заполните все поля и добавьте изображение'}
         </p>
       )}
+
       {!isArticle && (
         <div className={`${s.fields}`}>
           <input

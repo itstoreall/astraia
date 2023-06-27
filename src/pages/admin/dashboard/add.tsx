@@ -12,14 +12,15 @@ import Crumbs from '@/components/Crumbs';
 // import GET_ARTICLE_BY_ID from '@/gql/getArticleById';
 // import GET_ARTICLES from '@/gql/getArticles';
 // import { ApolloClient, InMemoryCache } from '@apollo/client';
-import ImageUploader from '@/components/Add/ImageUploader';
-import HeaderFields from '@/components/Add/HeaderFields';
-import ArticleEditor from '@/components/Add/ArticleEditor';
+import ImageUploader from '@/components/Add/ImageUploader/ImageUploader';
+import HeaderFields from '@/components/Add/HeaderFields/HeaderFields';
+import ArticleEditor from '@/components/Add/ArticleEditor/ArticleEditor';
 import useIsAdmin from '@/hooks/useIsAdmin';
 import ADD_ARTICLE from '@/gql/addArticle';
 import GET_ARTICLES from '@/gql/getArticles';
 import ArticleDetails from '@/components/ArticleDetails';
 import Button from '@/components/Button';
+import Add from '@/components/Add';
 // import useProportion from '@/hooks/useProportion';
 
 const AddPage = () => {
@@ -67,15 +68,15 @@ const AddPage = () => {
   const handleSubmit = async () => {
     // event.preventDefault();
 
-    // const text = JSON.stringify({ articleElements });
+    const text = JSON.stringify({ articleElements });
 
     const articleInput = {
       image: imageData,
       title: title,
       description: description,
       author: 'Mila',
-      text: articleElements,
-      // text: text,
+      // text: articleElements,
+      text: text,
       tags: ['magic'],
     };
 
@@ -94,26 +95,26 @@ const AddPage = () => {
     if (isSubmitError)
       return setSubmitError('Проверьте правильность заполнения');
 
-    console.log('isSubmitError =', isSubmitError);
+    // console.log('isSubmitError =', isSubmitError);
 
-    // try {
-    //   const { data } = await addArticle({ variables: { input: articleInput } });
+    try {
+      const { data } = await addArticle({ variables: { input: articleInput } });
 
-    //   const { title } = data.addArticle;
+      const { title } = data.addArticle;
 
-    //   // console.log('addArticle:', title);
+      // console.log('addArticle:', title);
 
-    //   if (title) {
-    //     setIsArticle(true);
-    //     clearStates();
-    //     updateArticles();
-    //   }
-    // } catch (e) {
-    //   console.error(e);
-    // }
+      if (title) {
+        setIsArticle(true);
+        clearStates();
+        updateArticles();
+      }
+    } catch (e) {
+      console.error(e);
+    }
   };
 
-  console.log('submitError add', submitError);
+  // console.log('submitError add', submitError);
 
   return (
     <>
@@ -151,12 +152,11 @@ const AddPage = () => {
             <article className={styles.article}>
               <div className={s.addArticleWrap}>
                 {!isDisplayArticle ? (
-                  <div className={s.addArticle}>
-                    <HeaderFields />
-                    <ImageUploader />
-                    <ArticleEditor />
+                  <>
+                    <div className={s.addArticle}>
+                      <Add />
 
-                    <Button
+                      {/* <Button
                       type='button'
                       fn={() => handleSubmit()}
                       disabled={loading}
@@ -167,8 +167,23 @@ const AddPage = () => {
                     </Button>
 
                     {submitError && <p>{submitError}</p>}
-                    {error && <p>Error: {error.message}</p>}
-                  </div>
+                    {error && <p>Error: {error.message}</p>} */}
+                    </div>
+                    {/* <div>
+                      <Button
+                        type='button'
+                        fn={() => handleSubmit()}
+                        disabled={loading}
+                        // style={{ backgroundColor: 'teal' }}
+                        // hover={{ backgroundColor: 'tomato' }}
+                      >
+                        Сохранить статью
+                      </Button>
+
+                      {submitError && <p>{submitError}</p>}
+                      {error && <p>Error: {error.message}</p>}
+                    </div> */}
+                  </>
                 ) : (
                   <div>
                     <span>Предпросмотр статьи</span>
@@ -181,7 +196,21 @@ const AddPage = () => {
                     />
                   </div>
                 )}
+              </div>
 
+              <div className={s.finalyButtons}>
+                <Button
+                  type='button'
+                  fn={() => handleSubmit()}
+                  disabled={loading}
+                  // style={{ backgroundColor: 'teal' }}
+                  // hover={{ backgroundColor: 'tomato' }}
+                >
+                  Сохранить статью
+                </Button>
+
+                {submitError && <p>{submitError}</p>}
+                {error && <p>Error: {error.message}</p>}
                 <Button fn={() => setIsDisplayArticle(!isDisplayArticle)}>
                   {isDisplayArticle ? 'Редактор' : 'Предпросмотр'}
                 </Button>
