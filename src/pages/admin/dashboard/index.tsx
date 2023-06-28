@@ -6,7 +6,7 @@ import useViewport from '@/hooks/useViewport';
 import useProportion from '@/hooks/useProportion';
 import Crumbs from '@/components/Crumbs';
 import Button from '@/components/Button';
-import Dashboard from '@/components/Dashboard';
+import Dashboard from '@/components/Admin/Dashboard';
 // import Image from 'next/image';
 // import { IArticle } from '@/interfaces';
 // import useFetchArticles from '@/hooks/useFetchArticles';

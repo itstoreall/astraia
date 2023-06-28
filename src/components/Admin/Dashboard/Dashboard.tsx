@@ -5,7 +5,7 @@ import { IArticle } from '@/interfaces';
 import { useGlobalContext } from '@/context/GlobalContext';
 import useFetchArticles from '@/hooks/useFetchArticles';
 import s from './Dashboard.module.scss';
-import Button from '../Button';
+import Button from '../../Button';
 import useViewport from '@/hooks/useViewport';
 import useProportion from '@/hooks/useProportion';
 import { useEffect } from 'react';

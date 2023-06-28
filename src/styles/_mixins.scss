@@ -159,6 +159,7 @@
 
 @mixin buttonStyle() {
   @include padding(5px 12px);
+  font-weight: 600;
   @include fontSize(14px);
   color: $colorWhite;
   background-color: $middleGrey;
