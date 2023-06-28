@@ -3,27 +3,30 @@
 
 .imageUploader {
   @include display(inline-flex);
-  @include marginB(20px);
+  // @include marginB(50px);
 
   // @include padding(0 0 20px);
   // background-color: pink;
 
-  .thumb {
-    @include marginR(10px);
-    width: 50px;
-    height: 26px;
-    overflow: hidden;
-    @include flexX(center);
-    background-color: teal;
-  }
+  @include themeHandler() {
+    .thumb {
+      @include marginR(10px);
+      width: 40px;
+      height: 32px;
+      overflow: hidden;
+      @include flexX(center);
+      background-color: teal;
+    }
 
-  label {
-    display: inline-block;
-    text-align: center;
-    @include buttonStyle();
+    label {
+      // display: inline-block;
+      @include buttonStyle();
+      @include contrastSolidButton();
+      text-align: center;
 
-    .fileInput {
-      display: none;
+      .fileInput {
+        display: none;
+      }
     }
   }
 }

@@ -10,7 +10,7 @@ const Add = () => {
   return (
     <div className={`${s.fieldsWrap} ${s[theme]}`}>
       <HeaderFields />
-      <ImageUploader />
+      {/* <ImageUploader /> */}
       <ArticleEditor />
     </div>
   );

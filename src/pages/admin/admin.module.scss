@@ -2,21 +2,24 @@
 @import '../../styles/vars.scss';
 
 .addArticleWrap {
-  @include padding(15px);
-  @include marginB(20px);
-  border: 1px solid $middleGrey;
-  border-radius: 6px;
+  // @include padding(15px);
+  // @include marginB(20px);
+  // border: 1px solid $middleGrey;
+  // border-radius: 6px;
 
-  @include minWidth($tablet) {
-    @include padding(20px);
-  }
+  // @include minWidth($tablet) {
+  //   @include padding(20px);
+  // }
 }
 
-.finalyButtons {
+.mainButtons {
   display: flex;
 
   > button {
-    @include padding(10px);
+    @include contrastSolidButton();
+    @include padding(15px);
+    @include uppercase();
+
     width: 50%;
 
     &:nth-child(1) {

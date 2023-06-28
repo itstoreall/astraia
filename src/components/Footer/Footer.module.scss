@@ -10,6 +10,8 @@
   //   @include width(155px);
   // }
 
+  margin-top: -146px;
+
   @include minWidth($tablet) {
     @include flexXY(space-between, center);
     @include padding(20px 50px 20px 30px);

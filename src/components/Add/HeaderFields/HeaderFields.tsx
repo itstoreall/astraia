@@ -1,9 +1,8 @@
 import { useEffect } from 'react';
 import { ARTICLE_HEADER_FIELDS } from '@/constants';
 import { useAddArticleContext } from '@/context/AddArticleContext';
-import { useGlobalContext } from '@/context/GlobalContext';
 import s from './HeaderFields.module.scss';
-// import useViewport from '@/hooks/useViewport';
+import ImageUploader from '../ImageUploader';
 
 const fls = ARTICLE_HEADER_FIELDS;
 
@@ -18,10 +17,6 @@ const HeaderFields = () => {
     submitError,
     setSubmitError,
   } = useAddArticleContext();
-  const { theme } = useGlobalContext();
-  // const { viewport}=useViewport()
-
-  // const { width, height } = useProportion(900, 450, 300);
 
   useEffect(() => {
     const lsFields = JSON.parse(localStorage.getItem(fls) || 'null');
@@ -80,6 +75,8 @@ const HeaderFields = () => {
           />
         </div>
       )}
+
+      <ImageUploader />
     </div>
   );
 };

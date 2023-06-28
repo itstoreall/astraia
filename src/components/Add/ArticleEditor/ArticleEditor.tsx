@@ -2,10 +2,10 @@ import { useEffect, useLayoutEffect, useState } from 'react';
 import { ChangeInputValue, ChangeTextareaValue, MoveElement } from '@/types';
 // import { IArticleElement } from '@/interfaces';
 import { ARTICLE_ELEMENTS } from '@/constants';
-import { colorWhite } from '@/theme';
+import { colorWhite, middleGrey } from '@/theme';
 import { useGlobalContext } from '@/context/GlobalContext';
 import { useAddArticleContext } from '@/context/AddArticleContext';
-import useProportion from '@/hooks/useProportion';
+// import useProportion from '@/hooks/useProportion';
 import useViewport from '@/hooks/useViewport';
 import s from './ArticleEditor.module.scss';
 import Button from '../../Button';
@@ -166,15 +166,15 @@ const ArticleEditor = () => {
     setIsOpenEditMenu(!isOpenEditMenu);
   };
 
-  console.log('');
-  console.log('action', action);
-  console.log('editIndex', editIndex);
-  console.log('element', element);
-  console.log('isOpenEditMenu', isOpenEditMenu);
-  console.log('viewport', viewport);
+  // console.log('');
+  // console.log('action', action);
+  // console.log('editIndex', editIndex);
+  // console.log('element', element);
+  // console.log('isOpenEditMenu', isOpenEditMenu);
+  // console.log('viewport', viewport);
 
   return (
-    <div className={`${s.articleEditor}`}>
+    <div className={`${s.articleEditor} ${s[theme]}`}>
       {articleElements?.length ? (
         <>
           <p className={`${s.infoText}`}>{'Редактор статьи'}</p>
@@ -201,11 +201,19 @@ const ArticleEditor = () => {
                           name='title'
                           placeholder={'Заголовок'}
                         />
-                        <div className={`${s.buttonWrap}`}>
-                          <Button fn={() => addElement('title')}>
+                        <div className={`${s.techButtons}`}>
+                          <div
+                            className={`${s.techButton}`}
+                            onClick={() => addElement('title')}
+                          >
                             {editIndex !== null ? 'Сохронить' : 'Добавить'}
-                          </Button>
-                          <Button fn={() => cleanStates()}>{'Отменить'}</Button>
+                          </div>
+                          <div
+                            className={`${s.techButton}`}
+                            onClick={() => cleanStates()}
+                          >
+                            {'Отменить'}
+                          </div>
                         </div>
                       </>
                     ) : (
@@ -218,9 +226,9 @@ const ArticleEditor = () => {
                           onClick={() => editMenuHandler(index)}
                         >
                           {viewport === 'mobile' ? (
-                            <DotsVertical fill={'white'} />
+                            <DotsVertical fill={middleGrey} />
                           ) : (
-                            <DotsHorizontal fill={'white'} />
+                            <DotsHorizontal fill={middleGrey} />
                           )}
                         </div>
                       </div>
@@ -238,11 +246,19 @@ const ArticleEditor = () => {
                           onChange={changeTextareaValue}
                           placeholder={'Параграф...'}
                         />
-                        <div className={`${s.buttonWrap}`}>
-                          <Button fn={() => addElement('paragraph')}>
+                        <div className={`${s.techButtons}`}>
+                          <div
+                            className={`${s.techButton}`}
+                            onClick={() => addElement('paragraph')}
+                          >
                             {editIndex !== null ? 'Сохронить' : 'Добавить'}
-                          </Button>
-                          <Button fn={() => cleanStates()}>{'Отменить'}</Button>
+                          </div>
+                          <div
+                            className={`${s.techButton}`}
+                            onClick={() => cleanStates()}
+                          >
+                            {'Отменить'}
+                          </div>
                         </div>
                       </>
                     ) : (
@@ -255,9 +271,9 @@ const ArticleEditor = () => {
                           onClick={() => editMenuHandler(index)}
                         >
                           {viewport === 'mobile' ? (
-                            <DotsVertical fill={'white'} />
+                            <DotsVertical fill={middleGrey} />
                           ) : (
-                            <DotsHorizontal fill={'white'} />
+                            <DotsHorizontal fill={middleGrey} />
                           )}
                         </div>
                       </div>
@@ -265,39 +281,43 @@ const ArticleEditor = () => {
                   </>
                 )}
 
-                {isOpenEditMenu && index === editIndex && (
-                  <div className={`${s.editElenemtMenu}`}>
-                    <Button
-                      style={{ padding: '7px 8px' }}
-                      fn={() => editElement(index, el.name)}
-                    >
-                      Редактировать
-                    </Button>
+                <div className={`${s.editElenemtMenu}`}>
+                  {isOpenEditMenu && index === editIndex && (
+                    <>
+                      <div
+                        className={`${s.techButton} ${s.edit}`}
+                        onClick={() => editElement(index, el.name)}
+                      >
+                        Редактировать
+                      </div>
 
-                    <Button
-                      style={{ padding: '7px 8px' }}
-                      fn={() => deleteElement(index)}
-                    >
-                      Удалить
-                    </Button>
-                    {index !== articleElements.length - 1 && (
-                      <Button
-                        style={{ padding: '3px 3px', display: 'flex' }}
-                        fn={() => moveDown(index)}
+                      <div
+                        className={`${s.techButton} ${s.delete}`}
+                        onClick={() => deleteElement(index)}
                       >
-                        <Arrow fill={colorWhite} direction={'down'} />
-                      </Button>
-                    )}
-                    {index !== 0 && (
-                      <Button
-                        style={{ padding: '3px 3px', display: 'flex' }}
-                        fn={() => moveUp(index)}
-                      >
-                        <Arrow fill={colorWhite} direction={'up'} />
-                      </Button>
-                    )}
-                  </div>
-                )}
+                        Удалить
+                      </div>
+
+                      {index !== articleElements.length - 1 && (
+                        <div
+                          className={`${s.techButton} ${s.down}`}
+                          onClick={() => moveDown(index)}
+                        >
+                          <Arrow fill={colorWhite} direction={'down'} />
+                        </div>
+                      )}
+
+                      {index !== 0 && (
+                        <div
+                          className={`${s.techButton} ${s.up}`}
+                          onClick={() => moveUp(index)}
+                        >
+                          <Arrow fill={colorWhite} direction={'up'} />
+                        </div>
+                      )}
+                    </>
+                  )}
+                </div>
               </li>
             ))}
           </ul>
@@ -329,15 +349,18 @@ const ArticleEditor = () => {
               />
             )}
 
-            <div className={`${s.fieldButtons}`}>
-              <Button
-                fn={() =>
+            <div className={`${s.techButtons}`}>
+              <div
+                className={`${s.techButton}`}
+                onClick={() =>
                   addElement(element === 'title' ? 'title' : 'paragraph')
                 }
               >
                 {editIndex !== null ? 'Сохронить' : 'Добавить'}
-              </Button>
-              <Button fn={() => cleanStates()}>{'Отменить'}</Button>
+              </div>
+              <div className={`${s.techButton}`} onClick={() => cleanStates()}>
+                {'Отменить'}
+              </div>
             </div>
           </>
         )}

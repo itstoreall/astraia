@@ -106,6 +106,10 @@
   font-size: $size;
 }
 
+@mixin uppercase() {
+  text-transform: uppercase;
+}
+
 // ------- transition
 
 @mixin transition($tsn) {
@@ -168,6 +172,37 @@
 
   &:hover,
   &:focus {
+    background-color: $middleGreyHover;
+  }
+}
+
+@mixin contrastSolidButton() {
+  @include padding(8px 15px);
+  color: var(--text-invert);
+  background-color: var(--contrast-background);
+  @include transition($s04);
+
+  &:hover {
+    background-color: var(--contrast-background-hover);
+  }
+}
+
+@mixin techButton() {
+  @include flexY(center);
+  @include padding(0 6px);
+  @include height(22px);
+  @include fontSize(12px);
+  font-weight: 400;
+  color: $colorWhite;
+  background-color: $middleGrey;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:not(:last-child) {
+    margin-right: 5px;
+  }
+
+  &:hover {
     background-color: $middleGreyHover;
   }
 }

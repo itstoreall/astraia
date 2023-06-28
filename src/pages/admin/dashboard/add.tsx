@@ -152,39 +152,10 @@ const AddPage = () => {
             <article className={styles.article}>
               <div className={s.addArticleWrap}>
                 {!isDisplayArticle ? (
-                  <>
-                    <div className={s.addArticle}>
-                      <Add />
-
-                      {/* <Button
-                      type='button'
-                      fn={() => handleSubmit()}
-                      disabled={loading}
-                      // style={{ backgroundColor: 'teal' }}
-                      // hover={{ backgroundColor: 'tomato' }}
-                    >
-                      Сохранить статью
-                    </Button>
-
-                    {submitError && <p>{submitError}</p>}
-                    {error && <p>Error: {error.message}</p>} */}
-                    </div>
-                    {/* <div>
-                      <Button
-                        type='button'
-                        fn={() => handleSubmit()}
-                        disabled={loading}
-                        // style={{ backgroundColor: 'teal' }}
-                        // hover={{ backgroundColor: 'tomato' }}
-                      >
-                        Сохранить статью
-                      </Button>
-
-                      {submitError && <p>{submitError}</p>}
-                      {error && <p>Error: {error.message}</p>}
-                    </div> */}
-                  </>
+                  // <div className={s.addArticle}>
+                  <Add />
                 ) : (
+                  // </div>
                   <div>
                     <span>Предпросмотр статьи</span>
                     <ArticleDetails
@@ -198,7 +169,7 @@ const AddPage = () => {
                 )}
               </div>
 
-              <div className={s.finalyButtons}>
+              <div className={s.mainButtons}>
                 <Button
                   type='button'
                   fn={() => handleSubmit()}
@@ -206,7 +177,7 @@ const AddPage = () => {
                   // style={{ backgroundColor: 'teal' }}
                   // hover={{ backgroundColor: 'tomato' }}
                 >
-                  Сохранить статью
+                  Сохранить
                 </Button>
 
                 {submitError && <p>{submitError}</p>}

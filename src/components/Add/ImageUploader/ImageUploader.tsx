@@ -1,14 +1,17 @@
 import Image from 'next/image';
-import useProportion from '@/hooks/useProportion';
+import { useGlobalContext } from '@/context/GlobalContext';
 import { useAddArticleContext } from '@/context/AddArticleContext';
+import useProportion from '@/hooks/useProportion';
 import s from './ImageUploader.module.scss';
 import base64Converter from '../../../utils/uploadImageHandler';
 import { useEffect } from 'react';
 
 const ImageUploader = () => {
+  const { theme } = useGlobalContext();
+  const { width, height } = useProportion(900, 450, 64);
+
   const { imageData, setImageData, submitError, setSubmitError } =
     useAddArticleContext();
-  const { width, height } = useProportion(900, 450, 52);
 
   useEffect(() => {
     submitError && setSubmitError('');
@@ -16,7 +19,7 @@ const ImageUploader = () => {
   }, [imageData]);
 
   return (
-    <div className={s.imageUploader}>
+    <div className={`${s.imageUploader} ${s[theme]}`}>
       {imageData && (
         <div className={s.thumb}>
           <Image
@@ -27,6 +30,7 @@ const ImageUploader = () => {
           />
         </div>
       )}
+
       <label>
         {imageData ? 'Изменить изображение' : 'Выбрать изображение'}
         <input
