@@ -1,18 +1,18 @@
+import Head from 'next/head';
 import { IArticle } from '@/interfaces';
-import s from '../page.module.scss';
 import { useGlobalContext } from '@/context/GlobalContext';
+import client from '@/utils/apolloClient';
+import GET_ARTICLES from '@/gql/getArticles';
+import s from '../page.module.scss';
 import Crumbs from '@/components/Crumbs';
 import ArticleList from '@/components/Articles/List';
-import Head from 'next/head';
-import { ApolloClient, InMemoryCache } from '@apollo/client';
-import GET_ARTICLES from '@/gql/getArticles';
 // import Link from 'next/link';
 
 export const getStaticProps = async () => {
-  const client = new ApolloClient({
-    uri: 'https://magic-api-vercel.vercel.app/',
-    cache: new InMemoryCache(),
-  });
+  // const client = new ApolloClient({
+  //   uri: 'https://magic-api-vercel.vercel.app/',
+  //   cache: new InMemoryCache(),
+  // });
 
   const { data } = await client.query({
     query: GET_ARTICLES,

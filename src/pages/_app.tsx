@@ -1,9 +1,10 @@
 import '@/styles/global.scss';
 import { useEffect, useState } from 'react';
 import type { AppProps } from 'next/app';
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { ApolloProvider } from '@apollo/client';
 import { useRouter } from 'next/router';
 import { IAccess } from '@/interfaces';
+import client from '@/utils/apolloClient';
 import Layout from '../components/Layout';
 import AdminPage from './admin';
 import LoginPage from './admin/login';
@@ -50,13 +51,13 @@ const App = ({ Component, pageProps }: AppProps) => {
   //     ? 'https://magic-api-vercel.vercel.app/'
   //     : 'http://localhost:8822/';
 
-  const serverSwitch = 'https://magic-api-vercel.vercel.app/';
+  // const serverSwitch = 'https://magic-api-vercel.vercel.app/';
   // const serverSwitch = currentUrl;
 
-  const client = new ApolloClient({
-    uri: serverSwitch,
-    cache: new InMemoryCache(),
-  });
+  // const client = new ApolloClient({
+  //   uri: serverSwitch,
+  //   cache: new InMemoryCache(),
+  // });
 
   const getPageComponent = () => {
     // !isLoading && setIsLoading(true);

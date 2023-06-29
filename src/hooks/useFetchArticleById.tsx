@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ApolloClient, InMemoryCache } from '@apollo/client';
+import client from '@/utils/apolloClient';
 import GET_ARTICLE_BY_ID from '@/gql/getArticleById';
 
 const useFetchArticleById = () => {
@@ -8,10 +8,10 @@ const useFetchArticleById = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const client = new ApolloClient({
-        uri: 'https://magic-api-vercel.vercel.app/',
-        cache: new InMemoryCache(),
-      });
+      // const client = new ApolloClient({
+      //   uri: 'https://magic-api-vercel.vercel.app/',
+      //   cache: new InMemoryCache(),
+      // });
 
       const { data: _data } = await client.query({
         query: GET_ARTICLE_BY_ID,

@@ -68,15 +68,15 @@ const AddPage = () => {
   const handleSubmit = async () => {
     // event.preventDefault();
 
-    const text = JSON.stringify({ articleElements });
+    // const text = JSON.stringify({ articleElements });
 
     const articleInput = {
       image: imageData,
       title: title,
       description: description,
       author: 'Mila',
-      // text: articleElements,
-      text: text,
+      text: articleElements,
+      // text: text,
       tags: ['magic'],
     };
 
@@ -95,26 +95,26 @@ const AddPage = () => {
     if (isSubmitError)
       return setSubmitError('Проверьте правильность заполнения');
 
-    // console.log('isSubmitError =', isSubmitError);
+    console.log('isSubmitError =', isSubmitError);
 
-    try {
-      const { data } = await addArticle({ variables: { input: articleInput } });
+    // try {
+    //   const { data } = await addArticle({ variables: { input: articleInput } });
 
-      const { title } = data.addArticle;
+    //   const { title } = data.addArticle;
 
-      // console.log('addArticle:', title);
+    //   // console.log('addArticle:', title);
 
-      if (title) {
-        setIsArticle(true);
-        clearStates();
-        updateArticles();
-      }
-    } catch (e) {
-      console.error(e);
-    }
+    //   if (title) {
+    //     setIsArticle(true);
+    //     clearStates();
+    //     updateArticles();
+    //   }
+    // } catch (e) {
+    //   console.error(e);
+    // }
   };
 
-  // console.log('submitError add', submitError);
+  console.log('submitError add', submitError);
 
   return (
     <>
@@ -170,21 +170,23 @@ const AddPage = () => {
               </div>
 
               <div className={s.mainButtons}>
-                <Button
+                <button
                   type='button'
-                  fn={() => handleSubmit()}
+                  onClick={() => handleSubmit()}
                   disabled={loading}
                   // style={{ backgroundColor: 'teal' }}
                   // hover={{ backgroundColor: 'tomato' }}
                 >
                   Сохранить
-                </Button>
+                </button>
 
+                <button onClick={() => setIsDisplayArticle(!isDisplayArticle)}>
+                  {isDisplayArticle ? 'Редактор' : 'Предпросмотр'}
+                </button>
+              </div>
+              <div className={s.submitErrors}>
                 {submitError && <p>{submitError}</p>}
                 {error && <p>Error: {error.message}</p>}
-                <Button fn={() => setIsDisplayArticle(!isDisplayArticle)}>
-                  {isDisplayArticle ? 'Редактор' : 'Предпросмотр'}
-                </Button>
               </div>
             </article>
           </section>

@@ -42,7 +42,7 @@ const HeaderFields = () => {
     name === 'title' && setTitle(value);
     name === 'description' && setDescription(value);
 
-    console.log(`input ${name} value:`, value);
+    // console.log(`input ${name} value:`, value);
   };
 
   return (

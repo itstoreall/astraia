@@ -178,13 +178,20 @@
 
 @mixin contrastSolidButton() {
   @include padding(8px 15px);
+  font-weight: 600;
   color: var(--text-invert);
   background-color: var(--contrast-background);
+  border-radius: 6px;
+  cursor: pointer;
   @include transition($s04);
 
   &:hover {
     background-color: var(--contrast-background-hover);
   }
+
+  // &:active {
+  //   background-color: red;
+  // }
 }
 
 @mixin techButton() {

@@ -1,16 +1,17 @@
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 import { useGlobalContext } from '@/context/GlobalContext';
+import GET_ARTICLES from '@/gql/getArticles';
+import GET_ARTICLE_BY_ID from '@/gql/getArticleById';
+import client from '@/utils/apolloClient';
 import s from '../../page.module.scss';
 import Crumbs from '@/components/Crumbs';
-import GET_ARTICLE_BY_ID from '@/gql/getArticleById';
-import GET_ARTICLES from '@/gql/getArticles';
 import ArticleDetails from '@/components/ArticleDetails/ArticleDetails';
 
 export const getStaticPaths = async () => {
-  const client = new ApolloClient({
-    uri: 'https://magic-api-vercel.vercel.app/',
-    cache: new InMemoryCache(),
-  });
+  // const client = new ApolloClient({
+  //   uri: 'https://magic-api-vercel.vercel.app/',
+  //   cache: new InMemoryCache(),
+  // });
 
   const { data } = await client.query({
     query: GET_ARTICLES,
@@ -35,10 +36,10 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (context: any) => {
   const { id } = context.params;
 
-  const client = new ApolloClient({
-    uri: 'https://magic-api-vercel.vercel.app/',
-    cache: new InMemoryCache(),
-  });
+  // const client = new ApolloClient({
+  //   uri: 'https://magic-api-vercel.vercel.app/',
+  //   cache: new InMemoryCache(),
+  // });
 
   const { data } = await client.query({
     query: GET_ARTICLE_BY_ID,

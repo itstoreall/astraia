@@ -10,8 +10,8 @@ const Arrow = ({ fill, direction }: { fill: string; direction: string }) => (
     <path
       d='M20 11L11 2L2.14876 11'
       stroke={fill}
-      stroke-width='2.5'
-      stroke-linecap='round'
+      strokeWidth='2.5'
+      strokeLinecap='round'
     />
   </svg>
 );

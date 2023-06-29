@@ -93,6 +93,22 @@
                 text-overflow: ellipsis;
                 -webkit-text-overflow: ellipsis;
                 -ms-text-overflow: ellipsis;
+                @include fontSize(16px);
+
+                @include minWidth($tablet) {
+                  @include width(630px);
+                }
+
+                @include minWidth($desktop) {
+                  @include width(630px);
+                }
+
+                // &.title {
+                // }
+
+                // &.paragraph {
+                //   @include fontSize(16px);
+                // }
               }
             }
           }
@@ -177,7 +193,7 @@
         @include contrastSolidButton();
 
         &:nth-child(1) {
-          margin-right: 5px;
+          margin-right: 10px;
         }
       }
     }
