@@ -61,7 +61,7 @@ const Login = () => {
             value={login}
             onChange={e => handleInput(e)}
             name='login'
-            placeholder='Login'
+            placeholder='Логин'
           />
 
           <input
@@ -69,7 +69,7 @@ const Login = () => {
             value={password}
             onChange={e => handleInput(e)}
             name='password'
-            placeholder='Password'
+            placeholder='Пароль'
           />
 
           <Button type={'submit'} disabled={updateLoading}>

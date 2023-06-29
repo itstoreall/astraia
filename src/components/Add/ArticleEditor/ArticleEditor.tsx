@@ -12,6 +12,8 @@ import Button from '../../Button';
 import DotsHorizontal from '@/assets/icons/DotsHorizontal';
 import DotsVertical from '@/assets/icons/DotsVertical';
 import Arrow from '@/assets/icons/Arrow';
+import Delete from '@/assets/icons/Delete';
+import Edit from '@/assets/icons/Edit';
 
 const art = ARTICLE_ELEMENTS;
 
@@ -170,7 +172,7 @@ const ArticleEditor = () => {
   // console.log('action', action);
   // console.log('editIndex', editIndex);
   // console.log('element', element);
-  // console.log('isOpenEditMenu', isOpenEditMenu);
+  console.log('isOpenEditMenu', isOpenEditMenu);
   // console.log('viewport', viewport);
 
   return (
@@ -221,15 +223,56 @@ const ArticleEditor = () => {
                         <h2 className={`${s.field} ${s.element} ${s.title}`}>
                           {el.text}
                         </h2>
-                        <div
-                          className={`${s.threeDotsButton}`}
-                          onClick={() => editMenuHandler(index)}
-                        >
-                          {viewport === 'mobile' ? (
-                            <DotsVertical fill={middleGrey} />
-                          ) : (
-                            <DotsHorizontal fill={middleGrey} />
+
+                        <div className={`${s.editElenemtMenu}`}>
+                          {isOpenEditMenu && index === editIndex && (
+                            <>
+                              <div
+                                className={`${s.techButton} ${s.edit}`}
+                                onClick={() => editElement(index, el.name)}
+                              >
+                                <Edit fill={colorWhite} />
+                              </div>
+
+                              <div
+                                className={`${s.techButton} ${s.delete}`}
+                                onClick={() => deleteElement(index)}
+                              >
+                                <Delete fill={colorWhite} />
+                              </div>
+
+                              {index !== articleElements.length - 1 && (
+                                <div
+                                  className={`${s.techButton} ${s.down}`}
+                                  onClick={() => moveDown(index)}
+                                >
+                                  <Arrow fill={colorWhite} direction={'down'} />
+                                </div>
+                              )}
+
+                              {index !== 0 && (
+                                <div
+                                  className={`${s.techButton} ${s.up}`}
+                                  onClick={() => moveUp(index)}
+                                >
+                                  <Arrow fill={colorWhite} direction={'up'} />
+                                </div>
+                              )}
+                            </>
                           )}
+                        </div>
+
+                        <div>
+                          <div
+                            className={`${s.threeDotsButton}`}
+                            onClick={() => editMenuHandler(index)}
+                          >
+                            {viewport === 'mobile' ? (
+                              <DotsVertical fill={middleGrey} />
+                            ) : (
+                              <DotsHorizontal fill={middleGrey} />
+                            )}
+                          </div>
                         </div>
                       </div>
                     )}
@@ -266,6 +309,45 @@ const ArticleEditor = () => {
                         <p className={`${s.field} ${s.element} ${s.paragraph}`}>
                           {el.text}
                         </p>
+
+                        <div className={`${s.editElenemtMenu}`}>
+                          {isOpenEditMenu && index === editIndex && (
+                            <>
+                              <div
+                                className={`${s.techButton} ${s.edit}`}
+                                onClick={() => editElement(index, el.name)}
+                              >
+                                <Edit fill={colorWhite} />
+                              </div>
+
+                              <div
+                                className={`${s.techButton} ${s.delete}`}
+                                onClick={() => deleteElement(index)}
+                              >
+                                <Delete fill={colorWhite} />
+                              </div>
+
+                              {index !== articleElements.length - 1 && (
+                                <div
+                                  className={`${s.techButton} ${s.down}`}
+                                  onClick={() => moveDown(index)}
+                                >
+                                  <Arrow fill={colorWhite} direction={'down'} />
+                                </div>
+                              )}
+
+                              {index !== 0 && (
+                                <div
+                                  className={`${s.techButton} ${s.up}`}
+                                  onClick={() => moveUp(index)}
+                                >
+                                  <Arrow fill={colorWhite} direction={'up'} />
+                                </div>
+                              )}
+                            </>
+                          )}
+                        </div>
+
                         <div
                           className={`${s.threeDotsButton}`}
                           onClick={() => editMenuHandler(index)}
@@ -280,44 +362,6 @@ const ArticleEditor = () => {
                     )}
                   </>
                 )}
-
-                <div className={`${s.editElenemtMenu}`}>
-                  {isOpenEditMenu && index === editIndex && (
-                    <>
-                      <div
-                        className={`${s.techButton} ${s.edit}`}
-                        onClick={() => editElement(index, el.name)}
-                      >
-                        Редактировать
-                      </div>
-
-                      <div
-                        className={`${s.techButton} ${s.delete}`}
-                        onClick={() => deleteElement(index)}
-                      >
-                        Удалить
-                      </div>
-
-                      {index !== articleElements.length - 1 && (
-                        <div
-                          className={`${s.techButton} ${s.down}`}
-                          onClick={() => moveDown(index)}
-                        >
-                          <Arrow fill={colorWhite} direction={'down'} />
-                        </div>
-                      )}
-
-                      {index !== 0 && (
-                        <div
-                          className={`${s.techButton} ${s.up}`}
-                          onClick={() => moveUp(index)}
-                        >
-                          <Arrow fill={colorWhite} direction={'up'} />
-                        </div>
-                      )}
-                    </>
-                  )}
-                </div>
               </li>
             ))}
           </ul>

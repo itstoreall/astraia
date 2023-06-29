@@ -29,7 +29,26 @@
 }
 
 .submitErrors {
-  padding: 10px;
+  padding: 15px 10px;
   text-align: center;
   color: red;
+}
+
+.success {
+  @include flexY(center);
+  height: 60vh;
+  // background-color: teal;
+
+  .successContent {
+    @include flexDirectionY(column, center);
+    @include margin(0 auto);
+
+    > svg {
+      @include marginB(30px);
+    }
+
+    // > span {
+    //   color: yellowgreen;
+    // }
+  }
 }

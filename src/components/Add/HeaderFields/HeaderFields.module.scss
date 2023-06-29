@@ -16,6 +16,7 @@
     @include fontSize(16px);
     font-weight: 600;
     color: $middleGrey;
+    user-select: none;
 
     // @include minWidth($tablet) {
     //   @include fontSize(18px);

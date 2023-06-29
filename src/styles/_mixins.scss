@@ -169,6 +169,7 @@
   background-color: $middleGrey;
   border-radius: 4px;
   cursor: pointer;
+  user-select: none;
 
   &:hover,
   &:focus {
@@ -184,6 +185,7 @@
   border-radius: 6px;
   cursor: pointer;
   @include transition($s04);
+  user-select: none;
 
   &:hover {
     background-color: var(--contrast-background-hover);
@@ -195,15 +197,16 @@
 }
 
 @mixin techButton() {
-  @include flexY(center);
-  @include padding(0 6px);
-  @include height(22px);
+  @include flexXY(center, center);
+  @include padding(0 8px);
+  @include height(26px);
   @include fontSize(12px);
   font-weight: 400;
   color: $colorWhite;
   background-color: $middleGrey;
   border-radius: 4px;
   cursor: pointer;
+  user-select: none;
 
   &:not(:last-child) {
     margin-right: 5px;
