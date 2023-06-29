@@ -16,7 +16,7 @@ const Home = () => {
 
       <section className={`${s.page} ${s[theme]}`}>
         <h2 className={s.titleHome}>Духовное саморазвитие</h2>
-        <article className={s.article}>.article</article>
+        <article className={s.article}>.article prod 2</article>
       </section>
     </>
   );
