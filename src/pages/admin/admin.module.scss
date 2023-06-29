@@ -1,54 +1,54 @@
 @import '../../styles/mixins';
 @import '../../styles/vars.scss';
 
-.addArticleWrap {
-  // @include padding(15px);
-  // @include marginB(20px);
-  // border: 1px solid $middleGrey;
-  // border-radius: 6px;
+// .addArticleWrap {
+//   // @include padding(15px);
+//   // @include marginB(20px);
+//   // border: 1px solid $middleGrey;
+//   // border-radius: 6px;
 
-  // @include minWidth($tablet) {
-  //   @include padding(20px);
-  // }
-}
+//   // @include minWidth($tablet) {
+//   //   @include padding(20px);
+//   // }
+// }
 
-.mainButtons {
-  display: flex;
+// .mainButtons {
+//   display: flex;
 
-  > button {
-    @include contrastSolidButton();
-    @include padding(15px);
-    @include uppercase();
+//   > button {
+//     @include contrastSolidButton();
+//     @include padding(15px);
+//     @include uppercase();
 
-    width: 50%;
+//     width: 50%;
 
-    &:nth-child(1) {
-      @include marginR(10px);
-    }
-  }
-}
+//     &:nth-child(1) {
+//       @include marginR(10px);
+//     }
+//   }
+// }
 
-.submitErrors {
-  padding: 15px 10px;
-  text-align: center;
-  color: red;
-}
+// .submitErrors {
+//   padding: 15px 10px;
+//   text-align: center;
+//   color: red;
+// }
 
-.success {
-  @include flexY(center);
-  height: 60vh;
-  // background-color: teal;
+// .success {
+//   @include flexY(center);
+//   height: 60vh;
+//   // background-color: teal;
 
-  .successContent {
-    @include flexDirectionY(column, center);
-    @include margin(0 auto);
+//   .successContent {
+//     @include flexDirectionY(column, center);
+//     @include margin(0 auto);
 
-    > svg {
-      @include marginB(30px);
-    }
+//     > svg {
+//       @include marginB(30px);
+//     }
 
-    // > span {
-    //   color: yellowgreen;
-    // }
-  }
-}
+//     // > span {
+//     //   color: yellowgreen;
+//     // }
+//   }
+// }

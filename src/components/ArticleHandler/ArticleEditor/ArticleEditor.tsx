@@ -1,4 +1,5 @@
 import { useEffect, useLayoutEffect, useState } from 'react';
+import { IArticleHandler } from '@/interfaces';
 import { ChangeInputValue, ChangeTextareaValue, MoveElement } from '@/types';
 // import { IArticleElement } from '@/interfaces';
 import { ARTICLE_ELEMENTS } from '@/constants';
@@ -17,7 +18,7 @@ import Edit from '@/assets/icons/Edit';
 
 const art = ARTICLE_ELEMENTS;
 
-const ArticleEditor = () => {
+const ArticleEditor = ({ article }: IArticleHandler) => {
   const [element, setElement] = useState<string>('');
   const [action, setAction] = useState<string | null>(null);
   const [isOpenEditMenu, setIsOpenEditMenu] = useState<boolean>(false);
@@ -59,6 +60,7 @@ const ArticleEditor = () => {
     } else {
       if (!action) cleanStates();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpenEditMenu]);
 
   useLayoutEffect(() => {
@@ -66,7 +68,25 @@ const ArticleEditor = () => {
       setIsOpenEditMenu(false);
       setEditIndex(null);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [action]);
+
+  useEffect(() => {
+    if (article) {
+      const articleForEdit = JSON.parse(article.text);
+
+      if (articleForEdit?.articleElements) {
+      }
+      console.log('articleForEdit', articleForEdit?.articleElements);
+      console.log('articleElements ', articleElements);
+
+      setArticleElements(articleForEdit?.articleElements);
+      return () => {
+        localStorage.removeItem(art);
+      };
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [article]);
 
   const cleanStates = () => {
     setAction(null);
@@ -172,7 +192,7 @@ const ArticleEditor = () => {
   // console.log('action', action);
   // console.log('editIndex', editIndex);
   // console.log('element', element);
-  console.log('isOpenEditMenu', isOpenEditMenu);
+  // console.log('isOpenEditMenu', isOpenEditMenu);
   // console.log('viewport', viewport);
 
   return (

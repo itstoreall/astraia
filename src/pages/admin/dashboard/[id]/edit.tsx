@@ -5,6 +5,7 @@ import { useGlobalContext } from '@/context/GlobalContext';
 import { useRouter } from 'next/router';
 import { IArticle } from '@/interfaces';
 import { useEffect, useState } from 'react';
+import ArticleHandler from '@/components/ArticleHandler';
 
 const Edit = () => {
   const [article, setArticle] = useState<IArticle | null>(null);
@@ -24,7 +25,8 @@ const Edit = () => {
         <h2 className={s.title}>Редактирование</h2>
       </Crumbs>
       <article className={s.article}>
-        {article ? <p>{article.id}</p> : <p>No</p>}
+        {article ? <p>{`${article.id}`}</p> : <p>No</p>}
+        <ArticleHandler article={article} label={'edit'} />
       </article>
     </section>
   );

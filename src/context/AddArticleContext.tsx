@@ -18,6 +18,8 @@ export const AddArticleContext = createContext<IAddArticleContext>({
   setEditIndex: () => 0,
   isDisplayArticle: false,
   setIsDisplayArticle: () => false,
+  isPreview: false,
+  setIsPreview: () => false,
   articleElements: [],
   setArticleElements: () => {},
   handleSubmit: () => {},

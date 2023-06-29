@@ -1,4 +1,5 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { IArticleHandler } from '@/interfaces';
 import { ARTICLE_HEADER_FIELDS } from '@/constants';
 import { useAddArticleContext } from '@/context/AddArticleContext';
 import s from './HeaderFields.module.scss';
@@ -6,7 +7,7 @@ import ImageUploader from '../ImageUploader';
 
 const fls = ARTICLE_HEADER_FIELDS;
 
-const HeaderFields = () => {
+const HeaderFields = ({ article, label }: IArticleHandler) => {
   const {
     isArticle,
     setIsArticle,
@@ -14,13 +15,27 @@ const HeaderFields = () => {
     setTitle,
     description,
     setDescription,
+    isDisplayArticle,
+    isPreview,
+    setIsPreview,
     submitError,
     setSubmitError,
   } = useAddArticleContext();
 
+  // console.log('article 2', article);
+
   useEffect(() => {
+    console.log('label', label);
+    console.log(1);
+
+    if (label === 'edit') return localStorage.removeItem(fls);
+
     const lsFields = JSON.parse(localStorage.getItem(fls) || 'null');
+    // console.log('lsFields', lsFields);
+
     if (lsFields) {
+      localStorage.removeItem(fls);
+
       setTitle(lsFields.title);
       setDescription(lsFields.description);
     }
@@ -28,9 +43,35 @@ const HeaderFields = () => {
   }, []);
 
   useEffect(() => {
+    const lsFields = JSON.parse(localStorage.getItem(fls) || 'null');
+
+    console.log(2, lsFields);
+
+    // console.log('article 3', article);
+    if (article && !isPreview) {
+      setTitle(article.title);
+      setDescription(article.description);
+
+      console.log('isDisplayArticle', isDisplayArticle);
+      console.log('isPreview', isPreview);
+    }
+
+    return () => {
+      localStorage.removeItem(fls);
+      setIsPreview(false);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [article]);
+
+  useEffect(() => {
+    console.log(3);
+
     if (title?.length || description?.length) {
       localStorage.setItem(fls, JSON.stringify({ title, description }));
-    } else localStorage.removeItem(fls);
+    } else {
+      console.log(32);
+      localStorage.removeItem(fls);
+    }
   }, [title, description]);
 
   const handleInput = (event: any) => {
@@ -76,7 +117,7 @@ const HeaderFields = () => {
         </div>
       )}
 
-      <ImageUploader />
+      <ImageUploader article={article || null} />
     </div>
   );
 };
