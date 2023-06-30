@@ -12,6 +12,7 @@ $middleGrey: rgba(133, 133, 133, 0.666);
 $middleGreyHover: rgba(133, 133, 133, 0.865);
 $colorWhite: #ffffff;
 $colorGreen: teal;
+$colorRed: red;
 
 @mixin theme($theme) {
   @if $theme == dark {

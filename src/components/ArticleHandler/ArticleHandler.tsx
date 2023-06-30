@@ -1,8 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import { useMutation, useQuery } from '@apollo/client';
-import { IArticleElement, IArticleHandler } from '@/interfaces';
-import { contrstDark, contrstLight } from '@/theme';
-import { ARTICLE_ELEMENTS, ARTICLE_HEADER_FIELDS } from '@/constants';
+import {
+  IArticle,
+  IArticleElement,
+  IArticleHandler,
+  IArticleInput,
+} from '@/interfaces';
+import { contrstDark, contrstLight, dark, light, middleGrey } from '@/theme';
+import {
+  ARTICLE_HEADER_FIELDS_ADD,
+  ARTICLE_ELEMENTS_ADD,
+  ARTICLE_HEADER_FIELDS_EDIT,
+  ARTICLE_ELEMENTS_EDIT,
+} from '@/constants';
 import { useGlobalContext } from '@/context/GlobalContext';
 import { AddArticleContext } from '@/context/AddArticleContext';
 import ADD_ARTICLE from '@/gql/addArticle';
@@ -13,9 +23,12 @@ import HeaderFields from './HeaderFields/HeaderFields';
 import ArticleEditor from './ArticleEditor/ArticleEditor';
 import ArticleDetails from '../ArticleDetails';
 import Success from '@/assets/icons/Success';
+import Reset from '@/assets/icons/Reset';
 
-const fls = ARTICLE_HEADER_FIELDS;
-const art = ARTICLE_ELEMENTS;
+const fls_add = ARTICLE_HEADER_FIELDS_ADD;
+const art_add = ARTICLE_ELEMENTS_ADD;
+const fls_edit = ARTICLE_HEADER_FIELDS_EDIT;
+const art_edit = ARTICLE_ELEMENTS_EDIT;
 
 const ArticleHandler = ({ article, label }: IArticleHandler) => {
   const [isArticle, setIsArticle] = useState<boolean>(false);
@@ -32,9 +45,18 @@ const ArticleHandler = ({ article, label }: IArticleHandler) => {
   const [editIndex, setEditIndex] = useState<number | null>(null);
   const [isDisplayArticle, setIsDisplayArticle] = useState<boolean>(false);
   const [isPreview, setIsPreview] = useState<boolean>(false);
+  const [base64Holder, setBase64Holder] = useState<string>('');
   const [articleElements, setArticleElements] = useState<IArticleElement[]>([]);
 
-  const { theme } = useGlobalContext();
+  // ---
+
+  const [isReset, setIsReset] = useState(false);
+
+  const handleClickReset = () => {
+    setIsReset(!isReset);
+  };
+
+  const { theme, setArticles } = useGlobalContext();
 
   const [addArticle, { loading, error }] = useMutation(ADD_ARTICLE);
   const [editArticle, { loading: editLoading, error: editError }] =
@@ -42,7 +64,7 @@ const ArticleHandler = ({ article, label }: IArticleHandler) => {
 
   const { refetch: getArticles } = useQuery(GET_ARTICLES);
 
-  console.log('');
+  // console.log('');
   // console.log('article', article);
   // console.log('label', label);
   // console.log('isDisplayArticle', isDisplayArticle);
@@ -55,25 +77,144 @@ const ArticleHandler = ({ article, label }: IArticleHandler) => {
     setEditIndex(null);
     setTextareaValue('');
     setArticleElements([]);
-    localStorage.removeItem(fls);
-    localStorage.removeItem(art);
-  };
-
-  const updateArticles = async () => {
-    // const updatedArticles = await getArticles();
-    // const { articles } = updatedArticles.data;
-    // articles && setArticles(articles);
-    // const id = articles[articles?.length - 1].id;
-    // navigate(`/admin/dashboard/articles/${id}`);
+    setBase64Holder('');
+    // localStorage.removeItem(fls_edit);
+    // localStorage.removeItem(art_edit);
   };
 
   useEffect(() => {
-    isDisplayArticle && setIsPreview(true);
+    localStorage.removeItem(fls_edit);
+    localStorage.removeItem(art_edit);
+
+    if (label === 'add') {
+      const lsFields = JSON.parse(localStorage.getItem(fls_add) || 'null');
+      const lsElements = JSON.parse(localStorage.getItem(art_add) || 'null');
+
+      if (lsFields) {
+        setTitle(lsFields.title);
+        setDescription(lsFields.description);
+      }
+
+      if (lsElements) {
+        setArticleElements(lsElements.articleElements);
+      }
+    }
+
+    if (label === 'edit') {
+      console.log(0);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (label === 'edit' && article) {
+      const { articleElements, image } = JSON.parse(article.text);
+
+      if (articleElements) {
+        console.log('');
+        console.log('2', base64Holder.slice(0, 50));
+        console.log(2, 'isPreview', isPreview);
+        console.log(2, 'isDisplayArticle', isDisplayArticle);
+
+        setTitle(article.title);
+        setDescription(article.description);
+        setImageData(article.image);
+        setArticleElements(articleElements);
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [article]);
+
+  useEffect(() => {
+    if (label === 'edit') {
+      if (isDisplayArticle) {
+        console.log('');
+        console.log('3', base64Holder.slice(0, 50));
+        console.log(3, 'isPreview', isPreview);
+        console.log(3, 'isDisplayArticle', isDisplayArticle);
+
+        setIsPreview(true);
+        setBase64Holder(imageData);
+        localStorage.setItem(fls_edit, JSON.stringify({ title, description }));
+        localStorage.setItem(art_edit, JSON.stringify({ articleElements }));
+      }
+
+      if (!isDisplayArticle) {
+        console.log('');
+        console.log('1', base64Holder.slice(0, 50));
+        console.log(1, 'isPreview', isPreview);
+        console.log(1, 'isDisplayArticle', isDisplayArticle);
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDisplayArticle]);
 
-  const handleSubmit = async () => {
-    // event.preventDefault();
+  useEffect(() => {
+    // console.log('title', title);
+    if (label === 'add') {
+      if (title?.length || description?.length) {
+        localStorage.setItem(fls_add, JSON.stringify({ title, description }));
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [title, description]);
 
+  useLayoutEffect(() => {
+    if (label === 'add') {
+      console.log(1);
+      if (articleElements?.length)
+        localStorage.setItem(art_add, JSON.stringify({ articleElements }));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [articleElements]);
+
+  useEffect(() => {
+    if (label === 'add') {
+      console.log(1);
+      localStorage.removeItem(fls_add);
+      localStorage.removeItem(art_add);
+      clearStates();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isReset]);
+
+  const updateArticles = async () => {
+    const updatedArticles = await getArticles();
+    const { articles } = updatedArticles.data;
+    articles && setArticles(articles);
+
+    console.log('articles -->', articles);
+  };
+
+  const addArticleRequest = async (articleInput: IArticleInput) => {
+    const { data } = await addArticle({ variables: { input: articleInput } });
+
+    const { title } = data.addArticle;
+
+    console.log('addArticle:', title);
+
+    if (title) {
+      setIsArticle(true);
+      clearStates();
+      updateArticles();
+    }
+  };
+
+  const editArticleRequest = async (articleInput: IArticleInput) => {
+    const id = article ? article.id : null;
+
+    const { data } = await editArticle({ variables: { id, articleInput } });
+
+    console.log('Article edited:', data.editArticle);
+
+    if (data.editArticle) {
+      setIsArticle(true);
+      clearStates();
+      updateArticles();
+    }
+  };
+
+  const handleSubmit = async () => {
     const text = JSON.stringify({ articleElements });
 
     const articleInput = {
@@ -81,12 +222,9 @@ const ArticleHandler = ({ article, label }: IArticleHandler) => {
       title: title,
       description: description,
       author: 'Mila',
-      // text: articleElements,
       text: text,
       tags: ['magic'],
     };
-
-    // console.log('articleInput --->', articleInput);
 
     let isSubmitError: boolean = false;
 
@@ -103,54 +241,12 @@ const ArticleHandler = ({ article, label }: IArticleHandler) => {
     if (isSubmitError)
       return setSubmitError('Проверьте правильность заполнения');
 
-    // console.log('isSubmitError =', isSubmitError);
-
-    // /* ----------- add article request
     try {
-      const { data } = await addArticle({ variables: { input: articleInput } });
-
-      const { title } = data.addArticle;
-
-      console.log('addArticle:', title);
-
-      if (title) {
-        setIsArticle(true);
-        clearStates();
-        updateArticles();
-      }
-    } catch (e) {
-      console.error(e);
-    }
-    // */
-  };
-
-  const handleSubmitEdit = async () => {
-    // event.preventDefault();
-
-    const text = JSON.stringify({ articleElements });
-
-    const id = article ? article.id : null;
-    const articleInput = {
-      image: imageData,
-      title: title,
-      description: description,
-      author: 'Mila',
-      text: text,
-      tags: ['magic'],
-    };
-
-    try {
-      const { data } = await editArticle({ variables: { id, articleInput } });
-
-      console.log('Article edited:', data.editArticle);
-
-      if (data.editArticle) {
-        setIsArticle(true);
-        clearStates();
-        updateArticles();
-      }
-
-      // navigate(`/admin/dashboard/articles/${id}`);
+      label === 'add'
+        ? addArticleRequest(articleInput)
+        : label === 'edit'
+        ? editArticleRequest(articleInput)
+        : null;
     } catch (e) {
       console.error(e);
     }
@@ -179,23 +275,29 @@ const ArticleHandler = ({ article, label }: IArticleHandler) => {
         setIsPreview,
         articleElements,
         setArticleElements,
-        handleSubmit,
         submitError,
         setSubmitError,
       }}
     >
       <div className={`${s.articleHandlerWrap} ${s[theme]}`}>
+        {label === 'add' && (
+          <div
+            className={`${s.reset} ${isReset ? s.isReset : ''}`}
+            onClick={handleClickReset}
+          >
+            <Reset fill={middleGrey} />
+          </div>
+        )}
+
         {!isArticle ? (
           <>
             <div className={s.articleHandler}>
               {!isDisplayArticle ? (
-                // <div className={s.addArticle}>
                 <>
                   <HeaderFields article={article || null} label={label} />
                   <ArticleEditor article={article || null} label={label} />
                 </>
               ) : (
-                // </div>
                 <div>
                   <span>Предпросмотр статьи</span>
                   <ArticleDetails
@@ -212,14 +314,8 @@ const ArticleHandler = ({ article, label }: IArticleHandler) => {
             <div className={s.mainButtons}>
               <button
                 type='button'
-                onClick={() =>
-                  label === 'edit'
-                    ? handleSubmitEdit()
-                    : label === 'add'
-                    ? handleSubmit()
-                    : null
-                }
-                disabled={loading}
+                onClick={() => handleSubmit()}
+                disabled={loading || editLoading}
                 // style={{ backgroundColor: 'teal' }}
                 // hover={{ backgroundColor: 'tomato' }}
               >
@@ -233,18 +329,23 @@ const ArticleHandler = ({ article, label }: IArticleHandler) => {
             <div className={s.submitErrors}>
               {submitError && <p>{submitError}</p>}
               {error && <p>Error: {error.message}</p>}
+              {editError && <p>Error: {editError.message}</p>}
             </div>
           </>
         ) : (
           <div className={s.success}>
             <div className={s.successContent}>
               <Success fill={theme === 'light' ? contrstLight : contrstDark} />
-              <span>Статья успешно создана!</span>
+              <span>
+                {label === 'add'
+                  ? 'Статья успешно создана!'
+                  : label === 'edit'
+                  ? 'Статья успешно изменена!'
+                  : null}
+              </span>
             </div>
           </div>
         )}
-        {/* <HeaderFields />
-      <ArticleEditor /> */}
       </div>
     </AddArticleContext.Provider>
   );

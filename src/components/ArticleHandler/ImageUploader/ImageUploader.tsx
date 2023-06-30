@@ -14,10 +14,10 @@ const ImageUploader = ({ article }: { article: IArticle | null }) => {
   const { imageData, setImageData, submitError, setSubmitError } =
     useAddArticleContext();
 
-  useEffect(() => {
-    if (article) setImageData(article.image);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [article]);
+  // useEffect(() => {
+  //   if (article) setImageData(article.image);
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [article]);
 
   useEffect(() => {
     submitError && setSubmitError('');

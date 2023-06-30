@@ -2,7 +2,22 @@
 @import '../../styles/_mixins.scss';
 
 .articleHandlerWrap {
+  position: relative;
   @include marginB(10px);
+
+  .reset {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 30px;
+    height: 30px;
+    transition: transform 0.5s ease;
+    cursor: pointer;
+
+    &.isReset {
+      transform: rotate(360deg);
+    }
+  }
 
   // .articleHandler {
   // }
@@ -26,7 +41,7 @@
   .submitErrors {
     padding: 15px 10px;
     text-align: center;
-    color: red;
+    color: $colorRed;
   }
 
   .success {

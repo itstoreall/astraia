@@ -25,7 +25,6 @@ const Edit = () => {
         <h2 className={s.title}>Редактирование</h2>
       </Crumbs>
       <article className={s.article}>
-        {article ? <p>{`${article.id}`}</p> : <p>No</p>}
         <ArticleHandler article={article} label={'edit'} />
       </article>
     </section>

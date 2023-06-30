@@ -22,7 +22,6 @@ export const AddArticleContext = createContext<IAddArticleContext>({
   setIsPreview: () => false,
   articleElements: [],
   setArticleElements: () => {},
-  handleSubmit: () => {},
   submitError: '',
   setSubmitError: () => '',
 });
