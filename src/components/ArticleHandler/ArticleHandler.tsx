@@ -24,6 +24,8 @@ import ArticleEditor from './ArticleEditor/ArticleEditor';
 import ArticleDetails from '../ArticleDetails';
 import Success from '@/assets/icons/Success';
 import Reset from '@/assets/icons/Reset';
+import Delete from '@/assets/icons/Delete';
+import Button from '../Button';
 
 const fls_add = ARTICLE_HEADER_FIELDS_ADD;
 const art_add = ARTICLE_ELEMENTS_ADD;
@@ -51,9 +53,17 @@ const ArticleHandler = ({ article, label }: IArticleHandler) => {
   // ---
 
   const [isReset, setIsReset] = useState(false);
+  const [isDelete, setIsDelete] = useState(false);
+  // const [isOpenModal, setIsOpenModal] = useState(false);
+
+  console.log('isDelete', isDelete);
 
   const handleClickReset = () => {
     setIsReset(!isReset);
+  };
+
+  const handleClickDelete = () => {
+    setIsDelete(!isDelete);
   };
 
   const { theme, setArticles } = useGlobalContext();
@@ -280,12 +290,29 @@ const ArticleHandler = ({ article, label }: IArticleHandler) => {
       }}
     >
       <div className={`${s.articleHandlerWrap} ${s[theme]}`}>
-        {label === 'add' && (
+        {label === 'add' ? (
           <div
-            className={`${s.reset} ${isReset ? s.isReset : ''}`}
+            className={`${s.actionButton} ${isReset ? s.isReset : ''}`}
             onClick={handleClickReset}
           >
             <Reset fill={middleGrey} />
+          </div>
+        ) : (
+          <div
+            className={`${s.actionButton} ${isDelete ? s.isDelete : ''}`}
+            onClick={handleClickDelete}
+          >
+            {!isDelete ? (
+              <Delete fill={middleGrey} el={'article'} />
+            ) : (
+              <div>
+                <p>Удалить данную статью?</p>
+                <div className={s.deleteButtonWrap}>
+                  <Button fn={() => console.log('Click')}>Удалить</Button>
+                  <Button fn={() => console.log('Click')}>Отменить</Button>
+                </div>
+              </div>
+            )}
           </div>
         )}
 

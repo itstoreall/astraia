@@ -5,7 +5,7 @@
   position: relative;
   @include marginB(10px);
 
-  .reset {
+  .actionButton {
     position: absolute;
     top: 20px;
     right: 20px;
@@ -16,6 +16,21 @@
 
     &.isReset {
       transform: rotate(360deg);
+    }
+
+    &.isDelete {
+      width: 200px;
+      height: 200px;
+      background-color: $colorGreen;
+      cursor: auto;
+
+      .deleteButtonWrap {
+        background-color: pink;
+
+        > button {
+          cursor: pointer;
+        }
+      }
     }
   }
 
