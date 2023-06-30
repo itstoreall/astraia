@@ -1,7 +1,8 @@
 import { useEffect, useLayoutEffect, useState } from 'react';
+import { IArticleHandler } from '@/interfaces';
 import { ChangeInputValue, ChangeTextareaValue, MoveElement } from '@/types';
 // import { IArticleElement } from '@/interfaces';
-import { ARTICLE_ELEMENTS } from '@/constants';
+// import { ARTICLE_ELEMENTS } from '@/constants';
 import { colorWhite, middleGrey } from '@/theme';
 import { useGlobalContext } from '@/context/GlobalContext';
 import { useAddArticleContext } from '@/context/AddArticleContext';
@@ -15,9 +16,9 @@ import Arrow from '@/assets/icons/Arrow';
 import Delete from '@/assets/icons/Delete';
 import Edit from '@/assets/icons/Edit';
 
-const art = ARTICLE_ELEMENTS;
+// const art = ARTICLE_ELEMENTS;
 
-const ArticleEditor = () => {
+const ArticleEditor = ({ article, label }: IArticleHandler) => {
   const [element, setElement] = useState<string>('');
   const [action, setAction] = useState<string | null>(null);
   const [isOpenEditMenu, setIsOpenEditMenu] = useState<boolean>(false);
@@ -41,32 +42,56 @@ const ArticleEditor = () => {
     setSubmitError,
   } = useAddArticleContext();
 
-  useEffect(() => {
-    const lsElements = JSON.parse(localStorage.getItem(art) || 'null');
-    if (lsElements) setArticleElements(lsElements.articleElements);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // useEffect(() => {
+  //   if (label === 'edit') return localStorage.removeItem(art);
 
-  useLayoutEffect(() => {
-    if (articleElements?.length)
-      localStorage.setItem(art, JSON.stringify({ articleElements }));
-  }, [articleElements]);
+  //   const lsElements = JSON.parse(localStorage.getItem(art) || 'null');
 
-  useLayoutEffect(() => {
-    if (isOpenEditMenu) {
-      setElement('');
-      setAction(null);
-    } else {
-      if (!action) cleanStates();
-    }
-  }, [isOpenEditMenu]);
+  //   if (lsElements) {
+  //     localStorage.removeItem(art);
 
-  useLayoutEffect(() => {
-    if (action === 'add') {
-      setIsOpenEditMenu(false);
-      setEditIndex(null);
-    }
-  }, [action]);
+  //     setArticleElements(lsElements.articleElements);
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
+
+  // useLayoutEffect(() => {
+  //   // if (articleElements?.length)
+  //   //   localStorage.setItem(art, JSON.stringify({ articleElements }));
+  // }, [articleElements]);
+
+  // useLayoutEffect(() => {
+  //   // if (isOpenEditMenu) {
+  //   //   setElement('');
+  //   //   setAction(null);
+  //   // } else {
+  //   //   if (!action) cleanStates();
+  //   // }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [isOpenEditMenu]);
+
+  // useLayoutEffect(() => {
+  //   // if (action === 'add') {
+  //   //   setIsOpenEditMenu(false);
+  //   //   setEditIndex(null);
+  //   // }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [action]);
+
+  // useEffect(() => {
+  //   // if (article) {
+  //   //   const articleForEdit = JSON.parse(article.text);
+  //   //   if (articleForEdit?.articleElements) {
+  //   //   }
+  //   //   console.log('articleForEdit', articleForEdit?.articleElements);
+  //   //   console.log('articleElements ', articleElements);
+  //   //   setArticleElements(articleForEdit?.articleElements);
+  //   //   return () => {
+  //   //     localStorage.removeItem(art);
+  //   //   };
+  //   // }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [article]);
 
   const cleanStates = () => {
     setAction(null);
@@ -127,7 +152,7 @@ const ArticleEditor = () => {
       return updatedParagraphs;
     });
 
-    localStorage.removeItem(art);
+    // localStorage.removeItem(art);
 
     cleanStates();
   };
@@ -172,7 +197,7 @@ const ArticleEditor = () => {
   // console.log('action', action);
   // console.log('editIndex', editIndex);
   // console.log('element', element);
-  console.log('isOpenEditMenu', isOpenEditMenu);
+  // console.log('isOpenEditMenu', isOpenEditMenu);
   // console.log('viewport', viewport);
 
   return (

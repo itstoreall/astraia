@@ -14,13 +14,10 @@
   .infoText {
     @include marginB(20px);
     @include fontSize(16px);
+    width: 85%;
     font-weight: 600;
     color: $middleGrey;
     user-select: none;
-
-    // @include minWidth($tablet) {
-    //   @include fontSize(18px);
-    // }
   }
 
   .fields {

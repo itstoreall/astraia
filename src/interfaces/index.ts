@@ -6,15 +6,18 @@ export interface IAccess {
   token?: string | null;
 }
 
-export interface IArticle {
-  id: string;
+export interface IArticleInput {
+  image: string;
   title: string;
   description: string;
-  text: string;
   author: string;
-  image: string;
-  views: string | null;
+  text: string;
   tags: string[];
+}
+
+export interface IArticle extends IArticleInput {
+  id: string;
+  views: string | null;
 }
 
 export type GlobalContent = {
@@ -52,7 +55,12 @@ export interface IChld {
 //   buttonHover: string;
 // }
 
-// ----------------- Add article
+// ----------------- Article Handler
+
+export interface IArticleHandler {
+  article?: IArticle | null;
+  label: string;
+}
 
 export interface IArticleElement {
   name: string;
@@ -76,9 +84,10 @@ export interface IAddArticleContext {
   setEditIndex: (n: number | null) => void;
   isDisplayArticle: boolean;
   setIsDisplayArticle: (b: boolean) => void;
+  isPreview: boolean;
+  setIsPreview: (b: boolean) => void;
   articleElements: IArticleElement[];
   setArticleElements: Dispatch<SetStateAction<IArticleElement[]>>;
-  handleSubmit: (e: FormEvent<HTMLFormElement>) => void;
   submitError: string;
   setSubmitError: (s: string) => void;
 }

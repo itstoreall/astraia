@@ -17,11 +17,6 @@ const useFetchArticleById = () => {
         query: GET_ARTICLE_BY_ID,
       });
 
-      if (!_data)
-        return {
-          notFound: true,
-        };
-
       if (_data && _data?.articles) {
         setData(_data.articles);
       }

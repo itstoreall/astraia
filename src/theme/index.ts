@@ -11,3 +11,4 @@ export const contrstDarkHover = '#66a5ac';
 export const middleGrey = 'rgba(133, 133, 133, 0.666)';
 export const middleGreyHover = 'rgba(133, 133, 133, 0.865)';
 export const colorWhite = '#ffffff';
+export const $colorRed = 'red';

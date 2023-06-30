@@ -1,0 +1,65 @@
+@import '../../styles/vars.scss';
+@import '../../styles/_mixins.scss';
+
+.articleHandlerWrap {
+  position: relative;
+  @include marginB(10px);
+
+  .reset {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 30px;
+    height: 30px;
+    transition: transform 0.5s ease;
+    cursor: pointer;
+
+    &.isReset {
+      transform: rotate(360deg);
+    }
+  }
+
+  // .articleHandler {
+  // }
+
+  .mainButtons {
+    display: flex;
+
+    > button {
+      @include contrastSolidButton();
+      @include padding(15px);
+      @include uppercase();
+
+      width: 50%;
+
+      &:nth-child(1) {
+        @include marginR(10px);
+      }
+    }
+  }
+
+  .submitErrors {
+    padding: 15px 10px;
+    text-align: center;
+    color: $colorRed;
+  }
+
+  .success {
+    @include flexY(center);
+    height: 60vh;
+    // background-color: teal;
+
+    .successContent {
+      @include flexDirectionY(column, center);
+      @include margin(0 auto);
+
+      > svg {
+        @include marginB(30px);
+      }
+
+      // > span {
+      //   color: yellowgreen;
+      // }
+    }
+  }
+}
