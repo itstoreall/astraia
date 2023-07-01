@@ -55,7 +55,6 @@ const Header = () => {
                   <Navigation
                     parent={'header'}
                     mobile={'mobile'}
-                    isOpenMenu={isOpenMenu}
                     setIsOpenMenu={setIsOpenMenu}
                   />
                 </div>

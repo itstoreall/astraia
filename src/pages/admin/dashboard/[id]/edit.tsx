@@ -25,11 +25,9 @@ const Edit = () => {
         <h2 className={s.title}>Редактирование</h2>
       </Crumbs>
 
-      {/* <PageLoading> */}
-        <article className={s.article}>
-          <ArticleHandler article={article} label={'edit'} />
-        </article>
-      {/* </PageLoading> */}
+      <article className={s.article}>
+        <ArticleHandler article={article} label={'edit'} />
+      </article>
     </section>
   );
 };
