@@ -1,3 +1,4 @@
+import PageLoading from '@/components/PageLoading';
 import s from './page.module.scss';
 import { useGlobalContext } from '@/context/GlobalContext';
 import Crumbs from '@/components/Crumbs';
@@ -10,7 +11,10 @@ const Contacts = () => {
       <Crumbs routes={['contacts']}>
         <h2 className={s.title}>Контакты</h2>
       </Crumbs>
-      <div className={s.article}>.article</div>
+
+      <PageLoading>
+        <article className={s.article}>.article</article>
+      </PageLoading>
     </section>
   );
 };

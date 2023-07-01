@@ -16,12 +16,19 @@ const Navigation = ({
   mobile?: string;
   setIsOpenMenu?: (b: boolean) => void;
 }) => {
-  const { access, theme, setAccess } = useGlobalContext();
+  const { access, theme, setAccess, isLoading, setIsLoading } =
+    useGlobalContext();
   const { landscape } = useViewport();
 
   const redirect = (path: string) => {
     setAccess(null);
     router.push(path);
+  };
+
+  const toArticles = () => {
+    setIsOpenMenu && setIsOpenMenu(false);
+    console.log('isLoading', isLoading);
+    setIsLoading(true);
   };
 
   const logOut = () => {
@@ -37,9 +44,7 @@ const Navigation = ({
           <Link
             className={`${s.button} ${s[parent]} ${s[theme]}`}
             href='/articles'
-            onClick={() => {
-              setIsOpenMenu && setIsOpenMenu(false);
-            }}
+            onClick={() => toArticles()}
           >
             Статьи
           </Link>

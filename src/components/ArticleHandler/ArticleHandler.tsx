@@ -1,18 +1,8 @@
 import { useEffect, useLayoutEffect, useState } from 'react';
 import { useMutation, useQuery } from '@apollo/client';
-import {
-  IArticle,
-  IArticleElement,
-  IArticleHandler,
-  IArticleInput,
-} from '@/interfaces';
-import { contrstDark, contrstLight, dark, light, middleGrey } from '@/theme';
-import {
-  ARTICLE_HEADER_FIELDS_ADD,
-  ARTICLE_ELEMENTS_ADD,
-  ARTICLE_HEADER_FIELDS_EDIT,
-  ARTICLE_ELEMENTS_EDIT,
-} from '@/constants';
+import { IArticleElement, IArticleHandler, IArticleInput } from '@/interfaces';
+import { contrstDark, contrstLight, middleGrey } from '@/theme';
+import * as constants from '@/constants';
 import { useGlobalContext } from '@/context/GlobalContext';
 import { AddArticleContext } from '@/context/AddArticleContext';
 import ADD_ARTICLE from '@/gql/addArticle';
@@ -28,10 +18,10 @@ import Reset from '@/assets/icons/Reset';
 import Delete from '@/assets/icons/Delete';
 import Button from '../Button';
 
-const fls_add = ARTICLE_HEADER_FIELDS_ADD;
-const art_add = ARTICLE_ELEMENTS_ADD;
-const fls_edit = ARTICLE_HEADER_FIELDS_EDIT;
-const art_edit = ARTICLE_ELEMENTS_EDIT;
+const fls_add = constants.ARTICLE_HEADER_FIELDS_ADD;
+const art_add = constants.ARTICLE_ELEMENTS_ADD;
+const fls_edit = constants.ARTICLE_HEADER_FIELDS_EDIT;
+const art_edit = constants.ARTICLE_ELEMENTS_EDIT;
 
 const ArticleHandler = ({ article, label }: IArticleHandler) => {
   const [isArticle, setIsArticle] = useState<boolean>(false);
@@ -57,8 +47,6 @@ const ArticleHandler = ({ article, label }: IArticleHandler) => {
   const [isDelete, setIsDelete] = useState(false);
   const [isDeleted, setIsDeleted] = useState<boolean>(false);
 
-  console.log('isDelete', isDelete);
-
   const handleClickReset = () => {
     setIsReset(!isReset);
   };
@@ -77,11 +65,6 @@ const ArticleHandler = ({ article, label }: IArticleHandler) => {
   const [DeleteArticle, { loading: deleteLoading, error: deleteError }] =
     useMutation(DELETE_ARTICLE);
 
-  // console.log('');
-  // console.log('article', article);
-  // console.log('label', label);
-  // console.log('isDisplayArticle', isDisplayArticle);
-
   const clearStates = () => {
     setImageData('');
     setTitle('');
@@ -91,8 +74,6 @@ const ArticleHandler = ({ article, label }: IArticleHandler) => {
     setTextareaValue('');
     setArticleElements([]);
     setBase64Holder('');
-    // localStorage.removeItem(fls_edit);
-    // localStorage.removeItem(art_edit);
   };
 
   useEffect(() => {
@@ -112,10 +93,6 @@ const ArticleHandler = ({ article, label }: IArticleHandler) => {
         setArticleElements(lsElements.articleElements);
       }
     }
-
-    if (label === 'edit') {
-      console.log(0);
-    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -124,11 +101,6 @@ const ArticleHandler = ({ article, label }: IArticleHandler) => {
       const { articleElements, image } = JSON.parse(article.text);
 
       if (articleElements) {
-        console.log('');
-        console.log('2', base64Holder.slice(0, 50));
-        console.log(2, 'isPreview', isPreview);
-        console.log(2, 'isDisplayArticle', isDisplayArticle);
-
         setTitle(article.title);
         setDescription(article.description);
         setImageData(article.image);
@@ -141,22 +113,10 @@ const ArticleHandler = ({ article, label }: IArticleHandler) => {
   useEffect(() => {
     if (label === 'edit') {
       if (isDisplayArticle) {
-        console.log('');
-        console.log('3', base64Holder.slice(0, 50));
-        console.log(3, 'isPreview', isPreview);
-        console.log(3, 'isDisplayArticle', isDisplayArticle);
-
         setIsPreview(true);
         setBase64Holder(imageData);
         localStorage.setItem(fls_edit, JSON.stringify({ title, description }));
         localStorage.setItem(art_edit, JSON.stringify({ articleElements }));
-      }
-
-      if (!isDisplayArticle) {
-        console.log('');
-        console.log('1', base64Holder.slice(0, 50));
-        console.log(1, 'isPreview', isPreview);
-        console.log(1, 'isDisplayArticle', isDisplayArticle);
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -195,8 +155,6 @@ const ArticleHandler = ({ article, label }: IArticleHandler) => {
     const updatedArticles = await getArticles();
     const { articles } = updatedArticles.data;
     articles && setArticles(articles);
-
-    console.log('articles -->', articles);
   };
 
   const addArticleRequest = async (articleInput: IArticleInput) => {
@@ -247,8 +205,6 @@ const ArticleHandler = ({ article, label }: IArticleHandler) => {
       if (el.includes('articleElements')) {
         if (!articleElements?.length) isSubmitError = true;
       }
-
-      console.log('el', idx, el, !el.length, isSubmitError);
     });
 
     if (isSubmitError)
