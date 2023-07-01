@@ -263,7 +263,7 @@ const ArticleEditor = ({ article, label }: IArticleHandler) => {
                                 className={`${s.techButton} ${s.delete}`}
                                 onClick={() => deleteElement(index)}
                               >
-                                <Delete fill={colorWhite} />
+                                <Delete fill={colorWhite} el={'field'} />
                               </div>
 
                               {index !== articleElements.length - 1 && (
@@ -349,7 +349,7 @@ const ArticleEditor = ({ article, label }: IArticleHandler) => {
                                 className={`${s.techButton} ${s.delete}`}
                                 onClick={() => deleteElement(index)}
                               >
-                                <Delete fill={colorWhite} />
+                                <Delete fill={colorWhite} el={'field'} />
                               </div>
 
                               {index !== articleElements.length - 1 && (

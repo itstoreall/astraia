@@ -5,7 +5,7 @@
   position: relative;
   @include marginB(10px);
 
-  .reset {
+  .actionButton {
     position: absolute;
     top: 20px;
     right: 20px;
@@ -16,6 +16,36 @@
 
     &.isReset {
       transform: rotate(360deg);
+    }
+
+    &.isDelete {
+      @include padding(20px 20px 20px);
+      @include width(auto);
+      @include height(auto);
+      background-color: var(--background);
+      border: 1px solid $middleGrey;
+      border-radius: 6px;
+      cursor: auto;
+
+      .deleteText {
+        @include margin(0 auto);
+        margin-bottom: 20px;
+        font-size: 14px;
+        text-align: center;
+      }
+
+      .deleteButtonWrap {
+        display: flex;
+        justify-content: center;
+
+        > button {
+          cursor: pointer;
+
+          &:first-child {
+            margin-right: 10px;
+          }
+        }
+      }
     }
   }
 
@@ -47,7 +77,6 @@
   .success {
     @include flexY(center);
     height: 60vh;
-    // background-color: teal;
 
     .successContent {
       @include flexDirectionY(column, center);
@@ -56,10 +85,21 @@
       > svg {
         @include marginB(30px);
       }
+    }
+  }
+}
 
-      // > span {
-      //   color: yellowgreen;
-      // }
+.deleted {
+  @include flexY(center);
+  height: 60vh;
+  // background-color: teal;
+
+  .deletedContent {
+    @include flexDirectionY(column, center);
+    @include margin(0 auto);
+
+    > svg {
+      @include marginB(30px);
     }
   }
 }
