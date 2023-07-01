@@ -18,11 +18,11 @@ const AddPage = () => {
             <h2 className={s.title}>{'Новая статья'}</h2>
           </Crumbs>
 
-          <PageLoading>
-            <article className={s.article}>
-              <ArticleHandler label={'add'} />
-            </article>
-          </PageLoading>
+          {/* <PageLoading> */}
+          <article className={s.article}>
+            <ArticleHandler label={'add'} />
+          </article>
+          {/* </PageLoading> */}
         </section>
       ) : (
         'Verification (admin)...'

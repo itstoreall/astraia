@@ -3,7 +3,7 @@ import Link from 'next/link';
 import s from './List.module.scss';
 
 const ArticleList = ({ articles }: { articles: IArticle[] }) => {
-  // console.log('articles ===>', articles);
+  console.log('articles ===>', articles);
 
   return (
     <ul className={s.list}>

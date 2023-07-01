@@ -12,9 +12,9 @@ const Edit = () => {
         <h2 className={s.title}>Редактирование</h2>
       </Crumbs>
 
-      <PageLoading>
-        <article className={s.article}>.article</article>
-      </PageLoading>
+      {/* <PageLoading> */}
+      <article className={s.article}>.article</article>
+      {/* </PageLoading> */}
     </section>
   );
 };

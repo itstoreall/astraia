@@ -46,15 +46,15 @@ const AdminPage = () => {
         <h2 className={s.title}>admin</h2>
       </Crumbs>
 
-      <PageLoading>
-        <article className={s.article}>
-          {!loading && isAdmin ? (
-            <button onClick={logOut}>Log out</button>
-          ) : (
-            'Аутентификация (админ)...'
-          )}
-        </article>
-      </PageLoading>
+      {/* <PageLoading> */}
+      <article className={s.article}>
+        {!loading && isAdmin ? (
+          <button onClick={logOut}>Log out</button>
+        ) : (
+          'Аутентификация (админ)...'
+        )}
+      </article>
+      {/* </PageLoading> */}
     </section>
   );
 };

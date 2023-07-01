@@ -12,9 +12,9 @@ const AboutPage = () => {
         <h2 className={s.title}>О нас</h2>
       </Crumbs>
 
-      <PageLoading>
+      {/* <PageLoading> */}
         <article className={s.article}>.article</article>
-      </PageLoading>
+      {/* </PageLoading> */}
     </section>
   );
 };

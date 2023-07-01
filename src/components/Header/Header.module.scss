@@ -3,86 +3,90 @@
 @import '../../styles/_mixins.scss';
 
 .header {
-  position: fixed;
-  top: 0;
-  @include width(100%);
-  backdrop-filter: blur(130px);
-  z-index: 10;
+  @include themeHandler() {
+    position: fixed;
+    top: 0;
+    @include width(100%);
+    background-color: var(--background);
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+    @include transition($s04);
+    z-index: 10;
 
-  .content {
-    @include flexXY(space-between, center);
-    @include padding(0 5px 0 20px);
-    margin: 0 auto;
+    .content {
+      @include flexXY(space-between, center);
+      @include padding(0 5px 0 20px);
+      margin: 0 auto;
 
-    @include minWidth($tablet) {
-      @include padding(0 40px 0 25px);
-    }
-
-    .logo {
-      @include fontSize(20px);
-      color: inherit;
-      @include transition($s04);
-    }
-
-    .menu {
-      .burger {
-        @include padding(20px 20px 19px);
-        @include fontSize(0);
-        @include transition($s04);
-        cursor: pointer;
-
-        @include minWidth($tablet) {
-          @include display(none);
-        }
+      @include minWidth($tablet) {
+        @include padding(0 40px 0 25px);
       }
 
-      .mobStyle {
-        @include maxWidth($tablet - 1) {
-          position: fixed;
-          top: 59px;
-          right: 0;
-          @include flexX(center);
-          @include padding(20% 0 0);
-          @include widthHeight(100%, 100vh);
+      .logo {
+        @include fontSize(20px);
+        color: inherit;
+        @include transition($s04);
+      }
 
-          @include themeHandler() {
-            background-color: var(--background);
-            @include transition($s04);
+      .menu {
+        .burger {
+          @include padding(20px 20px 19px);
+          @include fontSize(0);
+          @include transition($s04);
+          cursor: pointer;
+
+          @include minWidth($tablet) {
+            @include display(none);
           }
         }
 
-        @include minWidth($tablet) {
-          @include display(none);
-        }
+        .mobStyle {
+          @include maxWidth($tablet - 1) {
+            position: fixed;
+            top: 59px;
+            right: 0;
+            @include flexX(center);
+            @include padding(20% 0 0);
+            @include widthHeight(100%, 100vh);
 
-        .menuContent {
-          max-width: 200px;
-
-          > label {
-            margin-bottom: 40px;
-            margin-left: 25px;
+            @include themeHandler() {
+              background-color: var(--background);
+              @include transition($s04);
+            }
           }
-        }
 
-        &.landscape {
-          @include padding(15vh 0 0);
+          @include minWidth($tablet) {
+            @include display(none);
+          }
 
           .menuContent {
-            max-width: 100%;
+            max-width: 200px;
 
             > label {
-              margin-bottom: 20px;
+              margin-bottom: 40px;
+              margin-left: 25px;
+            }
+          }
+
+          &.landscape {
+            @include padding(15vh 0 0);
+
+            .menuContent {
+              max-width: 100%;
+
+              > label {
+                margin-bottom: 20px;
+              }
             }
           }
         }
-      }
 
-      .descStyle {
-        @include maxWidth($tablet - 1) {
-          @include display(none);
+        .descStyle {
+          @include maxWidth($tablet - 1) {
+            @include display(none);
+          }
+
+          @include flexY(center);
         }
-
-        @include flexY(center);
       }
     }
   }

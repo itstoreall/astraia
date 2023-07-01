@@ -3,9 +3,9 @@ import PageLoading from '@/components/PageLoading';
 
 const NotFoundPage = () => {
   return (
-    <PageLoading>
-      <article className={s.article}>NotFoundPage</article>
-    </PageLoading>
+    // <PageLoading>
+    <article className={s.article}>NotFoundPage</article>
+    // </PageLoading>
   );
 };
 

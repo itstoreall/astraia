@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import PageLoading from '@/components/PageLoading';
 import s from './page.module.scss';
 import { useGlobalContext } from '@/context/GlobalContext';
 
@@ -16,10 +15,8 @@ const Home = () => {
       </Head>
 
       <section className={`${s.page} ${s[theme]}`}>
-        <PageLoading>
-          <h2 className={s.titleHome}>Духовное саморазвитие</h2>
-          <article className={s.article}>.article prod</article>
-        </PageLoading>
+        <h2 className={s.titleHome}>Духовное саморазвитие</h2>
+        <article className={s.article}>.article prod</article>
       </section>
     </>
   );

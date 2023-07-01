@@ -31,8 +31,6 @@ const ArticleDetails = (props: any) => {
     viewport === 'tablet' ? 768 : viewport === 'desktop' ? 900 : 390
   );
 
-  console.log('viewport', viewport);
-
   return (
     <div className={s.articleDetails}>
       <h2 className={s.title}>{title}</h2>
