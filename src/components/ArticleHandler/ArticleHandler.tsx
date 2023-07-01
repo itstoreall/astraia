@@ -18,6 +18,7 @@ import { AddArticleContext } from '@/context/AddArticleContext';
 import ADD_ARTICLE from '@/gql/addArticle';
 import EDIT_ARTICLE from '@/gql/editArticle';
 import GET_ARTICLES from '@/gql/getArticles';
+import DELETE_ARTICLE from '@/gql/deleteArticle';
 import s from './ArticleHandler.module.scss';
 import HeaderFields from './HeaderFields/HeaderFields';
 import ArticleEditor from './ArticleEditor/ArticleEditor';
@@ -54,7 +55,7 @@ const ArticleHandler = ({ article, label }: IArticleHandler) => {
 
   const [isReset, setIsReset] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
-  // const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isDeleted, setIsDeleted] = useState<boolean>(false);
 
   console.log('isDelete', isDelete);
 
@@ -73,6 +74,8 @@ const ArticleHandler = ({ article, label }: IArticleHandler) => {
     useMutation(EDIT_ARTICLE);
 
   const { refetch: getArticles } = useQuery(GET_ARTICLES);
+  const [DeleteArticle, { loading: deleteLoading, error: deleteError }] =
+    useMutation(DELETE_ARTICLE);
 
   // console.log('');
   // console.log('article', article);
@@ -262,6 +265,27 @@ const ArticleHandler = ({ article, label }: IArticleHandler) => {
     }
   };
 
+  const handleDelete = async () => {
+    if (!article) return;
+
+    try {
+      const { data } = await DeleteArticle({
+        variables: {
+          id: article.id,
+        },
+      });
+
+      const deleted = data?.deleteArticle;
+
+      console.log('deleteArticle:', deleted);
+
+      setIsDeleted(deleted);
+      updateArticles();
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   return (
     <AddArticleContext.Provider
       value={{
@@ -289,91 +313,102 @@ const ArticleHandler = ({ article, label }: IArticleHandler) => {
         setSubmitError,
       }}
     >
-      <div className={`${s.articleHandlerWrap} ${s[theme]}`}>
-        {label === 'add' ? (
-          <div
-            className={`${s.actionButton} ${isReset ? s.isReset : ''}`}
-            onClick={handleClickReset}
-          >
-            <Reset fill={middleGrey} />
-          </div>
-        ) : (
-          <div
-            className={`${s.actionButton} ${isDelete ? s.isDelete : ''}`}
-            onClick={handleClickDelete}
-          >
-            {!isDelete ? (
-              <Delete fill={middleGrey} el={'article'} />
-            ) : (
-              <div>
-                <p>Удалить данную статью?</p>
-                <div className={s.deleteButtonWrap}>
-                  <Button fn={() => console.log('Click')}>Удалить</Button>
-                  <Button fn={() => console.log('Click')}>Отменить</Button>
-                </div>
-              </div>
-            )}
-          </div>
-        )}
-
-        {!isArticle ? (
-          <>
-            <div className={s.articleHandler}>
-              {!isDisplayArticle ? (
-                <>
-                  <HeaderFields article={article || null} label={label} />
-                  <ArticleEditor article={article || null} label={label} />
-                </>
+      {!isDeleted ? (
+        <div className={`${s.articleHandlerWrap} ${s[theme]}`}>
+          {label === 'add' ? (
+            <div
+              className={`${s.actionButton} ${isReset ? s.isReset : ''}`}
+              onClick={handleClickReset}
+            >
+              <Reset fill={middleGrey} />
+            </div>
+          ) : (
+            <div
+              className={`${s.actionButton} ${isDelete ? s.isDelete : ''}`}
+              onClick={handleClickDelete}
+            >
+              {!isDelete ? (
+                <Delete fill={middleGrey} el={'article'} />
               ) : (
                 <div>
-                  <span>Предпросмотр статьи</span>
-                  <ArticleDetails
-                    imageData={imageData}
-                    title={title}
-                    description={description}
-                    author={author}
-                    articleElements={articleElements}
-                  />
+                  <p className={s.deleteText}>Удалить данную статью?</p>
+                  <div className={s.deleteButtonWrap}>
+                    <Button fn={() => handleDelete()}>Удалить</Button>
+                    <Button fn={handleClickDelete}>Отменить</Button>
+                  </div>
                 </div>
               )}
             </div>
+          )}
 
-            <div className={s.mainButtons}>
-              <button
-                type='button'
-                onClick={() => handleSubmit()}
-                disabled={loading || editLoading}
-                // style={{ backgroundColor: 'teal' }}
-                // hover={{ backgroundColor: 'tomato' }}
-              >
-                Сохранить
-              </button>
+          {!isArticle ? (
+            <>
+              <div className={s.articleHandler}>
+                {!isDisplayArticle ? (
+                  <>
+                    <HeaderFields article={article || null} label={label} />
+                    <ArticleEditor article={article || null} label={label} />
+                  </>
+                ) : (
+                  <div>
+                    <span>Предпросмотр статьи</span>
+                    <ArticleDetails
+                      imageData={imageData}
+                      title={title}
+                      description={description}
+                      author={author}
+                      articleElements={articleElements}
+                    />
+                  </div>
+                )}
+              </div>
 
-              <button onClick={() => setIsDisplayArticle(!isDisplayArticle)}>
-                {isDisplayArticle ? 'Редактор' : 'Предпросмотр'}
-              </button>
+              <div className={s.mainButtons}>
+                <button
+                  type='button'
+                  onClick={() => handleSubmit()}
+                  disabled={loading || editLoading}
+                  // style={{ backgroundColor: 'teal' }}
+                  // hover={{ backgroundColor: 'tomato' }}
+                >
+                  Сохранить
+                </button>
+
+                <button onClick={() => setIsDisplayArticle(!isDisplayArticle)}>
+                  {isDisplayArticle ? 'Редактор' : 'Предпросмотр'}
+                </button>
+              </div>
+              <div className={s.submitErrors}>
+                {submitError && <p>{submitError}</p>}
+                {error && <p>Error: {error.message}</p>}
+                {editError && <p>Error: {editError.message}</p>}
+              </div>
+            </>
+          ) : (
+            <div className={s.success}>
+              <div className={s.successContent}>
+                <Success
+                  fill={theme === 'light' ? contrstLight : contrstDark}
+                />
+                <span>
+                  {label === 'add'
+                    ? 'Статья успешно создана!'
+                    : label === 'edit'
+                    ? 'Статья успешно изменена!'
+                    : null}
+                </span>
+              </div>
             </div>
-            <div className={s.submitErrors}>
-              {submitError && <p>{submitError}</p>}
-              {error && <p>Error: {error.message}</p>}
-              {editError && <p>Error: {editError.message}</p>}
-            </div>
-          </>
-        ) : (
-          <div className={s.success}>
-            <div className={s.successContent}>
-              <Success fill={theme === 'light' ? contrstLight : contrstDark} />
-              <span>
-                {label === 'add'
-                  ? 'Статья успешно создана!'
-                  : label === 'edit'
-                  ? 'Статья успешно изменена!'
-                  : null}
-              </span>
-            </div>
+          )}
+        </div>
+      ) : (
+        <div className={s.deleted}>
+          <div className={s.deletedContent}>
+            <Success fill={theme === 'light' ? contrstLight : contrstDark} />
+            <span>Статья успешно удалена!</span>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </AddArticleContext.Provider>
   );
 };
