@@ -1,5 +1,12 @@
+import s from './page.module.scss';
+import PageLoading from '@/components/PageLoading';
+
 const NotFoundPage = () => {
-  return <p>NotFoundPage</p>;
+  return (
+    <PageLoading>
+      <article className={s.article}>NotFoundPage</article>
+    </PageLoading>
+  );
 };
 
 export default NotFoundPage;

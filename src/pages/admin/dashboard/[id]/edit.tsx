@@ -1,10 +1,10 @@
-import Crumbs from '@/components/Crumbs';
-import s from '../../../page.module.scss';
-import { useGlobalContext } from '@/context/GlobalContext';
-// import router from 'next/router';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { IArticle } from '@/interfaces';
-import { useEffect, useState } from 'react';
+import { useGlobalContext } from '@/context/GlobalContext';
+import PageLoading from '@/components/PageLoading';
+import s from '../../../page.module.scss';
+import Crumbs from '@/components/Crumbs';
 import ArticleHandler from '@/components/ArticleHandler';
 
 const Edit = () => {
@@ -24,9 +24,12 @@ const Edit = () => {
       <Crumbs routes={['dashboard', 'edit']}>
         <h2 className={s.title}>Редактирование</h2>
       </Crumbs>
-      <article className={s.article}>
-        <ArticleHandler article={article} label={'edit'} />
-      </article>
+
+      <PageLoading>
+        <article className={s.article}>
+          <ArticleHandler article={article} label={'edit'} />
+        </article>
+      </PageLoading>
     </section>
   );
 };

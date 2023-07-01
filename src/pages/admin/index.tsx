@@ -1,8 +1,9 @@
 import { useCallback, useEffect } from 'react';
 import router from 'next/router';
 import useVerification from '@/hooks/useVerification';
-import { useGlobalContext } from '@/context/GlobalContext';
 import { ASTRAIA_ACCESS } from '@/constants';
+import { useGlobalContext } from '@/context/GlobalContext';
+import PageLoading from '@/components/PageLoading';
 import s from '../page.module.scss';
 import Crumbs from '@/components/Crumbs';
 
@@ -44,18 +45,16 @@ const AdminPage = () => {
       <Crumbs routes={['admin']}>
         <h2 className={s.title}>admin</h2>
       </Crumbs>
-      <article className={s.article}>
-        {!loading && isAdmin ? (
-          <>
-            {/* <div>
-            <p>admin content</p>
-          </div> */}
+
+      <PageLoading>
+        <article className={s.article}>
+          {!loading && isAdmin ? (
             <button onClick={logOut}>Log out</button>
-          </>
-        ) : (
-          'Аутентификация (админ)...'
-        )}
-      </article>
+          ) : (
+            'Аутентификация (админ)...'
+          )}
+        </article>
+      </PageLoading>
     </section>
   );
 };

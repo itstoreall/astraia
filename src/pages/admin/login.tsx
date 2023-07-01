@@ -1,58 +1,12 @@
-// import { useState } from 'react';
 import Head from 'next/head';
-// import { useMutation } from '@apollo/client';
-// import router from 'next/router';
-// import UPDATE_ADMIN from '@/gql/updateAdmin';
-// import { ASTRAIA_ACCESS } from '@/constants';
-// import Link from 'next/link';
-import s from '../page.module.scss';
-// import Button from '@/components/Button';
 import { useGlobalContext } from '@/context/GlobalContext';
+import PageLoading from '@/components/PageLoading';
+import s from '../page.module.scss';
 import Crumbs from '@/components/Crumbs';
 import Login from '@/components/Admin/Login/Login';
 
-// const adm = ASTRAIA_ACCESS;
-
 const LoginPage = () => {
-  // const [login, setLogin] = useState<string>('');
-  // const [password, setPassword] = useState<string>('');
-
   const { theme } = useGlobalContext();
-
-  // const [updateAdmin, { loading: updateLoading, error: updateError }] =
-  //   useMutation(UPDATE_ADMIN);
-
-  // const clearStates = () => {
-  //   setLogin('');
-  //   setPassword('');
-  // };
-
-  // const handleInput = (event: any) => {
-  //   const { name, value } = event.target;
-
-  //   name === 'login' && setLogin(value);
-  //   name === 'password' && setPassword(value);
-  // };
-
-  // const handleSubmit = async (event: any) => {
-  //   event.preventDefault();
-
-  //   const AccessInput = { login, password };
-
-  //   try {
-  //     const { data } = await updateAdmin({ variables: { input: AccessInput } });
-  //     const { token } = data.updateAdmin;
-
-  //     if (data) {
-  //       localStorage.setItem(adm, JSON.stringify({ token }));
-
-  //       clearStates();
-  //       router.push('/admin');
-  //     }
-  //   } catch (e) {
-  //     console.error(e);
-  //   }
-  // };
 
   return (
     <>
@@ -67,9 +21,11 @@ const LoginPage = () => {
           <h2 className={s.title}>Вход</h2>
         </Crumbs>
 
-        <article className={s.article}>
-          <Login />
-        </article>
+        <PageLoading>
+          <article className={s.article}>
+            <Login />
+          </article>
+        </PageLoading>
       </section>
     </>
   );

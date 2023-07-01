@@ -1,4 +1,5 @@
-import { ApolloClient, InMemoryCache } from '@apollo/client';
+// import { ApolloClient, InMemoryCache } from '@apollo/client';
+import PageLoading from '@/components/PageLoading';
 import { useGlobalContext } from '@/context/GlobalContext';
 import GET_ARTICLES from '@/gql/getArticles';
 import GET_ARTICLE_BY_ID from '@/gql/getArticleById';
@@ -73,19 +74,21 @@ const Article = ({ article }: { article: IArticle }) => {
         </h2>
       </Crumbs>
 
-      <article className={s.article}>
-        <ArticleDetails
-          id={article.id}
-          imageData={article.image}
-          title={article?.title}
-          description={article?.description}
-          author={article?.author}
-          views={article?.views}
-          tags={article?.tags}
-          timestamp={article?.timestamp}
-          articleElements={articleText}
-        />
-      </article>
+      <PageLoading>
+        <article className={s.article}>
+          <ArticleDetails
+            id={article.id}
+            imageData={article.image}
+            title={article?.title}
+            description={article?.description}
+            author={article?.author}
+            views={article?.views}
+            tags={article?.tags}
+            timestamp={article?.timestamp}
+            articleElements={articleText}
+          />
+        </article>
+      </PageLoading>
     </section>
   );
 };
