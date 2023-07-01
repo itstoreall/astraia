@@ -315,30 +315,34 @@ const ArticleHandler = ({ article, label }: IArticleHandler) => {
     >
       {!isDeleted ? (
         <div className={`${s.articleHandlerWrap} ${s[theme]}`}>
-          {label === 'add' ? (
-            <div
-              className={`${s.actionButton} ${isReset ? s.isReset : ''}`}
-              onClick={handleClickReset}
-            >
-              <Reset fill={middleGrey} />
-            </div>
-          ) : (
-            <div
-              className={`${s.actionButton} ${isDelete ? s.isDelete : ''}`}
-              onClick={handleClickDelete}
-            >
-              {!isDelete ? (
-                <Delete fill={middleGrey} el={'article'} />
+          {!isDisplayArticle && !isArticle && (
+            <>
+              {label === 'add' ? (
+                <div
+                  className={`${s.actionButton} ${isReset ? s.isReset : ''}`}
+                  onClick={handleClickReset}
+                >
+                  <Reset fill={middleGrey} />
+                </div>
               ) : (
-                <div>
-                  <p className={s.deleteText}>Удалить данную статью?</p>
-                  <div className={s.deleteButtonWrap}>
-                    <Button fn={() => handleDelete()}>Удалить</Button>
-                    <Button fn={handleClickDelete}>Отменить</Button>
-                  </div>
+                <div
+                  className={`${s.actionButton} ${isDelete ? s.isDelete : ''}`}
+                  onClick={handleClickDelete}
+                >
+                  {!isDelete ? (
+                    <Delete fill={middleGrey} el={'article'} />
+                  ) : (
+                    <div>
+                      <p className={s.deleteText}>Удалить данную статью?</p>
+                      <div className={s.deleteButtonWrap}>
+                        <Button fn={() => handleDelete()}>Удалить</Button>
+                        <Button fn={handleClickDelete}>Отменить</Button>
+                      </div>
+                    </div>
+                  )}
                 </div>
               )}
-            </div>
+            </>
           )}
 
           {!isArticle ? (
@@ -350,14 +354,15 @@ const ArticleHandler = ({ article, label }: IArticleHandler) => {
                     <ArticleEditor article={article || null} label={label} />
                   </>
                 ) : (
-                  <div>
-                    <span>Предпросмотр статьи</span>
+                  <div className={s.articlePreview}>
+                    <span className={s.previewTitle}>Предпросмотр статьи</span>
                     <ArticleDetails
                       imageData={imageData}
                       title={title}
                       description={description}
                       author={author}
                       articleElements={articleElements}
+                      timestamp={article ? article.timestamp : null}
                     />
                   </div>
                 )}

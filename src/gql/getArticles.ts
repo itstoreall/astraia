@@ -11,6 +11,7 @@ const GET_ARTICLES = gql`
       image
       views
       tags
+      timestamp
     }
   }
 `;

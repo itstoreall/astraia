@@ -9,6 +9,9 @@ const GET_ARTICLE_BY_ID = gql`
       text
       author
       image
+      views
+      tags
+      timestamp
     }
   }
 `;
