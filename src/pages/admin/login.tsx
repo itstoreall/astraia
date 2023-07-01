@@ -21,11 +21,11 @@ const LoginPage = () => {
           <h2 className={s.title}>Вход</h2>
         </Crumbs>
 
-        <PageLoading>
-          <article className={s.article}>
-            <Login />
-          </article>
-        </PageLoading>
+        {/* <PageLoading> */}
+        <article className={s.article}>
+          <Login />
+        </article>
+        {/* </PageLoading> */}
       </section>
     </>
   );

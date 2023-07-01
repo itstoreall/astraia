@@ -74,21 +74,21 @@ const Article = ({ article }: { article: IArticle }) => {
         </h2>
       </Crumbs>
 
-      <PageLoading>
-        <article className={s.article}>
-          <ArticleDetails
-            id={article.id}
-            imageData={article.image}
-            title={article?.title}
-            description={article?.description}
-            author={article?.author}
-            views={article?.views}
-            tags={article?.tags}
-            timestamp={article?.timestamp}
-            articleElements={articleText}
-          />
-        </article>
-      </PageLoading>
+      {/* <PageLoading> */}
+      <article className={s.article}>
+        <ArticleDetails
+          id={article.id}
+          imageData={article.image}
+          title={article?.title}
+          description={article?.description}
+          author={article?.author}
+          views={article?.views}
+          tags={article?.tags}
+          timestamp={article?.timestamp}
+          articleElements={articleText}
+        />
+      </article>
+      {/* </PageLoading> */}
     </section>
   );
 };

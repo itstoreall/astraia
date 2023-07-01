@@ -15,11 +15,11 @@ const DashboardPage = () => {
         <h2 className={s.title}>Дашборд</h2>
       </Crumbs>
 
-      <PageLoading>
-        <article className={s.article}>
-          {isAdmin ? <Dashboard /> : 'Аутентификация (дашборд)...'}
-        </article>
-      </PageLoading>
+      {/* <PageLoading> */}
+      <article className={s.article}>
+        {isAdmin ? <Dashboard /> : 'Аутентификация (дашборд)...'}
+      </article>
+      {/* </PageLoading> */}
     </section>
   );
 };

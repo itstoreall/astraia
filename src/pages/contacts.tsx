@@ -12,9 +12,9 @@ const Contacts = () => {
         <h2 className={s.title}>Контакты</h2>
       </Crumbs>
 
-      <PageLoading>
-        <article className={s.article}>.article</article>
-      </PageLoading>
+      {/* <PageLoading> */}
+      <article className={s.article}>.article</article>
+      {/* </PageLoading> */}
     </section>
   );
 };

@@ -10,14 +10,15 @@ const adm = ASTRAIA_ACCESS;
 const Navigation = ({
   parent,
   mobile,
+  isOpenMenu,
   setIsOpenMenu,
 }: {
   parent: string;
   mobile?: string;
+  isOpenMenu: boolean;
   setIsOpenMenu?: (b: boolean) => void;
 }) => {
-  const { access, theme, setAccess, isLoading, setIsLoading } =
-    useGlobalContext();
+  const { access, theme, setAccess } = useGlobalContext();
   const { landscape } = useViewport();
 
   const redirect = (path: string) => {
@@ -25,11 +26,11 @@ const Navigation = ({
     router.push(path);
   };
 
-  const toArticles = () => {
-    setIsOpenMenu && setIsOpenMenu(false);
-    console.log('isLoading', isLoading);
-    setIsLoading(true);
-  };
+  // const toArticles = () => {
+  //   setIsOpenMenu && setIsOpenMenu(false);
+  //   console.log('isLoading', isLoading);
+  //   setIsLoading(true);
+  // };
 
   const logOut = () => {
     localStorage.removeItem(adm);
@@ -44,7 +45,7 @@ const Navigation = ({
           <Link
             className={`${s.button} ${s[parent]} ${s[theme]}`}
             href='/articles'
-            onClick={() => toArticles()}
+            onClick={() => isOpenMenu && setIsOpenMenu && setIsOpenMenu(false)}
           >
             Статьи
           </Link>
