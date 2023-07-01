@@ -12,8 +12,6 @@ import DashboardPage from './admin/dashboard';
 import ArticlesPage from './articles';
 import ArticlePage from './articles/[id]';
 import EditPage from './admin/dashboard/[id]';
-// import EditPage from './admin/dashboard/edit';
-import DeletePage from './admin/dashboard/delete';
 import AboutPage from './about';
 import ContactsPage from './contacts';
 import AddPage from './admin/dashboard/add';
@@ -82,9 +80,6 @@ const App = ({ Component, pageProps }: AppProps) => {
 
       case '/admin/dashboard/[id]':
         return <EditPage />;
-
-      case '/admin/dashboard/delete':
-        return <DeletePage />;
 
       case '/articles':
         return <ArticlesPage articles={pageProps.articles} />;

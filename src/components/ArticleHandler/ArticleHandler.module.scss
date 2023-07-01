@@ -5,6 +5,20 @@
   position: relative;
   @include marginB(10px);
 
+  .articlePreview {
+    // @include paddingB(35px);
+
+    .previewTitle {
+      @include display(inline-block);
+      @include padding(7px 15px);
+      @include marginB(20px);
+      font-weight: 600;
+      color: $colorWhite;
+      background-color: $contrstLightHover;
+      border-radius: 6px;
+    }
+  }
+
   .actionButton {
     position: absolute;
     top: 20px;

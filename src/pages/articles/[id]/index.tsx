@@ -6,6 +6,7 @@ import client from '@/utils/apolloClient';
 import s from '../../page.module.scss';
 import Crumbs from '@/components/Crumbs';
 import ArticleDetails from '@/components/ArticleDetails/ArticleDetails';
+import { IArticle } from '@/interfaces';
 
 export const getStaticPaths = async () => {
   // const client = new ApolloClient({
@@ -59,7 +60,7 @@ export const getStaticProps = async (context: any) => {
   };
 };
 
-const Article = ({ article }: any) => {
+const Article = ({ article }: { article: IArticle }) => {
   const { theme } = useGlobalContext();
 
   const articleText = JSON.parse(article?.text).articleElements;
@@ -74,10 +75,14 @@ const Article = ({ article }: any) => {
 
       <article className={s.article}>
         <ArticleDetails
+          id={article.id}
           imageData={article.image}
           title={article?.title}
           description={article?.description}
           author={article?.author}
+          views={article?.views}
+          tags={article?.tags}
+          timestamp={article?.timestamp}
           articleElements={articleText}
         />
       </article>

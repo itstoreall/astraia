@@ -8,6 +8,9 @@ const GET_ARTICLE_BY_TITLE = gql`
       article
       author
       image
+      views
+      tags
+      timestamp
     }
   }
 `;
