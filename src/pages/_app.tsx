@@ -103,9 +103,6 @@ const App = ({ Component, pageProps }: AppProps) => {
   // isLoading && setIsLoading(false);
 
   const headHandler = () => {
-    // const _id = router.query.id;
-    // const path = pathname.split('/');
-
     console.log('');
     console.log('router', router);
     console.log('pathname', pathname);
@@ -147,6 +144,8 @@ const App = ({ Component, pageProps }: AppProps) => {
           property='og:image'
           content={meta(pageProps.article)[page].image}
         />
+        <meta property='og:image:width' content='1200' />
+        <meta property='og:image:height' content='630' />
 
         <meta property='title' content={meta(pageProps.article)[page].tilte} />
         <meta
@@ -185,48 +184,7 @@ const App = ({ Component, pageProps }: AppProps) => {
     >
       <ApolloProvider client={client}>
         {headHandler()}
-
-        {/* <Head>
-          <title>Astraia</title>
-          <meta
-            name='description'
-            content='Cайт о духовном саморазвитии. Здесь вы найдете вдохновение, практические советы и ресурсы, которые помогут вам на пути к гармонии, радости и духовному саморазвитию'
-          />
-          <meta name='viewport' content='width=device-width, initial-scale=1' />
-          <link rel='icon' href='/favicon.ico' />
-
-          <meta property='og:url' content='https://astraia.storeall.com.ua/' />
-          <meta property='og:type' content='website' />
-          <meta property='og:title' content='Astraia' key='title' />
-          <meta
-            property='og:description'
-            content='Astraia - духовное саморазвитие'
-          />
-          <meta
-            property='og:image'
-            content='https://astraia.storeall.com.ua/space.jpg'
-          />
-
-          <meta name='twitter:card' content='Astraia' />
-          <meta property='twitter:domain' content='astraia.storeall.com.ua' />
-          <meta
-            property='twitter:url'
-            content='https://astraia.storeall.com.ua/'
-          />
-          <meta name='twitter:title' content='Astraia' />
-          <meta
-            name='twitter:description'
-            content='Astraia - духовное саморазвитие'
-          />
-          <meta
-            name='twitter:image'
-            content='https://astraia.storeall.com.ua/space.jpg'
-          />
-        </Head> */}
-        <Layout>
-          {getPageComponent()}
-          {/* {isLoading && <Spinner />} */}
-        </Layout>
+        <Layout>{getPageComponent()}</Layout>
       </ApolloProvider>
     </GlobalContext.Provider>
   );
