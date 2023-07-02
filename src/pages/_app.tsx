@@ -117,7 +117,10 @@ const App = ({ Component, pageProps }: AppProps) => {
       <ApolloProvider client={client}>
         <Head>
           <title>Astraia</title>
-          <meta name='description' content='Astraia - духовное саморазвитие' />
+          <meta
+            name='description'
+            content='Astraia - сайт о духовном саморазвитии. Здесь вы найдете вдохновение, практические советы и ресурсы, которые помогут вам на пути к гармонии, радости и духовному саморазвитию'
+          />
           <meta name='viewport' content='width=device-width, initial-scale=1' />
           <link rel='icon' href='/favicon.ico' />
 
