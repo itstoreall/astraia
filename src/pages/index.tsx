@@ -7,7 +7,7 @@ const Home = () => {
 
   return (
     <>
-      <Head>
+      {/* <Head>
         <title>Astraia</title>
         <meta
           name='description'
@@ -43,7 +43,7 @@ const Home = () => {
           name='twitter:image'
           content='https://astraia.storeall.com.ua/space.jpg'
         />
-      </Head>
+      </Head> */}
 
       <section className={`${s.page} ${s[theme]}`}>
         <h2 className={s.titleHome}>Духовное саморазвитие</h2>
