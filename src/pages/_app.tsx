@@ -59,10 +59,10 @@ const App = ({ Component, pageProps }: AppProps) => {
   //   cache: new InMemoryCache(),
   // });
 
+  const { pathname } = router;
+
   const getPageComponent = () => {
     // !isLoading && setIsLoading(true);
-
-    const { pathname } = router;
 
     switch (pathname) {
       case '/':
@@ -103,24 +103,69 @@ const App = ({ Component, pageProps }: AppProps) => {
   // isLoading && setIsLoading(false);
 
   const headHandler = () => {
+    // const _id = router.query.id;
+    // const path = pathname.split('/');
+
+    console.log('');
+    console.log('router', router);
+    console.log('pathname', pathname);
+    console.log('arr', pathname.split('/'));
+
+    let page: 'home' | 'about' | 'contacts' | 'articles' | 'id' =
+      pathname === '/'
+        ? 'home'
+        : pathname === '/about'
+        ? 'about'
+        : pathname === '/contacts'
+        ? 'contacts'
+        : pathname === '/articles'
+        ? 'articles'
+        : pathname === '/articles/[id]'
+        ? 'id'
+        : 'home';
+
     return (
       <Head>
-        <title>{meta.home.tilte}</title>
-        <meta name='description' content={meta.home.description} />
+        <title>{meta(pageProps.article)[page].tilte}</title>
+        <meta
+          name='description'
+          content={meta(pageProps.article)[page].description}
+        />
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
 
-        <meta property='og:title' content={meta.home.tilte} />
-        <meta property='og:description' content={meta.home.description} />
-        <meta property='og:url' content={meta.home.url} />
-        <meta property='og:image' content={meta.home.image} />
+        <meta
+          property='og:title'
+          content={meta(pageProps.article)[page].tilte}
+        />
+        <meta
+          property='og:description'
+          content={meta(pageProps.article)[page].description}
+        />
+        <meta property='og:url' content={meta(pageProps.article)[page].url} />
+        <meta
+          property='og:image'
+          content={meta(pageProps.article)[page].image}
+        />
 
-        <meta property='title' content={meta.home.tilte} />
-        <meta property='description' content={meta.home.description} />
+        <meta property='title' content={meta(pageProps.article)[page].tilte} />
+        <meta
+          property='description'
+          content={meta(pageProps.article)[page].description}
+        />
 
-        <meta name='twitter:title' content={meta.home.tilte} />
-        <meta name='twitter:description' content={meta.home.description} />
-        <meta name='twitter:image' content={meta.home.image} />
+        <meta
+          name='twitter:title'
+          content={meta(pageProps.article)[page].tilte}
+        />
+        <meta
+          name='twitter:description'
+          content={meta(pageProps.article)[page].description}
+        />
+        <meta
+          name='twitter:image'
+          content={meta(pageProps.article)[page].image}
+        />
       </Head>
     );
   };
