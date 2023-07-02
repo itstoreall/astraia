@@ -4,7 +4,7 @@ import Head from 'next/head';
 import type { AppProps } from 'next/app';
 import { ApolloProvider } from '@apollo/client';
 import { useRouter } from 'next/router';
-import { IAccess } from '@/interfaces';
+import { IAccess, IArticle } from '@/interfaces';
 import client from '@/utils/apolloClient';
 import Layout from '../components/Layout';
 import AdminPage from './admin';
@@ -25,7 +25,8 @@ const App = ({ Component, pageProps }: AppProps) => {
   const [access, setAccess] = useState<IAccess | null>(null);
   const [theme, setTheme] = useState<string>('light');
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [articles, setArticles] = useState<any[]>([]);
+  const [articles, setArticles] = useState<IArticle[]>([]);
+  const [imageDataURL, setImageDataURL] = useState<string>('');
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
@@ -41,6 +42,32 @@ const App = ({ Component, pageProps }: AppProps) => {
   }, [theme]);
 
   // --------
+
+  // let imageDataURL: string;
+
+  useEffect(() => {
+    if (pageProps.article) {
+      const img = document.createElement('img');
+      img.src = pageProps.article?.image;
+      // img.src = meta(pageProps.article)[page].image;
+
+      const canvas = document.createElement('canvas');
+      canvas.width = img.width;
+      canvas.height = img.height;
+
+      const context = canvas.getContext('2d');
+
+      if (context) {
+        context.drawImage(img, 0, 0);
+        const imageDataURL = canvas.toDataURL();
+        setImageDataURL(imageDataURL);
+      } else {
+        setImageDataURL('https://astraia.storeall.com.ua/space.jpg');
+      }
+
+      // console.log('img', img);
+    }
+  }, [pageProps.article]);
 
   // console.log('isLoading', isLoading);
 
@@ -142,7 +169,9 @@ const App = ({ Component, pageProps }: AppProps) => {
         <meta property='og:url' content={meta(pageProps.article)[page].url} />
         <meta
           property='og:image'
-          content={meta(pageProps.article)[page].image}
+          content={
+            imageDataURL ? imageDataURL : meta(pageProps.article)[page].image
+          }
         />
         <meta property='og:image:width' content='1200' />
         <meta property='og:image:height' content='630' />
@@ -163,7 +192,9 @@ const App = ({ Component, pageProps }: AppProps) => {
         />
         <meta
           name='twitter:image'
-          content={meta(pageProps.article)[page].image}
+          content={
+            imageDataURL ? imageDataURL : meta(pageProps.article)[page].image
+          }
         />
       </Head>
     );
