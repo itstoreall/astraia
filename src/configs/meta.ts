@@ -62,7 +62,7 @@ const setMeta = (article?: IArticle) => {
       tilte: article?.title,
       description: article?.description,
       url: `https://astraia.storeall.com.ua`,
-      image: `https://astraia.storeall.com.ua/${article?.image}`,
+      image: article?.image,
     },
   };
 };
