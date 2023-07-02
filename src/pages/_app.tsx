@@ -105,43 +105,22 @@ const App = ({ Component, pageProps }: AppProps) => {
   const headHandler = () => {
     return (
       <Head>
-        <title>Astraia</title>
-        <meta
-          name='description'
-          content='Cайт о духовном саморазвитии. Здесь вы найдете вдохновение, практические советы и ресурсы, которые помогут вам на пути к гармонии, радости и духовному саморазвитию'
-        />
+        <title>{meta.home.tilte}</title>
+        <meta name='description' content={meta.home.description} />
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
 
-        {/* Facebook */}
-        <meta property='og:title' content='Your Page Title' />
-        <meta property='og:description' content='Description of your page' />
-        <meta property='og:url' content='https://example.com/your-page-url' />
-        <meta
-          property='og:image'
-          content='https://example.com/your-image.jpg'
-        />
+        <meta property='og:title' content={meta.home.tilte} />
+        <meta property='og:description' content={meta.home.description} />
+        <meta property='og:url' content={meta.home.url} />
+        <meta property='og:image' content={meta.home.image} />
 
-        {/* Google */}
-        <meta name='description' content='Description of your page' />
+        <meta property='title' content={meta.home.tilte} />
+        <meta property='description' content={meta.home.description} />
 
-        {/* LinkedIn */}
-        <meta property='description' content='Description of your page' />
-        <meta property='og:title' content='Your Page Title' />
-        <meta property='og:description' content='Description of your page' />
-        <meta property='og:url' content='https://example.com/your-page-url' />
-        <meta
-          property='og:image'
-          content='https://example.com/your-image.jpg'
-        />
-
-        {/* Twitter */}
-        <meta name='twitter:title' content='Your Page Title' />
-        <meta name='twitter:description' content='Description of your page' />
-        <meta
-          name='twitter:image'
-          content='https://example.com/your-image.jpg'
-        />
+        <meta name='twitter:title' content={meta.home.tilte} />
+        <meta name='twitter:description' content={meta.home.description} />
+        <meta name='twitter:image' content={meta.home.image} />
       </Head>
     );
   };
@@ -160,7 +139,7 @@ const App = ({ Component, pageProps }: AppProps) => {
       }}
     >
       <ApolloProvider client={client}>
-        {/* {headHandler()} */}
+        {headHandler()}
 
         {/* <Head>
           <title>Astraia</title>
