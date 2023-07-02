@@ -1,5 +1,6 @@
 import '@/styles/global.scss';
 import { useEffect, useState } from 'react';
+import Head from 'next/head';
 import type { AppProps } from 'next/app';
 import { ApolloProvider } from '@apollo/client';
 import { useRouter } from 'next/router';
@@ -114,6 +115,40 @@ const App = ({ Component, pageProps }: AppProps) => {
       }}
     >
       <ApolloProvider client={client}>
+        <Head>
+          <title>Astraia</title>
+          <meta name='description' content='Astraia - духовное саморазвитие' />
+          <meta name='viewport' content='width=device-width, initial-scale=1' />
+          <link rel='icon' href='/favicon.ico' />
+
+          <meta property='og:url' content='https://astraia.storeall.com.ua/' />
+          <meta property='og:type' content='website' />
+          <meta property='og:title' content='Astraia' key='title' />
+          <meta
+            property='og:description'
+            content='Astraia - духовное саморазвитие'
+          />
+          <meta
+            property='og:image'
+            content='https://astraia.storeall.com.ua/space.jpg'
+          />
+
+          <meta name='twitter:card' content='Astraia' />
+          <meta property='twitter:domain' content='astraia.storeall.com.ua' />
+          <meta
+            property='twitter:url'
+            content='https://astraia.storeall.com.ua/'
+          />
+          <meta name='twitter:title' content='Astraia' />
+          <meta
+            name='twitter:description'
+            content='Astraia - духовное саморазвитие'
+          />
+          <meta
+            name='twitter:image'
+            content='https://astraia.storeall.com.ua/space.jpg'
+          />
+        </Head>
         <Layout>
           {getPageComponent()}
           {/* {isLoading && <Spinner />} */}
