@@ -31,7 +31,7 @@ const setMeta = (article?: IArticle) => {
       tilte: article?.title,
       description: article?.description,
       url: `https://astraia.storeall.com.ua/articles/${article?.id}`,
-      image: article?.image,
+      image: 'https://astraia.storeall.com.ua/space.jpg',
     },
   };
 };
