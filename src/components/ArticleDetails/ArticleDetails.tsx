@@ -3,6 +3,7 @@ import useProportion from '@/hooks/useProportion';
 import s from './ArticleDetails.module.scss';
 import { MONTHS } from '@/constants';
 import useViewport from '@/hooks/useViewport';
+import { CldImage } from 'next-cloudinary';
 
 const convertDate = (timestamp: string) => {
   const today = 'Сегодня';
@@ -42,7 +43,14 @@ const ArticleDetails = (props: any) => {
 
       {imageData && (
         <div className={s.thumb}>
-          <Image src={imageData} alt='Uploaded' width={width} height={height} />
+          <CldImage
+            width={width}
+            height={height}
+            src='v1688377385/astraia_uploads/hrjsrveufjogkztgehny'
+            sizes='50vw'
+            alt={title}
+          />
+          {/* <Image src={imageData} alt='Uploaded' width={width} height={height} /> */}
         </div>
       )}
 
