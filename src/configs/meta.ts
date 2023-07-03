@@ -32,7 +32,7 @@ const setMeta = (article?: IArticle) => {
       description: article?.description,
       url: `https://astraia.storeall.com.ua/articles/${article?.id}`,
       image:
-        'https://res.cloudinary.com/astraia/image/upload/v1688377385/astraia_uploads/hrjsrveufjogkztgehny',
+        'https://res.cloudinary.com/astraia/image/upload/v1688401749/astraia_uploads/space_uyhfig.jpg',
     },
   };
 };

@@ -127,8 +127,8 @@ const App = ({ Component, pageProps }: AppProps) => {
           property='og:image'
           content={meta(pageProps.article)[page].image}
         />
-        {/* <meta property='og:image:width' content='1200' />
-        <meta property='og:image:height' content='630' /> */}
+        <meta property='og:image:width' content='1200' />
+        <meta property='og:image:height' content='630' />
 
         <meta property='title' content={meta(pageProps.article)[page].tilte} />
         <meta
