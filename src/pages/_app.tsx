@@ -20,6 +20,7 @@ import NotFoundPage from './404';
 import { GlobalContext } from '@/context/GlobalContext';
 // import Spinner from '@/components/Spinner/Spinner';
 import meta from '@/configs/meta';
+import { CldImage } from 'next-cloudinary';
 
 const App = ({ Component, pageProps }: AppProps) => {
   const [access, setAccess] = useState<IAccess | null>(null);
@@ -43,54 +44,11 @@ const App = ({ Component, pageProps }: AppProps) => {
 
   // --------
 
-  // let imageDataURL: string;
-
-  useEffect(() => {
-    if (pageProps.article) {
-      const img = document.createElement('img');
-      img.src = pageProps.article?.image;
-      // img.src = meta(pageProps.article)[page].image;
-
-      const canvas = document.createElement('canvas');
-      canvas.width = img.width;
-      canvas.height = img.height;
-
-      const context = canvas.getContext('2d');
-
-      if (context) {
-        context.drawImage(img, 0, 0);
-        const imageDataURL = canvas.toDataURL();
-        setImageDataURL(imageDataURL);
-      } else {
-        setImageDataURL('https://astraia.storeall.com.ua/space.jpg');
-      }
-
-      // console.log('img', img);
-    }
-  }, [pageProps.article]);
-
-  // console.log('isLoading', isLoading);
-
   const router = useRouter();
-
-  // const currentUrl =
-  //   process.env.NODE_ENV === 'production'
-  //     ? 'https://magic-api-vercel.vercel.app/'
-  //     : 'http://localhost:8822/';
-
-  // const serverSwitch = 'https://magic-api-vercel.vercel.app/';
-  // const serverSwitch = currentUrl;
-
-  // const client = new ApolloClient({
-  //   uri: serverSwitch,
-  //   cache: new InMemoryCache(),
-  // });
 
   const { pathname } = router;
 
   const getPageComponent = () => {
-    // !isLoading && setIsLoading(true);
-
     switch (pathname) {
       case '/':
         return <Component {...pageProps} />;
@@ -126,8 +84,6 @@ const App = ({ Component, pageProps }: AppProps) => {
         return <NotFoundPage />;
     }
   };
-
-  // isLoading && setIsLoading(false);
 
   const headHandler = () => {
     console.log('');
@@ -229,6 +185,31 @@ import type { AppProps } from 'next/app'
 
 export default function App({ Component, pageProps }: AppProps) {
   return <Component {...pageProps} />
+}
+
+-----------
+
+result {
+  asset_id: '7891812f3d973c4ec7cc050889e5b680',
+  public_id: 'astraia_uploads/hrjsrveufjogkztgehny',
+  version: 1688377385,
+  version_id: 'ecc7c68f518ba409d3b0531839a1009b',
+  signature: 'e5b53247b864672ce26c81d2e376a8b7c0c0ec69',
+  width: 900,
+  height: 450,
+  format: 'png',
+  resource_type: 'image',
+  created_at: '2023-07-03T09:43:05Z',
+  tags: [],
+  bytes: 237469,
+  type: 'upload',
+  etag: 'e607fafbb886a27c9e6c0ae5bd49110f',
+  placeholder: false,
+  url: 'http://res.cloudinary.com/astraia/image/upload/v1688377385/astraia_uploads/hrjsrveufjogkztgehny.png',
+  secure_url: 'https://res.cloudinary.com/astraia/image/upload/v1688377385/astraia_uploads/hrjsrveufjogkztgehny.png',
+  folder: 'astraia_uploads',
+  access_mode: 'public',
+  api_key: '657354151857738'
 }
 
 */
