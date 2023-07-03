@@ -48,7 +48,7 @@ const ArticleDetails = (props: any) => {
             height={height}
             src='v1688377385/astraia_uploads/hrjsrveufjogkztgehny'
             sizes='50vw'
-            alt={title}
+            alt='Description of my image'
           />
           {/* <Image src={imageData} alt='Uploaded' width={width} height={height} /> */}
         </div>
