@@ -3,7 +3,7 @@ import useProportion from '@/hooks/useProportion';
 import s from './ArticleDetails.module.scss';
 import { MONTHS } from '@/constants';
 import useViewport from '@/hooks/useViewport';
-// import { CldImage } from 'next-cloudinary';
+import { CldImage } from 'next-cloudinary';
 
 const convertDate = (timestamp: string) => {
   const today = 'Сегодня';
@@ -43,7 +43,13 @@ const ArticleDetails = (props: any) => {
 
       {imageData && (
         <div className={s.thumb}>
-          <Image src={imageData} alt='Uploaded' width={width} height={height} />
+          <Image
+            width='900'
+            height='450'
+            src='https://res.cloudinary.com/astraia/image/upload/v1688401749/astraia_uploads/space_uyhfig.jpg'
+            alt='Description of my image'
+          />
+          {/* <Image src={imageData} alt='Uploaded' width={width} height={height} /> */}
         </div>
       )}
 
@@ -63,6 +69,12 @@ const ArticleDetails = (props: any) => {
             )
         )}
       </div>
+      <CldImage
+        width='900'
+        height='450'
+        src='v1688405354/astraia_uploads/900450_yonh65'
+        alt='Description of my image'
+      />
     </div>
   );
 };
