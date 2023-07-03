@@ -1,4 +1,5 @@
-import Head from 'next/head';
+// import { CldImage } from 'next-cloudinary';
+import Image from 'next/image';
 import s from './page.module.scss';
 import { useGlobalContext } from '@/context/GlobalContext';
 
@@ -7,46 +8,14 @@ const Home = () => {
 
   return (
     <>
-      {/* <Head>
-        <title>Astraia</title>
-        <meta
-          name='description'
-          content='Astraia - статьи о духовном саморазвитии'
-        />
-        <meta name='viewport' content='width=device-width, initial-scale=1' />
-        <link rel='icon' href='/favicon.ico' />
-
-        <meta property='og:url' content='https://astraia.storeall.com.ua/' />
-        <meta property='og:type' content='website' />
-        <meta property='og:title' content='Astraia' key='title' />
-        <meta
-          property='og:description'
-          content='Astraia - статьи о духовном саморазвитии'
-        />
-        <meta
-          property='og:image'
-          content='https://astraia.storeall.com.ua/space.jpg'
-        />
-
-        <meta name='twitter:card' content='Astraia' />
-        <meta property='twitter:domain' content='astraia.storeall.com.ua' />
-        <meta
-          property='twitter:url'
-          content='https://astraia.storeall.com.ua/'
-        />
-        <meta name='twitter:title' content='Astraia' />
-        <meta
-          name='twitter:description'
-          content='Astraia - статьи о духовном саморазвитии'
-        />
-        <meta
-          name='twitter:image'
-          content='https://astraia.storeall.com.ua/space.jpg'
-        />
-      </Head> */}
-
       <section className={`${s.page} ${s[theme]}`}>
         <h2 className={s.titleHome}>Духовное саморазвитие</h2>
+        <Image
+          width='900'
+          height='450'
+          src='https://res.cloudinary.com/astraia/image/upload/v1688401749/astraia_uploads/space_uyhfig.jpg'
+          alt='Description of my image'
+        />
         <article className={s.article}>
           <p>
             Добро пожаловать на сайт Astraia, сайт о духовном саморазвитии!
