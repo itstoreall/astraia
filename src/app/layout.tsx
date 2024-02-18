@@ -1,12 +1,5 @@
 import type { Metadata } from 'next';
-import {
-  Bebas_Neue,
-  Fjalla_One,
-  Inter,
-  Prompt,
-  Share_Tech,
-  Share_Tech_Mono
-} from 'next/font/google';
+import { Prompt } from 'next/font/google';
 import { ChildrenProps } from '@/types';
 import '../styles/globals.scss';
 
@@ -17,7 +10,10 @@ const logoFont = Prompt({
   variable: '--font-astraia-logo'
 });
 
-export const metadata: Metadata = { title: 'IT', description: 'itstoreall UA' };
+export const metadata: Metadata = {
+  title: 'ASTRAIA',
+  description: 'Astraia - духовное саморазвитие'
+};
 
 const RootLayout = ({ children }: Readonly<ChildrenProps>) => (
   <html lang='en'>
