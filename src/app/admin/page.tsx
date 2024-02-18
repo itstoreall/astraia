@@ -1,4 +1,4 @@
-import Next from '@/components/Pages/Next';
+import Next from '@/components/Pages/Admin';
 
 const NextPage = () => <Next />;
 
