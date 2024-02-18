@@ -1,6 +1,4 @@
 import { useState } from 'react';
-// import TextareaAutosize from 'react-textarea-autosize';
-// import Container from '@/components/Container';
 import s from './Admin.module.scss';
 import MDEditor from '@uiw/react-md-editor';
 

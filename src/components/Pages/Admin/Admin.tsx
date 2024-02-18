@@ -1,54 +1,16 @@
 'use client';
-import { useEffect, useState } from 'react';
-import Guard from './Guard';
 import Container from '@/components/Container';
+import Guard from './Guard';
 import Dashboard from './Dashboard';
 import s from './Admin.module.scss';
 
 const Admin = () => {
-  // const [title, setTitle] = useState<string>('');
-  // const [links, setLinks] = useState<string>('');
-  // const [key, setKey] = useState<string>('');
-
-  // console.log(process.env.NEXT_PUBLIC_ADMIN_KEY);
-
-  // useEffect(() => {
-  //   setTimeout(() => setTitle('title'), 500);
-  //   setTimeout(() => setLinks('links'), 800);
-  //   setTimeout(() => setKey('key'), 800);
-  // }, []);
-
   return (
     <main className={s.main}>
       <Container label={'page'}>
         <Guard>
           <Dashboard />
         </Guard>
-        {/* {!isAdmin.value ? (
-          // <section className={s.adminSection}>
-          //   <div className={s.content}>
-          //     <h1 className={s[title]}>Yo</h1>
-
-          //     <nav className={s.navigation}>
-          //       <ul className={`${s.navList} ${s[links]}`}>
-          //         <li className={`${s.navItem}`}>
-          //           <span className={s.linkWrap}>
-          //             <a href={'/'}>home</a>
-          //             {' <'}
-          //           </span>
-          //         </li>
-          //       </ul>
-          //     </nav>
-
-          //     <div className={`${s.inputBlock} ${s[key]}`}>
-          //       <input className={s.input} placeholder={'Key'} />
-          //       <span className={s.submitButton}>{'>'}</span>
-          //     </div>
-          //   </div>
-          // </section>
-        ) : (
-          <Dashboard />
-        )} */}
       </Container>
     </main>
   );
