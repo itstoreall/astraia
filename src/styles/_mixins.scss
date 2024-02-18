@@ -1,0 +1,19 @@
+@import './extends';
+
+@mixin media-screen($var, $w) {
+  @if $var == 'min' {
+    @media screen and (min-width: $w) {
+      @content;
+    }
+  } @else if $var == 'max' {
+    @media screen and (max-width: $w) {
+      @content;
+    }
+  }
+}
+
+@mixin media-screen-range($minWidth, $maxWidth) {
+  @media screen and (min-width: $minWidth) and (max-width: $maxWidth) {
+    @content;
+  }
+}

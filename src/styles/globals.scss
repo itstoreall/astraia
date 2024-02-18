@@ -1,0 +1,60 @@
+@import '../styles//imports';
+
+:root {
+  --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
+    'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
+    'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
+
+  --black: 0, 0, 0;
+  --white: 214, 219, 220;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  color: rgb(var(--white));
+  background: rgb(var(--black));
+
+  ::-moz-selection {
+    color: $colorBlue;
+    background: rgb(var(--black));
+  }
+
+  ::selection {
+    color: $colorBlue;
+    background: rgb(var(--black));
+  }
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-astraia-logo);
+  color: rgb(var(--black));
+}
+
+p,
+a,
+span,
+input,
+li {
+  font-family: var(--font-mono);
+  color: rgb(var(--black));
+}
+
+a {
+  @extend %extends-transition-03s;
+  text-decoration: none;
+
+  &:hover {
+    color: $colorRose;
+    background-color: $colorBlack;
+  }
+}

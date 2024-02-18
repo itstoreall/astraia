@@ -1,0 +1,71 @@
+@import './animations/index';
+@import './vars';
+
+%extends-absolut-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+%extends-hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+    width: 0;
+  }
+}
+
+%extends-three-dots {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+%extends-before {
+  content: '';
+  display: block;
+  margin-right: 10px;
+  width: 6px;
+  height: 6px;
+}
+
+%extends-text-hover-white {
+  &:hover {
+    color: $colorWhite;
+    cursor: pointer;
+  }
+}
+
+%extends-transition-03s {
+  transition: $ease03s;
+}
+
+// ------ Animations:
+
+%extends-animation-bounce-top {
+  -webkit-animation: bounce-top 0.9s both;
+  animation: bounce-top 0.9s both;
+}
+
+%extends-animation-slide-right {
+  -webkit-animation: slide-right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: slide-right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+%extends-animation-slide-left {
+  -webkit-animation: slide-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: slide-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+%extends-animation-tracking-in-expand {
+  -webkit-animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.61, 0.355, 1)
+    both;
+  animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.61, 0.355, 1) both;
+}
+
+%extends-animation-flicker {
+  -webkit-animation: flicker-1 2s linear infinite both;
+  animation: flicker-1 2s linear infinite both;
+}

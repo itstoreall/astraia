@@ -1,0 +1,52 @@
+@import '../../../styles/imports';
+
+main.main {
+  // Container is here!
+
+  section.heroBlock {
+    display: flex;
+
+    .content {
+      > h1 {
+        padding-bottom: 50px;
+        font-size: 40px;
+        text-align: center;
+        letter-spacing: 10px;
+        opacity: 0;
+
+        &.title {
+          opacity: 1;
+          @extend %extends-animation-tracking-in-expand;
+        }
+      }
+
+      > nav.navigation {
+        padding-left: 6px;
+
+        > ul.navList {
+          list-style: none;
+          border-left: 3px solid $mainColor;
+          opacity: 0;
+
+          &.links {
+            opacity: 1;
+
+            > li.navItem {
+              @extend %extends-animation-slide-right;
+
+              &:not(:last-child) {
+                margin-bottom: 10px;
+              }
+
+              > span.linkWrap {
+                > a {
+                  font-weight: 600;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

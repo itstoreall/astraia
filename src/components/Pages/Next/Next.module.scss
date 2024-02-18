@@ -1,0 +1,61 @@
+@import '../../../styles/imports';
+
+main.main {
+  // Container is here!
+
+  section.heroBlock {
+    display: flex;
+
+    .content {
+      padding-bottom: 40px;
+
+      > h1 {
+        opacity: 0;
+        font-size: 220px;
+
+        &.title {
+          opacity: 1;
+          @extend %extends-animation-bounce-top;
+        }
+      }
+
+      > nav.navigation {
+        padding-left: 6px;
+
+        > ul.navList {
+          list-style: none;
+          display: flex;
+          justify-content: flex-end;
+          border-right: 3px solid $mainColor;
+          opacity: 0;
+
+          &.links {
+            opacity: 1;
+
+            > li.navItem {
+              @extend %extends-animation-slide-left;
+
+              > span.linkWrap {
+                > a {
+                  font-weight: 600;
+                }
+              }
+            }
+          }
+
+          // > li.navItem {
+          //   // @extend %extends-transition-03s;
+          //   opacity: 0;
+
+          //   &.links {
+          //     opacity: 1;
+          //     @extend %extends-animation-slide-right;
+          //   }
+
+          //   // > a {}
+          // }
+        }
+      }
+    }
+  }
+}

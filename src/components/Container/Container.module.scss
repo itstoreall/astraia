@@ -1,0 +1,30 @@
+@import '../../styles/imports';
+
+.container {
+  padding: 5px;
+  width: 100%;
+  height: 100svh;
+
+  @include media-screen('min', $tablet) {
+    padding: 10px;
+  }
+
+  @include media-screen('min', $desktop) {
+    padding: 20px;
+  }
+
+  .bg {
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(320deg, $colorRose 6.59%, $colorBlue 94.04%);
+    border-radius: 8px;
+
+    > .content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+  }
+}
