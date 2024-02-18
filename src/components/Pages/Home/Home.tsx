@@ -24,7 +24,7 @@ const Home = () => {
                 <li className={`${s.navItem}`}>
                   <span className={s.linkWrap}>
                     {'> '}
-                    <a href={'/next'}>next</a>
+                    <a href={'/admin'}>admin</a>
                   </span>
                 </li>
               </ul>

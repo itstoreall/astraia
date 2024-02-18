@@ -1,6 +1,12 @@
 @import './animations/index';
 @import './vars';
 
+%extends-flex-xy-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 %extends-absolut-center {
   position: absolute;
   top: 50%;
@@ -37,6 +43,8 @@
     cursor: pointer;
   }
 }
+
+// ------ Transitions:
 
 %extends-transition-03s {
   transition: $ease03s;

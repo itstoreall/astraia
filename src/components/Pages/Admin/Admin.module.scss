@@ -1,0 +1,123 @@
+@import '../../../styles/imports';
+
+main.main {
+  // ------ Container is here!
+
+  // ------ Admin:
+
+  section.adminSection {
+    display: flex;
+
+    .content {
+      padding-bottom: 40px;
+
+      > h1 {
+        opacity: 0;
+        font-size: 220px;
+        line-height: 250px;
+
+        &.title {
+          opacity: 1;
+          @extend %extends-animation-bounce-top;
+        }
+      }
+
+      > nav.navigation {
+        padding-left: 6px;
+        margin-bottom: 30px;
+
+        > ul.navList {
+          list-style: none;
+          display: flex;
+          justify-content: flex-end;
+          border-right: 3px solid $mainColor;
+          opacity: 0;
+
+          &.links {
+            opacity: 1;
+
+            > li.navItem {
+              @extend %extends-animation-slide-left;
+
+              > span.linkWrap {
+                font-size: 16px;
+
+                > a {
+                  font-weight: 600;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      > form.keyForm {
+        display: flex;
+        align-items: center;
+        opacity: 0;
+
+        &.key {
+          opacity: 1;
+
+          > input.input {
+            @extend %extends-animation-slide-left;
+            padding: 0 10px;
+            width: 100%;
+            height: 40px;
+            background-color: transparent;
+            border: 3px solid $mainColor;
+            border-radius: 6px;
+            outline: none;
+
+            &::placeholder {
+              @include basic-palette('color', 0.4);
+            }
+          }
+
+          > button.submitButton {
+            @extend %extends-flex-xy-center;
+            min-width: 40px;
+            height: 40px;
+            font-size: 16px;
+            color: $colorRose;
+            border-radius: 6px;
+            background-color: $colorBlue;
+
+            &.t3s {
+              @extend %extends-transition-03s;
+            }
+
+            cursor: pointer;
+
+            &:hover {
+              color: $colorBlue;
+              background-color: $colorRose;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // ------ Dashboard:
+
+  section.dashboard {
+    > div.preview {
+      > div {
+        background-color: transparent;
+      }
+    }
+
+    > div {
+      .textarea {
+        outline: none;
+
+        border: 1px solid $mainColor;
+        padding: 10px;
+        background-color: transparent;
+        min-width: 100%;
+        min-height: 300px;
+      }
+    }
+  }
+}

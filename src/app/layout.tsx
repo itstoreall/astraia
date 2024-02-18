@@ -15,10 +15,12 @@ export const metadata: Metadata = {
   description: 'Astraia - духовное саморазвитие'
 };
 
-const RootLayout = ({ children }: Readonly<ChildrenProps>) => (
-  <html lang='en'>
-    <body className={`${logoFont.variable}`}>{children}</body>
-  </html>
-);
+const RootLayout = ({ children }: Readonly<ChildrenProps>) => {
+  return (
+    <html lang='en'>
+      <body className={`${logoFont.variable}`}>{children}</body>
+    </html>
+  );
+};
 
 export default RootLayout;
