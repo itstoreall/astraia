@@ -3,15 +3,15 @@
 main.main {
   // ------ Container is here!
 
-  // ------ Admin:
-
   section.adminSection {
     display: flex;
 
     .content {
       padding-bottom: 40px;
+      width: 220px;
 
       > h1 {
+        text-align: center;
         opacity: 0;
         font-size: 220px;
         line-height: 250px;
@@ -21,6 +21,8 @@ main.main {
           @extend %extends-animation-bounce-top;
         }
       }
+
+      // ------ Navigation:
 
       > nav.navigation {
         padding-left: 6px;
@@ -51,8 +53,11 @@ main.main {
         }
       }
 
+      // ------ Form Input:
+
       > form.keyForm {
         display: flex;
+        justify-content: flex-end;
         align-items: center;
         opacity: 0;
 
@@ -62,15 +67,21 @@ main.main {
           > input.input {
             @extend %extends-animation-slide-left;
             padding: 0 10px;
-            width: 100%;
+            width: 170px;
             height: 40px;
+            font-size: 22px;
+            font-weight: 600;
             background-color: transparent;
-            border: 3px solid $mainColor;
-            border-radius: 6px;
+            border: none;
+            border-bottom: 3px solid $mainColor;
+            border-radius: 0;
+            caret-color: $colorBlack;
             outline: none;
 
             &::placeholder {
-              @include basic-palette('color', 0.4);
+              font-size: 16px;
+              font-weight: 200;
+              @include basic-palette('color', 0.7);
             }
           }
 
@@ -94,30 +105,18 @@ main.main {
               background-color: $colorRose;
             }
           }
+
+          &.error {
+            @extend %extends-animation-shake-horizontal;
+
+            > input.input {
+              color: $colorRed;
+            }
+          }
         }
       }
     }
   }
 
-  // ------ Dashboard:
-
-  section.dashboard {
-    > div.preview {
-      > div {
-        background-color: transparent;
-      }
-    }
-
-    > div {
-      .textarea {
-        outline: none;
-
-        border: 1px solid $mainColor;
-        padding: 10px;
-        background-color: transparent;
-        min-width: 100%;
-        min-height: 300px;
-      }
-    }
-  }
+  // ------ Dashboard is here!
 }

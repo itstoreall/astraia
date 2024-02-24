@@ -1,14 +1,19 @@
 'use client';
+import { useState } from 'react';
 import Container from '@/components/Container';
 import Guard from './Guard';
-import Dashboard from './Dashboard';
+import Dashboard from './Secure/Dashboard';
 import s from './Admin.module.scss';
 
 const Admin = () => {
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  console.log('isAdmin', isAdmin);
+
   return (
     <main className={s.main}>
-      <Container label={'page'}>
-        <Guard>
+      <Container label={!isAdmin ? 'admin' : 'dashboard'}>
+        <Guard isAdmin={isAdmin} setIsAdmin={setIsAdmin}>
           <Dashboard />
         </Guard>
       </Container>

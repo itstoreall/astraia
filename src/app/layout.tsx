@@ -1,13 +1,19 @@
 import type { Metadata } from 'next';
-import { Prompt } from 'next/font/google';
+import { Prompt, Share_Tech } from 'next/font/google';
 import { ChildrenProps } from '@/types';
 import '../styles/globals.scss';
 
-const logoFont = Prompt({
+const prompt = Prompt({
   subsets: ['latin'],
   style: ['normal'],
   weight: ['300'],
-  variable: '--font-astraia-logo'
+  variable: '--font-prompt'
+});
+
+const shareTech = Share_Tech({
+  subsets: ['latin'],
+  weight: ['400'],
+  variable: '--font-share-tech'
 });
 
 export const metadata: Metadata = {
@@ -18,7 +24,9 @@ export const metadata: Metadata = {
 const RootLayout = ({ children }: Readonly<ChildrenProps>) => {
   return (
     <html lang='en'>
-      <body className={`${logoFont.variable}`}>{children}</body>
+      <body className={`${prompt.variable} ${shareTech.variable}`}>
+        {children}
+      </body>
     </html>
   );
 };
