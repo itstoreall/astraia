@@ -1,6 +1,5 @@
 import { MouseEvent, useEffect, useState } from 'react';
-import { KeyHandlerProps } from '../types';
-import { ChildrenProps } from '@/types';
+import { GuardProps, KeyHandlerProps } from '../types';
 import s from '../Admin.module.scss';
 
 const adminKey = process.env.NEXT_PUBLIC_ADMIN_KEY;
@@ -11,6 +10,7 @@ const KeyHandler = ({ setIsAdmin }: KeyHandlerProps) => {
   const [keyStyle, setKeyStyle] = useState<string>('');
   const [t3s, setT3sStyle] = useState<string>('');
   const [userId, setUserId] = useState<string>('');
+  const [error, setError] = useState<string>('');
 
   useEffect(() => {
     setTimeout(() => setTitleStyle('title'), 500);
@@ -19,9 +19,15 @@ const KeyHandler = ({ setIsAdmin }: KeyHandlerProps) => {
     setTimeout(() => setT3sStyle('3s'), 1000);
   }, []);
 
+  const change = (value: string) => {
+    error && setError('');
+    setUserId(value);
+  };
+
   const submit = (e: MouseEvent<HTMLFormElement, globalThis.MouseEvent>) => {
     e.preventDefault();
-    userId === adminKey && setIsAdmin(true);
+    if (!userId) return;
+    userId === adminKey ? setIsAdmin(true) : setError('error');
   };
 
   return (
@@ -41,13 +47,15 @@ const KeyHandler = ({ setIsAdmin }: KeyHandlerProps) => {
         </nav>
 
         <form
-          className={`${s.keyForm} ${s[keyStyle]}`}
+          className={`${s.keyForm} ${s[keyStyle]} ${s[error]}`}
           onClick={e => submit(e)}
         >
           <input
             className={s.input}
             placeholder={'Key'}
-            onChange={e => setUserId(e.target.value)}
+            onChange={e => change(e.target.value)}
+            maxLength={6}
+            autoFocus={true}
           />
           <button type={'submit'} className={`${s.submitButton} ${s[t3s]}`}>
             {'>'}
@@ -58,16 +66,8 @@ const KeyHandler = ({ setIsAdmin }: KeyHandlerProps) => {
   );
 };
 
-const Guard = ({ children }: ChildrenProps) => {
-  const [isAdmin, setIsAdmin] = useState(false);
-
-  console.log('isAdmin', isAdmin);
-
-  // effect(() => {
-  //   console.log('isAdmin', isAdmin.value);
-  // });
-
-  return <>{isAdmin ? children : <KeyHandler setIsAdmin={setIsAdmin} />}</>;
-};
+const Guard = ({ children, isAdmin, setIsAdmin }: GuardProps) => (
+  <>{isAdmin ? children : <KeyHandler setIsAdmin={setIsAdmin} />}</>
+);
 
 export default Guard;

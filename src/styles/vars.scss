@@ -9,6 +9,7 @@ $colorWhite: white;
 $colorBlack: black;
 $colorRose: #c24fb6;
 $colorBlue: #3f51b8;
+$colorRed: #ff4040;
 
 $mainColor: $colorBlack;
 
@@ -16,3 +17,18 @@ $ease0s: 0s ease;
 $ease03s: 0.3s ease;
 $ease03s03s: 0.3s ease 0.3s;
 $ease03s01s: 0.3s ease 0.1s;
+
+// ------ Global:
+
+$viewportHeight: 100svh;
+$bgGradient: linear-gradient(320deg, $colorRose 6.59%, $colorBlue 94.04%);
+
+// ------ Container:
+
+$dashboardPaddingY: 60px;
+
+// ------ Dashboard:
+
+$dashboardMaxWidth: 900px;
+$dashboardMinHeight: calc($viewportHeight - $dashboardPaddingY * 2);
+$thumbHeight: 390px;

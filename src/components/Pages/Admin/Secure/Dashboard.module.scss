@@ -1,0 +1,69 @@
+@import '../../../../styles/imports';
+
+// ------ Container is here!
+
+section.dashboard {
+  display: grid;
+  grid-template-rows: $thumbHeight auto;
+  min-height: $dashboardMinHeight;
+  width: 100%;
+
+  .hero {
+    position: relative;
+    overflow: hidden;
+
+    .thumb {
+      position: relative;
+      margin: 0 auto;
+      max-width: $dashboardMaxWidth;
+      min-height: $thumbHeight;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+
+      .heroImage {
+        position: absolute;
+        min-width: $thumbHeight;
+        opacity: 0.1;
+      }
+    }
+
+    h1.title {
+      position: absolute;
+      width: 80%;
+      top: 50%;
+      left: 50%;
+      font-size: 32px;
+      line-height: 1.4;
+      transform: translate(-50%, -50%);
+
+      @include media-screen('min', $tablet) {
+        width: 70%;
+        font-size: 46px;
+      }
+    }
+  }
+}
+
+/*
+
+> div.preview {
+    > div {
+      background-color: transparent;
+    }
+  }
+
+  > div {
+    .textarea {
+      outline: none;
+
+      border: 1px solid $mainColor;
+      padding: 10px;
+      background-color: transparent;
+      min-width: 100%;
+      min-height: 300px;
+    }
+  }
+
+  */

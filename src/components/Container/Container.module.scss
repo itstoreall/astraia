@@ -1,31 +1,60 @@
 @import '../../styles/imports';
 
 .container {
-  padding: 5px;
-  width: 100%;
-  height: 100svh;
-
-  @include media-screen('min', $tablet) {
-    padding: 10px;
-  }
-
-  @include media-screen('min', $desktop) {
-    padding: 20px;
-  }
-
-  .bg {
-    padding: 20px;
+  &.home,
+  &.admin {
+    padding: 5px;
     width: 100%;
-    height: 100%;
-    background: linear-gradient(320deg, $colorRose 6.59%, $colorBlue 94.04%);
-    border-radius: 8px;
+    height: $viewportHeight;
 
-    > .content {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    @include media-screen('min', $tablet) {
+      padding: 10px;
+    }
+
+    @include media-screen('min', $desktop) {
+      padding: 20px;
+    }
+
+    .bg {
+      padding: 20px;
+      width: 100%;
       height: 100%;
-      overflow-y: scroll;
+      background: $bgGradient;
+      border-radius: 8px;
+
+      > .content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        overflow-y: scroll;
+      }
+    }
+  }
+
+  // ------ Dashboard:
+
+  &.dashboard {
+    padding: $dashboardPaddingY 0;
+
+    @include media-screen('min', $tablet) {
+      padding: $dashboardPaddingY 20px;
+    }
+
+    .bg {
+      width: 100%;
+      height: 100%;
+
+      > .content {
+        margin: 0 auto;
+        max-width: $dashboardMaxWidth;
+        background: $bgGradient;
+        overflow-y: scroll;
+
+        @include media-screen('min', $tablet) {
+          border-radius: 8px;
+        }
+      }
     }
   }
 }

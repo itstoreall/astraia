@@ -14,7 +14,7 @@ const Home = () => {
 
   return (
     <main className={s.main}>
-      <Container label={'page'}>
+      <Container label={'home'}>
         <section className={s.heroBlock}>
           <div className={s.content}>
             <h1 className={s[title]}>ASTRAIA</h1>
