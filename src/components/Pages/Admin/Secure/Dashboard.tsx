@@ -34,7 +34,6 @@ const Dashboard = () => {
         <div>2</div>
         <div>2</div>
         <div>2</div>
-        {/* <div>2</div>
         <div>2</div>
         <div>2</div>
         <div>2</div>
@@ -60,7 +59,8 @@ const Dashboard = () => {
         <div>2</div>
         <div>2</div>
         <div>2</div>
-        <div>2</div> */}
+        <div>2</div>
+        <div>2</div>
       </div>
     </section>
   );
