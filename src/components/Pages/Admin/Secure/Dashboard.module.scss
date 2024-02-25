@@ -52,11 +52,24 @@ section.dashboard {
 
     > input.titleInput {
       position: absolute;
-      bottom: 0;
+      bottom: 25px;
       left: 0;
       padding: 5px;
       width: 100%;
       background-color: $colorRose;
+      // // background-color: transparent;
+      outline: none;
+      border: none;
+      resize: none;
+    }
+
+    > input.imageInput {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      padding: 5px;
+      width: 100%;
+      background-color: $colorBlue;
       // // background-color: transparent;
       outline: none;
       border: none;
