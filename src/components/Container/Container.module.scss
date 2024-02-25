@@ -8,10 +8,6 @@
     height: $viewportHeight;
 
     @include media-screen('min', $tablet) {
-      padding: 10px;
-    }
-
-    @include media-screen('min', $desktop) {
       padding: 20px;
     }
 
@@ -34,11 +30,13 @@
 
   // ------ Dashboard:
 
-  &.dashboard {
-    padding: $dashboardPaddingY 0;
+  &.dashboard,
+  &.alticle {
+    position: relative;
+    padding: 5px;
 
     @include media-screen('min', $tablet) {
-      padding: $dashboardPaddingY 20px;
+      padding: 20px;
     }
 
     .bg {
@@ -49,11 +47,8 @@
         margin: 0 auto;
         max-width: $dashboardMaxWidth;
         background: $bgGradient;
+        border-radius: 8px;
         overflow-y: scroll;
-
-        @include media-screen('min', $tablet) {
-          border-radius: 8px;
-        }
       }
     }
   }

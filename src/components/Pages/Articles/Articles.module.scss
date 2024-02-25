@@ -1,6 +1,4 @@
-@import '../../../../styles/imports';
-
-// ------ Container is here!
+@import '@/styles/imports';
 
 section.dashboard {
   display: grid;
@@ -33,13 +31,11 @@ section.dashboard {
       }
     }
 
-    // ------ Title:
-
-    > h1.title {
+    h1.title {
       position: absolute;
+      width: 80%;
       top: 50%;
       left: 50%;
-      width: 80%;
       font-size: 34px;
       line-height: 1.2;
       transform: translate(-50%, -50%);
@@ -49,25 +45,10 @@ section.dashboard {
         font-size: 46px;
       }
     }
-
-    > input.titleInput {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      padding: 5px;
-      width: 100%;
-      background-color: $colorRose;
-      // // background-color: transparent;
-      outline: none;
-      border: none;
-      resize: none;
-    }
   }
 
-  // ------ Text:
-
   .textBlock {
-    textarea.textarea {
+    > div {
       display: block;
       padding: 30px;
       margin: 0;
@@ -77,28 +58,12 @@ section.dashboard {
       border: none;
       outline: none;
       resize: none;
+
+      > h2 {
+        > a {
+          display: none;
+        }
+      }
     }
   }
 }
-
-/*
-
-> div.preview {
-    > div {
-      background-color: transparent;
-    }
-  }
-
-  > div {
-    .textarea {
-      outline: none;
-
-      border: 1px solid $mainColor;
-      padding: 10px;
-      background-color: transparent;
-      min-width: 100%;
-      min-height: 300px;
-    }
-  }
-
-  */

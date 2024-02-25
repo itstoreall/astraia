@@ -1,0 +1,14 @@
+@import '@/styles/vars';
+
+footer.footer {
+  // margin-top: -30px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+
+  .content {
+    margin: 0 auto;
+    max-width: $dashboardMaxWidth;
+    background-color: teal;
+  }
+}
