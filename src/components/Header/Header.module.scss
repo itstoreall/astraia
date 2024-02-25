@@ -1,0 +1,13 @@
+@import '@/styles/vars';
+
+header.header {
+  position: absolute;
+  top: 0;
+  width: 100%;
+
+  .content {
+    margin: 0 auto;
+    max-width: $dashboardMaxWidth;
+    background-color: teal;
+  }
+}

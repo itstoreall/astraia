@@ -1,5 +1,5 @@
-import Next from '@/components/Pages/Admin';
+import Admin from '@/components/Pages/Admin';
 
-const NextPage = () => <Next />;
+const AdminPage = () => <Admin />;
 
-export default NextPage;
+export default AdminPage;

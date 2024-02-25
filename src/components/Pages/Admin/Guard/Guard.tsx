@@ -51,11 +51,11 @@ const KeyHandler = ({ setIsAdmin }: KeyHandlerProps) => {
           onClick={e => submit(e)}
         >
           <input
+            type='tel'
             className={s.input}
             placeholder={'Key'}
             onChange={e => change(e.target.value)}
             maxLength={6}
-            autoFocus={true}
           />
           <button type={'submit'} className={`${s.submitButton} ${s[t3s]}`}>
             {'>'}

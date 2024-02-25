@@ -1,17 +1,23 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
+import * as gu from '@/utils/global';
 import s from './Dashboard.module.scss';
-// import MDEditor from '@uiw/react-md-editor';
 
 const Dashboard = () => {
-  const [textValue, setTextValue] = useState('');
-  const [isPreview, setIsPreview] = useState<boolean>(false);
+  const [title, setTitle] = useState('Title');
+  const [text, setText] = useState('Text');
+  const [isTitleInput, setIsTitleInput] = useState(false);
 
-  const handleInput = (e: { target: { value: string } }) =>
-    setTextValue(e.target.value);
+  useEffect(() => {
+    gu.setLS('++_astraia_article', { title, text });
+  }, [title, text]);
 
-  const getText = () => textValue;
+  const handleTitle = (e: { target: { value: string } }) =>
+    setTitle(e.target.value);
+
+  const handleText = (e: { target: { value: string } }) =>
+    setText(e.target.value);
 
   return (
     <section className={s.dashboard}>
@@ -26,41 +32,27 @@ const Dashboard = () => {
             alt='Picture of the author'
           />
         </div>
-        <h1 className={s.title}>
-          Title dweedwedwedw dwedwedwed dwed dwe dwedwedw dwedwe dwedw dwedwed
+
+        <h1 className={s.title} onClick={() => setIsTitleInput(true)}>
+          {title}
         </h1>
+
+        {isTitleInput && (
+          <input
+            className={s.titleInput}
+            value={title}
+            onChange={e => handleTitle(e)}
+            onBlur={() => setIsTitleInput(false)}
+          />
+        )}
       </div>
-      <div className={s.article}>
-        <div>2</div>
-        <div>2</div>
-        <div>2</div>
-        <div>2</div>
-        <div>2</div>
-        <div>2</div>
-        <div>2</div>
-        <div>2</div>
-        <div>2</div>
-        <div>2</div>
-        <div>2</div>
-        <div>2</div>
-        <div>2</div>
-        <div>2</div>
-        <div>2</div>
-        <div>2</div>
-        <div>2</div>
-        <div>2</div>
-        <div>2</div>
-        <div>2</div>
-        <div>2</div>
-        <div>2</div>
-        <div>2</div>
-        <div>2</div>
-        <div>2</div>
-        <div>2</div>
-        <div>2</div>
-        <div>2</div>
-        <div>2</div>
-        <div>2</div>
+
+      <div className={s.textBlock}>
+        <textarea
+          className={s.textarea}
+          value={text}
+          onChange={e => handleText(e)}
+        />
       </div>
     </section>
   );
@@ -82,4 +74,7 @@ return (
     <div onClick={() => setIsPreview(!isPreview)}>Preview</div>
   </section>
 );
+
 */
+
+// Статья про котиков и собачек, корорьіе бегают, гавкают и радуются жизни
