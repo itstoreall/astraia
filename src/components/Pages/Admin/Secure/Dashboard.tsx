@@ -1,15 +1,14 @@
 'use client';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
+import defaultImage from '@/assets/images/defaultImage.jpg';
 import * as gc from '@/config/global';
 import * as gu from '@/utils/global';
 import s from './Dashboard.module.scss';
 
-const { imgBaseUrl } = gc.system;
-
 const Dashboard = () => {
   const [title, setTitle] = useState('Title');
-  const [image, setImage] = useState(imgBaseUrl);
+  const [image, setImage] = useState(gc.system.imgBaseUrl);
   const [text, setText] = useState('Text');
   const [isTitleInput, setIsTitleInput] = useState(false);
   const [isImageInput, setIsImageInput] = useState(false);
@@ -19,23 +18,24 @@ const Dashboard = () => {
   }, [title, text]);
 
   const handleTitle = (title: string) => setTitle(title);
-  const handleImage = (url: string) => setImage(url ? url : imgBaseUrl);
+  const handleImage = (url: string) => setImage(url);
   const handleText = (text: string) => setText(text);
+
+  // const defaultImagePath = `_next/static/media/defaultImage.c592ac5f.jpg`
 
   return (
     <section className={s.dashboard}>
       <div className={s.hero}>
         <div className={s.thumb}>
           <Image
-            src={image}
-            // src='https://bafkreifwcq6raou6arxbb4ooo6mqnwc6rudcnxqnvzy65vzqt4wq7qkwhe.ipfs.w3s.link'
-            // src='https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg'
+            src={image ? image : defaultImage}
             className={s.heroImage}
             layout='responsive'
             width={900}
             height={390}
-            alt='Picture of the author'
+            alt='Astraia picture'
             onClick={() => setIsImageInput(true)}
+            // unoptimized
           />
         </div>
 
