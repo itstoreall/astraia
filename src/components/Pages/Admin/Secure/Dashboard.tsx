@@ -15,8 +15,8 @@ const Dashboard = () => {
   const [isImageInput, setIsImageInput] = useState(false);
 
   useEffect(() => {
-    gu.setLS('++_astraia_article', { title, text });
-  }, [title, text]);
+    gu.setLS('++_astraia_article', { title, image, text });
+  }, [title, image, text]);
 
   const urlValidate = (url: string) => {
     if (url && url?.slice(0, 8).includes('https://')) {
