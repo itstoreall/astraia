@@ -1,14 +1,15 @@
 'use client';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import defaultImage from '@/assets/images/defaultImage.jpg';
 import * as gc from '@/config/global';
 import * as gu from '@/utils/global';
 import s from './Dashboard.module.scss';
 
+const { defaultImage } = gc.system;
+
 const Dashboard = () => {
   const [title, setTitle] = useState('Title');
-  const [image, setImage] = useState(gc.system.imgBaseUrl);
+  const [image, setImage] = useState(defaultImage);
   const [text, setText] = useState('Text');
   const [isTitleInput, setIsTitleInput] = useState(false);
   const [isImageInput, setIsImageInput] = useState(false);
@@ -17,11 +18,20 @@ const Dashboard = () => {
     gu.setLS('++_astraia_article', { title, text });
   }, [title, text]);
 
-  const handleTitle = (title: string) => setTitle(title);
-  const handleImage = (url: string) => setImage(url);
-  const handleText = (text: string) => setText(text);
+  const urlValidate = (url: string) => {
+    if (url && url?.slice(0, 8).includes('https://')) {
+      return url.slice(-5).includes('.webp') ||
+        url.slice(-5).includes('.jpg') ||
+        url.slice(-5).includes('.jpeg') ||
+        url.slice(-5).includes('.png')
+        ? url
+        : '';
+    } else return '';
+  };
 
-  // const defaultImagePath = `_next/static/media/defaultImage.c592ac5f.jpg`
+  const handleTitle = (title: string) => setTitle(title);
+  const handleImage = (url: string) => setImage(urlValidate(url) || '');
+  const handleText = (text: string) => setText(text);
 
   return (
     <section className={s.dashboard}>
