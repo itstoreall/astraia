@@ -28,7 +28,7 @@ section.dashboard {
 
       .heroImage {
         position: absolute;
-        min-width: $thumbHeight;
+        min-width: 600px; // $thumbHeight
         opacity: 0.1;
       }
     }
