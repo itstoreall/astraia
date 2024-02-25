@@ -5,11 +5,11 @@ import * as gc from '@/config/global';
 import * as gu from '@/utils/global';
 import s from './Dashboard.module.scss';
 
-const { defaultImage } = gc.system;
+const { defaultImageUrl } = gc.system;
 
 const Dashboard = () => {
   const [title, setTitle] = useState('Title');
-  const [image, setImage] = useState(defaultImage);
+  const [image, setImage] = useState(defaultImageUrl);
   const [text, setText] = useState('Text');
   const [isTitleInput, setIsTitleInput] = useState(false);
   const [isImageInput, setIsImageInput] = useState(false);
@@ -38,7 +38,7 @@ const Dashboard = () => {
       <div className={s.hero}>
         <div className={s.thumb}>
           <Image
-            src={image ? image : defaultImage}
+            src={image ? image : defaultImageUrl}
             className={s.heroImage}
             layout='responsive'
             width={900}
