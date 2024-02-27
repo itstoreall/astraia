@@ -36,18 +36,13 @@ const Dashboard = () => {
   return (
     <section className={s.dashboard}>
       <div className={s.hero}>
-        <div className={s.thumb}>
-          <Image
-            src={image ? image : defaultImageUrl}
-            className={s.heroImage}
-            layout='responsive'
-            width={900}
-            height={390}
-            alt='Astraia picture'
-            onClick={() => setIsImageInput(true)}
-            // unoptimized
-          />
-        </div>
+        <Image
+          src={image ? image : defaultImageUrl}
+          className={s.heroImage}
+          fill
+          alt='Astraia picture'
+          onClick={() => setIsImageInput(true)}
+        />
 
         <h1 className={s.title} onClick={() => setIsTitleInput(true)}>
           {title}
@@ -84,5 +79,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-
-// Статья про котиков и собачек, корорьіе бегают, гавкают и радуются жизни

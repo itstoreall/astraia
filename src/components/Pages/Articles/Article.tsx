@@ -27,17 +27,13 @@ const Article = () => {
       <Container label={'alticle'}>
         <section className={s.dashboard}>
           <div className={s.hero}>
-            <div className={s.thumb}>
-              <Image
-                src={image ? image : defaultImageUrl}
-                className={s.heroImage}
-                // layout='fill'
-                layout='responsive'
-                width={900}
-                height={390}
-                alt='Picture of the author'
-              />
-            </div>
+            <Image
+              src={image ? image : defaultImageUrl}
+              className={s.heroImage}
+              fill
+              alt='Astraia picture'
+            />
+
             <h1 className={s.title}>{title}</h1>
           </div>
 

@@ -4,11 +4,17 @@
 
 section.dashboard {
   display: grid;
-  grid-template-rows: $thumbHeight auto;
+  grid-template-rows: 100vw auto;
   min-height: calc($viewportHeight - 10px);
   width: 100%;
 
+  @include media-screen('min', $mobile) {
+    grid-template-rows: 390px auto;
+    min-height: calc($viewportHeight - 40px);
+  }
+
   @include media-screen('min', $tablet) {
+    grid-template-rows: 450px auto;
     min-height: calc($viewportHeight - 40px);
   }
 
@@ -16,21 +22,9 @@ section.dashboard {
     position: relative;
     overflow: hidden;
 
-    .thumb {
-      position: relative;
-      margin: 0 auto;
-      max-width: $dashboardMaxWidth;
-      min-height: $thumbHeight;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-
-      .heroImage {
-        position: absolute;
-        min-width: 600px; // $thumbHeight
-        opacity: 0.1;
-      }
+    .heroImage {
+      object-fit: cover;
+      opacity: 0.15;
     }
 
     // ------ Title:
@@ -40,9 +34,13 @@ section.dashboard {
       top: 50%;
       left: 50%;
       width: 80%;
-      font-size: 34px;
+      font-size: 28px;
       line-height: 1.2;
       transform: translate(-50%, -50%);
+
+      @include media-screen('min', $mobile - 40) {
+        font-size: 34px;
+      }
 
       @include media-screen('min', $tablet) {
         width: 70%;
@@ -50,30 +48,24 @@ section.dashboard {
       }
     }
 
-    > input.titleInput {
+    > input {
       position: absolute;
-      bottom: 25px;
       left: 0;
       padding: 5px;
       width: 100%;
-      background-color: $colorRose;
-      // // background-color: transparent;
+      font-size: 14px;
       outline: none;
       border: none;
-      resize: none;
-    }
 
-    > input.imageInput {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      padding: 5px;
-      width: 100%;
-      background-color: $colorBlue;
-      // // background-color: transparent;
-      outline: none;
-      border: none;
-      resize: none;
+      &.titleInput {
+        bottom: 25px;
+        background-color: $colorRose;
+      }
+
+      &.imageInput {
+        bottom: 0;
+        background-color: $colorBlue;
+      }
     }
   }
 
@@ -93,25 +85,3 @@ section.dashboard {
     }
   }
 }
-
-/*
-
-> div.preview {
-    > div {
-      background-color: transparent;
-    }
-  }
-
-  > div {
-    .textarea {
-      outline: none;
-
-      border: 1px solid $mainColor;
-      padding: 10px;
-      background-color: transparent;
-      min-width: 100%;
-      min-height: 300px;
-    }
-  }
-
-  */
