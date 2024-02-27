@@ -27,7 +27,7 @@ const Article = () => {
       <Container label={'alticle'}>
         <section className={s.dashboard}>
           <div className={s.hero}>
-            <div className={s.thumb}>
+            {/* <div className={s.thumb}>
               <Image
                 src={image ? image : defaultImageUrl}
                 className={s.heroImage}
@@ -37,7 +37,15 @@ const Article = () => {
                 height={390}
                 alt='Picture of the author'
               />
-            </div>
+            </div> */}
+
+            <Image
+              src={image ? image : defaultImageUrl}
+              className={s.heroImage}
+              fill
+              alt='Astraia picture'
+            />
+
             <h1 className={s.title}>{title}</h1>
           </div>
 
