@@ -4,13 +4,14 @@ import Image from 'next/image';
 import * as gc from '@/config/global';
 import * as gu from '@/utils/global';
 import s from './Dashboard.module.scss';
+import Textarea from '@/components/Textarea';
 
 const { defaultImageUrl } = gc.system;
 
 const Dashboard = () => {
   const [title, setTitle] = useState('Title');
   const [image, setImage] = useState(defaultImageUrl);
-  const [text, setText] = useState('Text');
+  const [text, setText] = useState('');
   const [isTitleInput, setIsTitleInput] = useState(false);
   const [isImageInput, setIsImageInput] = useState(false);
 
@@ -54,6 +55,7 @@ const Dashboard = () => {
             value={title}
             onChange={e => handleTitle(e.target.value)}
             onBlur={() => setIsTitleInput(false)}
+            placeholder='Title...'
           />
         )}
 
@@ -67,13 +69,7 @@ const Dashboard = () => {
         )}
       </div>
 
-      <div className={s.textBlock}>
-        <textarea
-          className={s.textarea}
-          value={text}
-          onChange={e => handleText(e.target.value)}
-        />
-      </div>
+      <Textarea text={text} handleText={handleText} />
     </section>
   );
 };
