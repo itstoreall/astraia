@@ -51,14 +51,26 @@ section.dashboard {
     > input {
       position: absolute;
       left: 0;
-      padding: 5px;
+      padding: 5px 8px;
+      height: 30px;
       width: 100%;
       font-size: 14px;
       outline: none;
       border: none;
+      border-radius: 0;
+
+      &::placeholder {
+        color: $colorBlack;
+      }
+
+      &:focus {
+        &::placeholder {
+          opacity: 0.2;
+        }
+      }
 
       &.titleInput {
-        bottom: 25px;
+        bottom: 30px;
         background-color: $colorRose;
       }
 
@@ -72,16 +84,6 @@ section.dashboard {
   // ------ Text:
 
   .textBlock {
-    textarea.textarea {
-      display: block;
-      padding: 30px;
-      margin: 0;
-      width: 100%;
-      height: 100%;
-      background-color: transparent;
-      border: none;
-      outline: none;
-      resize: none;
-    }
+    // ------ Textarea is here!
   }
 }
