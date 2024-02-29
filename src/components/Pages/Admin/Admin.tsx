@@ -8,8 +8,6 @@ import s from './Admin.module.scss';
 const Admin = () => {
   const [isAdmin, setIsAdmin] = useState(false);
 
-  console.log('isAdmin', isAdmin);
-
   return (
     <main className={s.main}>
       <Container label={!isAdmin ? 'admin' : 'dashboard'}>

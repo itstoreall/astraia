@@ -12,6 +12,7 @@ textarea.textarea {
   border: none;
   outline: none;
   resize: none;
+  overflow: auto;
 
   &::placeholder {
     color: $colorBlack;

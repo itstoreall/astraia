@@ -17,6 +17,7 @@
 
 html,
 body {
+  @extend %extends-hide-scrollbar;
   max-width: 100vw;
   overflow-x: hidden;
   color: rgb(var(--white));

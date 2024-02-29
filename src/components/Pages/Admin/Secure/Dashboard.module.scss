@@ -21,10 +21,11 @@ section.dashboard {
   .hero {
     position: relative;
     overflow: hidden;
+    background-color: $colorWhite;
 
     .heroImage {
       object-fit: cover;
-      opacity: 0.15;
+      opacity: 0.35;
     }
 
     // ------ Title:

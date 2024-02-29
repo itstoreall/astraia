@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
+import * as u from '../utils';
 import * as gc from '@/config/global';
 import * as gu from '@/utils/global';
 import s from './Dashboard.module.scss';
@@ -19,19 +20,8 @@ const Dashboard = () => {
     gu.setLS('++_astraia_article', { title, image, text });
   }, [title, image, text]);
 
-  const urlValidate = (url: string) => {
-    if (url && url?.slice(0, 8).includes('https://')) {
-      return url.slice(-5).includes('.webp') ||
-        url.slice(-5).includes('.jpg') ||
-        url.slice(-5).includes('.jpeg') ||
-        url.slice(-5).includes('.png')
-        ? url
-        : '';
-    } else return '';
-  };
-
   const handleTitle = (title: string) => setTitle(title);
-  const handleImage = (url: string) => setImage(urlValidate(url) || '');
+  const handleImage = (url: string) => setImage(u.validateUrl(url) || '');
   const handleText = (text: string) => setText(text);
 
   return (
