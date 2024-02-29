@@ -1,21 +1,25 @@
-import { ReactElement, useEffect, useRef } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useRef } from 'react';
+import useViewportWidth from '@/hooks/useViewportWidth';
+import { Textarea } from './types';
+import * as u from './utils';
 import s from './Textarea.module.scss';
 
-export type Textarea = (props: {
-  text: string;
-  handleText: (s: string) => void;
-}) => ReactElement;
-
 const Textarea: Textarea = ({ text, handleText }) => {
+  const viewport = useViewportWidth();
   const taRef = useRef<HTMLTextAreaElement>(null);
   const ta = taRef.current;
 
   useEffect(() => {
-    if (ta) {
-      if (!text) ta.style.height = 'auto';
-      ta.style.height = `${ta.scrollHeight}px`;
-    }
-  }, [ta, text]);
+    if (!ta) return;
+    text ? u.updateTaHeight(ta) : u.resetTaHeight(ta);
+  }, [text]);
+
+  useEffect(() => {
+    if (!ta) return;
+    u.resetTaHeight(ta);
+    u.updateTaHeight(ta);
+  }, [viewport.width]);
 
   return (
     <textarea
