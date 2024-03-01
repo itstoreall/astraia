@@ -1,11 +1,14 @@
 'use client';
 import { useEffect, useState } from 'react';
+// import { ApolloProvider } from '@apollo/client';
+// import useApolloProvider from '@/hooks/useApolloProvider';
 import Image from 'next/image';
 import * as u from '../utils';
 import * as gc from '@/config/global';
 import * as gu from '@/utils/global';
-import s from './Dashboard.module.scss';
 import Textarea from '@/components/Textarea';
+import s from './Dashboard.module.scss';
+import ApolloProvider from '@/providers/ApolloProvider';
 
 const { defaultImageUrl } = gc.system;
 
@@ -20,47 +23,51 @@ const Dashboard = () => {
     gu.setLS('++_astraia_article', { title, image, text });
   }, [title, image, text]);
 
+  // const client = useApolloProvider();
+
   const handleTitle = (title: string) => setTitle(title);
   const handleImage = (url: string) => setImage(u.validateUrl(url) || '');
   const handleText = (text: string) => setText(text);
 
   return (
-    <section className={s.dashboard}>
-      <div className={s.hero}>
-        <Image
-          src={image ? image : defaultImageUrl}
-          className={s.heroImage}
-          fill
-          alt='Astraia picture'
-          onClick={() => setIsImageInput(true)}
-        />
-
-        <h1 className={s.title} onClick={() => setIsTitleInput(true)}>
-          {title}
-        </h1>
-
-        {isTitleInput && (
-          <input
-            className={s.titleInput}
-            value={title}
-            onChange={e => handleTitle(e.target.value)}
-            onBlur={() => setIsTitleInput(false)}
-            placeholder='Title...'
+    <ApolloProvider>
+      <section className={s.dashboard}>
+        <div className={s.hero}>
+          <Image
+            src={image ? image : defaultImageUrl}
+            className={s.heroImage}
+            fill
+            alt='Astraia picture'
+            onClick={() => setIsImageInput(true)}
           />
-        )}
 
-        {isImageInput && (
-          <input
-            className={s.imageInput}
-            value={image}
-            onChange={e => handleImage(e.target.value)}
-            onBlur={() => setIsImageInput(false)}
-          />
-        )}
-      </div>
+          <h1 className={s.title} onClick={() => setIsTitleInput(true)}>
+            {title}
+          </h1>
 
-      <Textarea text={text} handleText={handleText} />
-    </section>
+          {isTitleInput && (
+            <input
+              className={s.titleInput}
+              value={title}
+              onChange={e => handleTitle(e.target.value)}
+              onBlur={() => setIsTitleInput(false)}
+              placeholder='Title...'
+            />
+          )}
+
+          {isImageInput && (
+            <input
+              className={s.imageInput}
+              value={image}
+              onChange={e => handleImage(e.target.value)}
+              onBlur={() => setIsImageInput(false)}
+            />
+          )}
+        </div>
+
+        <Textarea text={text} handleText={handleText} />
+      </section>
+    </ApolloProvider>
   );
 };
 

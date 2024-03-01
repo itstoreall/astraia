@@ -1,0 +1,17 @@
+@import '@/styles/imports.scss';
+
+.page404 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: $viewportHeight;
+
+  > span {
+    font-size: 100px;
+    color: $colorBlue;
+
+    @include media-screen('min', $tablet) {
+      font-size: 160px;
+    }
+  }
+}
