@@ -1,14 +1,12 @@
 'use client';
 import { useEffect, useState } from 'react';
-// import { ApolloProvider } from '@apollo/client';
-// import useApolloProvider from '@/hooks/useApolloProvider';
 import Image from 'next/image';
+import ApolloProvider from '@/gql/provider/ApolloProvider';
 import * as u from '../utils';
 import * as gc from '@/config/global';
 import * as gu from '@/utils/global';
 import Textarea from '@/components/Textarea';
 import s from './Dashboard.module.scss';
-import ApolloProvider from '@/providers/ApolloProvider';
 
 const { defaultImageUrl } = gc.system;
 

@@ -4,25 +4,18 @@ import useViewportWidth from '@/hooks/useViewportWidth';
 import { Textarea } from './types';
 import * as u from './utils';
 import s from './Textarea.module.scss';
-import { useLazyQuery } from '@apollo/client';
-import GET_ARTICLES from '@/gql/getArticles';
+import useQuery from '@/gql/hook/useQuery';
 
 const Textarea: Textarea = ({ text, handleText }) => {
-  const [getArticles, { loading }] = useLazyQuery(GET_ARTICLES);
+  const { articles: data } = useQuery();
   const taRef = useRef<HTMLTextAreaElement>(null);
   const viewport = useViewportWidth();
 
   const ta = taRef.current;
 
   const fetchArticles = async () => {
-    try {
-      const { data } = await getArticles({ variables: { blog: 'astraia' } });
-      if (data) console.log('data ===>', data);
-    } catch (e) {
-      console.error(e);
-    } finally {
-      console.log('Done!');
-    }
+    const articles = await data.get();
+    console.log('articles', articles);
   };
 
   useEffect(() => {
@@ -48,7 +41,7 @@ const Textarea: Textarea = ({ text, handleText }) => {
       className={s.textarea}
       value={text}
       onChange={e => handleText(e.target.value)}
-      placeholder={loading ? 'Loading...' : 'Text...'}
+      placeholder={data.loading ? 'Loading...' : 'Text...'}
     />
   );
 };
