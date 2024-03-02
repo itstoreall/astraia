@@ -1,22 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useRef } from 'react';
 import useViewportWidth from '@/hooks/useViewportWidth';
+import useQuery from '@/GraphQL/hooks/useQuery';
 import { Textarea } from './types';
 import * as u from './utils';
 import s from './Textarea.module.scss';
-import useArticles from '@/GraphQL/hooks/useArticles';
-import useCreate from '@/GraphQL/hooks/useCreate';
-import useQuery from '@/GraphQL/hooks/useQuery';
 
 const Textarea: Textarea = ({ text, handleText }) => {
-  // const [addArticle, { loading: addLoad, error: addErr }] =
-  //   useMutation(ADD_ARTICLE);
-
-  // const data = useArticles();
-  const data = useQuery();
-  // const { create, loading } = useCreate();
   const taRef = useRef<HTMLTextAreaElement>(null);
   const viewport = useViewportWidth();
+  const data = useQuery();
 
   const ta = taRef.current;
 
@@ -45,11 +38,10 @@ const Textarea: Textarea = ({ text, handleText }) => {
     console.log('res', res);
   };
 
-  // console.log('add loading', loading);
-
   useEffect(() => {
+    // getServerArticle('65e3284721d95d96198b9936');
     // fetchArticles();
-    getArticle();
+    // getArticle();
     // addArticle();
     // updateArticle();
     // delArticle();
