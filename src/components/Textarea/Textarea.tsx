@@ -19,7 +19,7 @@ const Textarea: Textarea = ({ text, handleText }) => {
   };
 
   const getArticle = async () => {
-    const article = await data.byId('65e3284721d95d96198b9936');
+    const article = await data.byId('65ad05f43521925eb0a202ea');
     console.log('article', article);
   };
 
@@ -29,19 +29,19 @@ const Textarea: Textarea = ({ text, handleText }) => {
   };
 
   const updateArticle = async () => {
-    const res = await data.edit('65e3284721d95d96198b9936');
+    const res = await data.edit('65ad05f43521925eb0a202ea');
     console.log('res', res);
   };
 
   const delArticle = async () => {
-    const res = await data.del('65e3284721d95d96198b9936');
+    const res = await data.del('65ad05f43521925eb0a202ea');
     console.log('res', res);
   };
 
   useEffect(() => {
     // getServerArticle('65e3284721d95d96198b9936');
     // fetchArticles();
-    // getArticle();
+    getArticle();
     // addArticle();
     // updateArticle();
     // delArticle();
