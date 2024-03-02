@@ -8,7 +8,7 @@ import * as gc from '@/config/global';
 import * as config from '../config';
 
 const { blog } = gc.system;
-const { success, errRes } = config.query;
+const { errRes } = config.query;
 
 const useQuery = () => {
   const [getArticles, { loading: lGA }] = useLazyQuery(GET_ARTICLES);
@@ -21,7 +21,7 @@ const useQuery = () => {
   const fetchArticles = async () => {
     try {
       const { data } = await getArticles({ variables: { blog } });
-      if (data) return { status: success, data: data.articles };
+      if (data) return { success: true, data: data.articles };
     } catch (e) {
       console.error(e);
       return errRes;
@@ -34,7 +34,7 @@ const useQuery = () => {
   const getById = async (id: string) => {
     try {
       const { data } = await getArticleById({ variables: { blog, id } });
-      if (data) return { status: success, data: data.getArticleById };
+      if (data) return { success: true, data: data.getArticleById };
     } catch (e) {
       console.error(e);
       return errRes;
@@ -59,7 +59,7 @@ const useQuery = () => {
           }
         }
       });
-      if (data) return { status: success, data: data };
+      if (data) return { success: true, data: data };
     } catch (e) {
       console.error(e);
       return errRes;
@@ -85,7 +85,7 @@ const useQuery = () => {
           }
         }
       });
-      if (data) return { status: success, data: data };
+      if (data) return { success: true, data: data };
     } catch (e) {
       console.error(e);
       return errRes;
@@ -98,7 +98,7 @@ const useQuery = () => {
   const removeArticle = async (id: string) => {
     try {
       const { data } = await delArticle({ variables: { blog, id } });
-      if (data) return { status: success, data: data.deleteArticle };
+      if (data) return { success: true, data: data.deleteArticle };
     } catch (e) {
       console.error(e);
       return errRes;
