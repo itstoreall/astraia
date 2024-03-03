@@ -7,6 +7,8 @@ import DEL_ARTICLE from '../gql/deleteArticle';
 import * as gc from '@/config/global';
 import * as config from '../config';
 
+export type AddArticleArgs = { title: string; image: string; text: string };
+
 const { blog } = gc.system;
 const { errRes } = config.query;
 
@@ -44,19 +46,18 @@ const useQuery = () => {
   };
 
   // POST create:
-  const createArticle = async () => {
+  const createArticle = async (args: AddArticleArgs) => {
     try {
       const { data } = await addArticle({
         variables: {
           blog,
           input: {
-            title: 'T7',
-            description: 'Description 7',
-            text: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`,
-            author: 'author 7',
-            image:
-              'https://res.cloudinary.com/astraia/image/upload/v1687003861/cld-sample-2.jpg',
-            tags: ['tag7']
+            title: args.title,
+            description: '',
+            text: args.text,
+            author: 'Mila',
+            image: args.image,
+            tags: ['magic']
           }
         }
       });

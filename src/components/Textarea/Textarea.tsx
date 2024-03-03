@@ -27,10 +27,12 @@ const Textarea: Textarea = ({ text, handleText }) => {
   };
   */
 
+  /*
   const addArticle = async () => {
     const res = await data.add();
     console.log('res', res);
   };
+  */
 
   const updateArticle = async () => {
     const res = await data.edit('65e466bc469e1f8e204bd741');
@@ -38,7 +40,7 @@ const Textarea: Textarea = ({ text, handleText }) => {
   };
 
   const delArticle = async () => {
-    const res = await data.del('65e4765acbc3af4cecd647e4');
+    const res = await data.del('65e4c87e1305bb9c9b18595c');
     console.log('res', res);
   };
 
@@ -46,7 +48,7 @@ const Textarea: Textarea = ({ text, handleText }) => {
     // getServerArticle('65e3284721d95d96198b9936');
     // addArticle();
     // updateArticle();
-    // delArticle();
+    delArticle();
   }, []);
 
   // ---

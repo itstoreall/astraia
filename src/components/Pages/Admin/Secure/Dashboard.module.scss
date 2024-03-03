@@ -24,6 +24,13 @@ section.dashboard {
     background-color: $colorWhite;
     user-select: none;
 
+    .buttonBlock {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      cursor: pointer;
+    }
+
     .heroImage {
       object-fit: cover;
       opacity: 0.25;
@@ -63,7 +70,7 @@ section.dashboard {
       left: 0;
       padding: 5px 8px;
       height: 30px;
-      width: 100%;
+      width: calc(100% - 40px);
       font-size: 16px;
       outline: none;
       border: none;

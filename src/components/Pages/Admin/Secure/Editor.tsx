@@ -4,7 +4,9 @@ import Image from 'next/image';
 import * as u from '../utils';
 import * as gc from '@/config/global';
 import * as gu from '@/utils/global';
+import useQuery from '@/GraphQL/hooks/useQuery';
 import Textarea from '@/components/Textarea';
+import SaveButton from './SaveButton';
 import s from './Dashboard.module.scss';
 
 const { defaultImageUrl } = gc.system;
@@ -18,26 +20,38 @@ const Editor = () => {
   const [isTitleInput, setIsTitleInput] = useState(false);
   const [isImageInput, setIsImageInput] = useState(false);
 
+  const data = useQuery();
+
   useEffect(() => {
     const lsData = gu.getLS(lsLabel);
-    // console.log('lsData', lsData);
     handleTitle(lsData ? lsData.title : 'Title');
     handleImage(lsData ? lsData.image : defaultImageUrl);
     handleText(lsData ? lsData.text : '');
   }, []);
+
+  const addArticle = async () => {
+    if (!title || !image || !text) return;
+    handleStatus('save');
+    const res = await data.add({ title, image, text });
+    console.log('res', res);
+    if (res) {
+      handleTitle('Title');
+      handleImage(defaultImageUrl);
+      handleText('');
+      handleStatus('init');
+      gu.delLS(lsLabel);
+    }
+  };
 
   /*
   https://res.cloudinary.com/astraia/image/upload/v1687003862/cld-sample-3.jpg
   */
 
   useEffect(() => {
-    console.log(2);
+    if (status === 'save') return;
     if (status === 'init') return handleStatus('cteate');
-    console.log(3);
     status === 'cteate' && gu.setLS(lsLabel, { title, image, text });
   }, [title, image, text]);
-
-  console.log(0, image);
 
   const handleStatus = (val: string) => setStatus(val);
   const handleTitle = (val: string) => setTitle(val);
@@ -49,7 +63,6 @@ const Editor = () => {
       <div className={s.hero}>
         <Image
           src={image}
-          // src={image ? image : defaultImageUrl}
           className={s.heroImage}
           fill
           alt='Astraia picture'
@@ -79,6 +92,9 @@ const Editor = () => {
             onBlur={() => setIsImageInput(false)}
           />
         )}
+        <div className={s.buttonBlock} onClick={addArticle}>
+          <SaveButton />
+        </div>
       </div>
 
       <Textarea text={text} handleText={handleText} />
