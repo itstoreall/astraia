@@ -1,14 +1,36 @@
-@import '@/styles/vars';
+@import '@/styles/imports';
 
 footer.footer {
-  // margin-top: -30px;
-  position: absolute;
-  bottom: 0;
   width: 100%;
+  min-height: 60px;
+
+  @include media-screen('min', $tablet) {
+    padding: 0 20px;
+  }
 
   .content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px 0 15px;
     margin: 0 auto;
     max-width: $dashboardMaxWidth;
-    background-color: teal;
+    min-height: 60px;
+    user-select: none;
+
+    > span.copyright {
+      margin: 0 auto;
+      font-family: var(--font-share-tech);
+      font-size: 18px;
+      color: $colorWhite;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      opacity: 0.2;
+
+      > span.copySymbol {
+        font-family: var(--font-share-tech);
+        color: $colorWhite;
+      }
+    }
   }
 }

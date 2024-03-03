@@ -7,6 +7,8 @@ import DEL_ARTICLE from '../gql/deleteArticle';
 import * as gc from '@/config/global';
 import * as config from '../config';
 
+export type AddArticleArgs = { title: string; image: string; text: string };
+
 const { blog } = gc.system;
 const { errRes } = config.query;
 
@@ -44,18 +46,18 @@ const useQuery = () => {
   };
 
   // POST create:
-  const createArticle = async () => {
+  const createArticle = async (args: AddArticleArgs) => {
     try {
       const { data } = await addArticle({
         variables: {
           blog,
           input: {
-            title: 'Title 1',
-            description: 'Description 1',
-            text: 'text 1',
-            author: 'author 1',
-            // #image
-            tags: ['tag1']
+            title: args.title,
+            description: '',
+            text: args.text,
+            author: 'Mila',
+            image: args.image,
+            tags: ['magic']
           }
         }
       });
@@ -76,12 +78,13 @@ const useQuery = () => {
           blog,
           id,
           articleInput: {
-            title: 'Title 2',
-            description: 'Description 2',
-            text: 'text 2',
-            author: 'author 2',
-            // #image
-            tags: ['tag1', 'tag2']
+            title: 'Title 6',
+            description: 'Description 6',
+            text: 'text 6',
+            author: 'author 6',
+            image:
+              'https://res.cloudinary.com/astraia/image/upload/v1687003850/samples/food/spices.jpg',
+            tags: ['tag1', 'tag4']
           }
         }
       });

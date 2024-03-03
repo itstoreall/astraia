@@ -7,7 +7,7 @@ const ADD_ARTICLE = gql`
       description
       text
       author
-      #image
+      image
       tags
     }
   }
