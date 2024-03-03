@@ -6,7 +6,6 @@ section.dashboard {
   display: grid;
   grid-template-rows: 100vw auto;
   width: 100%;
-  // min-height: $viewportHeight;
   min-height: calc($viewportHeight - 120px);
 
   @include media-screen('min', $mobile) {
@@ -15,7 +14,6 @@ section.dashboard {
 
   @include media-screen('min', $tablet) {
     grid-template-rows: 450px auto;
-    // min-height: calc($viewportHeight - 120px);
   }
 
   .hero {
@@ -49,7 +47,6 @@ section.dashboard {
       line-height: 1.2;
       text-transform: uppercase;
       transform: translate(-50%, -50%);
-      // background-color: tomato;
 
       @include media-screen('min', $mobile - 40) {
         font-size: 34px;

@@ -3,10 +3,40 @@
 main.main {
   // ------ Container is here!
 
+  // ------ Articles:
+
   section.articlesSection {
+    display: grid;
+    grid-template-rows: 100vw auto;
+    width: 100%;
+    min-height: calc($viewportHeight - 120px);
+
+    background-color: teal;
+
+    @include media-screen('min', $mobile) {
+      grid-template-rows: 390px auto;
+    }
+
+    @include media-screen('min', $tablet) {
+      grid-template-rows: 450px auto;
+    }
+
     > ul.articleList {
+      padding: 20px;
+      list-style: none;
+
       > li.articleItem {
         > a {
+          .thumb {
+            position: relative;
+            width: 200px;
+            height: 100px;
+
+            .cardImage {
+              object-fit: cover;
+            }
+          }
+
           > span {
             color: white;
           }
@@ -16,11 +46,13 @@ main.main {
   }
 }
 
+// ------ Article
+
 section.dashboard {
   display: grid;
   grid-template-rows: 100vw auto;
-  min-height: $viewportHeight;
   width: 100%;
+  min-height: calc($viewportHeight - 120px);
 
   @include media-screen('min', $mobile) {
     grid-template-rows: 390px auto;
@@ -28,13 +60,13 @@ section.dashboard {
 
   @include media-screen('min', $tablet) {
     grid-template-rows: 450px auto;
-    min-height: calc($viewportHeight - 40px);
   }
 
   .hero {
     position: relative;
     overflow: hidden;
     background-color: $colorWhite;
+    user-select: none;
 
     .heroImage {
       object-fit: cover;
@@ -51,6 +83,7 @@ section.dashboard {
       font-family: var(--font-open-sans);
       font-size: 24px;
       line-height: 1.2;
+      text-transform: uppercase;
       transform: translate(-50%, -50%);
 
       @include media-screen('min', $mobile - 40) {

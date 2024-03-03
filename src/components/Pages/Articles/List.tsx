@@ -2,6 +2,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import useQuery from '@/GraphQL/hooks/useQuery';
 import { Article } from '@/types';
 import s from './Articles.module.scss';
@@ -25,9 +26,20 @@ const List = () => {
   return (
     <ul className={s.articleList}>
       {articles.map((article, idx) => {
+        console.log('------>', article);
         return (
           <li key={idx} className={s.articleItem}>
             <Link href={`/articles/${article.id}`}>
+              <div className={s.thumb}>
+                <Image
+                  src={article.image}
+                  className={s.cardImage}
+                  fill
+                  alt='Astraia picture'
+                  // onClick={() => setIsImageInput(true)}
+                />
+              </div>
+
               <span>{article.title}</span>
             </Link>
           </li>

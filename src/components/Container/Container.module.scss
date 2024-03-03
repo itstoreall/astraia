@@ -28,6 +28,25 @@
     }
   }
 
+  // ------ Articles:
+
+  &.articles {
+    position: relative;
+    padding: 60px 0 0;
+
+    @include media-screen('min', $tablet) {
+      padding: 60px 20px 0;
+    }
+
+    .bg {
+      > .content {
+        margin: 0 auto;
+        max-width: $dashboardMaxWidth;
+        overflow-y: scroll;
+      }
+    }
+  }
+
   // ------ Dashboard:
 
   &.dashboard,
