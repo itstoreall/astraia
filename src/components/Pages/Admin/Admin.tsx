@@ -2,20 +2,25 @@
 import { useState } from 'react';
 import Container from '@/components/Container';
 import Guard from './Guard';
+import Header from '@/components/Header';
 import Dashboard from './Secure/Dashboard';
+import Footer from '@/components/Footer';
 import s from './Admin.module.scss';
+import Navigation from '@/components/Navigation';
 
 const Admin = () => {
   const [isAdmin, setIsAdmin] = useState(false);
 
   return (
-    <main className={s.main}>
-      <Container label={!isAdmin ? 'admin' : 'dashboard'}>
-        <Guard isAdmin={isAdmin} setIsAdmin={setIsAdmin}>
-          <Dashboard />
-        </Guard>
-      </Container>
-    </main>
+    <Navigation isActive={isAdmin}>
+      <main className={s.main}>
+        <Container label={!isAdmin ? 'admin' : 'dashboard'}>
+          <Guard isAdmin={isAdmin} setIsAdmin={setIsAdmin}>
+            <Dashboard />
+          </Guard>
+        </Container>
+      </main>
+    </Navigation>
   );
 };
 

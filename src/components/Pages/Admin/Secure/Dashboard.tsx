@@ -1,33 +1,37 @@
 'use client';
-import { useEffect, useState } from 'react';
-import Image from 'next/image';
+// import { useEffect, useState } from 'react';
+// import Image from 'next/image';
 import ApolloProvider from '@/GraphQL/provider/ApolloProvider';
-import * as u from '../utils';
-import * as gc from '@/config/global';
-import * as gu from '@/utils/global';
-import Textarea from '@/components/Textarea';
+// import * as u from '../utils';
+// import * as gc from '@/config/global';
+// import * as gu from '@/utils/global';
+// import Textarea from '@/components/Textarea';
 import s from './Dashboard.module.scss';
+import Editor from './Editor';
+import MenuButton from '@/components/Menu/MenuButton';
 
-const { defaultImageUrl } = gc.system;
+// const { defaultImageUrl } = gc.system;
 
 const Dashboard = () => {
-  const [title, setTitle] = useState('Title');
-  const [image, setImage] = useState(defaultImageUrl);
-  const [text, setText] = useState('');
-  const [isTitleInput, setIsTitleInput] = useState(false);
-  const [isImageInput, setIsImageInput] = useState(false);
+  // const [title, setTitle] = useState('Title');
+  // const [image, setImage] = useState(defaultImageUrl);
+  // const [text, setText] = useState('');
+  // const [isTitleInput, setIsTitleInput] = useState(false);
+  // const [isImageInput, setIsImageInput] = useState(false);
 
-  useEffect(() => {
-    gu.setLS('++_astraia_article', { title, image, text });
-  }, [title, image, text]);
+  // useEffect(() => {
+  //   gu.setLS('++_astraia_article', { title, image, text });
+  // }, [title, image, text]);
 
-  const handleTitle = (title: string) => setTitle(title);
-  const handleImage = (url: string) => setImage(u.validateUrl(url) || '');
-  const handleText = (text: string) => setText(text);
+  // const handleTitle = (title: string) => setTitle(title);
+  // const handleImage = (url: string) => setImage(u.validateUrl(url) || '');
+  // const handleText = (text: string) => setText(text);
 
   return (
     <ApolloProvider>
-      <section className={s.dashboard}>
+      {/* <MenuButton /> */}
+      <Editor />
+      {/* <section className={s.dashboard}>
         <div className={s.hero}>
           <Image
             src={image ? image : defaultImageUrl}
@@ -48,6 +52,7 @@ const Dashboard = () => {
               onChange={e => handleTitle(e.target.value)}
               onBlur={() => setIsTitleInput(false)}
               placeholder='Title...'
+              maxLength={85}
             />
           )}
 
@@ -62,7 +67,7 @@ const Dashboard = () => {
         </div>
 
         <Textarea text={text} handleText={handleText} />
-      </section>
+      </section> */}
     </ApolloProvider>
   );
 };

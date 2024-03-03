@@ -50,12 +50,13 @@ const useQuery = () => {
         variables: {
           blog,
           input: {
-            title: 'Title 1',
-            description: 'Description 1',
-            text: 'text 1',
-            author: 'author 1',
-            // #image
-            tags: ['tag1']
+            title: 'T7',
+            description: 'Description 7',
+            text: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`,
+            author: 'author 7',
+            image:
+              'https://res.cloudinary.com/astraia/image/upload/v1687003861/cld-sample-2.jpg',
+            tags: ['tag7']
           }
         }
       });
@@ -76,12 +77,13 @@ const useQuery = () => {
           blog,
           id,
           articleInput: {
-            title: 'Title 2',
-            description: 'Description 2',
-            text: 'text 2',
-            author: 'author 2',
-            // #image
-            tags: ['tag1', 'tag2']
+            title: 'Title 6',
+            description: 'Description 6',
+            text: 'text 6',
+            author: 'author 6',
+            image:
+              'https://res.cloudinary.com/astraia/image/upload/v1687003850/samples/food/spices.jpg',
+            tags: ['tag1', 'tag4']
           }
         }
       });

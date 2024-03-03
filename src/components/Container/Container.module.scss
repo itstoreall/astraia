@@ -33,10 +33,10 @@
   &.dashboard,
   &.alticle {
     position: relative;
-    padding: 5px;
+    padding: 60px 0 0;
 
     @include media-screen('min', $tablet) {
-      padding: 20px;
+      padding: 60px 20px 0;
     }
 
     .bg {
@@ -47,8 +47,11 @@
         margin: 0 auto;
         max-width: $dashboardMaxWidth;
         background: $bgGradient;
-        border-radius: 8px;
         overflow-y: scroll;
+
+        @include media-screen('min', $tablet) {
+          border-radius: 8px;
+        }
       }
     }
   }

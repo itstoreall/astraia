@@ -1,29 +1,26 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Image from 'next/image';
 import MDEditor from '@uiw/react-md-editor';
 import Container from '@/components/Container';
 import * as gc from '@/config/global';
 import * as gu from '@/utils/global';
-import s from './Articles.module.scss';
 import { Article } from '@/types';
+import s from './Articles.module.scss';
 
 const { defaultImageUrl } = gc.system;
 
 const Article = ({ article }: { article: Article }) => {
-  // const [title, setTitle] = useState('');
-  const [image, setImage] = useState(defaultImageUrl);
-  // const [text, setText] = useState('');
-
   useEffect(() => {
     const lsData = gu.getLS('++_astraia_article');
     if (!lsData) return;
-    // setTitle(lsData.title);
-    setImage(lsData.image);
-    // setText(lsData.text);
   }, []);
 
   console.log('article', article);
+
+  if (!article) return null;
+
+  const imageUrl = article.image ? article.image : defaultImageUrl;
 
   return (
     <main>
@@ -31,7 +28,7 @@ const Article = ({ article }: { article: Article }) => {
         <section className={s.dashboard}>
           <div className={s.hero}>
             <Image
-              src={image ? image : defaultImageUrl}
+              src={imageUrl}
               className={s.heroImage}
               fill
               alt={article.title}

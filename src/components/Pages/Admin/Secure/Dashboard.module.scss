@@ -5,27 +5,28 @@
 section.dashboard {
   display: grid;
   grid-template-rows: 100vw auto;
-  min-height: calc($viewportHeight - 10px);
   width: 100%;
+  // min-height: $viewportHeight;
+  min-height: calc($viewportHeight - 120px);
 
   @include media-screen('min', $mobile) {
     grid-template-rows: 390px auto;
-    min-height: calc($viewportHeight - 40px);
   }
 
   @include media-screen('min', $tablet) {
     grid-template-rows: 450px auto;
-    min-height: calc($viewportHeight - 40px);
+    // min-height: calc($viewportHeight - 120px);
   }
 
   .hero {
     position: relative;
     overflow: hidden;
     background-color: $colorWhite;
+    user-select: none;
 
     .heroImage {
       object-fit: cover;
-      opacity: 0.35;
+      opacity: 0.25;
     }
 
     // ------ Title:
@@ -35,9 +36,13 @@ section.dashboard {
       top: 50%;
       left: 50%;
       width: 80%;
-      font-size: 28px;
+      font-family: var(--font-open-sans);
+      font-size: 24px;
+      font-weight: 700;
       line-height: 1.2;
+      text-transform: uppercase;
       transform: translate(-50%, -50%);
+      // background-color: tomato;
 
       @include media-screen('min', $mobile - 40) {
         font-size: 34px;
@@ -45,6 +50,10 @@ section.dashboard {
 
       @include media-screen('min', $tablet) {
         width: 70%;
+        font-size: 42px;
+      }
+
+      @include media-screen('min', $desktop) {
         font-size: 46px;
       }
     }

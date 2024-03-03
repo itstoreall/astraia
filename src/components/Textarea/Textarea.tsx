@@ -13,15 +13,19 @@ const Textarea: Textarea = ({ text, handleText }) => {
 
   const ta = taRef.current;
 
+  /*
   const fetchArticles = async () => {
     const articles = await data.all();
     console.log('articles', articles);
   };
+  */
 
+  /*
   const getArticle = async () => {
-    const article = await data.byId('65ad05f43521925eb0a202ea');
+    const article = await data.byId('65e3a6fad5be3401d19a6c78');
     console.log('article', article);
   };
+  */
 
   const addArticle = async () => {
     const res = await data.add();
@@ -29,19 +33,17 @@ const Textarea: Textarea = ({ text, handleText }) => {
   };
 
   const updateArticle = async () => {
-    const res = await data.edit('65ad05f43521925eb0a202ea');
+    const res = await data.edit('65e466bc469e1f8e204bd741');
     console.log('res', res);
   };
 
   const delArticle = async () => {
-    const res = await data.del('65ad05f43521925eb0a202ea');
+    const res = await data.del('65e4765acbc3af4cecd647e4');
     console.log('res', res);
   };
 
   useEffect(() => {
     // getServerArticle('65e3284721d95d96198b9936');
-    // fetchArticles();
-    getArticle();
     // addArticle();
     // updateArticle();
     // delArticle();
