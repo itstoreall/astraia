@@ -3,21 +3,22 @@
 header.header {
   position: absolute;
   top: 0;
+  padding: 0 13px 0 20px;
   width: 100%;
   min-height: 60px;
+  z-index: 32;
   user-select: none;
 
-  @include media-screen('min', $tablet) {
-    padding: 0 20px;
+  @include media-screen('min', $maxWidth + 40px) {
+    padding: 0;
   }
 
   .content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 10px 0 15px;
     margin: 0 auto;
-    max-width: $dashboardMaxWidth;
+    max-width: $maxWidth;
     min-height: 60px;
   }
 }

@@ -28,6 +28,24 @@
     }
   }
 
+  // ------ Articles:
+
+  &.articles {
+    padding: 60px 0 0;
+    margin: 0 auto;
+    max-width: $maxWidth;
+
+    .bg {
+      > .content {
+        @include media-screen('min', $tablet) {
+          display: grid;
+          grid-template-columns: 260px auto;
+          // gap: 20px;
+        }
+      }
+    }
+  }
+
   // ------ Dashboard:
 
   &.dashboard,
@@ -45,7 +63,7 @@
 
       > .content {
         margin: 0 auto;
-        max-width: $dashboardMaxWidth;
+        max-width: $maxWidth;
         background: $bgGradient;
         overflow-y: scroll;
 

@@ -21,5 +21,5 @@ export const footerHeight = '100px';
 
 // ------ Dashboard:
 
-export const dashboardMaxWidth = '900px';
+export const maxWidth = '900px';
 export const thumbHeight = '390px';

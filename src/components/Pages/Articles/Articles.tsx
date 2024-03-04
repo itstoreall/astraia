@@ -1,18 +1,23 @@
 import ApolloProvider from '@/GraphQL/provider/ApolloProvider';
 import List from './List';
+import Navigation from '@/components/Navigation';
 import Container from '@/components/Container';
+import Sidebar from './Sidebar';
 import s from './Articles.module.scss';
 
 const Articles = () => {
   return (
     <ApolloProvider>
-      <main className={s.main}>
+      <Navigation isActive={true}>
         <Container label={'articles'}>
-          <section className={s.articlesSection}>
-            <List />
-          </section>
+          <Sidebar />
+          <main className={s.main}>
+            <section className={s.articlesSection}>
+              <List />
+            </section>
+          </main>
         </Container>
-      </main>
+      </Navigation>
     </ApolloProvider>
   );
 };

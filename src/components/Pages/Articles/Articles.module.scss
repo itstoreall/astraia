@@ -1,14 +1,107 @@
 @import '@/styles/imports';
 
-main.main {
-  // ------ Container is here!
+// ------ Container is here!
 
+aside.sidebar {
+  display: none;
+  padding: 20px 0 0 20px;
+  // background-color: tomato;
+
+  @include media-screen('min', $tablet) {
+    display: block;
+  }
+
+  @include media-screen('min', $maxWidth + 40px) {
+    padding: 20px 0 0 0;
+  }
+
+  .sidebarContent {
+    min-height: 100%;
+    // border: 1px solid $colorWhite;
+    > span {
+      // display: block;
+      margin-bottom: 30px;
+      font-size: 14px;
+      @extend %extends-line-clamp-1;
+      @include basic-palette-white('color', 0.7);
+
+      &:hover {
+        cursor: pointer;
+        color: $colorRose;
+      }
+    }
+  }
+}
+
+main.main {
   section.articlesSection {
+    margin: 0 auto;
+    min-height: calc($viewportHeight - 120px);
+
+    // background-color: teal;
+
+    @include media-screen('max', $tablet - 0.1) {
+      max-width: $mobile;
+    }
+
     > ul.articleList {
+      display: grid;
+      gap: 30px 20px;
+      padding: 20px;
+      list-style: none;
+
+      @include media-screen('min', $tablet) {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 20px 20px 20px 0;
+      }
+
+      @include media-screen('min', $maxWidth + 40px) {
+        padding: 20px 0;
+      }
+
       > li.articleItem {
         > a {
-          > span {
-            color: white;
+          .thumb {
+            position: relative;
+            height: 70vw;
+            background-color: $colorWhite;
+
+            @include media-screen('min', $mobile) {
+              height: 200px;
+            }
+
+            .cardImage {
+              object-fit: cover;
+              opacity: 0.9;
+              transition: $ease03s;
+            }
+          }
+
+          .cardMeta {
+            padding: 10px 0 0;
+            width: 100%;
+
+            > p {
+              @extend %extends-line-clamp-2;
+              font-family: var(--font-open-sans);
+              font-size: 14px;
+              @include basic-palette-white('color', 0.7);
+              transition: $ease03s;
+
+              @include media-screen-range($tablet, $maxWidth + 40px) {
+                font-size: 12px;
+              }
+            }
+          }
+
+          &:hover {
+            .thumb > .cardImage {
+              opacity: 1;
+            }
+
+            .cardMeta > p {
+              color: $colorRose;
+            }
           }
         }
       }
@@ -16,11 +109,13 @@ main.main {
   }
 }
 
+// ------ Article
+
 section.dashboard {
   display: grid;
   grid-template-rows: 100vw auto;
-  min-height: $viewportHeight;
   width: 100%;
+  min-height: calc($viewportHeight - 120px);
 
   @include media-screen('min', $mobile) {
     grid-template-rows: 390px auto;
@@ -28,13 +123,13 @@ section.dashboard {
 
   @include media-screen('min', $tablet) {
     grid-template-rows: 450px auto;
-    min-height: calc($viewportHeight - 40px);
   }
 
   .hero {
     position: relative;
     overflow: hidden;
     background-color: $colorWhite;
+    user-select: none;
 
     .heroImage {
       object-fit: cover;
@@ -51,6 +146,7 @@ section.dashboard {
       font-family: var(--font-open-sans);
       font-size: 24px;
       line-height: 1.2;
+      text-transform: uppercase;
       transform: translate(-50%, -50%);
 
       @include media-screen('min', $mobile - 40) {

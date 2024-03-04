@@ -9,6 +9,7 @@ const GET_ARTICLES = gql`
       text
       author
       ipfs
+      image
       views
       tags
       timestamp

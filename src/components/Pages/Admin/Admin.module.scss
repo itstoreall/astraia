@@ -81,7 +81,7 @@ main.main {
             &::placeholder {
               font-size: 16px;
               font-weight: 200;
-              @include basic-palette('color', 0.7);
+              @include basic-palette-black('color', 0.7);
             }
           }
 
