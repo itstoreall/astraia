@@ -14,15 +14,6 @@
   transform: translate(-50%, -50%);
 }
 
-%extends-hide-scrollbar {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  &::-webkit-scrollbar {
-    display: none;
-    width: 0;
-  }
-}
-
 %extends-three-dots {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -48,6 +39,52 @@
 
 %extends-transition-03s {
   transition: $ease03s;
+}
+
+// ----------- overflow:
+
+%extends-overflow-hidden {
+  overflow: hidden;
+}
+
+%extends-overflow-y-scroll {
+  overflow-y: scroll;
+}
+
+%extends-white-space-nowrap {
+  white-space: nowrap;
+}
+
+%extends-hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+    width: 0;
+  }
+}
+
+// - line-clamp
+
+%extends-webkit-box-vertical {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  @extend %extends-overflow-hidden;
+}
+
+%extends-line-clamp-1 {
+  @extend %extends-webkit-box-vertical;
+  -webkit-line-clamp: 1;
+}
+
+%extends-line-clamp-2 {
+  @extend %extends-webkit-box-vertical;
+  -webkit-line-clamp: 2;
+}
+
+%extends-line-clamp-3 {
+  @extend %extends-webkit-box-vertical;
+  -webkit-line-clamp: 3;
 }
 
 // ------ Animations:

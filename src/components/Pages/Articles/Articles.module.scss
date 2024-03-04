@@ -4,10 +4,32 @@
 
 aside.sidebar {
   display: none;
+  padding: 20px 0 0 20px;
   // background-color: tomato;
 
   @include media-screen('min', $tablet) {
     display: block;
+  }
+
+  @include media-screen('min', $maxWidth + 40px) {
+    padding: 20px 0 0 0;
+  }
+
+  .sidebarContent {
+    min-height: 100%;
+    // border: 1px solid $colorWhite;
+    > span {
+      // display: block;
+      margin-bottom: 30px;
+      font-size: 14px;
+      @extend %extends-line-clamp-1;
+      @include basic-palette-white('color', 0.7);
+
+      &:hover {
+        cursor: pointer;
+        color: $colorRose;
+      }
+    }
   }
 }
 
@@ -24,12 +46,17 @@ main.main {
 
     > ul.articleList {
       display: grid;
-      gap: 20px;
+      gap: 30px 20px;
       padding: 20px;
       list-style: none;
 
       @include media-screen('min', $tablet) {
         grid-template-columns: repeat(2, 1fr);
+        padding: 20px 20px 20px 0;
+      }
+
+      @include media-screen('min', $maxWidth + 40px) {
+        padding: 20px 0;
       }
 
       > li.articleItem {
@@ -37,6 +64,7 @@ main.main {
           .thumb {
             position: relative;
             height: 70vw;
+            background-color: $colorWhite;
 
             @include media-screen('min', $mobile) {
               height: 200px;
@@ -44,11 +72,36 @@ main.main {
 
             .cardImage {
               object-fit: cover;
+              opacity: 0.9;
+              transition: $ease03s;
             }
           }
 
-          > span {
-            color: white;
+          .cardMeta {
+            padding: 10px 0 0;
+            width: 100%;
+
+            > p {
+              @extend %extends-line-clamp-2;
+              font-family: var(--font-open-sans);
+              font-size: 14px;
+              @include basic-palette-white('color', 0.7);
+              transition: $ease03s;
+
+              @include media-screen-range($tablet, $maxWidth + 40px) {
+                font-size: 12px;
+              }
+            }
+          }
+
+          &:hover {
+            .thumb > .cardImage {
+              opacity: 1;
+            }
+
+            .cardMeta > p {
+              color: $colorRose;
+            }
           }
         }
       }

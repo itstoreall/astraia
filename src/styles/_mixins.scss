@@ -18,10 +18,18 @@
   }
 }
 
-@mixin basic-palette($var, $value: 1) {
+@mixin basic-palette-black($var, $value: 1) {
   @if $var == 'bg' {
     background-color: rgba(0, 0, 0, $value);
   } @else if $var == 'color' {
     color: rgba(0, 0, 0, $value);
+  }
+}
+
+@mixin basic-palette-white($var, $value: 1) {
+  @if $var == 'bg' {
+    background-color: rgba(255, 255, 255, $value);
+  } @else if $var == 'color' {
+    color: rgba(255, 255, 255, $value);
   }
 }

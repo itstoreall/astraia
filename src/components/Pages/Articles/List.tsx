@@ -39,7 +39,9 @@ const List = () => {
                 />
               </div>
 
-              <span>{article.title}</span>
+              <div className={s.cardMeta}>
+                <p>{article.title}</p>
+              </div>
             </Link>
           </li>
         );

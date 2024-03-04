@@ -24,13 +24,13 @@ const Home = () => {
                 <li className={`${s.navItem}`}>
                   <span className={s.linkWrap}>
                     {'> '}
-                    <a href={'/admin'}>admin</a>
+                    <a href={'/articles'}>статьи</a>
                   </span>
                 </li>
                 <li className={`${s.navItem}`}>
                   <span className={s.linkWrap}>
                     {'> '}
-                    <a href={'/articles'}>articles</a>
+                    <a href={'/admin'}>вход</a>
                   </span>
                 </li>
               </ul>

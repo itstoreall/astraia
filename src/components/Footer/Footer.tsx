@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Logo from '../Logo';
 import s from './Footer.module.scss';
 
 const Footer = () => {
@@ -13,7 +12,6 @@ const Footer = () => {
           <span className={s.copySymbol}>&copy;</span>
           <time>{` ${new Date().getFullYear()}`}</time>
         </span>
-        {/* <span className={s.copySymbol}>&copy;</span> */}
       </div>
     </footer>
   );

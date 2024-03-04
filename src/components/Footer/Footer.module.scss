@@ -21,24 +21,29 @@ footer.footer {
     > span.copyright {
       margin: 0 auto;
       font-family: var(--font-share-tech);
-      font-size: 18px;
-      color: $colorWhite;
-      letter-spacing: 5px;
+      font-size: 14px;
+      @include basic-palette-white('color', 0.2);
+      letter-spacing: 3px;
       text-transform: uppercase;
-      opacity: 0.2;
+      // opacity: 0.2;
 
       > a.logo {
-        margin-right: 10px;
+        margin-right: 5px;
 
         > span {
           font-family: var(--font-share-tech);
-          color: $colorWhite;
+          @include basic-palette-white('color', 0.2);
+          transition: $ease03s;
+
+          &:hover {
+            color: $colorBlue;
+          }
         }
       }
 
       > span.copySymbol {
         font-family: var(--font-share-tech);
-        color: $colorWhite;
+        @include basic-palette-white('color', 0.2);
       }
     }
   }

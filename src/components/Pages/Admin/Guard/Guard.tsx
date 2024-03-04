@@ -39,7 +39,7 @@ const KeyHandler = ({ setIsAdmin }: KeyHandlerProps) => {
           <ul className={`${s.navList} ${s[linksStyle]}`}>
             <li className={`${s.navItem}`}>
               <span className={s.linkWrap}>
-                <a href={'/'}>home</a>
+                <a href={'/'}>назад</a>
                 {' <'}
               </span>
             </li>
