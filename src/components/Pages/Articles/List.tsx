@@ -26,7 +26,6 @@ const List = () => {
   return (
     <ul className={s.articleList}>
       {articles.map((article, idx) => {
-        console.log('------>', article);
         return (
           <li key={idx} className={s.articleItem}>
             <Link href={`/articles/${article.id}`}>

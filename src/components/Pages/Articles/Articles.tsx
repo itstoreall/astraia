@@ -8,13 +8,15 @@ const Articles = () => {
   return (
     <ApolloProvider>
       <Navigation isActive={true}>
-        <main className={s.main}>
-          <Container label={'articles'}>
+        <Container label={'articles'}>
+          <aside className={s.sidebar}>Sidebat</aside>
+
+          <main className={s.main}>
             <section className={s.articlesSection}>
               <List />
             </section>
-          </Container>
-        </main>
+          </main>
+        </Container>
       </Navigation>
     </ApolloProvider>
   );

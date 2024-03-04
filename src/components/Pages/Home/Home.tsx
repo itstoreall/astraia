@@ -27,6 +27,12 @@ const Home = () => {
                     <a href={'/admin'}>admin</a>
                   </span>
                 </li>
+                <li className={`${s.navItem}`}>
+                  <span className={s.linkWrap}>
+                    {'> '}
+                    <a href={'/articles'}>articles</a>
+                  </span>
+                </li>
               </ul>
             </nav>
           </div>

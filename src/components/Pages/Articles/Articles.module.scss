@@ -1,36 +1,46 @@
 @import '@/styles/imports';
 
+// ------ Container is here!
+
+aside.sidebar {
+  display: none;
+  // background-color: tomato;
+
+  @include media-screen('min', $tablet) {
+    display: block;
+  }
+}
+
 main.main {
-  // ------ Container is here!
-
-  // ------ Articles:
-
   section.articlesSection {
-    display: grid;
-    grid-template-rows: 100vw auto;
-    width: 100%;
+    margin: 0 auto;
     min-height: calc($viewportHeight - 120px);
 
-    background-color: teal;
+    // background-color: teal;
 
-    @include media-screen('min', $mobile) {
-      grid-template-rows: 390px auto;
-    }
-
-    @include media-screen('min', $tablet) {
-      grid-template-rows: 450px auto;
+    @include media-screen('max', $tablet - 0.1) {
+      max-width: $mobile;
     }
 
     > ul.articleList {
+      display: grid;
+      gap: 20px;
       padding: 20px;
       list-style: none;
+
+      @include media-screen('min', $tablet) {
+        grid-template-columns: repeat(2, 1fr);
+      }
 
       > li.articleItem {
         > a {
           .thumb {
             position: relative;
-            width: 200px;
-            height: 100px;
+            height: 70vw;
+
+            @include media-screen('min', $mobile) {
+              height: 200px;
+            }
 
             .cardImage {
               object-fit: cover;
