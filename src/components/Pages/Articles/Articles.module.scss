@@ -4,34 +4,43 @@
 
 aside.sidebar {
   display: none;
-  padding: 20px 0 0 20px;
+  padding: 40px 0 0 20px;
   // background-color: tomato;
 
   @include media-screen('min', $tablet) {
     display: block;
+    padding: 40px 20px 0 20px;
   }
 
   @include media-screen('min', $maxWidth + 40px) {
-    padding: 20px 0 0 0;
+    padding: 40px 20px 0 0;
   }
 
   .sidebarContent {
     min-height: 100%;
-    // border: 1px solid $colorWhite;
-    > span {
-      // display: block;
-      margin-bottom: 30px;
-      font-size: 14px;
-      @extend %extends-line-clamp-1;
-      @include basic-palette-white('color', 0.7);
 
-      &:hover {
-        cursor: pointer;
-        color: $colorRose;
+    > ul.sidebarList {
+      > li.sidebarItem {
+        display: flex;
+        margin-bottom: 30px;
+        // background-color: teal;
+
+        > span.itemText {
+          @extend %extends-line-clamp-1;
+          @extend %extends-transition-03s;
+          @include basic-palette-white('color', 1);
+
+          &:hover {
+            cursor: pointer;
+            color: $colorRose;
+          }
+        }
       }
     }
   }
 }
+
+// ------ Main:
 
 main.main {
   section.articlesSection {
@@ -49,6 +58,7 @@ main.main {
       gap: 30px 20px;
       padding: 20px;
       list-style: none;
+      // background-color: tomato;
 
       @include media-screen('min', $tablet) {
         grid-template-columns: repeat(2, 1fr);
@@ -64,29 +74,39 @@ main.main {
           .thumb {
             position: relative;
             height: 70vw;
-            background-color: $colorWhite;
+            border-radius: 4px;
 
             @include media-screen('min', $mobile) {
               height: 200px;
             }
 
             .cardImage {
+              @extend %extends-transition-03s;
+              display: block;
               object-fit: cover;
-              opacity: 0.9;
-              transition: $ease03s;
+              border-radius: 4px;
+              opacity: 1;
             }
           }
 
           .cardMeta {
             padding: 10px 0 0;
-            width: 100%;
+            max-width: calc(100vw - 40px);
+
+            // background-color: teal;
+
+            @include media-screen('min', $mobile) {
+              max-width: calc($mobile - 40px);
+            }
 
             > p {
               @extend %extends-line-clamp-2;
+              @extend %extends-transition-03s;
               font-family: var(--font-open-sans);
-              font-size: 14px;
-              @include basic-palette-white('color', 0.7);
-              transition: $ease03s;
+              font-size: 13px;
+              font-weight: 600;
+              line-height: 1.6;
+              @include basic-palette-white('color', 1);
 
               @include media-screen-range($tablet, $maxWidth + 40px) {
                 font-size: 12px;
@@ -95,10 +115,6 @@ main.main {
           }
 
           &:hover {
-            .thumb > .cardImage {
-              opacity: 1;
-            }
-
             .cardMeta > p {
               color: $colorRose;
             }
@@ -185,9 +201,6 @@ section.dashboard {
       > p,
       span {
         font-size: 16px;
-        // white-space: pre-wrap;
-        // word-wrap: break-word;
-        // overflow-wrap: break-word;
       }
 
       @include media-screen('min', $tablet) {

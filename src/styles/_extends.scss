@@ -14,12 +14,6 @@
   transform: translate(-50%, -50%);
 }
 
-%extends-three-dots {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
 %extends-before {
   content: '';
   display: block;
@@ -85,6 +79,12 @@
 %extends-line-clamp-3 {
   @extend %extends-webkit-box-vertical;
   -webkit-line-clamp: 3;
+}
+
+%extends-three-dots {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 // ------ Animations:

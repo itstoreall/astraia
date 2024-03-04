@@ -7,6 +7,7 @@ import * as gc from '@/config/global';
 import * as gu from '@/utils/global';
 import { Article } from '@/types';
 import s from './Articles.module.scss';
+import Navigation from '@/components/Navigation';
 
 const { defaultImageUrl } = gc.system;
 
@@ -23,26 +24,28 @@ const Article = ({ article }: { article: Article }) => {
   const imageUrl = article.image ? article.image : defaultImageUrl;
 
   return (
-    <main>
-      <Container label={'alticle'}>
-        <section className={s.dashboard}>
-          <div className={s.hero}>
-            <Image
-              src={imageUrl}
-              className={s.heroImage}
-              fill
-              alt={article.title}
-            />
+    <Navigation isActive={true}>
+      <main>
+        <Container label={'alticle'}>
+          <section className={s.dashboard}>
+            <div className={s.hero}>
+              <Image
+                src={imageUrl}
+                className={s.heroImage}
+                fill
+                alt={article.title}
+              />
 
-            <h1 className={s.title}>{article.title}</h1>
-          </div>
+              <h1 className={s.title}>{article.title}</h1>
+            </div>
 
-          <div className={s.textBlock}>
-            <MDEditor.Markdown source={article.text} />
-          </div>
-        </section>
-      </Container>
-    </main>
+            <div className={s.textBlock}>
+              <MDEditor.Markdown source={article.text} />
+            </div>
+          </section>
+        </Container>
+      </main>
+    </Navigation>
   );
 };
 
