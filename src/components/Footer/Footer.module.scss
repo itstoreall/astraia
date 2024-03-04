@@ -31,9 +31,10 @@ footer.footer {
         margin-right: 5px;
 
         > span {
+          @extend %extends-transition-03s;
           font-family: var(--font-share-tech);
           @include basic-palette-white('color', 0.2);
-          transition: $ease03s;
+          // transition: $ease03s;
 
           &:hover {
             color: $colorBlue;
