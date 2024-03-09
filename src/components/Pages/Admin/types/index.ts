@@ -2,12 +2,16 @@ import { ChildrenProps } from '@/types';
 
 export type KeyHandlerProps = { setIsAdmin: (b: boolean) => void };
 
+/*
 export type GuardProps = ChildrenProps & {
   isAdmin: boolean;
   setIsAdmin: (b: boolean) => void;
 };
+*/
 
-export type EditorProps = {
+/*
+export type DashStateProps = {
   status: string;
-  handleStatus: (s: string) => void;
+  setStatus: (s: string) => void;
 };
+*/

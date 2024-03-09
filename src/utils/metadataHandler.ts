@@ -42,9 +42,6 @@ const articles = {
 };
 
 const metadataHandler = (path: string, article?: Article): Metadata => {
-  console.log('path', path);
-  console.log('`/${gc.page.admin.pathname}`', `/${gc.page.admin.pathname}`);
-
   return path === gc.page.home.pathname
     ? home
     : path === gc.page.admin.pathname

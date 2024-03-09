@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Open_Sans, Prompt, Share_Tech } from 'next/font/google';
+import GlobalContext from '@/Global/context';
 import { ChildrenProps } from '@/types';
 import * as gc from '@/config/global';
 import '../styles/globals.scss';
@@ -48,7 +49,9 @@ const fonts = `${prompt.variable} ${shareTech.variable} ${openSans.variable}`;
 const RootLayout = ({ children }: Readonly<ChildrenProps>) => {
   return (
     <html lang='ru'>
-      <body className={fonts}>{children}</body>
+      <body className={fonts}>
+        <GlobalContext>{children}</GlobalContext>
+      </body>
     </html>
   );
 };

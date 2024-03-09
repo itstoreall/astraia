@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { EditorProps } from '../types';
+import { useGlobalState } from '@/Global/context/use';
 import useQuery from '@/GraphQL/hooks/useQuery';
 import * as gc from '@/config/global';
 import * as gu from '@/utils/global';
@@ -14,16 +14,17 @@ import s from './Dashboard.module.scss';
 const { lsArticleKey, defaultImageUrl } = gc.system;
 const { init, create, pending } = config.dashboard.status;
 
-const Editor = ({ status, handleStatus }: EditorProps) => {
+const Editor = () => {
   const [title, setTitle] = useState('Title');
   const [image, setImage] = useState(defaultImageUrl);
   const [text, setText] = useState('');
   const [isTitleInput, setIsTitleInput] = useState(false);
   const [isImageInput, setIsImageInput] = useState(false);
 
+  const { app } = useGlobalState();
   const data = useQuery();
 
-  console.log('status', status);
+  console.log('status', app.status);
 
   useEffect(() => {
     const lsData = gu.getLS(lsArticleKey);
@@ -34,14 +35,14 @@ const Editor = ({ status, handleStatus }: EditorProps) => {
 
   const addArticle = async () => {
     if (!title || !image || !text) return;
-    handleStatus(pending);
+    app.set(pending);
     const res = await data.add({ title, image, text });
     console.log('res', res);
     if (res) {
       handleTitle('Title');
       handleImage(defaultImageUrl);
       handleText('');
-      handleStatus(init);
+      app.set(init);
       gu.delLS(lsArticleKey);
     }
   };
@@ -51,9 +52,9 @@ const Editor = ({ status, handleStatus }: EditorProps) => {
   */
 
   useEffect(() => {
-    if (status === pending) return;
-    if (status === init) return handleStatus(create);
-    status === create && gu.setLS(lsArticleKey, { title, image, text });
+    if (app.status === pending) return;
+    if (app.status === init) return app.set(create);
+    app.status === create && gu.setLS(lsArticleKey, { title, image, text });
   }, [title, image, text]);
 
   const handleTitle = (val: string) => setTitle(val);

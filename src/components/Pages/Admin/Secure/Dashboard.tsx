@@ -1,18 +1,17 @@
-import { useState } from 'react';
 import ApolloProvider from '@/GraphQL/provider/ApolloProvider';
-import * as config from '../config';
+import { useGlobalState } from '@/Global/context/use';
 import Editor from './Editor';
-
-const { init, create, pending } = config.dashboard.status;
+import Articles from './Articles';
 
 const Dashboard = () => {
-  const [status, setStatus] = useState(init);
+  const { app } = useGlobalState();
 
-  const handleStatus = (s: string) => setStatus(s);
+  console.log('app:', app.isInit);
 
   return (
     <ApolloProvider>
-      <Editor status={status} handleStatus={handleStatus} />
+      {app.isCreate && <Editor />}
+      {app.isInit && <Articles />}
     </ApolloProvider>
   );
 };
