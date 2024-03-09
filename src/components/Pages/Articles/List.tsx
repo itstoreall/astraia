@@ -1,29 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 'use client';
-import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import useQuery from '@/GraphQL/hooks/useQuery';
+import useFetchArticles from '@/hooks/useFetchArticles';
 import * as gc from '@/config/global';
-import { Article } from '@/types';
 import s from './Articles.module.scss';
 
 const { pathname: articlesPathname } = gc.page.articles;
 
 const List = () => {
-  const [articles, setArticles] = useState<Article[] | null>(null);
-
-  const data = useQuery();
-
-  useEffect(() => {
-    fetchArticles();
-  }, []);
-
-  const fetchArticles = async () => {
-    const res = await data.all();
-    // console.log('res', res);
-    res?.success && setArticles(res.data);
-  };
+  const { articles } = useFetchArticles();
 
   if (!articles) return null;
 

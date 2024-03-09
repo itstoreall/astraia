@@ -1,8 +1,7 @@
 'use client';
 import { createContext, useState } from 'react';
-import { ContextParams } from '../types';
+import { ContextParams, EStatus, Article } from '../types';
 import { ChildrenProps } from '@/types';
-import * as c from '../config';
 
 export const Context = createContext<ContextParams>({
   admin: {
@@ -17,13 +16,19 @@ export const Context = createContext<ContextParams>({
     isEdit: false,
     isPending: false,
     isActive: false,
-    isDelete: false
+    isDelete: false,
+    config: EStatus
+  },
+  data: {
+    articles: [],
+    set: () => console.log()
   }
 });
 
 const GlobalState = ({ children }: ChildrenProps) => {
   const [isAdmin, setIsAdmin] = useState(false);
-  const [status, setStatus] = useState<string>('init');
+  const [status, setStatus] = useState<string>(EStatus.INIT);
+  const [articles, setArticles] = useState<Article[] | null>(null);
 
   const admin = {
     is: isAdmin,
@@ -33,15 +38,21 @@ const GlobalState = ({ children }: ChildrenProps) => {
   const app = {
     status,
     set: (s: string) => setStatus(s),
-    isInit: status === c.status.init,
-    isCreate: status === c.status.create,
-    isEdit: status === c.status.edit,
-    isPending: status === c.status.pending,
-    isActive: status === c.status.active,
-    isDelete: status === c.status.delete
+    isInit: status === EStatus.INIT,
+    isCreate: status === EStatus.CREATE,
+    isEdit: status === EStatus.EDIT,
+    isPending: status === EStatus.PENDING,
+    isActive: status === EStatus.ACTIVE,
+    isDelete: status === EStatus.DELETE,
+    config: EStatus
   };
 
-  const value = { app, admin };
+  const data = {
+    articles: articles,
+    set: (d: Article[] | null) => setArticles(d)
+  };
+
+  const value = { admin, app, data };
 
   return <Context.Provider value={value}>{children}</Context.Provider>;
 };

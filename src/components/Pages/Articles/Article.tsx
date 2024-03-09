@@ -2,9 +2,9 @@
 import { useEffect } from 'react';
 import Image from 'next/image';
 import MDEditor from '@uiw/react-md-editor';
+import { Article } from '@/Global/types';
 import * as gc from '@/config/global';
 import * as gu from '@/utils/global';
-import { Article } from '@/types';
 import Navigation from '@/components/Navigation';
 import Container from '@/components/Container';
 import s from './Articles.module.scss';

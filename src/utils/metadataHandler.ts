@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
+import { Article } from '@/Global/types';
 import * as gc from '@/config/global';
-import { Article } from '@/types';
 
 export const home = {
   title: gc.meta.title,

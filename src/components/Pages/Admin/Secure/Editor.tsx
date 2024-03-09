@@ -6,13 +6,12 @@ import useQuery from '@/GraphQL/hooks/useQuery';
 import * as gc from '@/config/global';
 import * as gu from '@/utils/global';
 import * as u from '../utils';
-import * as config from '../config';
 import Textarea from '@/components/Textarea';
 import SaveButton from './SaveButton';
 import s from './Dashboard.module.scss';
 
 const { lsArticleKey, defaultImageUrl } = gc.system;
-const { init, create, pending } = config.dashboard.status;
+// const { init, create, pending } = config.dashboard.status;
 
 const Editor = () => {
   const [title, setTitle] = useState('Title');
@@ -24,7 +23,9 @@ const Editor = () => {
   const { app } = useGlobalState();
   const data = useQuery();
 
-  console.log('status', app.status);
+  // const { pending } = app.config;
+
+  // console.log('status ->', app.config);
 
   useEffect(() => {
     const lsData = gu.getLS(lsArticleKey);
@@ -35,14 +36,14 @@ const Editor = () => {
 
   const addArticle = async () => {
     if (!title || !image || !text) return;
-    app.set(pending);
+    app.set(app.config.PENDING);
     const res = await data.add({ title, image, text });
     console.log('res', res);
     if (res) {
       handleTitle('Title');
       handleImage(defaultImageUrl);
       handleText('');
-      app.set(init);
+      app.set(app.config.INIT);
       gu.delLS(lsArticleKey);
     }
   };
@@ -52,9 +53,9 @@ const Editor = () => {
   */
 
   useEffect(() => {
-    if (app.status === pending) return;
-    if (app.status === init) return app.set(create);
-    app.status === create && gu.setLS(lsArticleKey, { title, image, text });
+    if (app.isPending) return;
+    if (app.isInit) return app.set(app.config.CREATE);
+    app.isCreate && gu.setLS(lsArticleKey, { title, image, text });
   }, [title, image, text]);
 
   const handleTitle = (val: string) => setTitle(val);
