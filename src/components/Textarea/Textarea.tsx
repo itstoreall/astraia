@@ -48,7 +48,7 @@ const Textarea: Textarea = ({ text, handleText }) => {
     // getServerArticle('65e3284721d95d96198b9936');
     // addArticle();
     // updateArticle();
-    delArticle();
+    // delArticle();
   }, []);
 
   // ---

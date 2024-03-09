@@ -1,12 +1,13 @@
 'use client';
 import { useState } from 'react';
+import * as gc from '@/config/global';
+import Navigation from '@/components/Navigation';
 import Container from '@/components/Container';
 import Guard from './Guard';
-import Header from '@/components/Header';
 import Dashboard from './Secure/Dashboard';
-import Footer from '@/components/Footer';
 import s from './Admin.module.scss';
-import Navigation from '@/components/Navigation';
+
+const { admin, dashboard } = gc.page;
 
 const Admin = () => {
   const [isAdmin, setIsAdmin] = useState(false);
@@ -14,7 +15,7 @@ const Admin = () => {
   return (
     <Navigation isActive={isAdmin}>
       <main className={s.main}>
-        <Container label={!isAdmin ? 'admin' : 'dashboard'}>
+        <Container label={!isAdmin ? admin.label : dashboard.label}>
           <Guard isAdmin={isAdmin} setIsAdmin={setIsAdmin}>
             <Dashboard />
           </Guard>

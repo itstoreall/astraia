@@ -1,63 +1,66 @@
 import { Metadata } from 'next';
-// import { IArticle } from '@/interfaces';
 import * as gc from '@/config/global';
 import { Article } from '@/types';
 
-const defaultImage = {
-  url: `${gc.meta.gen.domain}/${gc.meta.gen.defaultImagePath}`, // _next/static/media/defaultImage.d4887a00.jpg
-  width: 1200,
-  height: 675,
-  alt: gc.meta.gen.blogTitle
+export const home = {
+  title: gc.meta.title,
+  description: gc.meta.description,
+  openGraph: {
+    title: gc.meta.title,
+    description: gc.meta.description,
+    url: gc.meta.url,
+    siteName: gc.meta.siteName,
+    images: [gc.meta.defaultImage],
+    type: 'website'
+  }
 };
 
-export const home = {
-  title: gc.meta.home.meta.title,
-  description: gc.meta.home.meta.description,
+export const admin = {
+  title: 'ADMIN',
+  description: 'Admin dashboard',
   openGraph: {
-    title: gc.meta.home.meta.title,
-    description: gc.meta.home.meta.description,
-    url: gc.meta.gen.domain,
-    siteName: gc.meta.gen.blogTitle,
-    images: [defaultImage],
+    title: 'Admin',
+    description: 'Admin dashboard',
+    url: `${gc.meta.url}/${gc.page.admin.pathname}`,
+    siteName: gc.meta.siteName,
+    images: [gc.meta.defaultImage],
     type: 'website'
   }
 };
 
 const articles = {
-  title: gc.meta.articles.meta.title,
-  description: gc.meta.articles.meta.description,
+  title: 'Статьи | Астрая',
+  description: 'Статьи о тонком мире и духовном саморазвитии',
   openGraph: {
-    title: gc.meta.articles.meta.title,
-    description: gc.meta.articles.meta.description,
-    url: `${gc.meta.gen.domain}${gc.meta.articles.pathname}`,
-    siteName: gc.meta.gen.blogTitle,
-    images: [defaultImage],
-    type: 'article'
+    title: 'Статьи | Астрая',
+    description: 'Статьи о тонком мире и духовном саморазвитии',
+    url: `${gc.meta.url}/${gc.page.articles.pathname}`,
+    siteName: gc.meta.siteName,
+    images: [gc.meta.defaultImage],
+    type: 'website'
   }
 };
 
 const metadataHandler = (path: string, article?: Article): Metadata => {
-  return path === gc.meta.home.pathname
+  console.log('path', path);
+  console.log('`/${gc.page.admin.pathname}`', `/${gc.page.admin.pathname}`);
+
+  return path === gc.page.home.pathname
     ? home
-    : path === gc.meta.articles.pathname
+    : path === gc.page.admin.pathname
+    ? admin
+    : path === gc.page.articles.pathname
     ? articles
-    : path === gc.meta.details.pathname && article
+    : path === gc.page.article.pathname && article
     ? {
         title: article.title,
         description: article.description,
         openGraph: {
           title: article.title,
           description: article.description,
-          url: `${gc.meta.gen.domain}${gc.meta.articles.pathname}/${article.id}`,
-          siteName: gc.meta.gen.blogTitle,
-          images: [
-            {
-              url: gc.system.defaultImageUrl,
-              // width: 900,
-              // height: 450,
-              alt: article.title
-            }
-          ],
+          url: `${gc.meta.url}/${gc.page.articles.pathname}/${article.id}`,
+          siteName: gc.meta.siteName,
+          images: [{ url: article.image, alt: article.title }],
           type: 'article'
         }
       }

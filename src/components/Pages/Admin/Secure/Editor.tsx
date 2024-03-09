@@ -1,19 +1,20 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import * as u from '../utils';
+import { EditorProps } from '../types';
+import useQuery from '@/GraphQL/hooks/useQuery';
 import * as gc from '@/config/global';
 import * as gu from '@/utils/global';
-import useQuery from '@/GraphQL/hooks/useQuery';
+import * as u from '../utils';
+import * as config from '../config';
 import Textarea from '@/components/Textarea';
 import SaveButton from './SaveButton';
 import s from './Dashboard.module.scss';
 
-const { defaultImageUrl } = gc.system;
-const lsLabel = '++_astraia_article';
+const { lsArticleKey, defaultImageUrl } = gc.system;
+const { init, create, pending } = config.dashboard.status;
 
-const Editor = () => {
-  const [status, setStatus] = useState('init');
+const Editor = ({ status, handleStatus }: EditorProps) => {
   const [title, setTitle] = useState('Title');
   const [image, setImage] = useState(defaultImageUrl);
   const [text, setText] = useState('');
@@ -22,8 +23,10 @@ const Editor = () => {
 
   const data = useQuery();
 
+  console.log('status', status);
+
   useEffect(() => {
-    const lsData = gu.getLS(lsLabel);
+    const lsData = gu.getLS(lsArticleKey);
     handleTitle(lsData ? lsData.title : 'Title');
     handleImage(lsData ? lsData.image : defaultImageUrl);
     handleText(lsData ? lsData.text : '');
@@ -31,15 +34,15 @@ const Editor = () => {
 
   const addArticle = async () => {
     if (!title || !image || !text) return;
-    handleStatus('save');
+    handleStatus(pending);
     const res = await data.add({ title, image, text });
     console.log('res', res);
     if (res) {
       handleTitle('Title');
       handleImage(defaultImageUrl);
       handleText('');
-      handleStatus('init');
-      gu.delLS(lsLabel);
+      handleStatus(init);
+      gu.delLS(lsArticleKey);
     }
   };
 
@@ -48,12 +51,11 @@ const Editor = () => {
   */
 
   useEffect(() => {
-    if (status === 'save') return;
-    if (status === 'init') return handleStatus('cteate');
-    status === 'cteate' && gu.setLS(lsLabel, { title, image, text });
+    if (status === pending) return;
+    if (status === init) return handleStatus(create);
+    status === create && gu.setLS(lsArticleKey, { title, image, text });
   }, [title, image, text]);
 
-  const handleStatus = (val: string) => setStatus(val);
   const handleTitle = (val: string) => setTitle(val);
   const handleImage = (val: string) => setImage(u.validateUrl(val) || '');
   const handleText = (val: string) => setText(val);
@@ -62,9 +64,10 @@ const Editor = () => {
     <section className={s.dashboard}>
       <div className={s.hero}>
         <Image
-          src={image}
+          src={image || defaultImageUrl}
           className={s.heroImage}
           fill
+          priority={true}
           alt='Astraia picture'
           onClick={() => setIsImageInput(true)}
         />

@@ -1,82 +1,67 @@
 import defaultImage from '@/assets/images/defaultImage.jpg';
-import * as constants from '@/constants';
 
-// const ipfsLink = process.env.ipfsLink;
-
-// const defaultTheme = constants.THEME_BY_DEFAULT;
-const domain = constants.SITE_DOMAIN;
-// const blogName = constants.BLOG_NAME;
-const blogTitle = constants.BLOG_TITLE;
-// const defaultImagePath = `_next/static/media/defaultImage.${constants.DEFAULT_IMAGE_ID}.jpg`;
-// const ipfs = `${ipfsLink}`; // ${ipfsLink}/${blogName}-image.jpg
-const lsViewsKey = constants.LS_VIEWS_KEY;
-// const lsFilterKey = constants.LS_FILTER_KEY;
-const months = constants.MONTHS;
+const prod = 'https://astraia.storeall.com.ua';
+const dev = `http://localhost:${process.env.NEXT_PUBLIC_PORT || '3000'}`;
 
 export const system = {
-  blog: 'astraia',
+  label: 'astraia',
+  domain: prod,
   defaultImage,
-  defaultImageUrl:
-    'https://astraia.storeall.com.ua/_next/static/media/defaultImage.c592ac5f.jpg'
+  defaultImageUrl: `${prod}/_next/static/media/defaultImage.c592ac5f.jpg`,
+  lsArticleKey: '++_astraia_article',
+  lsViewsKey: `++_astraia_views:`,
+  preloader: { timeout: 2000 }
+};
+
+export const months = [
+  'січ',
+  'лют',
+  'бер',
+  'квіт',
+  'трав',
+  'черв',
+  'лип',
+  'серп',
+  'вер',
+  'жовт',
+  'лист',
+  'груд'
+];
+
+export const page = {
+  home: {
+    label: 'home',
+    pathname: '/'
+  },
+  admin: {
+    label: 'admin',
+    pathname: 'admin'
+  },
+  dashboard: {
+    label: 'dashboard',
+    pathname: 'admin'
+  },
+  articles: {
+    label: 'articles',
+    pathname: 'articles'
+  },
+  article: {
+    label: 'article',
+    pathname: 'articles/id'
+  }
 };
 
 export const meta = {
-  gen: {
-    // defaultTheme,
-    domain,
-    blogTitle,
-    defaultImagePath: system.defaultImageUrl,
-    // ipfs,
-    lsViewsKey,
-    // lsFilterKey,
-    months,
-    preloader: { timeout: 2000 }
+  metadataBase: prod || dev,
+  title: 'ASTRAIA',
+  description: 'Astraia - духовное саморазвитие',
+  url: prod,
+  siteName: 'Astraia',
+  defaultImage: {
+    url: `/_next/static/media/defaultImage.c592ac5f.jpg`,
+    width: 1200,
+    height: 630,
+    alt: 'Astraia picture'
   },
-  home: {
-    pathname: '/',
-    meta: {
-      title: `Astraia`,
-      description: 'Astraia worlds'
-    },
-    content: {
-      title: 'Astraia'
-    }
-  },
-  articles: {
-    pathname: '/articles',
-    meta: {
-      title: 'Articles',
-      description: 'Astraia articles'
-    },
-    content: { articleList: { label: 'Articles' } }
-  },
-  details: {
-    pathname: '/articles/id',
-    meta: {},
-    content: {
-      today: 'Today',
-      author: 'Author',
-      publication: 'Publication',
-      id: { key: 'ID', defaultValue: '000' }
-    }
-  },
-  latestArticle: {
-    label: 'New article'
-  },
-  topArticles: {
-    label: 'Popular articles'
-  }
-  // tagTitle: {
-  //   key: 'title',
-  //   h2: { pageTitle: 'page_title', artSubtitle: 'art_subtitle' },
-  //   h3: {
-  //     cardSmall: 'card_small',
-  //     cardMedium: 'card_medium'
-  //     // artSubtitle: "art_subtitle",
-  //   }
-  // },
-  // tagParagraph: {
-  //   key: 'paragraph',
-  //   p: { artParagraph: 'art_paragraph', artDescription: 'art_description' }
-  // }
+  authors: ['Astraia', 'Mila']
 };
