@@ -11,7 +11,9 @@ import { useGlobalState } from '@/Global/context/use';
 const { admin: adm, dashboard } = gc.page;
 
 const Admin = () => {
-  const { admin } = useGlobalState();
+  const { admin, app } = useGlobalState();
+
+  console.log('* app status:', app.status);
 
   return (
     <Navigation isActive={admin.is}>

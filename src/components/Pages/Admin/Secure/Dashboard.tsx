@@ -6,7 +6,7 @@ import Articles from './Articles';
 const Dashboard = () => {
   const { app } = useGlobalState();
 
-  console.log('app:', app.isInit);
+  // console.log('status:', app.status);
 
   return (
     <ApolloProvider>
