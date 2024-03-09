@@ -49,9 +49,10 @@
   // ------ Dashboard:
 
   &.dashboard,
-  &.alticle {
+  &.article {
     position: relative;
     padding: 60px 0 0;
+    min-height: calc($viewportHeight - $footerHeight);
 
     @include media-screen('min', $tablet) {
       padding: 60px 20px 0;

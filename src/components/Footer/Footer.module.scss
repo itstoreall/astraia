@@ -15,14 +15,14 @@ footer.footer {
     padding: 0 10px 0 15px;
     margin: 0 auto;
     max-width: $maxWidth;
-    min-height: 60px;
+    min-height: $footerHeight;
     user-select: none;
 
     > span.copyright {
       margin: 0 auto;
       font-family: var(--font-share-tech);
       font-size: 14px;
-      @include basic-palette-white('color', 0.2);
+      @include basic-palette-white('color', 0.3);
       letter-spacing: 3px;
       text-transform: uppercase;
       // opacity: 0.2;
@@ -33,7 +33,7 @@ footer.footer {
         > span {
           @extend %extends-transition-03s;
           font-family: var(--font-share-tech);
-          @include basic-palette-white('color', 0.2);
+          @include basic-palette-white('color', 0.3);
           // transition: $ease03s;
 
           &:hover {
@@ -44,7 +44,7 @@ footer.footer {
 
       > span.copySymbol {
         font-family: var(--font-share-tech);
-        @include basic-palette-white('color', 0.2);
+        @include basic-palette-white('color', 0.3);
       }
     }
   }

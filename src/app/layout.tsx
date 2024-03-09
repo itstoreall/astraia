@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import { Open_Sans, Prompt, Share_Tech } from 'next/font/google';
+import GlobalContext from '@/Global/context';
 import { ChildrenProps } from '@/types';
+import * as gc from '@/config/global';
 import '../styles/globals.scss';
-import Header from '@/components/Header';
 
 const prompt = Prompt({
   subsets: ['latin'],
@@ -24,16 +25,33 @@ const openSans = Open_Sans({
 });
 
 export const metadata: Metadata = {
-  title: 'ASTRAIA',
-  description: 'Astraia - духовное саморазвитие'
+  metadataBase: new URL(gc.meta.metadataBase),
+  title: gc.meta.title,
+  description: gc.meta.description,
+  openGraph: {
+    title: gc.meta.title,
+    description: gc.meta.description,
+    url: gc.meta.url,
+    siteName: gc.meta.siteName,
+    images: [gc.meta.defaultImage],
+    type: 'website'
+  },
+  twitter: {
+    card: 'summary',
+    title: gc.meta.title,
+    description: gc.meta.description,
+    images: [gc.meta.defaultImage]
+  }
 };
 
 const fonts = `${prompt.variable} ${shareTech.variable} ${openSans.variable}`;
 
 const RootLayout = ({ children }: Readonly<ChildrenProps>) => {
   return (
-    <html lang='en'>
-      <body className={fonts}>{children}</body>
+    <html lang='ru'>
+      <body className={fonts}>
+        <GlobalContext>{children}</GlobalContext>
+      </body>
     </html>
   );
 };

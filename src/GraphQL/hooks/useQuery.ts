@@ -9,7 +9,7 @@ import * as config from '../config';
 
 export type AddArticleArgs = { title: string; image: string; text: string };
 
-const { blog } = gc.system;
+const { label: blog } = gc.system;
 const { errRes } = config.query;
 
 const useQuery = () => {

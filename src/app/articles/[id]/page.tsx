@@ -1,12 +1,12 @@
 import { getServerArticle } from '@/GraphQL/server/articles.service';
 import metadataHandler from '@/utils/metadataHandler';
-import Article from '@/components/Pages/Articles/Article';
 import { GenMetadata, ParamsProps } from '@/types';
+import Article from '@/components/Pages/Articles/Article';
 import * as gc from '@/config/global';
 
 export const generateMetadata: GenMetadata = async ({ params: { id } }) => {
   const article = await getServerArticle(id);
-  return metadataHandler(gc.meta.details.pathname, article);
+  return metadataHandler(gc.page.article.pathname, article);
 };
 
 const ArticlePage = async ({ params: { id } }: ParamsProps) => {

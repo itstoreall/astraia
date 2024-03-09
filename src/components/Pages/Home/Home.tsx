@@ -1,7 +1,11 @@
 'use client';
+import { useEffect, useState } from 'react';
+import * as gc from '@/config/global';
 import Container from '@/components/Container';
 import s from './Home.module.scss';
-import { useEffect, useState } from 'react';
+
+const { articles, admin } = gc.page;
+const { title: astraia } = gc.meta;
 
 const Home = () => {
   const [title, setTitle] = useState<string>('');
@@ -14,23 +18,23 @@ const Home = () => {
 
   return (
     <main className={s.main}>
-      <Container label={'home'}>
+      <Container label={gc.page.home.label}>
         <section className={s.heroBlock}>
           <div className={s.content}>
-            <h1 className={s[title]}>ASTRAIA</h1>
+            <h1 className={s[title]}>{astraia}</h1>
 
             <nav className={s.navigation}>
               <ul className={`${s.navList} ${s[links]}`}>
                 <li className={`${s.navItem}`}>
                   <span className={s.linkWrap}>
                     {'> '}
-                    <a href={'/articles'}>статьи</a>
+                    <a href={`/${articles.pathname}`}>статьи</a>
                   </span>
                 </li>
                 <li className={`${s.navItem}`}>
                   <span className={s.linkWrap}>
                     {'> '}
-                    <a href={'/admin'}>вход</a>
+                    <a href={`/${admin.pathname}`}>вход</a>
                   </span>
                 </li>
               </ul>

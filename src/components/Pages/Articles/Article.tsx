@@ -2,22 +2,22 @@
 import { useEffect } from 'react';
 import Image from 'next/image';
 import MDEditor from '@uiw/react-md-editor';
-import Container from '@/components/Container';
 import * as gc from '@/config/global';
 import * as gu from '@/utils/global';
 import { Article } from '@/types';
-import s from './Articles.module.scss';
 import Navigation from '@/components/Navigation';
+import Container from '@/components/Container';
+import s from './Articles.module.scss';
 
-const { defaultImageUrl } = gc.system;
+const { lsArticleKey, defaultImageUrl } = gc.system;
 
 const Article = ({ article }: { article: Article }) => {
   useEffect(() => {
-    const lsData = gu.getLS('++_astraia_article');
+    const lsData = gu.getLS(lsArticleKey);
     if (!lsData) return;
   }, []);
 
-  console.log('article', article);
+  // console.log('article', article);
 
   if (!article) return null;
 
@@ -26,13 +26,14 @@ const Article = ({ article }: { article: Article }) => {
   return (
     <Navigation isActive={true}>
       <main>
-        <Container label={'alticle'}>
+        <Container label={gc.page.article.label}>
           <section className={s.dashboard}>
             <div className={s.hero}>
               <Image
                 src={imageUrl}
                 className={s.heroImage}
                 fill
+                priority={true}
                 alt={article.title}
               />
 
