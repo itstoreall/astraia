@@ -11,6 +11,7 @@ export const Context = createContext<ContextParams>({
   app: {
     status: '',
     set: () => console.log(),
+    isGuard: true,
     isInit: true,
     isCreate: false,
     isEdit: false,
@@ -27,7 +28,7 @@ export const Context = createContext<ContextParams>({
 
 const GlobalState = ({ children }: ChildrenProps) => {
   const [isAdmin, setIsAdmin] = useState(false);
-  const [status, setStatus] = useState<string>(EStatus.INIT);
+  const [status, setStatus] = useState<string>(EStatus.GUARD);
   const [articles, setArticles] = useState<Article[] | null>(null);
 
   const admin = {
@@ -38,6 +39,7 @@ const GlobalState = ({ children }: ChildrenProps) => {
   const app = {
     status,
     set: (s: string) => setStatus(s),
+    isGuard: status === EStatus.GUARD,
     isInit: status === EStatus.INIT,
     isCreate: status === EStatus.CREATE,
     isEdit: status === EStatus.EDIT,

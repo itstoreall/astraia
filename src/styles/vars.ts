@@ -17,7 +17,7 @@ export const mainColor = colorBlack;
 
 export const viewportHeight = '100svh';
 export const headerHeight = '60px';
-export const footerHeight = '100px';
+export const footerHeight = '60px';
 
 // ------ Dashboard:
 

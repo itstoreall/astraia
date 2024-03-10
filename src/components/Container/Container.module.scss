@@ -1,6 +1,8 @@
 @import '../../styles/imports';
 
 .container {
+  // ------ Home and Admin:
+
   &.home,
   &.admin {
     padding: 5px;
@@ -28,25 +30,7 @@
     }
   }
 
-  // ------ Articles:
-
-  &.articles {
-    padding: 60px 0 0;
-    margin: 0 auto;
-    max-width: $maxWidth;
-
-    .bg {
-      > .content {
-        @include media-screen('min', $tablet) {
-          display: grid;
-          grid-template-columns: 260px auto;
-          // gap: 20px;
-        }
-      }
-    }
-  }
-
-  // ------ Dashboard:
+  // ------ Dashboard | Details | Article:
 
   &.dashboard,
   &.article {
@@ -65,11 +49,34 @@
       > .content {
         margin: 0 auto;
         max-width: $maxWidth;
-        background: $bgGradient;
         overflow-y: scroll;
+      }
+    }
+  }
 
+  &.article {
+    .bg > .content {
+      @include media-screen('min', $tablet) {
+        background: $bgGradient;
+        border-radius: 8px;
+      }
+    }
+  }
+
+  // ------ Articles:
+
+  &.articles {
+    padding: 60px 0 0;
+    margin: 0 auto;
+    max-width: $maxWidth;
+    min-height: calc($viewportHeight - $footerHeight);
+
+    .bg {
+      > .content {
         @include media-screen('min', $tablet) {
-          border-radius: 8px;
+          display: grid;
+          grid-template-columns: 260px auto;
+          // gap: 20px;
         }
       }
     }

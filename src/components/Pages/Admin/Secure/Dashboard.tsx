@@ -1,17 +1,17 @@
 import ApolloProvider from '@/GraphQL/provider/ApolloProvider';
 import { useGlobalState } from '@/Global/context/use';
-import Editor from './Editor';
+import Information from './Information';
 import Articles from './Articles';
+import Editor from './Editor';
 
 const Dashboard = () => {
   const { app } = useGlobalState();
 
-  // console.log('status:', app.status);
-
   return (
     <ApolloProvider>
-      {app.isCreate && <Editor />}
+      {app.isInit && <Information />}
       {app.isInit && <Articles />}
+      {app.isCreate && <Editor />}
     </ApolloProvider>
   );
 };

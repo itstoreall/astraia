@@ -1,24 +1,31 @@
 'use client';
-// import { useState } from 'react';
 import * as gc from '@/config/global';
+import { useGlobalState } from '@/Global/context/use';
 import Navigation from '@/components/Navigation';
 import Container from '@/components/Container';
 import Guard from './Guard';
 import Dashboard from './Secure/Dashboard';
 import s from './Admin.module.scss';
-import { useGlobalState } from '@/Global/context/use';
 
-const { admin: adm, dashboard } = gc.page;
+const { admin: adm, articles, article, dashboard } = gc.page;
 
 const Admin = () => {
   const { admin, app } = useGlobalState();
 
   console.log('* app status:', app.status);
 
+  const containerLabel = !admin.is
+    ? adm.label
+    : app.isInit
+    ? dashboard.label
+    : app.isCreate
+    ? article.label
+    : '';
+
   return (
     <Navigation isActive={admin.is}>
       <main className={s.main}>
-        <Container label={!admin.is ? adm.label : dashboard.label}>
+        <Container label={containerLabel}>
           <Guard>
             <Dashboard />
           </Guard>
@@ -32,7 +39,6 @@ export default Admin;
 
 /*
 
-*word*
 **word**
 ***word***
 
