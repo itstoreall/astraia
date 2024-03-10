@@ -63,7 +63,7 @@ const Editor = () => {
   const handleText = (val: string) => setText(val);
 
   return (
-    <section className={s.dashboard}>
+    <section className={s.editorSection}>
       <div className={s.hero}>
         <Image
           src={image || defaultImageUrl}

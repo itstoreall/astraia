@@ -2,6 +2,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import useFetchArticles from '@/hooks/useFetchArticles';
 import * as gc from '@/config/global';
+import Loader from '@/components/Loader';
+import s from './Dashboard.module.scss';
 
 const { pathname: adminPathname } = gc.page.admin;
 
@@ -10,40 +12,33 @@ const Articles = () => {
 
   console.log('articles ===>', articles);
 
-  if (!articles) return null;
+  if (!articles) return <Loader />;
 
   return (
-    <div>
-      <ul>
-        {articles.map(article => (
-          <li key={article.id}>
+    <section className={s.articlesSection}>
+      <ul className={s.articleList}>
+        {articles.map((article, idx) => (
+          <li className={s.articleItem} key={article.id}>
             <Link href={`/${adminPathname}/${article.id}`}>
-              <div
-              // className={s.thumb}
-              >
+              <div className={s.itemContent}>
+                <span className={s.idx}>{idx}</span>
+
                 <Image
                   src={article.image}
-                  // className={s.cardImage}
-                  // fill
-                  // sizes='400px'
-                  // priority={true}
-                  width={60}
-                  height={60}
+                  width={40}
+                  height={40}
                   alt={article.title}
-                  // onClick={() => setIsImageInput(true)}
                 />
-              </div>
 
-              <div
-              // className={s.cardMeta}
-              >
-                <p>{article.title}</p>
+                <div className={s.meta}>
+                  <p>{article.title}</p>
+                </div>
               </div>
             </Link>
           </li>
         ))}
       </ul>
-    </div>
+    </section>
   );
 };
 

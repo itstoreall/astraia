@@ -69,7 +69,13 @@ const KeyHandler = ({ setIsAdmin }: KeyHandlerProps) => {
 };
 
 const Guard = ({ children }: ChildrenProps) => {
-  const { admin } = useGlobalState();
+  const { admin, app } = useGlobalState();
+
+  useEffect(() => {
+    // admin.is && app.set(app.config.CREATE);
+    admin.is && app.set(app.config.INIT);
+  }, [admin.is, app]);
+
   return <>{admin.is ? children : <KeyHandler setIsAdmin={admin.set} />}</>;
 };
 

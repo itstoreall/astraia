@@ -1,5 +1,5 @@
-const Details = () => {
+const DetailsPage = () => {
   return 444;
 };
 
-export default Details;
+export default DetailsPage;

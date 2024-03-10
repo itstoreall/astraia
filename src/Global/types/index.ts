@@ -12,6 +12,7 @@ export type Article = {
 };
 
 export enum EStatus {
+  GUARD = 'guard',
   INIT = 'init',
   CREATE = 'create',
   EDIT = 'edit',
@@ -30,6 +31,7 @@ export type GAdmin = {
 export type GApp = {
   status: string;
   set: (s: string) => void;
+  isGuard: boolean;
   isInit: boolean;
   isCreate: boolean;
   isEdit: boolean;
