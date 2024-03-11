@@ -18,7 +18,9 @@ export enum EStatus {
   EDIT = 'edit',
   PENDING = 'pending',
   ACTIVE = 'active',
-  DELETE = 'delete'
+  DELETE = 'delete',
+  ARTICLES = 'articles',
+  ARTICLE = 'article'
 }
 
 // ------ G:
@@ -38,6 +40,8 @@ export type GApp = {
   isPending: boolean;
   isActive: boolean;
   isDelete: boolean;
+  isArticles: boolean;
+  isArticle: boolean;
   config: typeof EStatus;
 };
 
@@ -46,10 +50,16 @@ export type GData = {
   set: (d: Article[] | null) => void;
 };
 
+export type GDetails = {
+  article: Article | null;
+  set: (d: Article | null) => void;
+};
+
 // ------ Params:
 
 export type ContextParams = {
   app: GApp;
   admin: GAdmin;
   data: GData;
+  details: GDetails;
 };

@@ -56,8 +56,9 @@
 
   &.article {
     .bg > .content {
+      background: $bgGradient;
+
       @include media-screen('min', $tablet) {
-        background: $bgGradient;
         border-radius: 8px;
       }
     }

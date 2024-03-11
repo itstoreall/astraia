@@ -1,0 +1,23 @@
+@import '@/styles/imports';
+
+.newArticleButtonBlock {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+
+  > svg > g {
+    @extend %extends-transition-03s;
+    stroke: $colorRose;
+  }
+
+  &:hover {
+    cursor: pointer;
+
+    > svg > g {
+      stroke: $colorBlue;
+    }
+  }
+}

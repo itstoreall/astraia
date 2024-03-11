@@ -1,8 +1,4 @@
-import { colorBlack } from '@/styles/vars';
-
-const SaveButton = () => {
-  const currentColor = colorBlack;
-
+const SaveIcon = () => {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
@@ -11,7 +7,7 @@ const SaveButton = () => {
       viewBox='0 0 24 24'
     >
       <g
-        stroke={currentColor}
+        stroke='currentColor'
         strokeLinecap='round'
         strokeLinejoin='round'
         strokeWidth='2'
@@ -30,7 +26,7 @@ const SaveButton = () => {
           />
         </path>
         <path
-          fill={currentColor}
+          fill='currentColor'
           d='M12 4 h2 v6 h2.5 L12 14.5M12 4 h-2 v6 h-2.5 L12 14.5'
         >
           <animate
@@ -47,4 +43,4 @@ const SaveButton = () => {
   );
 };
 
-export default SaveButton;
+export default SaveIcon;

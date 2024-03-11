@@ -18,10 +18,16 @@ export const Context = createContext<ContextParams>({
     isPending: false,
     isActive: false,
     isDelete: false,
+    isArticles: false,
+    isArticle: false,
     config: EStatus
   },
   data: {
     articles: [],
+    set: () => console.log()
+  },
+  details: {
+    article: null,
     set: () => console.log()
   }
 });
@@ -30,6 +36,7 @@ const GlobalState = ({ children }: ChildrenProps) => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [status, setStatus] = useState<string>(EStatus.GUARD);
   const [articles, setArticles] = useState<Article[] | null>(null);
+  const [article, setArticle] = useState<Article | null>(null);
 
   const admin = {
     is: isAdmin,
@@ -46,6 +53,8 @@ const GlobalState = ({ children }: ChildrenProps) => {
     isPending: status === EStatus.PENDING,
     isActive: status === EStatus.ACTIVE,
     isDelete: status === EStatus.DELETE,
+    isArticles: status === EStatus.ARTICLES,
+    isArticle: status === EStatus.ARTICLE,
     config: EStatus
   };
 
@@ -54,7 +63,12 @@ const GlobalState = ({ children }: ChildrenProps) => {
     set: (d: Article[] | null) => setArticles(d)
   };
 
-  const value = { admin, app, data };
+  const details = {
+    article: article,
+    set: (d: Article | null) => setArticle(d)
+  };
+
+  const value = { admin, app, data, details };
 
   return <Context.Provider value={value}>{children}</Context.Provider>;
 };
