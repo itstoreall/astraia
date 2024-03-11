@@ -1,7 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client';
 import { useEffect } from 'react';
 import Image from 'next/image';
 import MDEditor from '@uiw/react-md-editor';
+import { useGlobalState } from '@/Global/context/use';
 import { Article } from '@/Global/types';
 import * as gc from '@/config/global';
 import * as gu from '@/utils/global';
@@ -12,7 +14,10 @@ import s from './Articles.module.scss';
 const { lsArticleKey, defaultImageUrl } = gc.system;
 
 const Article = ({ article }: { article: Article }) => {
+  const { app } = useGlobalState();
+
   useEffect(() => {
+    app.set(app.config.ARTICLE);
     const lsData = gu.getLS(lsArticleKey);
     if (!lsData) return;
   }, []);

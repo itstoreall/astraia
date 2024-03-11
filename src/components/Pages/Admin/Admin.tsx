@@ -20,6 +20,10 @@ const Admin = () => {
     ? dashboard.label
     : app.isCreate
     ? article.label
+    : app.isEdit
+    ? article.label
+    : app.isPending
+    ? article.label
     : '';
 
   return (

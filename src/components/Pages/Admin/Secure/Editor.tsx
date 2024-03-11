@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+'use client';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useGlobalState } from '@/Global/context/use';
@@ -6,12 +7,13 @@ import useQuery from '@/GraphQL/hooks/useQuery';
 import * as gc from '@/config/global';
 import * as gu from '@/utils/global';
 import * as u from '../utils';
+import ReturnIcon from '@/assets/icons/ReturnIcon';
+import DeleteIcon from '@/assets/icons/DeleteIcon';
+import SaveIcon from '@/assets/icons/SaveIcon';
 import Textarea from '@/components/Textarea';
-import SaveButton from './SaveButton';
 import s from './Dashboard.module.scss';
 
 const { lsArticleKey, defaultImageUrl } = gc.system;
-// const { init, create, pending } = config.dashboard.status;
 
 const Editor = () => {
   const [title, setTitle] = useState('Title');
@@ -20,37 +22,31 @@ const Editor = () => {
   const [isTitleInput, setIsTitleInput] = useState(false);
   const [isImageInput, setIsImageInput] = useState(false);
 
-  const { app } = useGlobalState();
+  const { app, details } = useGlobalState();
   const data = useQuery();
 
-  // const { pending } = app.config;
-
-  // console.log('status ->', app.config);
-
   useEffect(() => {
+    // console.log('details', details.article);
     const lsData = gu.getLS(lsArticleKey);
-    handleTitle(lsData ? lsData.title : 'Title');
-    handleImage(lsData ? lsData.image : defaultImageUrl);
-    handleText(lsData ? lsData.text : '');
-  }, []);
 
-  const addArticle = async () => {
-    if (!title || !image || !text) return;
-    app.set(app.config.PENDING);
-    const res = await data.add({ title, image, text });
-    console.log('res', res);
-    if (res) {
-      handleTitle('Title');
-      handleImage(defaultImageUrl);
-      handleText('');
-      app.set(app.config.INIT);
-      gu.delLS(lsArticleKey);
+    if (app.isCreate) {
+      console.log('=== CREATE ===');
+      handleTitle(lsData ? lsData.title : 'Title');
+      handleImage(lsData ? lsData.image : defaultImageUrl);
+      handleText(lsData ? lsData.text : '');
     }
-  };
 
-  /*
-  https://res.cloudinary.com/astraia/image/upload/v1687003862/cld-sample-3.jpg
-  */
+    if (app.isEdit && details.article) {
+      console.log('=== EDIT ===');
+      handleTitle(details.article?.title);
+      handleImage(details.article?.image);
+      handleText(details.article?.text);
+    }
+
+    return () => {
+      app.isEdit && gu.delLS(lsArticleKey);
+    };
+  }, []);
 
   useEffect(() => {
     if (app.isPending) return;
@@ -58,9 +54,45 @@ const Editor = () => {
     app.isCreate && gu.setLS(lsArticleKey, { title, image, text });
   }, [title, image, text]);
 
+  // ------ Handlers:
+
   const handleTitle = (val: string) => setTitle(val);
   const handleImage = (val: string) => setImage(u.validateUrl(val) || '');
   const handleText = (val: string) => setText(val);
+
+  // ------ Methods:
+
+  const finaly = () => {
+    handleTitle('Title');
+    handleImage(defaultImageUrl);
+    handleText('');
+    app.set(app.config.INIT);
+    gu.delLS(lsArticleKey);
+  };
+
+  const addArticle = async () => {
+    if (!title || !image || !text) return;
+    app.set(app.config.PENDING);
+    const res = await data.add({ title, image, text });
+    console.log('res', res);
+    res && finaly();
+
+    // if (res) {
+    //   handleTitle('Title');
+    //   handleImage(defaultImageUrl);
+    //   handleText('');
+    //   app.set(app.config.INIT);
+    //   gu.delLS(lsArticleKey);
+    // }
+  };
+
+  const deleteArticle = async () => {
+    if (!details.article) return;
+    const deleted = await data.del(details.article?.id);
+    console.log('deleted:', deleted?.success);
+    deleted?.success && finaly();
+    // deleted?.success && app.set(app.config.INIT);
+  };
 
   return (
     <section className={s.editorSection}>
@@ -73,10 +105,6 @@ const Editor = () => {
           alt='Astraia picture'
           onClick={() => setIsImageInput(true)}
         />
-
-        <h1 className={s.title} onClick={() => setIsTitleInput(true)}>
-          {title}
-        </h1>
 
         {isTitleInput && (
           <input
@@ -97,8 +125,21 @@ const Editor = () => {
             onBlur={() => setIsImageInput(false)}
           />
         )}
-        <div className={s.buttonBlock} onClick={addArticle}>
-          <SaveButton />
+
+        <h1 className={s.title} onClick={() => setIsTitleInput(true)}>
+          {title}
+        </h1>
+
+        <div className={s.returnBlock} onClick={() => app.set(app.config.INIT)}>
+          <ReturnIcon />
+        </div>
+
+        <div className={s.deleteBlock} onClick={() => deleteArticle()}>
+          <DeleteIcon />
+        </div>
+
+        <div className={s.saveBlock} onClick={addArticle}>
+          <SaveIcon />
         </div>
       </div>
 
@@ -108,3 +149,7 @@ const Editor = () => {
 };
 
 export default Editor;
+
+/*
+https://res.cloudinary.com/astraia/image/upload/v1687003862/cld-sample-3.jpg
+*/

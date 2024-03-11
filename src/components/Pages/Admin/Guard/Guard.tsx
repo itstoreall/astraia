@@ -1,8 +1,8 @@
 import { MouseEvent, useEffect, useState } from 'react';
-import { KeyHandlerProps } from '../types';
-import s from '../Admin.module.scss';
-import { ChildrenProps } from '@/types';
 import { useGlobalState } from '@/Global/context/use';
+import { KeyHandlerProps } from '../types';
+import { ChildrenProps } from '@/types';
+import s from '../Admin.module.scss';
 
 const adminKey = process.env.NEXT_PUBLIC_ADMIN_KEY;
 
@@ -72,8 +72,7 @@ const Guard = ({ children }: ChildrenProps) => {
   const { admin, app } = useGlobalState();
 
   useEffect(() => {
-    // admin.is && app.set(app.config.CREATE);
-    admin.is && app.set(app.config.INIT);
+    app.status === app.config.GUARD && admin.is && app.set(app.config.INIT);
   }, [admin.is, app]);
 
   return <>{admin.is ? children : <KeyHandler setIsAdmin={admin.set} />}</>;

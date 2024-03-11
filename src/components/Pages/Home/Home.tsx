@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
+import { useGlobalState } from '@/Global/context/use';
 import * as gc from '@/config/global';
 import Container from '@/components/Container';
 import s from './Home.module.scss';
@@ -10,6 +11,8 @@ const { title: astraia } = gc.meta;
 const Home = () => {
   const [title, setTitle] = useState<string>('');
   const [links, setLinks] = useState<string>('');
+
+  const { app } = useGlobalState();
 
   useEffect(() => {
     setTimeout(() => setTitle('title'), 500);

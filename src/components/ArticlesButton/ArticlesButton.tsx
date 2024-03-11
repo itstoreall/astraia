@@ -1,17 +1,17 @@
 'use client';
-import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { colorRose } from '@/styles/vars';
 import s from './ArticlesButton.module.scss';
+import { useGlobalState } from '@/Global/context/use';
 
 const ArticlesButton = () => {
-  const path = usePathname();
+  const { app } = useGlobalState();
 
   const currentColor = colorRose;
 
   return (
     <>
-      {path !== '/articles' && (
+      {app.isArticle && (
         <Link href={'/articles'} className={s.articlesButtonLink}>
           <svg
             xmlns='http://www.w3.org/2000/svg'

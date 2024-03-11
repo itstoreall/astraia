@@ -53,47 +53,48 @@ section.articlesSection {
         margin-bottom: 20px;
       }
 
-      > a {
-        .itemContent {
+      // > a {
+      .itemContent {
+        @extend %extends-transition-03s;
+        display: flex;
+        @include basic-palette-white('bg', 0.07);
+
+        &:hover {
+          @include basic-palette-white('bg', 0.1);
+          cursor: pointer;
+
+          .meta > p,
+          > span.idx {
+            color: $colorRose;
+          }
+        }
+
+        > span.idx {
           @extend %extends-transition-03s;
           display: flex;
-          @include basic-palette-white('bg', 0.07);
+          justify-content: center;
+          align-items: center;
+          min-width: 40px;
+          color: $colorWhite;
+          font-family: var(--font-open-sans);
+        }
 
-          &:hover {
-            @include basic-palette-white('bg', 0.1);
+        .meta {
+          display: flex;
+          align-items: center;
+          padding: 0 0 0 15px;
+          width: calc(100% - 95px);
 
-            .meta > p,
-            > span.idx {
-              color: $colorRose;
-            }
-          }
-
-          > span.idx {
+          > p {
+            @extend %extends-three-dots;
             @extend %extends-transition-03s;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-width: 40px;
+            font-size: 16px;
             color: $colorWhite;
             font-family: var(--font-open-sans);
           }
-
-          .meta {
-            display: flex;
-            align-items: center;
-            padding: 0 0 0 15px;
-            width: calc(100% - 95px);
-
-            > p {
-              @extend %extends-three-dots;
-              @extend %extends-transition-03s;
-              font-size: 16px;
-              color: $colorWhite;
-              font-family: var(--font-open-sans);
-            }
-          }
         }
       }
+      // }
     }
   }
 }
@@ -118,11 +119,76 @@ section.editorSection {
     background-color: $colorWhite;
     user-select: none;
 
-    .buttonBlock {
+    .returnBlock {
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 5px 0 0 10px;
+
+      > svg > g {
+        @extend %extends-transition-03s;
+        stroke: $colorBlack;
+      }
+
+      &:hover {
+        cursor: pointer;
+
+        > svg > g {
+          stroke: $colorBlue;
+        }
+      }
+    }
+
+    .deleteBlock {
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 5px 0 0 3px;
+      width: 50px;
+      height: 50px;
+
+      > svg > g {
+        @extend %extends-transition-03s;
+        stroke: $colorBlack;
+      }
+
+      &:hover {
+        cursor: pointer;
+
+        > svg > g {
+          stroke: $colorRed;
+        }
+      }
+    }
+
+    .saveBlock {
       position: absolute;
       bottom: 0;
       right: 0;
+      width: 48px;
       cursor: pointer;
+
+      > svg {
+        > g {
+          @extend %extends-transition-03s;
+          stroke: $colorBlack;
+
+          > path {
+            transition: fill $ease03s;
+            fill: $colorBlack;
+          }
+        }
+      }
+
+      &:hover {
+        > svg > g {
+          stroke: $colorBlue;
+
+          > path {
+            fill: $colorBlue;
+          }
+        }
+      }
     }
 
     .heroImage {
@@ -163,7 +229,7 @@ section.editorSection {
       left: 0;
       padding: 5px 8px;
       height: 30px;
-      width: calc(100% - 40px);
+      width: calc(100% - 55px);
       font-size: 16px;
       outline: none;
       border: none;

@@ -5,17 +5,18 @@ import Image from 'next/image';
 import useFetchArticles from '@/hooks/useFetchArticles';
 import * as gc from '@/config/global';
 import s from './Articles.module.scss';
+import { useGlobalState } from '@/Global/context/use';
 
 const { pathname: articlesPathname } = gc.page.articles;
 
 const List = () => {
-  const { articles } = useFetchArticles();
+  const { data } = useGlobalState();
 
-  if (!articles) return null;
+  if (!data.articles) return null;
 
   return (
     <ul className={s.articleList}>
-      {articles.map((article, idx) => {
+      {data.articles.map((article, idx) => {
         return (
           <li key={idx} className={s.articleItem}>
             <Link href={`/${articlesPathname}/${article.id}`}>
@@ -27,7 +28,6 @@ const List = () => {
                   sizes='400px'
                   priority={true}
                   alt={article.title}
-                  // onClick={() => setIsImageInput(true)}
                 />
               </div>
 
