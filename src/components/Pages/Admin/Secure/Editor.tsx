@@ -86,6 +86,18 @@ const Editor = () => {
     // }
   };
 
+  const updateArticle = async () => {
+    const id = details.article?.id;
+    if (!id || !title || !image || !text) return;
+
+    console.log(1, id);
+
+    app.set(app.config.PENDING);
+    const res = await data.edit(id, { title, image, text });
+    console.log('res', res);
+    res && finaly();
+  };
+
   const deleteArticle = async () => {
     if (!details.article) return;
     const deleted = await data.del(details.article?.id);
@@ -138,7 +150,10 @@ const Editor = () => {
           <DeleteIcon />
         </div>
 
-        <div className={s.saveBlock} onClick={addArticle}>
+        <div
+          className={s.saveBlock}
+          onClick={app.isCreate ? addArticle : updateArticle}
+        >
           <SaveIcon />
         </div>
       </div>

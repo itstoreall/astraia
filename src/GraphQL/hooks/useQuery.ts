@@ -71,20 +71,19 @@ const useQuery = () => {
   };
 
   // POST update:
-  const updateArticle = async (id: string) => {
+  const updateArticle = async (id: string, args: AddArticleArgs) => {
     try {
       const { data } = await editArticle({
         variables: {
           blog,
           id,
           articleInput: {
-            title: 'Title 6',
-            description: 'Description 6',
-            text: 'text 6',
-            author: 'author 6',
-            image:
-              'https://res.cloudinary.com/astraia/image/upload/v1687003850/samples/food/spices.jpg',
-            tags: ['tag1', 'tag4']
+            title: args.title,
+            description: '',
+            text: args.text,
+            author: 'Mila',
+            image: args.image,
+            tags: ['magic', 'yellow']
           }
         }
       });
