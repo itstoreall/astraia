@@ -57,6 +57,7 @@ section.articlesSection {
       .itemContent {
         @extend %extends-transition-03s;
         display: flex;
+        height: 40px;
         @include basic-palette-white('bg', 0.07);
 
         &:hover {
@@ -66,6 +67,18 @@ section.articlesSection {
           .meta > p,
           > span.idx {
             color: $colorRose;
+          }
+        }
+
+        .thumb {
+          position: relative;
+          overflow: hidden;
+          width: 40px;
+          height: 40px;
+          background-color: $colorBlue;
+
+          .itemImage {
+            object-fit: cover;
           }
         }
 
