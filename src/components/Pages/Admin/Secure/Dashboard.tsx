@@ -3,6 +3,7 @@ import { useGlobalState } from '@/Global/context/use';
 import Information from './Information';
 import ArticleList from './ArticleList';
 import Editor from './Editor';
+import Loader from '@/components/Loader';
 
 const Dashboard = () => {
   const { app, data } = useGlobalState();
@@ -13,8 +14,9 @@ const Dashboard = () => {
     <ApolloProvider>
       {app.isInit && data.articles && <Information />}
       {app.isInit && <ArticleList />}
-      {app.isEdit && <Editor />}
       {app.isCreate && <Editor />}
+      {app.isEdit && <Editor />}
+      {app.isPending && <Loader />}
     </ApolloProvider>
   );
 };

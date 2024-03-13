@@ -29,6 +29,10 @@ export const Context = createContext<ContextParams>({
   details: {
     article: null,
     set: () => console.log()
+  },
+  modal: {
+    is: false,
+    set: (b: boolean) => console
   }
 });
 
@@ -37,6 +41,7 @@ const GlobalState = ({ children }: ChildrenProps) => {
   const [status, setStatus] = useState<string>(EStatus.GUARD);
   const [articles, setArticles] = useState<Article[] | null>(null);
   const [article, setArticle] = useState<Article | null>(null);
+  const [isModal, setIsModal] = useState<boolean>(false);
 
   const admin = {
     is: isAdmin,
@@ -68,7 +73,12 @@ const GlobalState = ({ children }: ChildrenProps) => {
     set: (d: Article | null) => setArticle(d)
   };
 
-  const value = { admin, app, data, details };
+  const modal = {
+    is: isModal,
+    set: (b: boolean) => setIsModal(b)
+  };
+
+  const value = { admin, app, data, details, modal };
 
   return <Context.Provider value={value}>{children}</Context.Provider>;
 };

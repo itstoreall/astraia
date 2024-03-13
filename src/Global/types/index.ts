@@ -55,6 +55,11 @@ export type GDetails = {
   set: (d: Article | null) => void;
 };
 
+export type GModal = {
+  is: boolean;
+  set: (b: boolean) => void;
+};
+
 // ------ Params:
 
 export type ContextParams = {
@@ -62,4 +67,5 @@ export type ContextParams = {
   admin: GAdmin;
   data: GData;
   details: GDetails;
+  modal: GModal;
 };
