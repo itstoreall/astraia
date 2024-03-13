@@ -13,46 +13,6 @@ const Textarea: Textarea = ({ text, handleText }) => {
 
   const ta = taRef.current;
 
-  /*
-  const fetchArticles = async () => {
-    const articles = await data.all();
-    console.log('articles', articles);
-  };
-  */
-
-  /*
-  const getArticle = async () => {
-    const article = await data.byId('65e3a6fad5be3401d19a6c78');
-    console.log('article', article);
-  };
-  */
-
-  /*
-  const addArticle = async () => {
-    const res = await data.add();
-    console.log('res', res);
-  };
-  */
-
-  const updateArticle = async () => {
-    const res = await data.edit('65e466bc469e1f8e204bd741');
-    console.log('res', res);
-  };
-
-  const delArticle = async () => {
-    const res = await data.del('65e4c87e1305bb9c9b18595c');
-    console.log('res', res);
-  };
-
-  useEffect(() => {
-    // getServerArticle('65e3284721d95d96198b9936');
-    // addArticle();
-    // updateArticle();
-    // delArticle();
-  }, []);
-
-  // ---
-
   useEffect(() => {
     if (!ta) return;
     text ? u.updateTaHeight(ta) : u.resetTaHeight(ta);

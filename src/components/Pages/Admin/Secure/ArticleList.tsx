@@ -26,12 +26,16 @@ const ArticleList = () => {
             <div className={s.itemContent} onClick={() => editArticle(article)}>
               <span className={s.idx}>{idx + 1}</span>
 
-              <Image
-                src={article.image}
-                width={40}
-                height={40}
-                alt={article.title}
-              />
+              <div className={s.thumb}>
+                <Image
+                  src={article.image}
+                  className={s.itemImage}
+                  // width={40}
+                  // height={40}
+                  fill
+                  alt={article.title}
+                />
+              </div>
 
               <div className={s.meta}>
                 <p>{article.title}</p>

@@ -3,7 +3,9 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useGlobalState } from '@/Global/context/use';
+import useModal from '@/GraphQL/hooks/useModal';
 import useQuery from '@/GraphQL/hooks/useQuery';
+import { EStatus } from '@/Global/types';
 import * as gc from '@/config/global';
 import * as gu from '@/utils/global';
 import * as u from '../utils';
@@ -23,6 +25,7 @@ const Editor = () => {
   const [isImageInput, setIsImageInput] = useState(false);
 
   const { app, details } = useGlobalState();
+  const modal = useModal();
   const data = useQuery();
 
   useEffect(() => {
@@ -86,6 +89,39 @@ const Editor = () => {
     // }
   };
 
+  const updateArticle = async () => {
+    const id = details.article?.id;
+    if (!id || !title || !image || !text) return;
+
+    // console.log(1, id);
+
+    // ---
+
+    modal.set(true);
+    // app.set(app.config.PENDING);
+    // const res = await data.edit(id, { title, image, text });
+    // console.log('res', res);
+    // res && finaly();
+
+    console.log('editor', true);
+
+    // ---
+
+    /*
+    app.set(app.config.PENDING);
+    const res = await data.edit(id, { title, image, text });
+    console.log('res', res);
+    res && finaly();
+    // */
+  };
+
+  const approveUpdate = async (id: string) => {
+    app.set(app.config.PENDING);
+    const res = await data.edit(id, { title, image, text });
+    console.log('res', res);
+    res && finaly();
+  };
+
   const deleteArticle = async () => {
     if (!details.article) return;
     const deleted = await data.del(details.article?.id);
@@ -94,8 +130,18 @@ const Editor = () => {
     // deleted?.success && app.set(app.config.INIT);
   };
 
+  const isModal = () => modal.is;
+
+  console.log('---------');
+
   return (
     <section className={s.editorSection}>
+      {isModal() && (
+        <modal.Modal>
+          <modal.UpdateArticle approveUpdate={approveUpdate} />
+        </modal.Modal>
+      )}
+
       <div className={s.hero}>
         <Image
           src={image || defaultImageUrl}
@@ -138,7 +184,10 @@ const Editor = () => {
           <DeleteIcon />
         </div>
 
-        <div className={s.saveBlock} onClick={addArticle}>
+        <div
+          className={s.saveBlock}
+          onClick={app.isCreate ? addArticle : updateArticle}
+        >
           <SaveIcon />
         </div>
       </div>
