@@ -58,6 +58,8 @@ export type GDetails = {
 export type GModal = {
   is: boolean;
   set: (b: boolean) => void;
+  content: string;
+  setContent: (s: string) => void;
 };
 
 // ------ Params:

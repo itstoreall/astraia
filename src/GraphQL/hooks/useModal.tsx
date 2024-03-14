@@ -1,9 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 // import { useState } from 'react';
-import UpdateArticle from '@/components/Modal/contents/UpdateArticle';
-import Modal from '@/components/Modal';
-import { useGlobalState } from '@/Global/context/use';
 import { useEffect } from 'react';
+import { useGlobalState } from '@/Global/context/use';
+import CreateArticle from '@/components/Modal/contents/CreateArticle';
+import UpdateArticle from '@/components/Modal/contents/UpdateArticle';
+import DeleteArticle from '@/components/Modal/contents/DeleteArticle';
+import Modal from '@/components/Modal';
 // import { useGlobalState } from '@/Global/context/use';
 
 export type ModalProps = {
@@ -25,9 +27,13 @@ const useModal = () => {
 
   return {
     Modal,
+    CreateArticle,
     UpdateArticle,
+    DeleteArticle,
     is: modal.is,
-    set: (b: boolean) => modal.set(b)
+    set: (b: boolean) => modal.set(b),
+    content: modal.content,
+    setContent: (s: string) => modal.setContent(s)
   };
 };
 

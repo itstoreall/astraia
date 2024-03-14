@@ -30,8 +30,8 @@ const ArticleList = () => {
                 <Image
                   src={article.image}
                   className={s.itemImage}
-                  // width={40}
-                  // height={40}
+                  sizes='40px'
+                  priority={true}
                   fill
                   alt={article.title}
                 />
