@@ -4,7 +4,6 @@
   position: fixed;
   top: 0;
   left: 0;
-  // display: none;
   display: grid;
   place-items: center;
   min-width: 100%;
@@ -26,7 +25,6 @@
   .content {
     @extend %extends-animation-slide-top;
     z-index: 43;
-    box-shadow: $shadowCard;
 
     // ------ Contents:
 
@@ -38,141 +36,105 @@
         }
 
         > button {
-          // &:not(:last-child) {
-          //   margin-right: 30px;
-          // }
-
           width: 120px;
           height: 120px;
 
-          // > svg {
-          // width: 120px;
-          // height: 120px;
-          // }
+          /*
+          > svg {
+          width: 120px;
+          height: 120px;
+          }
+          */
 
           &.return {
             @extend %extends-transition-03s;
             // background-color: $colorBlue;
+            // opacity: 0.1;
 
-            > svg > g {
-              @extend %extends-transition-03s;
-              stroke: $colorWhite; // *
-              // stroke: $colorBlack; // *
-              // opacity: 0.5;
+            > svg {
+              width: 100px;
+              height: 100px;
+
+              @include media-screen('min', $tablet) {
+                width: 110px;
+                height: 110px;
+              }
+
+              > g {
+                @extend %extends-transition-03s;
+                stroke: $colorWhite; // *
+                // opacity: 0.5;
+              }
             }
 
             &:hover {
               background-color: $colorBlue;
+              box-shadow: $shadowCard;
               cursor: pointer;
 
-              > svg > g {
-                opacity: 1;
-                stroke: $colorBlack;
-              }
+              // > svg > g {
+              //   opacity: 1;
+              //   stroke: $colorBlack;
+              // }
             }
           }
 
           &.hour {
-            // padding: 10px;
-            width: 120px;
-            opacity: 0.1;
-            background-color: $colorBlue;
+            height: 180px;
 
             @include media-screen('min', $tablet) {
+              height: 120px;
               width: 180px;
             }
 
-            > svg > g {
-              > path {
-                fill: $colorWhite;
+            > svg {
+              width: 90px;
+              height: 90px;
+
+              > g {
+                > path {
+                  fill: $colorWhite;
+                }
               }
             }
           }
 
           &.save {
             @extend %extends-transition-03s;
-            background-color: $colorBlue;
 
-            > svg > g {
-              @extend %extends-transition-03s;
-              stroke: $colorBlack; // *
-              // opacity: 0.5;
+            > svg {
+              width: 110px;
+              height: 110px;
 
-              > path {
-                transition: fill $ease03s;
-                fill: $colorBlack; // *
+              > g {
+                @extend %extends-transition-03s;
+                stroke: $colorWhite; // *
+
+                > path {
+                  // @extend %extends-transition-03s;
+                  transition: fill $ease03s;
+                  fill: $colorWhite; // *
+                }
               }
             }
 
             &:hover {
-              background-color: $colorRose;
+              background-color: $colorBlue;
               cursor: pointer;
+              box-shadow: $shadowCard;
 
+              /*
               > svg > g {
                 opacity: 1;
-                // stroke: $colorRose;
+                stroke: $colorBlack;
 
-                /*
                 > path {
-                  fill: $colorRose;
+                  fill: $colorBlack;
                 }
-                */
               }
+              */
             }
           }
-
-          // &:nth-child(1) {
-          //   > svg > g {
-          //     @extend %extends-transition-03s;
-          //     stroke: $colorBlue;
-          //   }
-
-          //   &:hover {
-          //     cursor: pointer;
-
-          //     > g {
-          //       stroke: $colorRose;
-          //     }
-          //   }
-          // }
-
-          // &:nth-child(2) {
-          //   padding: 10px;
-          //   opacity: 0.1;
-
-          //   > svg > g {
-          //     > path {
-          //       fill: $colorWhite;
-          //     }
-          //   }
-          // }
-
-          // &:nth-child(3) {
-          //   width: 110px;
-          //   height: 110px;
-
-          //   > svg > g {
-          //     @extend %extends-transition-03s;
-          //     stroke: $colorBlue;
-
-          //     > path {
-          //       transition: fill $ease03s;
-          //       fill: $colorBlue;
-          //     }
-          //   }
-
-          //   &:hover {
-          //     cursor: pointer;
-
-          //     > g {
-          //       stroke: $colorRose;
-
-          //       > path {
-          //         fill: $colorRose;
-          //       }
-          //     }
-          //   }
-          // }
         }
       }
     }
