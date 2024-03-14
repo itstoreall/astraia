@@ -32,7 +32,9 @@ export const Context = createContext<ContextParams>({
   },
   modal: {
     is: false,
-    set: (b: boolean) => console
+    set: () => console,
+    content: '',
+    setContent: () => console
   }
 });
 
@@ -42,6 +44,7 @@ const GlobalState = ({ children }: ChildrenProps) => {
   const [articles, setArticles] = useState<Article[] | null>(null);
   const [article, setArticle] = useState<Article | null>(null);
   const [isModal, setIsModal] = useState<boolean>(false);
+  const [modalContent, setModalContent] = useState<string>('');
 
   const admin = {
     is: isAdmin,
@@ -75,7 +78,9 @@ const GlobalState = ({ children }: ChildrenProps) => {
 
   const modal = {
     is: isModal,
-    set: (b: boolean) => setIsModal(b)
+    set: (b: boolean) => setIsModal(b),
+    content: modalContent,
+    setContent: (s: string) => setModalContent(s)
   };
 
   const value = { admin, app, data, details, modal };

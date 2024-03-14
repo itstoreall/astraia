@@ -5,7 +5,6 @@ import Image from 'next/image';
 import { useGlobalState } from '@/Global/context/use';
 import useModal from '@/GraphQL/hooks/useModal';
 import useQuery from '@/GraphQL/hooks/useQuery';
-import { EStatus } from '@/Global/types';
 import * as gc from '@/config/global';
 import * as gu from '@/utils/global';
 import * as u from '../utils';
@@ -29,7 +28,6 @@ const Editor = () => {
   const data = useQuery();
 
   useEffect(() => {
-    // console.log('details', details.article);
     const lsData = gu.getLS(lsArticleKey);
 
     if (app.isCreate) {
@@ -75,70 +73,69 @@ const Editor = () => {
 
   const addArticle = async () => {
     if (!title || !image || !text) return;
-    app.set(app.config.PENDING);
-    const res = await data.add({ title, image, text });
-    console.log('res', res);
-    res && finaly();
-
-    // if (res) {
-    //   handleTitle('Title');
-    //   handleImage(defaultImageUrl);
-    //   handleText('');
-    //   app.set(app.config.INIT);
-    //   gu.delLS(lsArticleKey);
-    // }
+    modal.set(true);
+    modal.setContent(app.config.CREATE);
+    console.log('editor addArticle');
   };
 
   const updateArticle = async () => {
     const id = details.article?.id;
     if (!id || !title || !image || !text) return;
-
-    // console.log(1, id);
-
-    // ---
-
     modal.set(true);
-    // app.set(app.config.PENDING);
-    // const res = await data.edit(id, { title, image, text });
-    // console.log('res', res);
-    // res && finaly();
+    modal.setContent(app.config.EDIT);
+    console.log('editor updateArticle', true);
+  };
 
-    console.log('editor', true);
+  const deleteArticle = async () => {
+    const id = details.article?.id;
+    if (!id) return;
+    modal.set(true);
+    modal.setContent(app.config.DELETE);
+    console.log('editor deleteArticle', true);
+  };
 
-    // ---
+  // ------ Approve:
 
-    /*
+  const approveCreate = async () => {
     app.set(app.config.PENDING);
-    const res = await data.edit(id, { title, image, text });
-    console.log('res', res);
+    const res = await data.add({ title, image, text });
+    console.log('created:', res);
     res && finaly();
-    // */
   };
 
   const approveUpdate = async (id: string) => {
     app.set(app.config.PENDING);
     const res = await data.edit(id, { title, image, text });
-    console.log('res', res);
+    console.log('updated:', res);
     res && finaly();
   };
 
-  const deleteArticle = async () => {
+  const approveDelete = async (id: string) => {
     if (!details.article) return;
-    const deleted = await data.del(details.article?.id);
+    const deleted = await data.del(id);
     console.log('deleted:', deleted?.success);
     deleted?.success && finaly();
-    // deleted?.success && app.set(app.config.INIT);
   };
 
   const isModal = () => modal.is;
-
-  console.log('---------');
 
   return (
     <section className={s.editorSection}>
       {isModal() && (
         <modal.Modal>
-          <modal.UpdateArticle approveUpdate={approveUpdate} />
+          {app.isCreate ? (
+            <modal.CreateArticle action={approveCreate} />
+          ) : (
+            <>
+              {modal.content === app.config.EDIT ? (
+                <modal.UpdateArticle action={approveUpdate} />
+              ) : (
+                modal.content === app.config.DELETE && (
+                  <modal.DeleteArticle action={approveDelete} />
+                )
+              )}
+            </>
+          )}
         </modal.Modal>
       )}
 
