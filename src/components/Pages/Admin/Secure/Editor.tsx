@@ -22,6 +22,7 @@ const Editor = () => {
   const [text, setText] = useState('');
   const [isTitleInput, setIsTitleInput] = useState(false);
   const [isImageInput, setIsImageInput] = useState(false);
+  const [isPrc, setIsPrc] = useState(false); // Process
 
   const { app, details } = useGlobalState();
   const modal = useModal();
@@ -50,9 +51,20 @@ const Editor = () => {
   }, []);
 
   useEffect(() => {
-    if (app.isPending) return;
     if (app.isInit) return app.set(app.config.CREATE);
-    app.isCreate && gu.setLS(lsArticleKey, { title, image, text });
+    if (app.isCreate) {
+      const lsPrevData = gu.getLS(lsArticleKey);
+      gu.setLS(
+        lsArticleKey,
+        !isPrc
+          ? lsPrevData
+            ? lsPrevData
+            : { title, image, text }
+          : { title, image, text }
+      );
+      setIsPrc(true);
+    }
+    if (app.isPending) return;
   }, [title, image, text]);
 
   // ------ Handlers:
