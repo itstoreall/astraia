@@ -39,17 +39,8 @@
           width: 120px;
           height: 120px;
 
-          /*
-          > svg {
-          width: 120px;
-          height: 120px;
-          }
-          */
-
           &.return {
             @extend %extends-transition-03s;
-            // background-color: $colorBlue;
-            // opacity: 0.1;
 
             > svg {
               width: 100px;
@@ -62,20 +53,8 @@
 
               > g {
                 @extend %extends-transition-03s;
-                stroke: $colorWhite; // *
-                // opacity: 0.5;
+                stroke: $colorWhite;
               }
-            }
-
-            &:hover {
-              background-color: $colorBlue;
-              box-shadow: $shadowCard;
-              cursor: pointer;
-
-              // > svg > g {
-              //   opacity: 1;
-              //   stroke: $colorBlack;
-              // }
             }
           }
 
@@ -108,31 +87,36 @@
 
               > g {
                 @extend %extends-transition-03s;
-                stroke: $colorWhite; // *
+                stroke: $colorWhite;
 
                 > path {
-                  // @extend %extends-transition-03s;
                   transition: fill $ease03s;
-                  fill: $colorWhite; // *
+                  fill: $colorWhite;
                 }
               }
             }
+          }
 
+          &.delete {
+            @extend %extends-transition-03s;
+
+            > svg {
+              width: 80px;
+              height: 80px;
+
+              > path {
+                stroke: $colorWhite;
+              }
+            }
+          }
+
+          &.return,
+          &.save,
+          &.delete {
             &:hover {
               background-color: $colorBlue;
               cursor: pointer;
               box-shadow: $shadowCard;
-
-              /*
-              > svg > g {
-                opacity: 1;
-                stroke: $colorBlack;
-
-                > path {
-                  fill: $colorBlack;
-                }
-              }
-              */
             }
           }
         }

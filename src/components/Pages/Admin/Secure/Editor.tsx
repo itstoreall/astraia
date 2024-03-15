@@ -87,6 +87,7 @@ const Editor = () => {
   };
 
   const deleteArticle = async () => {
+    if (app.isCreate) return reset();
     const id = details.article?.id;
     if (!id) return;
     modal.set(true);
@@ -111,10 +112,16 @@ const Editor = () => {
   };
 
   const approveDelete = async (id: string) => {
-    if (!details.article) return;
+    app.set(app.config.PENDING);
     const deleted = await data.del(id);
     console.log('deleted:', deleted?.success);
     deleted?.success && finaly();
+  };
+
+  const reset = () => {
+    app.set(app.config.PENDING);
+    gu.delLS(gc.system.lsArticleKey);
+    setTimeout(() => finaly(), 1000);
   };
 
   const isModal = () => modal.is;

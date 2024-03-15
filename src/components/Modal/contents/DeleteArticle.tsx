@@ -1,7 +1,7 @@
 import ReturnIcon from '@/assets/icons/ReturnIcon';
 import HourGlassIcon from '@/assets/icons/HourGlassIcon';
 import { useGlobalState } from '@/Global/context/use';
-import SaveIcon from '@/assets/icons/SaveIcon';
+import RemoveIcon from '@/assets/icons/RemoveIcon';
 import s from '../Modal.module.scss';
 
 export type DeleteArticleProps = {
@@ -10,8 +10,6 @@ export type DeleteArticleProps = {
 
 const DeleteArticle = ({ action }: DeleteArticleProps) => {
   const { modal, details } = useGlobalState();
-
-  console.log('DeleteArticle');
 
   const closeModal = () => modal.set(false);
 
@@ -23,8 +21,8 @@ const DeleteArticle = ({ action }: DeleteArticleProps) => {
       <button className={s.hour}>
         <HourGlassIcon />
       </button>
-      <button className={s.save} onClick={() => action(details.article?.id!)}>
-        <SaveIcon />
+      <button className={s.delete} onClick={() => action(details.article?.id!)}>
+        <RemoveIcon />
       </button>
     </div>
   );

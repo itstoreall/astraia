@@ -1,8 +1,3 @@
-// import DeleteIcon from '@/assets/icons/DeleteIcon';
-// import NewArticleIcon from '@/assets/icons/NewArticleIcon';
-// import { useGlobalState } from '@/Global/context/use';
-// import useModal from '@/GraphQL/hooks/useModal';
-// import { EStatus } from '@/Global/types';
 import ReturnIcon from '@/assets/icons/ReturnIcon';
 import HourGlassIcon from '@/assets/icons/HourGlassIcon';
 import { useGlobalState } from '@/Global/context/use';
@@ -14,13 +9,7 @@ export type UpdateArticleProps = {
 };
 
 const UpdateArticle = ({ action }: UpdateArticleProps) => {
-  // const { app } = useGlobalState();
-  // console.log('app', app.status);
-
-  // const modal = useModal();
   const { modal, details } = useGlobalState();
-
-  console.log('UpdateArticle');
 
   const closeModal = () => modal.set(false);
 
