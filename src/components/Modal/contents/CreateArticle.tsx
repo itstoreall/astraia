@@ -9,13 +9,7 @@ export type CreateArticleProps = {
 };
 
 const CreateArticle = ({ action }: CreateArticleProps) => {
-  // const { app } = useGlobalState();
-  // console.log('app', app.status);
-
-  // const modal = useModal();
-  const { modal, details } = useGlobalState();
-
-  console.log('CreateArticle');
+  const { modal } = useGlobalState();
 
   const closeModal = () => modal.set(false);
 

@@ -22,6 +22,7 @@ const Editor = () => {
   const [text, setText] = useState('');
   const [isTitleInput, setIsTitleInput] = useState(false);
   const [isImageInput, setIsImageInput] = useState(false);
+  const [isPrc, setIsPrc] = useState(false); // Process
 
   const { app, details } = useGlobalState();
   const modal = useModal();
@@ -50,9 +51,20 @@ const Editor = () => {
   }, []);
 
   useEffect(() => {
-    if (app.isPending) return;
     if (app.isInit) return app.set(app.config.CREATE);
-    app.isCreate && gu.setLS(lsArticleKey, { title, image, text });
+    if (app.isCreate) {
+      const lsPrevData = gu.getLS(lsArticleKey);
+      gu.setLS(
+        lsArticleKey,
+        !isPrc
+          ? lsPrevData
+            ? lsPrevData
+            : { title, image, text }
+          : { title, image, text }
+      );
+      setIsPrc(true);
+    }
+    if (app.isPending) return;
   }, [title, image, text]);
 
   // ------ Handlers:
@@ -87,6 +99,7 @@ const Editor = () => {
   };
 
   const deleteArticle = async () => {
+    if (app.isCreate) return reset();
     const id = details.article?.id;
     if (!id) return;
     modal.set(true);
@@ -111,10 +124,16 @@ const Editor = () => {
   };
 
   const approveDelete = async (id: string) => {
-    if (!details.article) return;
+    app.set(app.config.PENDING);
     const deleted = await data.del(id);
     console.log('deleted:', deleted?.success);
     deleted?.success && finaly();
+  };
+
+  const reset = () => {
+    app.set(app.config.PENDING);
+    gu.delLS(gc.system.lsArticleKey);
+    setTimeout(() => finaly(), 1000);
   };
 
   const isModal = () => modal.is;
