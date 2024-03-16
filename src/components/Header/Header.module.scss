@@ -24,5 +24,19 @@ header.header {
     margin: 0 auto;
     max-width: $maxWidth;
     min-height: 60px;
+
+    > ul.buttonList {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      gap: 5px;
+
+      > li.buttonItem {
+        position: relative;
+        height: 40px;
+        min-width: 40px;
+      }
+    }
   }
 }

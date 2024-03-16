@@ -121,6 +121,77 @@
           }
         }
       }
+
+      &.mdSimulator {
+        display: flex;
+        flex-direction: column;
+        width: calc(100vw - 40px);
+        max-width: $maxWidth;
+        gap: 20px;
+
+        .preview {
+          height: 45vh;
+          overflow: scroll;
+
+          > div {
+            font-size: 16px;
+            color: $colorWhite;
+            background-color: transparent;
+
+            > H2,
+            H3,
+            p,
+            strong,
+            code,
+            ol,
+            ul {
+              color: $colorWhite;
+            }
+
+            h2,
+            h3 {
+              border-bottom: 1px solid $colorWhite;
+            }
+
+            img {
+              display: block;
+            }
+
+            code {
+              background-color: var(--message-text-code-dg);
+            }
+
+            blockquote {
+              border-left: 4px solid $colorWhite;
+            }
+
+            ol,
+            ul {
+              > li {
+                color: $colorWhite;
+              }
+            }
+          }
+        }
+
+        .editor {
+          border-top: 5px solid $colorBlue;
+          height: 45vh;
+
+          > textarea {
+            display: block;
+            width: 100%;
+            height: 100%;
+            font-size: 16px;
+            color: $colorWhite;
+            background-color: transparent;
+            caret-color: $colorWhite;
+            border: none;
+            outline: none;
+            resize: none;
+          }
+        }
+      }
     }
   }
 }
