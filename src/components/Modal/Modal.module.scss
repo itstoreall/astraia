@@ -23,7 +23,6 @@
   }
 
   .content {
-    @extend %extends-animation-slide-top;
     z-index: 43;
 
     // ------ Contents:
@@ -123,19 +122,26 @@
       }
 
       &.mdSimulator {
-        display: flex;
-        flex-direction: column;
-        width: calc(100vw - 40px);
-        max-width: $maxWidth;
-        gap: 20px;
+        display: grid;
+        grid-template-rows: 50svh 50svh;
+
+        @include media-screen('min', $tablet) {
+          grid-template-columns: 50vw 50vw;
+        }
 
         .preview {
-          height: 45vh;
+          padding: 20px;
           overflow: scroll;
+
+          @include media-screen('min', $tablet) {
+            height: 100svh;
+          }
+
+          background: $bgGradient;
 
           > div {
             font-size: 16px;
-            color: $colorWhite;
+            color: $colorBlack;
             background-color: transparent;
 
             > H2,
@@ -145,12 +151,12 @@
             code,
             ol,
             ul {
-              color: $colorWhite;
+              color: $colorBlack;
             }
 
             h2,
             h3 {
-              border-bottom: 1px solid $colorWhite;
+              border-bottom: 1px solid $colorBlack;
             }
 
             img {
@@ -162,21 +168,42 @@
             }
 
             blockquote {
-              border-left: 4px solid $colorWhite;
+              border-left: 4px solid $colorBlack;
             }
 
             ol,
             ul {
               > li {
-                color: $colorWhite;
+                color: $colorBlack;
+              }
+            }
+
+            table {
+              > thead {
+                > tr {
+                  background-color: transparent;
+
+                  // > th {} // *
+                }
+              }
+
+              > tbody {
+                > tr {
+                  background-color: transparent;
+
+                  // > th {} // *
+                }
               }
             }
           }
         }
 
         .editor {
-          border-top: 5px solid $colorBlue;
-          height: 45vh;
+          padding: 20px;
+
+          @include media-screen('min', $tablet) {
+            height: 100svh;
+          }
 
           > textarea {
             display: block;
