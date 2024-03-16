@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useGlobalState } from '@/Global/context/use';
-import useModal from '@/GraphQL/hooks/useModal';
+import useModal from '@/components/Modal/use';
 import useQuery from '@/GraphQL/hooks/useQuery';
 import * as gc from '@/config/global';
 import * as gu from '@/utils/global';
@@ -136,6 +136,10 @@ const Editor = () => {
     setTimeout(() => finaly(), 1000);
   };
 
+  const handleMDSimulator = () => {
+    console.log('handleMDSimulator');
+  };
+
   const isModal = () => modal.is;
 
   return (
@@ -143,18 +147,30 @@ const Editor = () => {
       {isModal() && (
         <modal.Modal>
           {app.isCreate ? (
-            <modal.CreateArticle action={approveCreate} />
-          ) : (
             <>
-              {modal.content === app.config.EDIT ? (
-                <modal.UpdateArticle action={approveUpdate} />
+              {modal.content === 'mdsimulator' ? (
+                <modal.MDSimulator action={handleMDSimulator} />
               ) : (
-                modal.content === app.config.DELETE && (
-                  <modal.DeleteArticle action={approveDelete} />
-                )
+                <modal.CreateArticle action={approveCreate} />
               )}
             </>
-          )}
+          ) : app.isEdit ? (
+            <>
+              {modal.content === 'edit' ? (
+                <modal.UpdateArticle action={approveUpdate} />
+              ) : modal.content === 'delete' ? (
+                <modal.DeleteArticle action={approveDelete} />
+              ) : modal.content === 'mdsimulator' ? (
+                <modal.MDSimulator action={handleMDSimulator} />
+              ) : null}
+            </>
+          ) : app.isInit ? (
+            <>
+              {modal.content === 'mdsimulator' ? (
+                <modal.MDSimulator action={handleMDSimulator} />
+              ) : null}
+            </>
+          ) : null}
         </modal.Modal>
       )}
 

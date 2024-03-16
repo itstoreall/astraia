@@ -14,8 +14,7 @@ const Dashboard = () => {
     <ApolloProvider>
       {app.isInit && data.articles && <Information />}
       {app.isInit && <ArticleList />}
-      {app.isCreate && <Editor />}
-      {app.isEdit && <Editor />}
+      {(app.isCreate || app.isEdit) && <Editor />}
       {app.isPending && <Loader />}
     </ApolloProvider>
   );

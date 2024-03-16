@@ -1,0 +1,26 @@
+@import '@/styles/imports';
+
+button.mdSimulatorButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+
+  > svg {
+    width: 35px;
+    height: 35px;
+
+    > g {
+      @extend %extends-transition-03s;
+      stroke: $colorRose;
+    }
+  }
+
+  &:hover {
+    > svg > g {
+      stroke: $colorBlue;
+    }
+  }
+}

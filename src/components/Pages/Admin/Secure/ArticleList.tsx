@@ -1,9 +1,7 @@
-// import Link from 'next/link';
 import Image from 'next/image';
 import useFetchArticles from '@/hooks/useFetchArticles';
 import { useGlobalState } from '@/Global/context/use';
 import { Article } from '@/Global/types';
-// import * as gc from '@/config/global';
 import Loader from '@/components/Loader';
 import s from './Dashboard.module.scss';
 
