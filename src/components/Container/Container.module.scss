@@ -21,6 +21,7 @@
       border-radius: 8px;
 
       > .content {
+        @extend %extends-hide-scrollbar;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -47,6 +48,7 @@
       height: 100%;
 
       > .content {
+        @extend %extends-hide-scrollbar;
         margin: 0 auto;
         max-width: $maxWidth;
         overflow-y: scroll;
@@ -56,6 +58,7 @@
 
   &.article {
     .bg > .content {
+      @extend %extends-hide-scrollbar;
       background: $bgGradient;
 
       @include media-screen('min', $tablet) {
@@ -74,6 +77,8 @@
 
     .bg {
       > .content {
+        @extend %extends-hide-scrollbar;
+
         @include media-screen('min', $tablet) {
           display: grid;
           grid-template-columns: 260px auto;
