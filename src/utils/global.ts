@@ -12,8 +12,3 @@ export const setLS = <D>(label: string, data: D) => {
 export const delLS = (label: string) => {
   localStorage.removeItem(label);
 };
-
-// ------ Body overflow:
-
-export const updateBodyOverflow = (value: boolean) =>
-  (document.body.style.overflow = value ? 'hidden' : 'auto');

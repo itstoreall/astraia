@@ -1,6 +1,7 @@
 @import '@/styles/imports';
 
 textarea.textarea {
+  @extend %extends-hide-scrollbar;
   display: block;
   padding: 30px 20px;
   margin: 0;
