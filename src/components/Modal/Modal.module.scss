@@ -128,7 +128,7 @@
         grid-template-rows: 50svh 50svh;
         background-color: $colorBlack;
 
-        @include media-screen('min', $tablet - 250px) {
+        @include media-screen('min', $tablet - 150px) {
           grid-template-columns: 50vw 50vw;
         }
 
@@ -166,7 +166,7 @@
           padding: 20px;
           overflow: scroll;
 
-          @include media-screen('min', $tablet - 250px) {
+          @include media-screen('min', $tablet - 150px) {
             height: 100vh;
           }
 
