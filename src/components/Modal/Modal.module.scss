@@ -132,9 +132,9 @@
           grid-template-columns: 50vw 50vw;
         }
 
-        @include media-screen('min', $desktop) {
-          grid-template-columns: calc($max / 2) calc($max / 2);
-        }
+        // @include media-screen('min', $desktop) {
+        //   grid-template-columns: calc($max / 2) calc($max / 2);
+        // }
 
         > button.return {
           @extend %extends-transition-03s;
@@ -157,21 +157,28 @@
 
             > g {
               @extend %extends-transition-03s;
-              stroke: $colorWhite;
+              stroke: $colorBlack;
+            }
+          }
+
+          &:hover {
+            > svg > g {
+              stroke: $colorRose;
             }
           }
         }
 
         .preview {
+          @extend %extends-hide-scrollbar;
           padding: 20px;
           overflow: scroll;
+          background: $bgGradient;
 
           @include media-screen('min', $tablet - 150px) {
             height: 100vh;
           }
 
-          background: $bgGradient;
-
+          // MDEditor (this div):
           > div {
             font-size: 16px;
             color: $colorBlack;
@@ -245,6 +252,7 @@
           }
 
           > textarea {
+            @extend %extends-hide-scrollbar;
             padding: 20px;
             display: block;
             width: 100%;
