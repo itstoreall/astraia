@@ -167,7 +167,7 @@
           overflow: scroll;
 
           @include media-screen('min', $tablet - 250px) {
-            height: 100svh;
+            height: 100vh;
           }
 
           background: $bgGradient;
@@ -240,8 +240,8 @@
         }
 
         .editor {
-          @include media-screen('min', $tablet) {
-            height: 100svh;
+          @include media-screen('min', $tablet - 250px) {
+            height: 100vh;
           }
 
           > textarea {
