@@ -1,23 +1,18 @@
 import Logo from '../Logo';
 import { useGlobalState } from '@/Global/context/use';
+import * as config from './config';
+import { EBtn } from './types';
 import MDSimulatorButton from '../MDSimulatorButton';
 import NewArticleButton from '../NewArticleButton';
 import ArticlesButton from '../ArticlesButton';
 import s from './Header.module.scss';
 
-export enum EBtn {
-  MD = 'md',
-  NEW = 'new',
-  ALL = 'all'
-}
+const { header } = config;
 
 const buttons = [{ label: EBtn.MD }, { label: EBtn.NEW }, { label: EBtn.ALL }];
 
 const ButtonHandler = () => {
   const { app } = useGlobalState();
-
-  console.log('');
-  console.log('header status:', app.status);
 
   const isMD = (label: EBtn) => {
     return label === EBtn.MD && (app.isInit || app.isCreate || app.isEdit);
@@ -66,7 +61,7 @@ const Header = () => {
   return (
     <header className={s.header}>
       <div className={s.content}>
-        <Logo label={'header'} />
+        <Logo label={header.label} />
 
         {ButtonHandler()}
       </div>

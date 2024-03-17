@@ -9,7 +9,7 @@ export type MDSimulatorProps = {
   action: () => void;
 };
 
-const MDSimulator = ({ action }: MDSimulatorProps) => {
+const MDSimulator = () => {
   const [text, setText] = useState(config.initialState);
 
   const { modal } = useGlobalState();

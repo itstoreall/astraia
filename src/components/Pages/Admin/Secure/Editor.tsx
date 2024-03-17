@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-'use client';
+// 'use client';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useGlobalState } from '@/Global/context/use';
@@ -136,10 +136,6 @@ const Editor = () => {
     setTimeout(() => finaly(), 1000);
   };
 
-  const handleMDSimulator = () => {
-    console.log('handleMDSimulator');
-  };
-
   const isModal = () => modal.is;
 
   return (
@@ -149,7 +145,7 @@ const Editor = () => {
           {app.isCreate ? (
             <>
               {modal.content === 'mdsimulator' ? (
-                <modal.MDSimulator action={handleMDSimulator} />
+                <modal.MDSimulator />
               ) : (
                 <modal.CreateArticle action={approveCreate} />
               )}
@@ -161,14 +157,12 @@ const Editor = () => {
               ) : modal.content === 'delete' ? (
                 <modal.DeleteArticle action={approveDelete} />
               ) : modal.content === 'mdsimulator' ? (
-                <modal.MDSimulator action={handleMDSimulator} />
+                <modal.MDSimulator />
               ) : null}
             </>
           ) : app.isInit ? (
             <>
-              {modal.content === 'mdsimulator' ? (
-                <modal.MDSimulator action={handleMDSimulator} />
-              ) : null}
+              {modal.content === 'mdsimulator' ? <modal.MDSimulator /> : null}
             </>
           ) : null}
         </modal.Modal>
