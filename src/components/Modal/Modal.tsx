@@ -1,7 +1,9 @@
+import { useEffect, useState } from 'react';
 import { ChildrenProps } from '@/types';
 import s from './Modal.module.scss';
 
 const Modal = ({ children }: ChildrenProps) => {
+
   // const [isContent, setIsContent] = useState<boolean>(false);
 
   /*

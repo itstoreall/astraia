@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useGlobalState } from '@/Global/context/use';
 import CreateArticle from '@/components/Modal/contents/CreateArticle';
 import UpdateArticle from '@/components/Modal/contents/UpdateArticle';
@@ -13,11 +13,29 @@ export type ModalProps = {
 };
 
 const useModal = () => {
+  const [isLocked, setIsLocked] = useState(false);
+
   const { modal } = useGlobalState();
 
   useEffect(() => {
-    return () => modal.set(false);
+    setIsLocked(true);
+    return () => {
+      setIsLocked(false);
+      modal.set(false);
+    };
   }, []);
+
+  useEffect(() => {
+    if (isLocked) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isLocked]);
 
   return {
     Modal,

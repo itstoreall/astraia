@@ -14,15 +14,19 @@ const MDSimulatorButton = () => {
     // console.log('click handleMDModal');
   };
 
+  const isModal = () => modal.is;
+
   // console.log('modal.content --->', modal.content);
 
   return (
     <>
-      {modal.content === 'mdsimulator' && (
+      {isModal() && (
         <modal.Modal>
-          <modal.MDSimulator
-            action={() => console.log('modal MDSimulator click!!!!')}
-          />
+          {modal.content === 'mdsimulator' && (
+            <modal.MDSimulator
+              action={() => console.log('modal MDSimulator click!!!!')}
+            />
+          )}
         </modal.Modal>
       )}
 

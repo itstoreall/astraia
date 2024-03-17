@@ -121,19 +121,52 @@
         }
       }
 
+      // ------ MD Simulator:
+
       &.mdSimulator {
         display: grid;
         grid-template-rows: 50svh 50svh;
+        background-color: $colorBlack;
 
-        @include media-screen('min', $tablet) {
+        @include media-screen('min', $tablet - 250px) {
           grid-template-columns: 50vw 50vw;
+        }
+
+        @include media-screen('min', $desktop) {
+          grid-template-columns: calc($max / 2) calc($max / 2);
+        }
+
+        > button.return {
+          @extend %extends-transition-03s;
+          position: fixed;
+          top: 0;
+          left: 0;
+          padding: 0 0 0 3px;
+          width: 40px;
+          height: 40px;
+          background-color: $colorBlue;
+          cursor: pointer;
+
+          @include media-screen('min', $max + 1px) {
+            background-color: transparent;
+          }
+
+          > svg {
+            width: 34px;
+            height: 34px;
+
+            > g {
+              @extend %extends-transition-03s;
+              stroke: $colorWhite;
+            }
+          }
         }
 
         .preview {
           padding: 20px;
           overflow: scroll;
 
-          @include media-screen('min', $tablet) {
+          @include media-screen('min', $tablet - 250px) {
             height: 100svh;
           }
 
@@ -143,6 +176,10 @@
             font-size: 16px;
             color: $colorBlack;
             background-color: transparent;
+
+            h1 {
+              display: none;
+            }
 
             > H2,
             H3,
@@ -157,6 +194,10 @@
             h2,
             h3 {
               border-bottom: 1px solid $colorBlack;
+
+              > a {
+                display: none;
+              }
             }
 
             img {
@@ -199,13 +240,12 @@
         }
 
         .editor {
-          padding: 20px;
-
           @include media-screen('min', $tablet) {
             height: 100svh;
           }
 
           > textarea {
+            padding: 20px;
             display: block;
             width: 100%;
             height: 100%;
