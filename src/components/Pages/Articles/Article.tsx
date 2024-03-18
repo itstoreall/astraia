@@ -22,8 +22,6 @@ const Article = ({ article }: { article: Article }) => {
     if (!lsData) return;
   }, []);
 
-  // console.log('article', article);
-
   if (!article) return null;
 
   const imageUrl = article.image ? article.image : defaultImageUrl;

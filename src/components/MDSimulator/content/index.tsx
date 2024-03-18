@@ -1,31 +1,19 @@
 import { useRef, useState } from 'react';
-import MDEditor from '@uiw/react-md-editor';
-import { useGlobalState } from '@/Global/context/use';
 import * as config from '../config';
+import s from '../MDSimulator.module.scss';
 import ReturnIcon from '@/assets/icons/ReturnIcon';
-import s from '../Modal.module.scss';
+import MDEditor from '@uiw/react-md-editor';
 
-export type MDSimulatorProps = {
-  action: () => void;
-};
-
-const MDSimulator = () => {
+const MDSContent = ({ fn }: { fn: () => void }) => {
   const [text, setText] = useState(config.initialState);
-
-  const { modal } = useGlobalState();
 
   const taRef = useRef<HTMLTextAreaElement>(null);
 
   const handleText = (val: string) => setText(val);
 
-  const closeModal = () => {
-    modal.setContent('');
-    modal.set(false);
-  };
-
   return (
-    <div className={`${s.contentBlock} ${s.mdSimulator}`}>
-      <button className={s.return} onClick={closeModal}>
+    <>
+      <button className={s.return} onClick={fn}>
         <ReturnIcon />
       </button>
 
@@ -41,8 +29,8 @@ const MDSimulator = () => {
           onChange={e => handleText(e.target.value)}
         />
       </div>
-    </div>
+    </>
   );
 };
 
-export default MDSimulator;
+export default MDSContent;

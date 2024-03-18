@@ -1,3 +1,4 @@
+import { unstable_cache } from 'next/cache';
 import { getServerArticle } from '@/GraphQL/server/articles.service';
 import metadataHandler from '@/utils/metadataHandler';
 import { GenMetadata, ParamsProps } from '@/types';
@@ -9,11 +10,15 @@ export const generateMetadata: GenMetadata = async ({ params: { id } }) => {
   return metadataHandler(gc.page.article.pathname, article);
 };
 
+const getCached = unstable_cache(
+  async id => getServerArticle(id),
+  ['++__server_article'],
+  { tags: ['++__article'], revalidate: 1 }
+);
+
 const ArticlePage = async ({ params: { id } }: ParamsProps) => {
-  const article = await getServerArticle(id);
-
+  const article = await getCached(id);
   if (!article) return <p>no article</p>;
-
   return <Article article={article} />;
 };
 

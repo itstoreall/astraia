@@ -2,7 +2,7 @@ import Logo from '../Logo';
 import { useGlobalState } from '@/Global/context/use';
 import * as config from './config';
 import { EBtn } from './types';
-import MDSimulatorButton from '../MDSimulatorButton';
+import MDSimulator from '../MDSimulator';
 import NewArticleButton from '../NewArticleButton';
 import ArticlesButton from '../ArticlesButton';
 import s from './Header.module.scss';
@@ -35,7 +35,7 @@ const ButtonHandler = () => {
               {acc}
               {isMD(btn.label) && (
                 <li key={btn.label} className={s.buttonItem}>
-                  <MDSimulatorButton />
+                  <MDSimulator />
                 </li>
               )}
               {isNEW(btn.label) && (

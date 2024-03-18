@@ -125,3 +125,81 @@
   -webkit-animation: flicker-1 2s linear infinite both;
   animation: flicker-1 2s linear infinite both;
 }
+
+// ------ MDStandart:
+
+%extends-md-standart {
+  > div {
+    font-size: 16px;
+    color: $colorBlack;
+    background-color: transparent;
+
+    h1 {
+      display: none;
+    }
+
+    > H2,
+    H3,
+    p,
+    strong,
+    code,
+    ol,
+    ul {
+      color: $colorBlack;
+    }
+
+    h2,
+    h3 {
+      border-bottom: 1px solid $colorBlack;
+
+      > a {
+        display: none;
+      }
+    }
+
+    img {
+      display: block;
+    }
+
+    code {
+      background-color: var(--message-text-code-dg);
+    }
+
+    blockquote {
+      border-left: 4px solid $colorBlack;
+    }
+
+    ol,
+    ul {
+      > li {
+        color: $colorBlack;
+      }
+    }
+
+    table {
+      > thead {
+        > tr {
+          background-color: transparent;
+
+          // > th {} // *
+        }
+      }
+
+      > tbody {
+        > tr {
+          background-color: transparent;
+
+          &:nth-child(2n) {
+            background-color: transparent;
+          }
+
+          > td {
+            background: transparent;
+          }
+
+          // > th {} // *
+        }
+      }
+    }
+  }
+}

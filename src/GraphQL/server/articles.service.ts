@@ -14,7 +14,7 @@ export const getServerArticle = async (id: string) => {
   });
 
   if (data) {
-    console.log('data', data);
+    console.log('data');
     return data?.getArticleById;
   } else return null;
 };

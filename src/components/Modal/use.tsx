@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import { useGlobalState } from '@/Global/context/use';
-import CreateArticle from '@/components/Modal/contents/CreateArticle';
-import UpdateArticle from '@/components/Modal/contents/UpdateArticle';
-import DeleteArticle from '@/components/Modal/contents/DeleteArticle';
-import MDSimulator from '@/components/Modal/contents/MDSimulator';
+import CreateArticle from '@/components/Modal/contents/CreateArticle.content';
+import UpdateArticle from '@/components/Modal/contents/UpdateArticle.content';
+import DeleteArticle from '@/components/Modal/contents/DeleteArticle.content';
+import MDSimulator from '@/components/Modal/contents/MDSimulator.content';
 import Modal from '@/components/Modal';
 
 export type ModalProps = {

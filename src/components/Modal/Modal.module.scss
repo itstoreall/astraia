@@ -136,136 +136,136 @@
         //   grid-template-columns: calc($max / 2) calc($max / 2);
         // }
 
-        > button.return {
-          @extend %extends-transition-03s;
-          position: fixed;
-          top: 0;
-          left: 0;
-          padding: 0 0 0 3px;
-          width: 40px;
-          height: 40px;
-          background-color: $colorBlue;
-          cursor: pointer;
+        // > button.return {
+        //   @extend %extends-transition-03s;
+        //   position: fixed;
+        //   top: 0;
+        //   left: 0;
+        //   padding: 0 0 0 3px;
+        //   width: 40px;
+        //   height: 40px;
+        //   background-color: $colorBlue;
+        //   cursor: pointer;
 
-          @include media-screen('min', $max + 1px) {
-            background-color: transparent;
-          }
+        //   @include media-screen('min', $max + 1px) {
+        //     background-color: transparent;
+        //   }
 
-          > svg {
-            width: 34px;
-            height: 34px;
+        //   > svg {
+        //     width: 34px;
+        //     height: 34px;
 
-            > g {
-              @extend %extends-transition-03s;
-              stroke: $colorBlack;
-            }
-          }
+        //     > g {
+        //       @extend %extends-transition-03s;
+        //       stroke: $colorBlack;
+        //     }
+        //   }
 
-          &:hover {
-            > svg > g {
-              stroke: $colorRose;
-            }
-          }
-        }
+        //   &:hover {
+        //     > svg > g {
+        //       stroke: $colorRose;
+        //     }
+        //   }
+        // }
 
-        .preview {
-          @extend %extends-hide-scrollbar;
-          padding: 20px;
-          overflow: scroll;
-          background: $bgGradient;
+        // .preview {
+        //   @extend %extends-hide-scrollbar;
+        //   padding: 20px;
+        //   overflow: scroll;
+        //   background: $bgGradient;
 
-          @include media-screen('min', $tablet - 150px) {
-            height: 100vh;
-          }
+        //   @include media-screen('min', $tablet - 150px) {
+        //     height: 100vh;
+        //   }
 
-          // MDEditor (this div):
-          > div {
-            font-size: 16px;
-            color: $colorBlack;
-            background-color: transparent;
+        //   // MDEditor (this div):
+        //   > div {
+        //     font-size: 16px;
+        //     color: $colorBlack;
+        //     background-color: transparent;
 
-            h1 {
-              display: none;
-            }
+        //     h1 {
+        //       display: none;
+        //     }
 
-            > H2,
-            H3,
-            p,
-            strong,
-            code,
-            ol,
-            ul {
-              color: $colorBlack;
-            }
+        //     > H2,
+        //     H3,
+        //     p,
+        //     strong,
+        //     code,
+        //     ol,
+        //     ul {
+        //       color: $colorBlack;
+        //     }
 
-            h2,
-            h3 {
-              border-bottom: 1px solid $colorBlack;
+        //     h2,
+        //     h3 {
+        //       border-bottom: 1px solid $colorBlack;
 
-              > a {
-                display: none;
-              }
-            }
+        //       > a {
+        //         display: none;
+        //       }
+        //     }
 
-            img {
-              display: block;
-            }
+        //     img {
+        //       display: block;
+        //     }
 
-            code {
-              background-color: var(--message-text-code-dg);
-            }
+        //     code {
+        //       background-color: var(--message-text-code-dg);
+        //     }
 
-            blockquote {
-              border-left: 4px solid $colorBlack;
-            }
+        //     blockquote {
+        //       border-left: 4px solid $colorBlack;
+        //     }
 
-            ol,
-            ul {
-              > li {
-                color: $colorBlack;
-              }
-            }
+        //     ol,
+        //     ul {
+        //       > li {
+        //         color: $colorBlack;
+        //       }
+        //     }
 
-            table {
-              > thead {
-                > tr {
-                  background-color: transparent;
+        //     table {
+        //       > thead {
+        //         > tr {
+        //           background-color: transparent;
 
-                  // > th {} // *
-                }
-              }
+        //           // > th {} // *
+        //         }
+        //       }
 
-              > tbody {
-                > tr {
-                  background-color: transparent;
+        //       > tbody {
+        //         > tr {
+        //           background-color: transparent;
 
-                  // > th {} // *
-                }
-              }
-            }
-          }
-        }
+        //           // > th {} // *
+        //         }
+        //       }
+        //     }
+        //   }
+        // }
 
-        .editor {
-          @include media-screen('min', $tablet - 250px) {
-            height: 100vh;
-          }
+        // .editor {
+        //   @include media-screen('min', $tablet - 250px) {
+        //     height: 100vh;
+        //   }
 
-          > textarea {
-            @extend %extends-hide-scrollbar;
-            padding: 20px;
-            display: block;
-            width: 100%;
-            height: 100%;
-            font-size: 16px;
-            color: $colorWhite;
-            background-color: transparent;
-            caret-color: $colorWhite;
-            border: none;
-            outline: none;
-            resize: none;
-          }
-        }
+        //   > textarea {
+        //     @extend %extends-hide-scrollbar;
+        //     padding: 20px;
+        //     display: block;
+        //     width: 100%;
+        //     height: 100%;
+        //     font-size: 16px;
+        //     color: $colorWhite;
+        //     background-color: transparent;
+        //     caret-color: $colorWhite;
+        //     border: none;
+        //     outline: none;
+        //     resize: none;
+        //   }
+        // }
       }
     }
   }

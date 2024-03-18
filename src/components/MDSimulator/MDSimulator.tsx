@@ -1,11 +1,11 @@
 import useModal from '@/components/Modal/use';
 import * as config from './config';
 import MDSimulatorIcon from '@/assets/icons/MDSimulatorIcon';
-import s from './MDSimulatorButton.module.scss';
+import s from './MDSimulator.module.scss';
 
 const { label: MDSLabel } = config.MDSimulator;
 
-const MDSimulatorButton = () => {
+const MDSimulator = () => {
   const modal = useModal();
 
   const handleMDModal = () => {
@@ -28,4 +28,4 @@ const MDSimulatorButton = () => {
   );
 };
 
-export default MDSimulatorButton;
+export default MDSimulator;

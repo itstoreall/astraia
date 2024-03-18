@@ -1,3 +1,7 @@
+export const MDSimulator = {
+  label: 'mdsimulator'
+};
+
 export const initialState = `====== 1
 
 ## Крупньій заголовок
