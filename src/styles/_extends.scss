@@ -130,7 +130,7 @@
 
 %extends-md-standart {
   > div {
-    font-size: 16px;
+    font-size: 18px;
     color: $colorBlack;
     background-color: transparent;
 
@@ -145,11 +145,14 @@
     code,
     ol,
     ul {
+      font-family: var(--font-open-sans);
       color: $colorBlack;
     }
 
     h2,
     h3 {
+      font-size: 32px;
+      font-weight: 700;
       border-bottom: 1px solid $colorBlack;
 
       > a {
@@ -157,16 +160,41 @@
       }
     }
 
+    h3 {
+      font-size: 22px;
+    }
+
+    h2,
+    h3 {
+      padding-bottom: 20px;
+    }
+
+    h2,
+    h3,
+    > p,
+    blockquote,
+    table,
+    ol,
+    ul {
+      margin-bottom: 30px;
+    }
+
     img {
       display: block;
     }
 
-    code {
-      background-color: var(--message-text-code-dg);
+    blockquote {
+      padding: 0 30px;
+      font-style: italic;
+      border-left: 8px solid $colorBlack;
+
+      > p {
+        opacity: 0.7;
+      }
     }
 
-    blockquote {
-      border-left: 4px solid $colorBlack;
+    code {
+      background-color: var(--message-text-code-dg);
     }
 
     ol,
