@@ -1,4 +1,5 @@
 @import './extends';
+@import './vars';
 
 @mixin media-screen($var, $w) {
   @if $var == 'min' {
@@ -15,22 +16,6 @@
 @mixin media-screen-range($minWidth, $maxWidth) {
   @media screen and (min-width: $minWidth) and (max-width: $maxWidth) {
     @content;
-  }
-}
-
-@mixin basic-palette-black($var, $value: 1) {
-  @if $var == 'bg' {
-    background-color: rgba(0, 0, 0, $value);
-  } @else if $var == 'color' {
-    color: rgba(0, 0, 0, $value);
-  }
-}
-
-@mixin basic-palette-white($var, $value: 1) {
-  @if $var == 'bg' {
-    background-color: rgba(255, 255, 255, $value);
-  } @else if $var == 'color' {
-    color: rgba(255, 255, 255, $value);
   }
 }
 
@@ -61,29 +46,33 @@
   }
 }
 
-// .MSStandartMobile {
-//   padding: 30px 15px;
+// ------ Color and Gradient:
 
-//   > div {
-//     font-size: 14px;
+@mixin basic-palette-gradiend($opacity: 1, $theme: '') {
+  background: linear-gradient(
+    320deg,
+    rgba(194, 79, 182, $opacity) 6.59%,
+    rgba(63, 81, 184, $opacity) 94.04%
+  );
+  @if $theme == 'light' {
+    background-color: $colorWhite;
+  } @else if $theme == 'dark' {
+    background-color: $colorRed;
+  }
+}
 
-//     h2 {
-//       font-size: 26px;
-//     }
+@mixin basic-palette-black($var, $value: 1) {
+  @if $var == 'bg' {
+    background-color: rgba(0, 0, 0, $value);
+  } @else if $var == 'color' {
+    color: rgba(0, 0, 0, $value);
+  }
+}
 
-//     h3 {
-//       font-size: 22px;
-//     }
-
-//     > ul,
-//     ol,
-//     blockquote {
-//       padding-left: 15px;
-//     }
-
-//     > p > img {
-//       margin: 0 -15px;
-//       min-width: 100vw;
-//     }
-//   }
-// }
+@mixin basic-palette-white($var, $value: 1) {
+  @if $var == 'bg' {
+    background-color: rgba(255, 255, 255, $value);
+  } @else if $var == 'color' {
+    color: rgba(255, 255, 255, $value);
+  }
+}
