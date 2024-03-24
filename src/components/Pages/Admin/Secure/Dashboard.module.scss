@@ -219,35 +219,14 @@ section.editorSection {
 
     .heroImage {
       object-fit: cover;
-      opacity: 0.25;
+      opacity: 0.4;
     }
 
     // ------ Title:
 
     > h1.title {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 80%;
-      font-family: var(--font-open-sans);
-      font-size: 24px;
-      font-weight: 700;
-      line-height: 1.2;
-      text-transform: uppercase;
-      transform: translate(-50%, -50%);
-
-      @include media-screen('min', $mobile - 40) {
-        font-size: 34px;
-      }
-
-      @include media-screen('min', $tablet) {
-        width: 70%;
-        font-size: 42px;
-      }
-
-      @include media-screen('min', $desktop) {
-        font-size: 46px;
-      }
+      @extend %extends-article-h1-title-standart;
+      @include article-h1-title-standart-responsive();
     }
 
     > input {
