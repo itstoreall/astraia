@@ -46,6 +46,31 @@
   }
 }
 
+// ------ H1 Title Standart (responsive addition to the extantion):
+
+@mixin article-h1-title-standart-responsive() {
+  @include basic-palette-white(bg, 0.7);
+
+  @include media-screen('min', $mobile - 30) {
+    font-size: 18px;
+  }
+
+  @include media-screen('min', $mobile) {
+    font-size: 20px;
+  }
+
+  @include media-screen('min', $tablet) {
+    padding: 15px 25px;
+    width: 70%;
+    font-size: 34px;
+    line-height: 1.4;
+  }
+
+  @include media-screen('min', $desktop) {
+    font-size: 42px;
+  }
+}
+
 // ------ Color and Gradient:
 
 @mixin basic-palette-gradiend($opacity: 1, $theme: '') {

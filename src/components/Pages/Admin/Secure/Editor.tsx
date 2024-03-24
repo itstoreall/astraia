@@ -23,6 +23,7 @@ const Editor = () => {
   const [isTitleInput, setIsTitleInput] = useState(false);
   const [isImageInput, setIsImageInput] = useState(false);
   const [isPrc, setIsPrc] = useState(false); // Process
+  const [textAlign, setTextAlign] = useState<string>(''); // h1 style
 
   const { app, details } = useGlobalState();
   const modal = useModal();
@@ -51,6 +52,7 @@ const Editor = () => {
   }, []);
 
   useEffect(() => {
+    setTextAlign(title?.split(' ').length <= 3 ? 'center' : '');
     if (app.isInit) return app.set(app.config.CREATE);
     if (app.isCreate) {
       const lsPrevData = gu.getLS(lsArticleKey);
@@ -185,7 +187,7 @@ const Editor = () => {
             onChange={e => handleTitle(e.target.value)}
             onBlur={() => setIsTitleInput(false)}
             placeholder='Title...'
-            maxLength={65}
+            maxLength={60}
           />
         )}
 
@@ -198,7 +200,10 @@ const Editor = () => {
           />
         )}
 
-        <h1 className={s.title} onClick={() => setIsTitleInput(true)}>
+        <h1
+          className={`${s.title} ${s[textAlign]}`}
+          onClick={() => setIsTitleInput(true)}
+        >
           {title}
         </h1>
 
