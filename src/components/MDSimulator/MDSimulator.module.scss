@@ -74,12 +74,9 @@ button.return {
 // ------ Button:
 
 button.mdSimulatorButton {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @extend %extends-flex-xy-center;
   width: 100%;
   height: 100%;
-  cursor: pointer;
 
   > svg {
     width: 35px;
@@ -92,6 +89,8 @@ button.mdSimulatorButton {
   }
 
   &:hover {
+    cursor: pointer;
+
     > svg > g {
       stroke: $colorBlue;
     }

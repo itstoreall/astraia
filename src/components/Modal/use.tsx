@@ -1,9 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import { useGlobalState } from '@/Global/context/use';
-import CreateArticle from '@/components/Modal/contents/CreateArticle.content';
-import UpdateArticle from '@/components/Modal/contents/UpdateArticle.content';
-import DeleteArticle from '@/components/Modal/contents/DeleteArticle.content';
+import CreateArticle from './contents/CreateArticle.content';
+import UpdateArticle from './contents/UpdateArticle.content';
+import DeleteArticle from './contents/DeleteArticle.content';
+import PublishArticle from './contents/PublishArticle.content';
 import MDSimulator from '@/components/Modal/contents/MDSimulator.content';
 import Modal from '@/components/Modal';
 
@@ -42,6 +43,7 @@ const useModal = () => {
     CreateArticle,
     UpdateArticle,
     DeleteArticle,
+    PublishArticle,
     MDSimulator,
     is: modal.is,
     set: (b: boolean) => modal.set(b),

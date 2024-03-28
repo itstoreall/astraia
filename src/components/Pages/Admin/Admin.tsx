@@ -10,9 +10,9 @@ import s from './Admin.module.scss';
 const { admin: adm, articles, article, dashboard } = gc.page;
 
 const Admin = () => {
-  const { admin, app } = useGlobalState();
+  const { auth, admin, app } = useGlobalState();
 
-  console.log('* app status:', app.status);
+  console.log('* app status:', app.status, auth.status);
 
   const containerLabel = !admin.is
     ? adm.label
