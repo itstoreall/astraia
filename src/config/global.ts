@@ -65,3 +65,11 @@ export const meta = {
   },
   authors: ['Astraia', 'Mila']
 };
+
+export const articleStatus = {
+  created: 'created',
+  published: 'published',
+  unpublished: 'unpublished',
+  updated: 'updated',
+  failed: 'failed'
+};

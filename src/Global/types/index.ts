@@ -7,6 +7,7 @@ export type Article = {
   text: string;
   image: string;
   tags: string[];
+  status: string;
   views: string | null;
   timestamp: string;
 };
@@ -19,11 +20,25 @@ export enum EStatus {
   PENDING = 'pending',
   ACTIVE = 'active',
   DELETE = 'delete',
+  // PUBLISH = 'publish',
   ARTICLES = 'articles',
   ARTICLE = 'article'
 }
 
+export enum EAuth {
+  OWNER = 'owner',
+  ADMIN = 'admin',
+  EDITOR = 'editor'
+}
+
 // ------ G:
+
+export type GAuth = {
+  status: EAuth | null;
+  set: (v: EAuth | null) => void;
+  isOwner: boolean;
+  isAdmin: boolean;
+};
 
 export type GAdmin = {
   is: boolean;
@@ -65,8 +80,9 @@ export type GModal = {
 // ------ Params:
 
 export type ContextParams = {
-  app: GApp;
+  auth: GAuth;
   admin: GAdmin;
+  app: GApp;
   data: GData;
   details: GDetails;
   modal: GModal;

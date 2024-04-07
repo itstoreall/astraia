@@ -7,7 +7,7 @@ import s from './Dashboard.module.scss';
 
 const ArticleList = () => {
   const { app, details } = useGlobalState();
-  const { articles } = useFetchArticles();
+  const { articles } = useFetchArticles(null);
 
   if (!articles) return <Loader />;
 

@@ -2,11 +2,11 @@ import { MouseEvent, useEffect, useState } from 'react';
 import { useGlobalState } from '@/Global/context/use';
 import { KeyHandlerProps } from '../types';
 import { ChildrenProps } from '@/types';
+import { EAuth } from '@/Global/types';
+import * as gu from '@/utils/global';
 import s from '../Admin.module.scss';
 
-const adminKey = process.env.NEXT_PUBLIC_ADMIN_KEY;
-
-const KeyHandler = ({ setIsAdmin }: KeyHandlerProps) => {
+const KeyHandler = ({ setIsAdmin, auth }: KeyHandlerProps) => {
   const [titleStyle, setTitleStyle] = useState<string>('');
   const [linksStyle, setLinksStyle] = useState<string>('');
   const [keyStyle, setKeyStyle] = useState<string>('');
@@ -26,10 +26,17 @@ const KeyHandler = ({ setIsAdmin }: KeyHandlerProps) => {
     setUserId(value);
   };
 
+  const grantAccess = () => {
+    auth.set(gu.isOwnerId(userId) ? EAuth.OWNER : EAuth.ADMIN);
+    setIsAdmin(true);
+  };
+
   const submit = (e: MouseEvent<HTMLFormElement, globalThis.MouseEvent>) => {
     e.preventDefault();
     if (!userId) return;
-    userId === adminKey ? setIsAdmin(true) : setError('error');
+    gu.isOwnerId(userId) || gu.isAdminId(userId)
+      ? grantAccess()
+      : setError('error');
   };
 
   return (
@@ -69,13 +76,17 @@ const KeyHandler = ({ setIsAdmin }: KeyHandlerProps) => {
 };
 
 const Guard = ({ children }: ChildrenProps) => {
-  const { admin, app } = useGlobalState();
+  const { auth, admin, app } = useGlobalState();
 
   useEffect(() => {
     app.status === app.config.GUARD && admin.is && app.set(app.config.INIT);
   }, [admin.is, app]);
 
-  return <>{admin.is ? children : <KeyHandler setIsAdmin={admin.set} />}</>;
+  return admin.is ? (
+    children
+  ) : (
+    <KeyHandler setIsAdmin={admin.set} auth={auth} />
+  );
 };
 
 export default Guard;

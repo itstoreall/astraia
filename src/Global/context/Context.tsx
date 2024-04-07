@@ -1,9 +1,15 @@
 'use client';
 import { createContext, useState } from 'react';
-import { ContextParams, EStatus, Article } from '../types';
 import { ChildrenProps } from '@/types';
+import * as t from '../types';
 
-export const Context = createContext<ContextParams>({
+export const Context = createContext<t.ContextParams>({
+  auth: {
+    status: null,
+    set: () => console.log(),
+    isOwner: false,
+    isAdmin: false
+  },
   admin: {
     is: false,
     set: () => console.log()
@@ -20,7 +26,7 @@ export const Context = createContext<ContextParams>({
     isDelete: false,
     isArticles: false,
     isArticle: false,
-    config: EStatus
+    config: t.EStatus
   },
   data: {
     articles: [],
@@ -39,12 +45,20 @@ export const Context = createContext<ContextParams>({
 });
 
 const GlobalState = ({ children }: ChildrenProps) => {
+  const [authorisation, setAuthorisation] = useState<t.EAuth | null>(null);
   const [isAdmin, setIsAdmin] = useState(false);
-  const [status, setStatus] = useState<string>(EStatus.GUARD);
-  const [articles, setArticles] = useState<Article[] | null>(null);
-  const [article, setArticle] = useState<Article | null>(null);
+  const [status, setStatus] = useState<string>(t.EStatus.GUARD);
+  const [articles, setArticles] = useState<t.Article[] | null>(null);
+  const [article, setArticle] = useState<t.Article | null>(null);
   const [isModal, setIsModal] = useState<boolean>(false);
   const [modalContent, setModalContent] = useState<string>('');
+
+  const auth = {
+    status: authorisation,
+    set: (v: t.EAuth | null) => setAuthorisation(v),
+    isOwner: authorisation === t.EAuth.OWNER,
+    isAdmin: authorisation === t.EAuth.ADMIN
+  };
 
   const admin = {
     is: isAdmin,
@@ -54,26 +68,26 @@ const GlobalState = ({ children }: ChildrenProps) => {
   const app = {
     status,
     set: (s: string) => setStatus(s),
-    isGuard: status === EStatus.GUARD,
-    isInit: status === EStatus.INIT,
-    isCreate: status === EStatus.CREATE,
-    isEdit: status === EStatus.EDIT,
-    isPending: status === EStatus.PENDING,
-    isActive: status === EStatus.ACTIVE,
-    isDelete: status === EStatus.DELETE,
-    isArticles: status === EStatus.ARTICLES,
-    isArticle: status === EStatus.ARTICLE,
-    config: EStatus
+    isGuard: status === t.EStatus.GUARD,
+    isInit: status === t.EStatus.INIT,
+    isCreate: status === t.EStatus.CREATE,
+    isEdit: status === t.EStatus.EDIT,
+    isPending: status === t.EStatus.PENDING,
+    isActive: status === t.EStatus.ACTIVE,
+    isDelete: status === t.EStatus.DELETE,
+    isArticles: status === t.EStatus.ARTICLES,
+    isArticle: status === t.EStatus.ARTICLE,
+    config: t.EStatus
   };
 
   const data = {
     articles: articles,
-    set: (d: Article[] | null) => setArticles(d)
+    set: (d: t.Article[] | null) => setArticles(d)
   };
 
   const details = {
     article: article,
-    set: (d: Article | null) => setArticle(d)
+    set: (d: t.Article | null) => setArticle(d)
   };
 
   const modal = {
@@ -83,7 +97,7 @@ const GlobalState = ({ children }: ChildrenProps) => {
     setContent: (s: string) => setModalContent(s)
   };
 
-  const value = { admin, app, data, details, modal };
+  const value = { auth, admin, app, data, details, modal };
 
   return <Context.Provider value={value}>{children}</Context.Provider>;
 };

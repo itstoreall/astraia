@@ -132,6 +132,14 @@ const Editor = () => {
     deleted?.success && finaly();
   };
 
+  const approvePublish = async (id: string) => {
+    console.log('approvePublish!!!');
+    app.set(app.config.PENDING);
+    const published = await data.pub(id);
+    console.log('published:', published?.success);
+    published?.success && finaly();
+  };
+
   const reset = () => {
     app.set(app.config.PENDING);
     gu.delLS(gc.system.lsArticleKey);
@@ -160,6 +168,8 @@ const Editor = () => {
                 <modal.DeleteArticle action={approveDelete} />
               ) : modal.content === 'mdsimulator' ? (
                 <modal.MDSimulator />
+              ) : modal.content === 'publisher' ? (
+                <modal.PublishArticle action={approvePublish} />
               ) : null}
             </>
           ) : app.isInit ? (

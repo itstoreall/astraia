@@ -1,3 +1,9 @@
+const adminKey = process.env.NEXT_PUBLIC_ADMIN_KEY;
+const ownerKey = process.env.NEXT_PUBLIC_OWNER_KEY;
+
+export const isOwnerId = (id: string) => id && id === ownerKey;
+export const isAdminId = (id: string) => id && id === adminKey;
+
 // ------ Local Storage:
 
 export const getLS = (label: string) => {
