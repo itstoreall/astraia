@@ -1,6 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 'use client';
+import { useEffect } from 'react';
 import ApolloProvider from '@/GraphQL/provider/ApolloProvider';
+import useFetchArticles from '@/hooks/useFetchArticles';
 import { useGlobalState } from '@/Global/context/use';
 import * as gc from '@/config/global';
 import Loader from '@/components/Loader';
@@ -9,12 +11,12 @@ import Container from '@/components/Container';
 import Sidebar from './Sidebar';
 import List from './List';
 import s from './Articles.module.scss';
-import useFetchArticles from '@/hooks/useFetchArticles';
-import { useEffect } from 'react';
+
+const { published } = gc.articleStatus;
 
 const Articles = () => {
   const Content = () => {
-    const { articles } = useFetchArticles();
+    const { articles } = useFetchArticles(published);
     const { app } = useGlobalState();
 
     useEffect(() => {

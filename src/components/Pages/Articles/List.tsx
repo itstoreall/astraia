@@ -7,6 +7,7 @@ import s from './Articles.module.scss';
 import { useGlobalState } from '@/Global/context/use';
 
 const { pathname: articlesPathname } = gc.page.articles;
+// const { published } = gc.articleStatus;
 
 const List = () => {
   const { data } = useGlobalState();

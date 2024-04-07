@@ -1,9 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect } from 'react';
 import { useGlobalState } from '@/Global/context/use';
 import useQuery from '@/GraphQL/hooks/useQuery';
-import { useEffect } from 'react';
+import * as gc from '@/config/global';
 
-const useFetchArticles = () => {
+const { published: pub } = gc.articleStatus;
+
+const useFetchArticles = (label: string | null) => {
   const { data } = useGlobalState();
   const query = useQuery();
 
@@ -12,8 +15,7 @@ const useFetchArticles = () => {
   }, []);
 
   const refetch = async () => {
-    const res = await query.all();
-    console.log('res', res);
+    const res = await (label === pub ? query.published() : query.all());
     res?.success && data.set(res.data);
   };
 

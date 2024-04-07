@@ -1,6 +1,6 @@
 import Logo from '../Logo';
 import { useGlobalState } from '@/Global/context/use';
-import useModal from '../Modal/use';
+import * as gc from '@/config/global';
 import * as config from './config';
 import { EBtn } from './types';
 import Publisher from '../Publisher/Publisher';
@@ -9,6 +9,7 @@ import NewArticleButton from '../NewArticleButton';
 import ArticlesButton from '../ArticlesButton';
 import s from './Header.module.scss';
 
+const { created, unpublished } = gc.articleStatus;
 const { header } = config;
 
 const buttons = [
@@ -19,11 +20,15 @@ const buttons = [
 ];
 
 const ButtonHandler = () => {
-  const { app } = useGlobalState();
+  const { app, details } = useGlobalState();
 
   const isPUBLISH = (label: EBtn) => {
-    console.log(111, label === EBtn.PUBLISH && app.isEdit);
-    return label === EBtn.PUBLISH && app.isEdit;
+    const status = details.article?.status;
+    return (
+      label === EBtn.PUBLISH &&
+      app.isEdit &&
+      (!status || status === created || status === unpublished)
+    );
   };
 
   const isMD = (label: EBtn) => {

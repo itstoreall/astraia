@@ -11,6 +11,7 @@ const GET_ARTICLES = gql`
       ipfs
       image
       views
+      status
       tags
       timestamp
     }

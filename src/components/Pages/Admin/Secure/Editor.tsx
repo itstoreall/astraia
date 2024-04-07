@@ -134,10 +134,10 @@ const Editor = () => {
 
   const approvePublish = async (id: string) => {
     console.log('approvePublish!!!');
-    // app.set(app.config.PENDING);
-    // const deleted = await data.del(id);
-    // console.log('deleted:', deleted?.success);
-    // deleted?.success && finaly();
+    app.set(app.config.PENDING);
+    const published = await data.pub(id);
+    console.log('published:', published?.success);
+    published?.success && finaly();
   };
 
   const reset = () => {

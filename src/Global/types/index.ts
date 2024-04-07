@@ -7,6 +7,7 @@ export type Article = {
   text: string;
   image: string;
   tags: string[];
+  status: string;
   views: string | null;
   timestamp: string;
 };
