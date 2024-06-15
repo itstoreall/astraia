@@ -11,7 +11,7 @@ import PUBLISH_ARTICLE from '../gql/publishArticle';
 
 export type AddArticleArgs = { title: string; image: string; text: string };
 
-const { label: blog } = gc.system;
+const { labelAstraia: blog } = gc.system;
 const { errRes } = config.query;
 
 const useQuery = () => {

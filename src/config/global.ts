@@ -1,18 +1,20 @@
 import defaultImage from '@/assets/images/defaultImage.jpg';
 
-const prod = 'https://astraia.storeall.com.ua';
+const prod = 'https://esoterrium.space'; // https://astraia.storeall.com.ua
 const dev = `http://localhost:${process.env.NEXT_PUBLIC_PORT || '3000'}`;
 
 export const system = {
-  label: 'astraia',
+  labelAstraia: 'astraia',
+  labelEsoterrium: 'esoterrium',
   domain: prod,
   defaultImage,
   defaultImageUrl: `${prod}/_next/static/media/defaultImage.c592ac5f.jpg`,
-  lsArticleKey: '++_astraia_article',
-  lsViewsKey: `++_astraia_views:`,
+  lsArticleKey: '++_esoterrium_article',
+  lsViewsKey: `++_esoterrium_views:`,
   preloader: { timeout: 2000 }
 };
 
+/*
 export const months = [
   'січ',
   'лют',
@@ -27,6 +29,7 @@ export const months = [
   'лист',
   'груд'
 ];
+*/
 
 export const page = {
   home: {
@@ -53,15 +56,16 @@ export const page = {
 
 export const meta = {
   metadataBase: prod || dev,
-  title: 'ASTRAIA',
-  description: 'Astraia - духовное саморазвитие',
+  // title: 'ASTRAIA',
+  title: 'Esoterrium',
+  description: 'Esoterrium - духовное саморазвитие',
   url: prod,
-  siteName: 'Astraia',
+  siteName: 'Esoterrium',
   defaultImage: {
     url: `/_next/static/media/defaultImage.c592ac5f.jpg`,
     width: 1200,
     height: 630,
-    alt: 'Astraia picture'
+    alt: 'Esoterrium picture'
   },
   authors: ['Astraia', 'Mila']
 };

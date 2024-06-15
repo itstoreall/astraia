@@ -1,14 +1,19 @@
 'use client';
+/*
 import { useEffect, useState } from 'react';
 import { useGlobalState } from '@/Global/context/use';
 import * as gc from '@/config/global';
 import Container from '@/components/Container';
+*/
 import s from './Home.module.scss';
 
+/*
 const { articles, admin } = gc.page;
 const { title: astraia } = gc.meta;
+*/
 
 const Home = () => {
+  /*
   const [title, setTitle] = useState<string>('');
   const [links, setLinks] = useState<string>('');
 
@@ -18,10 +23,11 @@ const Home = () => {
     setTimeout(() => setTitle('title'), 500);
     setTimeout(() => setLinks('links'), 1100);
   }, []);
+  */
 
   return (
     <main className={s.main}>
-      <Container label={gc.page.home.label}>
+      {/* <Container label={gc.page.home.label}>
         <section className={s.heroBlock}>
           <div className={s.content}>
             <h1 className={s[title]}>{astraia}</h1>
@@ -44,7 +50,7 @@ const Home = () => {
             </nav>
           </div>
         </section>
-      </Container>
+      </Container> */}
     </main>
   );
 };

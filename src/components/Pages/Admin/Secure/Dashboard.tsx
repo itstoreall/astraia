@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useLayoutEffect } from 'react';
 import ApolloProvider from '@/GraphQL/provider/ApolloProvider';
 import { useGlobalState } from '@/Global/context/use';
 import Information from './Information';
@@ -8,7 +10,9 @@ import Loader from '@/components/Loader';
 const Dashboard = () => {
   const { app, data } = useGlobalState();
 
-  console.log('* dashboard status:', app.status);
+  useLayoutEffect(() => () => data.set(null), []);
+
+  // console.log('* dashboard status:', app.status);
 
   return (
     <ApolloProvider>

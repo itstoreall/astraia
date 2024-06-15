@@ -21,7 +21,11 @@ const MDSimulator = () => {
         </modal.Modal>
       )}
 
-      <button className={s.mdSimulatorButton} onClick={handleMDModal}>
+      <button
+        className={s.mdSimulatorButton}
+        onClick={handleMDModal}
+        title={'Симулятор'}
+      >
         <MDSimulatorIcon />
       </button>
     </>

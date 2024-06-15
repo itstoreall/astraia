@@ -1,12 +1,12 @@
 import { Metadata } from 'next';
-import metadataHandler from '@/utils/metadataHandler';
 import * as gc from '@/config/global';
-import Home from '@/components/Pages/Home';
+import metadataHandler from '@/utils/metadataHandler';
+import Articles from '@/components/Pages/Articles';
 
 const { pathname } = gc.page.home;
 
 export const metadata: Metadata = metadataHandler(pathname);
 
-const HomePage = () => <Home />;
+const HomePage = () => <Articles />;
 
 export default HomePage;
