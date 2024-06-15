@@ -11,6 +11,7 @@ const NewArticleButton = () => {
     <div
       className={s.newArticleButtonBlock}
       onClick={() => app.set(app.config.CREATE)}
+      title={'Новая статья'}
     >
       <NewArticleIcon />
     </div>

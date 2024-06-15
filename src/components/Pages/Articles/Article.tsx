@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import MDEditor from '@uiw/react-md-editor';
 import { useGlobalState } from '@/Global/context/use';
-import { Article } from '@/Global/types';
+import * as gt from '@/Global/types';
 import * as gc from '@/config/global';
 import * as gu from '@/utils/global';
 import Navigation from '@/components/Navigation';
@@ -13,7 +13,7 @@ import s from './Articles.module.scss';
 
 const { lsArticleKey, defaultImageUrl } = gc.system;
 
-const Article = ({ article }: { article: Article }) => {
+const Article = ({ article }: { article: gt.Article }) => {
   const [textAlign, setTextAlign] = useState<string>('');
 
   const { app } = useGlobalState();

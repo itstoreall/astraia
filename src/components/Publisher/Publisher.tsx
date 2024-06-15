@@ -19,7 +19,11 @@ const Publisher = () => {
   };
 
   return (
-    <div className={s.publisherButtonBlock} onClick={publishArticle}>
+    <div
+      className={s.publisherButtonBlock}
+      onClick={publishArticle}
+      title={'Опубликовать'}
+    >
       <PublishIcon />
     </div>
   );

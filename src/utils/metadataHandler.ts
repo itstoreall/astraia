@@ -29,10 +29,10 @@ export const admin = {
 };
 
 const articles = {
-  title: 'Статьи | Астрая',
+  title: 'Статьи | Esoterrium',
   description: 'Статьи о тонком мире и духовном саморазвитии',
   openGraph: {
-    title: 'Статьи | Астрая',
+    title: 'Статьи | Esoterrium',
     description: 'Статьи о тонком мире и духовном саморазвитии',
     url: `${gc.meta.url}/${gc.page.articles.pathname}`,
     siteName: gc.meta.siteName,

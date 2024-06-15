@@ -3,7 +3,7 @@ import s from './ArticlesButton.module.scss';
 
 const ArticlesButton = () => {
   return (
-    <Link href={'/articles'} className={s.articlesButtonLink}>
+    <Link href={'/'} className={s.articlesButtonLink} title={'Все статьи'}>
       <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
         <path
           // fill={currentColor}

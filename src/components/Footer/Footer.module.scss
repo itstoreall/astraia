@@ -1,5 +1,14 @@
 @import '@/styles/imports';
 
+.reusable {
+  @extend %extends-transition-03s;
+  @include basic-palette-white('color', 0.3);
+
+  &:hover {
+    color: $colorBlue;
+  }
+}
+
 footer.footer {
   width: 100%;
   min-height: 60px;
@@ -20,31 +29,25 @@ footer.footer {
 
     > span.copyright {
       margin: 0 auto;
-      font-family: var(--font-share-tech);
-      font-size: 14px;
       @include basic-palette-white('color', 0.3);
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      // opacity: 0.2;
+      text-transform: capitalize;
 
       > a.logo {
         margin-right: 5px;
 
         > span {
-          @extend %extends-transition-03s;
-          font-family: var(--font-share-tech);
-          @include basic-palette-white('color', 0.3);
-          // transition: $ease03s;
-
-          &:hover {
-            color: $colorBlue;
-          }
+          @extend .reusable;
         }
       }
 
       > span.copySymbol {
-        font-family: var(--font-share-tech);
         @include basic-palette-white('color', 0.3);
+      }
+
+      > a.year {
+        > time {
+          @extend .reusable;
+        }
       }
     }
   }
